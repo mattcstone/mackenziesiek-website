@@ -99,6 +99,11 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
             <span className="text-gray-600">Based on <span className="font-semibold">47</span> Google Reviews</span>
           </div>
         </div>
+        
+        {/* Section separator */}
+        <div className="max-w-4xl mx-auto mt-12">
+          <hr className="border-t border-gray-200" />
+        </div>
       </div>
     </section>
   );

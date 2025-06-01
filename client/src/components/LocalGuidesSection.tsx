@@ -77,9 +77,9 @@ export default function LocalGuidesSection({ agentId }: LocalGuidesSectionProps)
   };
 
   return (
-    <section id="guides" className="py-16 lg:py-24 bg-stone-light">
+    <section id="guides" className="py-8 lg:py-12 bg-stone-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 animate-fade-in">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Local Insider Guides
           </h2>

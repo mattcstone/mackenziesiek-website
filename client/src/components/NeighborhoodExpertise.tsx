@@ -151,6 +151,11 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
             </Link>
           ))}
         </div>
+        
+        {/* Section separator */}
+        <div className="max-w-4xl mx-auto mt-12">
+          <hr className="border-t border-gray-200" />
+        </div>
       </div>
     </section>
   );
