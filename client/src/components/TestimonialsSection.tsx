@@ -3,6 +3,7 @@ import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Testimonial } from "@shared/schema";
 import logoPath from "@assets/Final-02.png";
+import { useLazyLoading } from "@/hooks/use-lazy-loading";
 
 interface TestimonialsSectionProps {
   agentId: number;
