@@ -17,10 +17,10 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 Your In-Town Charlotte Expert
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Charlotte native turned real estate matchmaker with a unique story. I grew up touring model homes with 
+                Charlotte native turned luxury real estate specialist with a unique story. I grew up touring model homes with 
                 my builder dad and was a competitive equestrian for 10 years. With my UNC Charlotte finance degree and 
-                eye for design, I love helping people find their perfect home. When I'm off the clock, you'll find me 
-                browsing farmers markets, hiking trails, or at 300 East — my favorite cozy spot in Charlotte.
+                refined eye for design, I bring sophistication to every transaction. When I'm off the clock, you'll find me 
+                browsing farmers markets, hiking trails, or at 300 East — my favorite refined dining spot in Charlotte.
               </p>
             </div>
             
@@ -36,8 +36,8 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
               <Card>
                 <CardContent className="pt-6">
                   <Users className="h-8 w-8 text-black mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2">Young Professional Focus</h3>
-                  <p className="text-gray-600 text-sm">I understand what young buyers want in lifestyle and location</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">Professional Focus</h3>
+                  <p className="text-gray-600 text-sm">I understand what discerning buyers want in lifestyle and location</p>
                 </CardContent>
               </Card>
               
@@ -52,8 +52,8 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
               <Card>
                 <CardContent className="pt-6">
                   <Handshake className="h-8 w-8 text-black mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2">First-Time Buyer Expert</h3>
-                  <p className="text-gray-600 text-sm">Guiding you through every step of your first home purchase</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">Luxury Home Specialist</h3>
+                  <p className="text-gray-600 text-sm">Curating exceptional properties for discerning clientele</p>
                 </CardContent>
               </Card>
             </div>

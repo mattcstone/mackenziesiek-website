@@ -17,7 +17,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              My Charlotte Neighborhoods
+              Get to Know In-Town Charlotte
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Loading neighborhood information...
@@ -31,57 +31,75 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
   const defaultNeighborhoods = [
     {
       id: 1,
-      name: "SouthEnd",
-      slug: "southend",
-      description: "High-rise living & light rail access",
-      image: "https://images.unsplash.com/photo-1518176258769-f227c798150e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      avgPrice: "Avg: $385K",
-      walkScore: 85,
+      name: "Uptown",
+      slug: "uptown",
+      description: "Charlotte's bustling business district with luxury high-rises",
+      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      avgPrice: "Avg: $650K",
+      walkScore: 95,
     },
     {
       id: 2,
-      name: "NoDa",
-      slug: "noda",
-      description: "Arts district with vibrant nightlife",
-      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      avgPrice: "Avg: $425K",
-      walkScore: 72,
+      name: "SouthEnd",
+      slug: "southend",
+      description: "Modern high-rise living with light rail access",
+      image: "https://images.unsplash.com/photo-1486718448742-163d73305c09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      avgPrice: "Avg: $485K",
+      walkScore: 85,
     },
     {
       id: 3,
       name: "Dilworth",
       slug: "dilworth",
-      description: "Trendy area with amazing restaurants",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      avgPrice: "Avg: $620K",
+      description: "Prestigious historic neighborhood with tree-lined streets",
+      image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      avgPrice: "Avg: $750K",
       walkScore: 78,
     },
     {
       id: 4,
-      name: "Plaza Midwood",
-      slug: "plaza-midwood",
-      description: "Eclectic & up-and-coming hotspot",
-      image: "https://images.unsplash.com/photo-1565402170291-8491f14678db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      avgPrice: "Avg: $325K",
-      walkScore: 68,
+      name: "NoDa",
+      slug: "noda",
+      description: "Vibrant arts district with craft breweries and galleries",
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      avgPrice: "Avg: $525K",
+      walkScore: 72,
     },
     {
       id: 5,
-      name: "Wesley Heights",
-      slug: "wesley-heights",
-      description: "Historic charm near Uptown",
-      image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      avgPrice: "Avg: $450K",
-      walkScore: 65,
-    },
-    {
-      id: 6,
       name: "Fourth Ward",
       slug: "fourth-ward",
       description: "Historic district in the heart of Uptown",
       image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      avgPrice: "Avg: $495K",
+      avgPrice: "Avg: $595K",
       walkScore: 88,
+    },
+    {
+      id: 6,
+      name: "Plaza Midwood",
+      slug: "plaza-midwood",
+      description: "Eclectic neighborhood with local boutiques and eateries",
+      image: "https://images.unsplash.com/photo-1565402170291-8491f14678db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      avgPrice: "Avg: $425K",
+      walkScore: 68,
+    },
+    {
+      id: 7,
+      name: "Midtown",
+      slug: "midtown",
+      description: "Growing urban corridor with mixed-use developments",
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      avgPrice: "Avg: $475K",
+      walkScore: 75,
+    },
+    {
+      id: 8,
+      name: "Myers Park",
+      slug: "myers-park",
+      description: "Charlotte's most prestigious residential neighborhood",
+      image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      avgPrice: "Avg: $850K",
+      walkScore: 65,
     },
   ];
 
@@ -92,10 +110,10 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            My In-Town Charlotte Neighborhoods
+            Get to Know In-Town Charlotte
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I specialize in Charlotte's most vibrant in-town communities where young professionals love to live, work, and play.
+            I specialize in Charlotte's most prestigious in-town communities where discerning residents enjoy exceptional urban living.
           </p>
         </div>
         
