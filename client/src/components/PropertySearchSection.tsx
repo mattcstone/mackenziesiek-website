@@ -40,7 +40,7 @@ export default function PropertySearchSection() {
             Find Your Perfect In-Town Home
           </h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Search Charlotte's hottest in-town listings with YLOPO's advanced search tools
+            Discover Charlotte's premier in-town neighborhoods and luxury properties
           </p>
         </div>
         
