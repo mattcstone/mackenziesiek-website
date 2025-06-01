@@ -194,6 +194,136 @@ export default function NeighborhoodPage() {
                       <li>Close proximity to Freedom Park</li>
                     </ul>
                   </>
+                ) : displayNeighborhood.slug === 'fourth-ward' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} Fourth Ward represents Charlotte's rich history with its collection of beautifully preserved Victorian homes and modern urban conveniences.
+                    </p>
+                    
+                    <h3>Historic Architecture & Character</h3>
+                    <p>
+                      Fourth Ward is renowned for its stunning Victorian-era homes, many of which have been meticulously restored to their original grandeur. The neighborhood's tree-lined streets create a peaceful residential atmosphere while maintaining easy access to Uptown's business district.
+                    </p>
+                    
+                    <h3>Urban Convenience</h3>
+                    <p>
+                      Residents enjoy the rare combination of historic charm and modern city living. The neighborhood's central location provides walking access to Uptown offices, restaurants, and cultural venues, making it ideal for professionals who value both character and convenience.
+                    </p>
+                    
+                    <h3>Fourth Ward Highlights</h3>
+                    <ul>
+                      <li>Historic Victorian homes with original architectural details</li>
+                      <li>Tree-lined residential streets with sidewalks</li>
+                      <li>Walking distance to Uptown Charlotte</li>
+                      <li>Proximity to First Ward Park and greenways</li>
+                      <li>Strong neighborhood association and community events</li>
+                      <li>Mix of restored historic homes and new construction</li>
+                    </ul>
+                  </>
+                ) : displayNeighborhood.slug === 'dilworth' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} Dilworth embodies Charlotte's classic neighborhood charm with its historic streetcar suburb layout and strong sense of community.
+                    </p>
+                    
+                    <h3>Classic Streetcar Suburb</h3>
+                    <p>
+                      Originally developed as one of Charlotte's first streetcar suburbs, Dilworth features charming bungalows and craftsman-style homes along tree-canopied streets. The neighborhood's original design promotes walkability and community interaction, with front porches and sidewalks throughout.
+                    </p>
+                    
+                    <h3>Family-Friendly Community</h3>
+                    <p>
+                      Dilworth is particularly popular with families, offering excellent schools, parks, and a strong sense of community. The neighborhood's central location provides easy access to both Uptown Charlotte and SouthEnd, while maintaining its residential character.
+                    </p>
+                    
+                    <h3>Dilworth Highlights</h3>
+                    <ul>
+                      <li>Historic craftsman bungalows and tree-lined streets</li>
+                      <li>Walkable neighborhood with sidewalks and front porches</li>
+                      <li>Close proximity to Freedom Park and greenways</li>
+                      <li>Strong community association and neighborhood events</li>
+                      <li>Mix of original homes and tasteful renovations</li>
+                      <li>Easy access to trendy restaurants and shops</li>
+                    </ul>
+                  </>
+                ) : displayNeighborhood.slug === 'myers-park' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} Myers Park stands as one of Charlotte's most prestigious addresses, known for its grand homes, tree-lined boulevards, and proximity to excellent schools.
+                    </p>
+                    
+                    <h3>Prestigious Living</h3>
+                    <p>
+                      Myers Park features some of Charlotte's most impressive residential architecture, from historic mansions to elegant contemporary homes. The neighborhood's wide, tree-canopied streets and large lots create a serene, upscale environment that has attracted Charlotte's most prominent families for generations.
+                    </p>
+                    
+                    <h3>Education & Recreation</h3>
+                    <p>
+                      The neighborhood is renowned for its proximity to excellent schools and Freedom Park, one of Charlotte's premier recreational destinations. Residents enjoy easy access to tennis courts, walking trails, and cultural venues while living in one of the city's most desirable locations.
+                    </p>
+                    
+                    <h3>Myers Park Highlights</h3>
+                    <ul>
+                      <li>Grand historic mansions and elegant architecture</li>
+                      <li>Tree-canopied boulevards and spacious lots</li>
+                      <li>Proximity to Freedom Park and recreational facilities</li>
+                      <li>Access to highly-rated schools and educational institutions</li>
+                      <li>Established neighborhood with mature landscaping</li>
+                      <li>Close to Uptown and major business districts</li>
+                    </ul>
+                  </>
+                ) : displayNeighborhood.slug === 'noda' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} NoDa (North Davidson) pulses with creative energy as Charlotte's premier arts district, where industrial heritage meets contemporary culture.
+                    </p>
+                    
+                    <h3>Arts & Music Hub</h3>
+                    <p>
+                      NoDa is Charlotte's creative heartbeat, featuring numerous live music venues, art galleries, and studios housed in converted industrial buildings. The neighborhood regularly hosts art crawls, music festivals, and cultural events that draw visitors from across the region.
+                    </p>
+                    
+                    <h3>Local Flavor</h3>
+                    <p>
+                      The dining and nightlife scene in NoDa is authentically local, featuring craft breweries, independent restaurants, and eclectic bars. The neighborhood's walkable layout and late-night scene make it a favorite destination for young professionals and creative types.
+                    </p>
+                    
+                    <h3>NoDa Highlights</h3>
+                    <ul>
+                      <li>Vibrant live music venues and concert halls</li>
+                      <li>Local art galleries and artist studios</li>
+                      <li>Craft breweries and independent restaurants</li>
+                      <li>Regular art crawls and cultural events</li>
+                      <li>Industrial-chic architecture and converted spaces</li>
+                      <li>Strong creative community and local identity</li>
+                    </ul>
+                  </>
+                ) : displayNeighborhood.slug === 'southend' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} SouthEnd represents Charlotte's modern urban lifestyle with sleek high-rises, trendy restaurants, and seamless connectivity via the LYNX Blue Line.
+                    </p>
+                    
+                    <h3>Modern Urban Living</h3>
+                    <p>
+                      SouthEnd features Charlotte's newest and most sophisticated residential developments, including luxury apartment towers and modern condominiums. The neighborhood attracts young professionals who appreciate contemporary amenities, rooftop terraces, and walkable access to dining and entertainment.
+                    </p>
+                    
+                    <h3>Transportation & Convenience</h3>
+                    <p>
+                      The LYNX Blue Line light rail provides direct access to Uptown Charlotte, making SouthEnd ideal for commuters. The neighborhood's grid layout and pedestrian-friendly design encourage walking and cycling, with numerous restaurants, bars, and shops within easy reach.
+                    </p>
+                    
+                    <h3>SouthEnd Highlights</h3>
+                    <ul>
+                      <li>Modern high-rise apartments and condominiums</li>
+                      <li>LYNX Blue Line light rail connectivity</li>
+                      <li>Trendy restaurants, breweries, and rooftop bars</li>
+                      <li>Walkable streets and bike-friendly infrastructure</li>
+                      <li>Regular festivals and outdoor events</li>
+                      <li>Close proximity to major employment centers</li>
+                    </ul>
+                  </>
                 ) : (
                   <>
                     <p>
