@@ -33,6 +33,9 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
             <a href="#search" className="text-gray-700 hover:text-black transition-colors">
               Search Homes
             </a>
+            <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-black transition-colors">
+              Sell a Home
+            </a>
             <a href="#guides" className="text-gray-700 hover:text-black transition-colors">
               Local Guides
             </a>
@@ -63,6 +66,9 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
               </a>
               <a href="#search" className="block px-3 py-2 text-gray-700 hover:text-black transition-colors">
                 Search Homes
+              </a>
+              <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-gray-700 hover:text-black transition-colors">
+                Sell a Home
               </a>
               <a href="#guides" className="block px-3 py-2 text-gray-700 hover:text-black transition-colors">
                 Local Guides
