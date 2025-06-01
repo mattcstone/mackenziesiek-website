@@ -35,10 +35,10 @@ export default function HeroSection({ agent }: HeroSectionProps) {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
-                <a href="#contact">Exclusive Property Access</a>
+                <a href="#contact">Access Listings</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-10 py-4 rounded-lg backdrop-blur-sm">
-                <a href="#search">Private Consultation</a>
+              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
+                <a href="#search">Your Home's Value</a>
               </Button>
             </div>
             
@@ -48,12 +48,12 @@ export default function HeroSection({ agent }: HeroSectionProps) {
                 <div className="text-sm text-gray-300">Homes Sold</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">{agent.avgDaysOnMarket}</div>
-                <div className="text-sm text-gray-300">Avg Days on Market</div>
-              </div>
-              <div className="text-center">
                 <div className="text-2xl font-bold">{agent.rating}★</div>
                 <div className="text-sm text-gray-300">Client Rating</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold">4+</div>
+                <div className="text-sm text-gray-300">Years Experience</div>
               </div>
             </div>
           </div>
@@ -79,15 +79,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
               </div>
             </div>
             
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-2xl border border-gray-100">
-              <div className="flex items-center space-x-3">
-                <img src="/assets/stone-logo-black.png" alt="Stone Realty Group" className="w-10 h-10" />
-                <div>
-                  <div className="text-sm font-bold text-gray-900">Stone Realty Group</div>
-                  <div className="text-xs text-gray-600 font-medium">Licensed in NC</div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
