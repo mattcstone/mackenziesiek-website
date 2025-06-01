@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import AgentPage from "@/pages/agent";
 import NeighborhoodPage from "@/pages/neighborhood";
 import GuidePage from "@/pages/guide";
+import SellPage from "@/pages/sell";
 
 function Router() {
   return (
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/agent/:slug" component={AgentPage} />
       <Route path="/neighborhood/:slug" component={NeighborhoodPage} />
       <Route path="/guide/:slug" component={GuidePage} />
+      <Route path="/sell" component={SellPage} />
       <Route component={NotFound} />
     </Switch>
   );
