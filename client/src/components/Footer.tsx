@@ -7,7 +7,7 @@ interface FooterProps {
 
 export default function Footer({ agent }: FooterProps) {
   return (
-    <footer className="bg-slate-800 text-white py-16">
+    <footer className="bg-slate-800 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-12 pb-8">
           <div>
@@ -54,7 +54,7 @@ export default function Footer({ agent }: FooterProps) {
       </div>
       
       {/* Legal Disclaimer Section */}
-      <div className="bg-gray-50 py-12 border-t border-gray-200">
+      <div className="bg-gray-50 py-6 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-16">
             <img src="/assets/stone-logo-black.png" alt="Stone Realty Group" className="h-24 w-auto opacity-80" />
