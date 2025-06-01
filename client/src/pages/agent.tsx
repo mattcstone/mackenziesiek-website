@@ -22,7 +22,7 @@ export default function AgentPage() {
     lastName: "Siek",
     email: "mackenzie@mattstoneteam.com",
     phone: "(704) 555-0123",
-    bio: "Say hello to Mackenzie Siek — Charlotte native, real estate matchmaker, and former competitive equestrian (yes, really!). Mackenzie was practically raised around open houses, tagging along with her dad, a local builder, and falling in love with everything from floorplans to finishes. With a finance degree from UNC Charlotte and a sharp eye for design, she brings both heart and strategy to the home buying and selling process.",
+    bio: "Meet Mackenzie Siek — Charlotte native, real estate matchmaker, and former competitive equestrian (yes, really!). Mackenzie was practically raised around open houses, tagging along with her dad, a local builder, and falling in love with everything from floorplans to finishes. With a finance degree from UNC Charlotte and a sharp eye for design, she brings both heart and strategy to the home buying and selling process.",
     headshot: "/assets/mackenzie-headshot.jpg",
     welcomeVideo: "https://example.com/welcome-video.mp4",
     church: null,

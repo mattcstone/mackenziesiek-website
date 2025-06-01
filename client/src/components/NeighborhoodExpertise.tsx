@@ -106,10 +106,10 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
   const displayNeighborhoods = neighborhoods && neighborhoods.length > 0 ? neighborhoods : defaultNeighborhoods;
 
   return (
-    <section id="neighborhoods" className="py-16 lg:py-24 bg-white">
+    <section id="neighborhoods" className="py-12 lg:py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 hover:text-black transition-colors duration-300">
             Get to Know In-Town Charlotte
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -117,23 +117,20 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {displayNeighborhoods.map((neighborhood) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {displayNeighborhoods.map((neighborhood, index) => (
             <Link key={neighborhood.id} href={`/neighborhood/${neighborhood.slug}`}>
-              <div className="group cursor-pointer">
-                <div className="relative overflow-hidden rounded-2xl shadow-lg transition-transform group-hover:scale-105">
-                  <div className="w-full h-64 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-600 relative">
-                    <div className="absolute inset-0 bg-black/20"></div>
-                    <div className="relative h-full flex flex-col justify-end p-6 text-white">
-                      <h3 className="text-xl font-bold mb-1">{neighborhood.name}</h3>
-                      <p className="text-sm text-gray-200 mb-2">{neighborhood.description}</p>
-                      <div className="flex items-center text-sm">
-                        <span>{neighborhood.avgPrice || "Price varies"}</span>
+              <div className="group cursor-pointer" style={{animationDelay: `${index * 100}ms`}}>
+                <div className="relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
+                  <div className="w-full h-48 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-600 relative">
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <div className="relative h-full flex flex-col justify-end p-4 text-white">
+                      <h3 className="text-lg font-bold mb-1 group-hover:text-yellow-200 transition-colors duration-300">{neighborhood.name}</h3>
+                      <p className="text-sm text-gray-200 mb-2 line-clamp-2">{neighborhood.description}</p>
+                      <div className="flex items-center text-xs">
+                        <span className="bg-white/20 backdrop-blur-sm px-2 py-1 rounded">{neighborhood.avgPrice || "Price varies"}</span>
                         {neighborhood.walkScore && (
-                          <>
-                            <span className="mx-2">•</span>
-                            <span>Walk Score: {neighborhood.walkScore}</span>
-                          </>
+                          <span className="ml-2 bg-green-500/20 backdrop-blur-sm px-2 py-1 rounded">Walk: {neighborhood.walkScore}</span>
                         )}
                       </div>
                     </div>

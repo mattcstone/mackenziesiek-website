@@ -8,12 +8,12 @@ interface PersonalStorySectionProps {
 
 export default function PersonalStorySection({ agent }: PersonalStorySectionProps) {
   return (
-    <section id="about" className="py-16 lg:py-24 bg-gray-50">
+    <section id="about" className="py-12 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="space-y-8 animate-fade-in-up">
+            <div className="space-y-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight hover:text-black transition-colors duration-300">
                 Your In-Town Charlotte Expert
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -24,90 +24,98 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <Home className="h-8 w-8 text-black mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2">In-Town Specialist</h3>
-                  <p className="text-gray-600 text-sm">Expert in SouthEnd, NoDa, Dilworth & Plaza Midwood</p>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <Home className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2">In-Town Specialist</h3>
+                    <p className="text-gray-600 text-sm">Expert in Uptown, SouthEnd, Dilworth & Myers Park</p>
+                  </CardContent>
+                </Card>
+              </div>
               
-              <Card>
-                <CardContent className="pt-6">
-                  <Users className="h-8 w-8 text-black mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2">Professional Focus</h3>
-                  <p className="text-gray-600 text-sm">I understand what discerning buyers want in lifestyle and location</p>
-                </CardContent>
-              </Card>
+              <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <Users className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2">Professional Focus</h3>
+                    <p className="text-gray-600 text-sm">Understanding discerning buyers' lifestyle needs</p>
+                  </CardContent>
+                </Card>
+              </div>
               
-              <Card>
-                <CardContent className="pt-6">
-                  <Mountain className="h-8 w-8 text-black mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2">City Lifestyle</h3>
-                  <p className="text-gray-600 text-sm">Know the best restaurants, bars, and entertainment venues</p>
-                </CardContent>
-              </Card>
+              <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <Mountain className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2">City Lifestyle</h3>
+                    <p className="text-gray-600 text-sm">Best restaurants, bars, and entertainment venues</p>
+                  </CardContent>
+                </Card>
+              </div>
               
-              <Card>
-                <CardContent className="pt-6">
-                  <Handshake className="h-8 w-8 text-black mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2">Luxury Home Specialist</h3>
-                  <p className="text-gray-600 text-sm">Curating exceptional properties for discerning clientele</p>
-                </CardContent>
-              </Card>
+              <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <Handshake className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2">Luxury Specialist</h3>
+                    <p className="text-gray-600 text-sm">Curating exceptional properties</p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
             
-            {/* Personal Details Section */}
-            <div className="mt-12 bg-gray-50 rounded-lg p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Get to Know Mackenzie</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Utensils className="w-6 h-6 text-white" />
+            {/* Personal Details Section - Compact with animations */}
+            <div className="bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 text-white">
+              <h3 className="text-2xl font-bold mb-6 text-center">Get to Know Mackenzie</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Utensils className="w-6 h-6 text-black" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Favorite Charlotte Restaurant</h4>
-                  <p className="text-gray-600 text-sm">300 East - It's such a cozy, charming spot with incredible food.</p>
+                  <h4 className="font-semibold mb-1">Favorite Restaurant</h4>
+                  <p className="text-gray-300 text-sm">300 East</p>
                 </div>
                 
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Coffee className="w-6 h-6 text-white" />
+                <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Coffee className="w-6 h-6 text-black" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Weekend Vibes</h4>
-                  <p className="text-gray-600 text-sm">I'm all about farmers markets, a stroll on the rail trail, and catching a football game whenever I can.</p>
+                  <h4 className="font-semibold mb-1">Weekend Vibes</h4>
+                  <p className="text-gray-300 text-sm">Farmers markets & rail trail</p>
                 </div>
                 
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Home className="w-6 h-6 text-white" />
+                <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Mountain className="w-6 h-6 text-black" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Favorite Thing About Charlotte</h4>
-                  <p className="text-gray-600 text-sm">There's always something new; whether it's a cool local coffee shop or a new restaurant opening, Charlotte keeps it fresh and exciting.</p>
+                  <h4 className="font-semibold mb-1">Hobbies</h4>
+                  <p className="text-gray-300 text-sm">Interior design & travel</p>
                 </div>
                 
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Mountain className="w-6 h-6 text-white" />
+                <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Users className="w-6 h-6 text-black" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Hobbies Outside of Real Estate</h4>
-                  <p className="text-gray-600 text-sm">I love interior design, traveling the world and visiting the NC mountains.</p>
+                  <h4 className="font-semibold mb-1">Fun Fact</h4>
+                  <p className="text-gray-300 text-sm">Competitive equestrian</p>
                 </div>
                 
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Users className="w-6 h-6 text-white" />
+                <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Home className="w-6 h-6 text-black" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Fun Fact</h4>
-                  <p className="text-gray-600 text-sm">I was a competitive equestrian for 10 years! Horses were a huge part of my life growing up.</p>
+                  <h4 className="font-semibold mb-1">Why Real Estate?</h4>
+                  <p className="text-gray-300 text-sm">Builder dad inspiration</p>
                 </div>
                 
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Handshake className="w-6 h-6 text-white" />
+                <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Handshake className="w-6 h-6 text-black" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Why Real Estate?</h4>
-                  <p className="text-gray-600 text-sm">Growing up touring model homes with my builder dad sparked my passion for helping people find their perfect home.</p>
+                  <h4 className="font-semibold mb-1">Education</h4>
+                  <p className="text-gray-300 text-sm">UNC Charlotte Finance</p>
                 </div>
               </div>
             </div>
