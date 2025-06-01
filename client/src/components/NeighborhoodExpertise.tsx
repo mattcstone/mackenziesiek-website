@@ -34,7 +34,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Uptown",
       slug: "uptown",
       description: "Charlotte's bustling business district with luxury high-rises",
-      image: "/api/placeholder/400/300?text=Charlotte+Uptown+Skyline",
+      image: "@assets/ryan-m-cJp16tjKAWk-unsplash.jpg",
       avgPrice: "Avg: $650K",
       walkScore: 95,
     },
