@@ -43,7 +43,7 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-7 lg:px-10">
-        <div className="flex justify-between items-center py-0">
+        <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-8">
             <div className="flex items-center">
               <img src="/attached_assets/rectlogo.png" alt="Stone Realty Group Logo" className="h-8 w-auto" />
