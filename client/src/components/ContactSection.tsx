@@ -96,9 +96,9 @@ export default function ContactSection({ agent }: ContactSectionProps) {
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
                     <Input
                       required
                       value={formData.firstName}
@@ -106,7 +106,7 @@ export default function ContactSection({ agent }: ContactSectionProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
                     <Input
                       required
                       value={formData.lastName}
@@ -115,27 +115,28 @@ export default function ContactSection({ agent }: ContactSectionProps) {
                   </div>
                 </div>
                 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <Input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <Input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                    <Input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                  <Input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">I'm interested in...</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">I'm interested in...</label>
                   <Select value={formData.interest} onValueChange={(value) => setFormData({ ...formData, interest: value })}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select your interest" />
@@ -151,18 +152,9 @@ export default function ContactSection({ agent }: ContactSectionProps) {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Neighborhoods</label>
-                  <Input
-                    placeholder="e.g., Myers Park, Dilworth, South End"
-                    value={formData.neighborhoods}
-                    onChange={(e) => setFormData({ ...formData, neighborhoods: e.target.value })}
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                   <Textarea
-                    rows={4}
+                    rows={3}
                     placeholder="Tell me about your home goals..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
