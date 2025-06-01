@@ -85,6 +85,37 @@ export const chatSessions = pgTable("chat_sessions", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const properties = pgTable("properties", {
+  id: serial("id").primaryKey(),
+  mlsId: text("mls_id").unique(),
+  address: text("address").notNull(),
+  price: decimal("price", { precision: 12, scale: 2 }).notNull(),
+  bedrooms: integer("bedrooms"),
+  bathrooms: decimal("bathrooms", { precision: 3, scale: 1 }),
+  squareFootage: integer("square_footage"),
+  lotSize: decimal("lot_size", { precision: 10, scale: 2 }),
+  yearBuilt: integer("year_built"),
+  propertyType: text("property_type").notNull(),
+  status: text("status").notNull(), // Active, Pending, Sold
+  daysOnMarket: integer("days_on_market"),
+  images: text("images").array(),
+  description: text("description"),
+  neighborhoodId: integer("neighborhood_id").references(() => neighborhoods.id),
+  agentId: integer("agent_id").references(() => agents.id),
+  latitude: decimal("latitude", { precision: 10, scale: 8 }),
+  longitude: decimal("longitude", { precision: 11, scale: 8 }),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const propertyComparisons = pgTable("property_comparisons", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull(),
+  propertyIds: integer("property_ids").array().notNull(),
+  agentId: integer("agent_id").references(() => agents.id),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // Relations
 export const agentsRelations = relations(agents, ({ many }) => ({
   neighborhoods: many(neighborhoods),
@@ -92,6 +123,8 @@ export const agentsRelations = relations(agents, ({ many }) => ({
   testimonials: many(testimonials),
   leads: many(leads),
   chatSessions: many(chatSessions),
+  properties: many(properties),
+  propertyComparisons: many(propertyComparisons),
 }));
 
 export const neighborhoodsRelations = relations(neighborhoods, ({ one, many }) => ({
@@ -100,6 +133,7 @@ export const neighborhoodsRelations = relations(neighborhoods, ({ one, many }) =
     references: [agents.id],
   }),
   guides: many(guides),
+  properties: many(properties),
 }));
 
 export const guidesRelations = relations(guides, ({ one }) => ({
@@ -130,6 +164,24 @@ export const leadsRelations = relations(leads, ({ one }) => ({
 export const chatSessionsRelations = relations(chatSessions, ({ one }) => ({
   agent: one(agents, {
     fields: [chatSessions.agentId],
+    references: [agents.id],
+  }),
+}));
+
+export const propertiesRelations = relations(properties, ({ one }) => ({
+  neighborhood: one(neighborhoods, {
+    fields: [properties.neighborhoodId],
+    references: [neighborhoods.id],
+  }),
+  agent: one(agents, {
+    fields: [properties.agentId],
+    references: [agents.id],
+  }),
+}));
+
+export const propertyComparisonsRelations = relations(propertyComparisons, ({ one }) => ({
+  agent: one(agents, {
+    fields: [propertyComparisons.agentId],
     references: [agents.id],
   }),
 }));
@@ -167,6 +219,17 @@ export const insertChatSessionSchema = createInsertSchema(chatSessions).omit({
   updatedAt: true,
 });
 
+export const insertPropertySchema = createInsertSchema(properties).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPropertyComparisonSchema = createInsertSchema(propertyComparisons).omit({
+  id: true,
+  createdAt: true,
+});
+
 // Types
 export type Agent = typeof agents.$inferSelect;
 export type InsertAgent = z.infer<typeof insertAgentSchema>;
@@ -180,3 +243,7 @@ export type Lead = typeof leads.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
 export type ChatSession = typeof chatSessions.$inferSelect;
 export type InsertChatSession = z.infer<typeof insertChatSessionSchema>;
+export type Property = typeof properties.$inferSelect;
+export type InsertProperty = z.infer<typeof insertPropertySchema>;
+export type PropertyComparison = typeof propertyComparisons.$inferSelect;
+export type InsertPropertyComparison = z.infer<typeof insertPropertyComparisonSchema>;
