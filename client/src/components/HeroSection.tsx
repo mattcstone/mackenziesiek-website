@@ -35,11 +35,11 @@ export default function HeroSection({ agent }: HeroSectionProps) {
             
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
               Your Guide to
-              <span className="text-gray-300"> In-Town Charlotte</span>
+              <span className="text-gray-300"> In-Town Charlotte Living</span>
             </h1>
             
             <p className="text-xl text-gray-200 leading-relaxed">
-              {agent.bio}
+              Specializing in Charlotte's most sought-after neighborhoods: SouthEnd condos, NoDa townhomes, Dilworth historic homes, and Fourth Ward luxury properties. Your trusted Charlotte realtor for in-town living.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">

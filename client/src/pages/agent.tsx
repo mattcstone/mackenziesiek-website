@@ -10,6 +10,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
+import BackToTop from "@/components/BackToTop";
 import type { Agent } from "@shared/schema";
 
 export default function AgentPage() {
@@ -56,6 +57,7 @@ export default function AgentPage() {
       <ContactSection agent={displayAgent} />
       <Footer agent={displayAgent} />
       <ChatBot agentName={displayAgent.firstName} agentId={displayAgent.id} />
+      <BackToTop />
     </div>
   );
 }

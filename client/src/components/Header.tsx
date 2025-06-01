@@ -50,19 +50,19 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
           </div>
           
           <nav className="hidden lg:flex items-center space-x-10">
-            <a href="#about" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+            <a href="#about" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
               About
             </a>
-            <a href="#neighborhoods" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+            <a href="#neighborhoods" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
               Areas
             </a>
-            <a href="#search" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+            <a href="#search" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
               Search
             </a>
-            <Link href="/sell" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+            <Link href="/sell" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
               Sell
             </Link>
-            <a href="#contact" className="bg-black text-white px-6 py-3 rounded-none hover:bg-gray-800 transition-colors text-sm font-medium tracking-wide uppercase">
+            <a href="#contact" className="bg-black text-white px-6 py-3 rounded-none hover:bg-gray-800 transition-colors text-sm font-medium tracking-wide uppercase min-h-[44px] flex items-center">
               Contact
             </a>
           </nav>
@@ -81,19 +81,19 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
         {isMobileMenuOpen && (
           <div className="lg:hidden">
             <div className="px-6 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
-              <a href="#about" className="block px-3 py-3 text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+              <a href="#about" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 About
               </a>
-              <a href="#neighborhoods" className="block px-3 py-3 text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+              <a href="#neighborhoods" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Areas
               </a>
-              <a href="#search" className="block px-3 py-3 text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+              <a href="#search" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Search
               </a>
-              <Link href="/sell" className="block px-3 py-3 text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
+              <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Sell
               </Link>
-              <a href="#contact" className="block px-3 py-3 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-sm font-medium tracking-wide uppercase">
+              <a href="#contact" className="block px-4 py-4 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center justify-center rounded">
                 Contact
               </a>
             </div>
