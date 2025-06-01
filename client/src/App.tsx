@@ -19,7 +19,7 @@ function Router() {
       <Route path="/neighborhood/:slug" component={NeighborhoodPage} />
       <Route path="/guide/:slug" component={GuidePage} />
       <Route path="/sell" component={SellPage} />
-      <Route path="/compare" component={ComparePage} />
+
       <Route path="/reviews" component={ReviewsPage} />
       <Route component={NotFound} />
     </Switch>

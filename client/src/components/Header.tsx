@@ -55,37 +55,33 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
           </div>
           
           <nav className="hidden lg:flex items-center space-x-10">
-            <a href="#about" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
-              About
-            </a>
-            <a href="#neighborhoods" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
-              Areas
-            </a>
-            <a href="#search" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
-              Search
-            </a>
-            
-            {/* Services Dropdown */}
+            {/* Main Menu Dropdown */}
             <div 
               className="relative"
               onMouseEnter={() => setIsServicesDropdownOpen(true)}
               onMouseLeave={() => setIsServicesDropdownOpen(false)}
             >
               <button className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2 flex items-center">
-                Services
+                Menu
                 <ChevronDown className="ml-1 h-3 w-3" />
               </button>
               
               {isServicesDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  <Link href="/compare" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Property Compare
-                  </Link>
+                  <a href="#about" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    About
+                  </a>
+                  <a href="#neighborhoods" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Areas
+                  </a>
+                  <a href="#search" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Search
+                  </a>
                   <Link href="/reviews" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Client Reviews
+                    Reviews
                   </Link>
                   <Link href="/sell" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Sell Your Home
+                    Sell
                   </Link>
                 </div>
               )}
@@ -119,18 +115,12 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
               <a href="#search" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Search
               </a>
-              <div className="px-4 py-2">
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Services</div>
-                <Link href="/compare" className="block px-2 py-2 text-gray-600 hover:text-black transition-colors text-sm min-h-[36px] flex items-center rounded">
-                  Property Compare
-                </Link>
-                <Link href="/reviews" className="block px-2 py-2 text-gray-600 hover:text-black transition-colors text-sm min-h-[36px] flex items-center rounded">
-                  Client Reviews
-                </Link>
-                <Link href="/sell" className="block px-2 py-2 text-gray-600 hover:text-black transition-colors text-sm min-h-[36px] flex items-center rounded">
-                  Sell Your Home
-                </Link>
-              </div>
+              <Link href="/reviews" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Reviews
+              </Link>
+              <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Sell
+              </Link>
               <a href="#contact" className="block px-4 py-4 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center justify-center rounded">
                 Contact
               </a>
