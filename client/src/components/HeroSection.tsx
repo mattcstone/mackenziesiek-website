@@ -38,7 +38,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
                 <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer">Access Listings</a>
               </Button>
               <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
-                <a href="#search">Your Home's Value</a>
+                <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer">Your Home's Value</a>
               </Button>
             </div>
             

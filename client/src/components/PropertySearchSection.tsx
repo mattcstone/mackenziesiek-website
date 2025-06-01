@@ -26,8 +26,8 @@ export default function PropertySearchSection() {
   };
 
   const handleValuation = () => {
-    // Redirect to Matt Stone Team search tool
-    window.open("https://mackenzie.mattstoneteam.com/", "_blank");
+    // Redirect to Matt Stone Team seller page
+    window.open("https://mackenzie.mattstoneteam.com/SELLER", "_blank");
   };
 
   return (
