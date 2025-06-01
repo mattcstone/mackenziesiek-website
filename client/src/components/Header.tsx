@@ -19,7 +19,7 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
               {agentName}
             </Link>
             <div className="flex items-center">
-              <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-16 w-auto" />
+              <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-24 w-auto" />
             </div>
           </div>
           
