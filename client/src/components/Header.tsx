@@ -42,7 +42,7 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-7 lg:px-10">
         <div className="flex justify-between items-center py-0">
           <div className="flex items-center space-x-8">
             <div className="flex items-center">
@@ -68,19 +68,19 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               
               {isServicesDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  <a href="#about" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                  <a href="#about" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     About
                   </a>
-                  <a href="#neighborhoods" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                  <a href="#neighborhoods" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Areas
                   </a>
-                  <a href="#search" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                  <a href="#search" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Search
                   </a>
-                  <Link href="/reviews" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                  <Link href="/reviews" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Reviews
                   </Link>
-                  <Link href="/sell" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                  <Link href="/sell" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Sell
                   </Link>
                 </div>
