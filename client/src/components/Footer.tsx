@@ -9,7 +9,7 @@ export default function Footer({ agent }: FooterProps) {
   return (
     <footer className="bg-slate-800 text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-3 gap-12">
           <div>
             <div className="text-xl font-bold mb-4">{agent.firstName} {agent.lastName}</div>
             <p className="text-gray-400 mb-4">
@@ -49,13 +49,7 @@ export default function Footer({ agent }: FooterProps) {
             </ul>
           </div>
           
-          <div>
-            <h3 className="font-semibold mb-4">Contact Info</h3>
-            <div className="space-y-2 text-gray-400">
-              <p>{agent.phone}</p>
-              <p>Charlotte, NC</p>
-            </div>
-          </div>
+
         </div>
       </div>
       
@@ -64,7 +58,7 @@ export default function Footer({ agent }: FooterProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-16">
             <img src="/assets/stone-logo-black.png" alt="Stone Realty Group" className="h-24 w-auto opacity-80" />
-            <img src="/assets/Logo_Black@4x.png" alt="Stone Selling System" className="h-12 w-auto opacity-80" />
+            <img src="/assets/Logo_Black@4x.png" alt="Stone Selling System" className="h-8 w-auto opacity-80" />
           </div>
           <div className="text-center mt-10 text-gray-600 text-sm max-w-5xl mx-auto leading-relaxed">
             <p>

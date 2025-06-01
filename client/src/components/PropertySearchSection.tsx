@@ -114,9 +114,7 @@ export default function PropertySearchSection() {
               </Button>
             </div>
             
-            <div className="mt-6 text-center text-sm text-gray-600">
-              <p>Powered by <span className="font-semibold">YLOPO</span> - Real-time MLS data updated every 15 minutes</p>
-            </div>
+
           </CardContent>
         </Card>
         
