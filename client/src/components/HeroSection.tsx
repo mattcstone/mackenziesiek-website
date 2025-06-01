@@ -35,7 +35,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
-                <a href="#contact">Access Listings</a>
+                <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer">Access Listings</a>
               </Button>
               <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
                 <a href="#search">Your Home's Value</a>

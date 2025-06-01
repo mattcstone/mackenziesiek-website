@@ -21,15 +21,13 @@ export default function PropertySearchSection() {
   };
 
   const handleSearch = () => {
-    // TODO: Integrate with YLOPO search API
-    console.log("Searching properties with:", searchForm);
-    alert("YLOPO property search integration coming soon!");
+    // Redirect to Matt Stone Team search tool
+    window.open("https://mackenzie.mattstoneteam.com/", "_blank");
   };
 
   const handleValuation = () => {
-    // TODO: Integrate with YLOPO home valuation API
-    console.log("Opening home valuation tool");
-    alert("YLOPO home valuation integration coming soon!");
+    // Redirect to Matt Stone Team search tool
+    window.open("https://mackenzie.mattstoneteam.com/", "_blank");
   };
 
   return (
