@@ -8,8 +8,11 @@ interface PersonalStorySectionProps {
 
 export default function PersonalStorySection({ agent }: PersonalStorySectionProps) {
   return (
-    <section id="about" className="py-12 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-12 lg:py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <div className="absolute top-1/4 -right-32 w-96 h-96 opacity-5 pointer-events-none transform rotate-12">
+        <img src="/assets/stone-watermark.svg" alt="" className="w-full h-full" />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-6">
