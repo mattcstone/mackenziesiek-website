@@ -24,7 +24,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
           const response = await fetch(`/api/photos/charlotte/${neighborhood}`);
           if (response.ok) {
             const photos = await response.json();
-            if (photos.length > 0) {
+            if (Array.isArray(photos) && photos.length > 0 && photos[0].urls) {
               setNeighborhoodPhotos(prev => ({
                 ...prev,
                 [neighborhood]: photos[0].urls.regular
@@ -32,7 +32,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
             }
           }
         } catch (error) {
-          console.log(`Failed to fetch photo for ${neighborhood}`);
+          console.error(`Failed to fetch photo for ${neighborhood}:`, error);
         }
       }
     };
