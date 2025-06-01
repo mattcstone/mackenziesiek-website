@@ -13,7 +13,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
+          backgroundImage: "url('/assets/shutterstock_626108123.jpg')"
         }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-gray-800/70"></div>
@@ -30,7 +30,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
               }}
             >
               <Star className="text-yellow-400 mr-2 h-4 w-4" />
-              <span>5-Star Agent in Charlotte</span>
+              <span>Top Realtor in Charlotte NC</span>
             </a>
             
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">

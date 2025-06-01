@@ -51,29 +51,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
 
   return (
     <section id="testimonials" className="relative py-8 lg:py-12 bg-gradient-to-br from-gray-50 to-stone-50 overflow-hidden">
-      {/* Decorative Background Pattern with Logos */}
-      <div className="absolute inset-0 opacity-5">
-        <img 
-          src={logoPath} 
-          alt="Stone Realty Logo" 
-          className="absolute top-8 left-8 w-32 h-32 object-contain opacity-30 rotate-12"
-        />
-        <img 
-          src={logoPath} 
-          alt="Stone Realty Logo" 
-          className="absolute top-1/3 right-12 w-40 h-40 object-contain opacity-20 -rotate-6"
-        />
-        <img 
-          src={logoPath} 
-          alt="Stone Realty Logo" 
-          className="absolute bottom-16 left-1/4 w-36 h-36 object-contain opacity-25 rotate-45"
-        />
-        <img 
-          src={logoPath} 
-          alt="Stone Realty Logo" 
-          className="absolute bottom-8 right-1/3 w-28 h-28 object-contain opacity-15 -rotate-12"
-        />
-      </div>
+
       
       {/* Subtle Grid Pattern */}
       <div 
