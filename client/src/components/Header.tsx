@@ -18,7 +18,7 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
             <div className="flex items-center">
               <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-24 w-auto" />
             </div>
-            <Link href="/" className="stone-black font-black text-4xl hover:text-gray-600 transition-colors" style={{fontSize: '1.9rem', lineHeight: '1.2'}}>
+            <Link href="/" className="stone-black font-normal hover:text-gray-600 transition-colors" style={{fontSize: '1.9rem', lineHeight: '1.2', fontFamily: 'Montserrat, sans-serif'}}>
               {agentName}
             </Link>
           </div>
