@@ -56,7 +56,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
             What My Clients Say
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real stories from discerning clients I've helped find their exceptional in-town Charlotte home
+            Real stories from Charlotte homebuyers
           </p>
         </div>
         
