@@ -138,14 +138,14 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
                         console.log(`Successfully loaded image: ${neighborhood.image}`);
                       }}
                     />
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                      <h3 className="text-lg font-bold mb-1 group-hover:text-yellow-200 transition-colors duration-300">{neighborhood.name}</h3>
-                      <p className="text-sm text-gray-200 mb-2 line-clamp-2">{neighborhood.description}</p>
+                      <h3 className="text-lg font-bold mb-1 group-hover:text-yellow-200 transition-colors duration-300 drop-shadow-lg text-shadow-xl">{neighborhood.name}</h3>
+                      <p className="text-sm text-gray-100 mb-2 line-clamp-2 drop-shadow-md">{neighborhood.description}</p>
                       <div className="flex items-center text-xs">
-                        <span className="bg-white/20 backdrop-blur-sm px-2 py-1 rounded">{neighborhood.avgPrice || "Price varies"}</span>
+                        <span className="bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded font-semibold text-white border border-white/20">{neighborhood.avgPrice || "Price varies"}</span>
                         {neighborhood.walkScore && (
-                          <span className="ml-2 bg-green-500/20 backdrop-blur-sm px-2 py-1 rounded">Walk: {neighborhood.walkScore}</span>
+                          <span className="ml-2 bg-green-600/80 backdrop-blur-sm px-3 py-1.5 rounded font-semibold text-white border border-white/20">Walk: {neighborhood.walkScore}</span>
                         )}
                       </div>
                     </div>
