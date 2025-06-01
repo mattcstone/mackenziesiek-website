@@ -49,11 +49,8 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
   };
 
   return (
-    <section id="testimonials" className="py-12 lg:py-20 bg-white relative overflow-hidden">
-      <div className="absolute bottom-1/4 -right-40 w-72 h-72 opacity-3 pointer-events-none transform rotate-30">
-        <img src="/assets/stone-watermark.svg" alt="" className="w-full h-full" />
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="testimonials" className="py-12 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             What My Clients Say
