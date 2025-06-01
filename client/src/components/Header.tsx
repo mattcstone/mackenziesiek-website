@@ -15,12 +15,12 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-6">
-            <Link href="/" className="stone-black font-bold text-xl hover:text-gray-600 transition-colors">
-              {agentName}
-            </Link>
             <div className="flex items-center">
               <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-24 w-auto" />
             </div>
+            <Link href="/" className="stone-black font-bold text-xl hover:text-gray-600 transition-colors">
+              {agentName}
+            </Link>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
