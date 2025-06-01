@@ -64,10 +64,10 @@ export default function ContactSection({ agent }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" className="py-16 lg:py-24 bg-gradient-to-br from-black to-gray-800 text-white">
+    <section id="contact" className="py-10 lg:py-16 bg-gradient-to-br from-black to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="animate-slide-in-left">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
               Ready to Find Your In-Town Home?
             </h2>

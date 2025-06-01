@@ -31,9 +31,9 @@ export default function PropertySearchSection() {
   };
 
   return (
-    <section id="search" className="py-16 lg:py-24 bg-gradient-to-br from-black to-gray-800 text-white">
+    <section id="search" className="py-10 lg:py-16 bg-gradient-to-br from-black to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 animate-fade-in">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Find Your Perfect Home
           </h2>

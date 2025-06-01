@@ -108,9 +108,9 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
   const displayNeighborhoods = neighborhoods && neighborhoods.length > 0 ? neighborhoods : defaultNeighborhoods;
 
   return (
-    <section id="neighborhoods" className="py-12 lg:py-20 bg-gradient-to-b from-white to-gray-50">
+    <section id="neighborhoods" className="py-8 lg:py-12 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 animate-fade-in">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 hover:text-black transition-colors duration-300">
             Discover Charlotte
           </h2>

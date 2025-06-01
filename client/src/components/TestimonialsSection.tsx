@@ -49,9 +49,9 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
   };
 
   return (
-    <section id="testimonials" className="py-12 lg:py-20 bg-white">
+    <section id="testimonials" className="py-8 lg:py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 animate-fade-in">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             What My Clients Say
           </h2>
@@ -61,8 +61,8 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
         </div>
         
         <div className="grid lg:grid-cols-3 gap-8">
-          {displayTestimonials.slice(0, 3).map((testimonial) => (
-            <Card key={testimonial.id} className="bg-stone-light">
+          {displayTestimonials.slice(0, 3).map((testimonial, index) => (
+            <Card key={testimonial.id} className="bg-stone-light transform hover:scale-105 transition-all duration-300 hover:shadow-xl" style={{animationDelay: `${index * 150}ms`}}>
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <div className="flex space-x-1">
