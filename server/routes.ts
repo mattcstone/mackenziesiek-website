@@ -186,8 +186,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(500).json({ message: "Unsplash API key not configured" });
       }
       
-      const searchQuery = `Charlotte NC ${neighborhood}`;
-      const response = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(searchQuery)}&per_page=3&orientation=landscape`, {
+      const searchQuery = `Charlotte North Carolina ${neighborhood} neighborhood`;
+      const response = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(searchQuery)}&per_page=5&orientation=landscape`, {
         headers: {
           'Authorization': `Client-ID ${accessKey}`
         }
@@ -198,7 +198,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const data = await response.json();
-      res.json(data.results);
+      
+      // Filter for more relevant results (exclude animal photos)
+      const filteredResults = data.results.filter(photo => {
+        const description = (photo.description || '').toLowerCase();
+        const altDescription = (photo.alt_description || '').toLowerCase();
+        const tags = photo.tags ? photo.tags.map(tag => tag.title.toLowerCase()).join(' ') : '';
+        
+        // Exclude animal-related photos
+        const animalKeywords = ['animal', 'lemur', 'zoo', 'pet', 'dog', 'cat', 'bird', 'wildlife'];
+        const hasAnimalKeywords = animalKeywords.some(keyword => 
+          description.includes(keyword) || altDescription.includes(keyword) || tags.includes(keyword)
+        );
+        
+        return !hasAnimalKeywords;
+      });
+      
+      res.json(filteredResults.length > 0 ? filteredResults : data.results);
     } catch (error) {
       console.log(`Error fetching Unsplash photos: ${error}`);
       res.status(500).json({ message: "Failed to fetch photos" });
