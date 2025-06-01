@@ -10,8 +10,11 @@ interface TestimonialsSectionProps {
 }
 
 export default function TestimonialsSection({ agentId }: TestimonialsSectionProps) {
-  const { data: testimonials } = useQuery<Testimonial[]>({
+  const { ref, isVisible } = useLazyLoading();
+  
+  const { data: testimonials, isLoading } = useQuery<Testimonial[]>({
     queryKey: [`/api/agents/${agentId}/testimonials`],
+    enabled: isVisible,
   });
 
   // Default testimonials if none exist in database
@@ -51,7 +54,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
   };
 
   return (
-    <section id="testimonials" className="relative py-8 lg:py-12 bg-gradient-to-br from-gray-50 to-stone-50 overflow-hidden">
+    <section ref={ref} id="testimonials" className="relative py-8 lg:py-12 bg-gradient-to-br from-gray-50 to-stone-50 overflow-hidden">
 
       
       {/* Subtle Grid Pattern */}
@@ -74,33 +77,52 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
         </div>
         
         <div className="grid lg:grid-cols-3 gap-8">
-          {displayTestimonials.slice(0, 3).map((testimonial, index) => (
-            <Card key={testimonial.id} className="bg-stone-light transform hover:scale-105 transition-all duration-300 hover:shadow-xl" style={{animationDelay: `${index * 150}ms`}}>
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="flex space-x-1">
-                    {renderStars(testimonial.rating)}
+          {isLoading ? (
+            [1, 2, 3].map((i) => (
+              <Card key={i} className="bg-white animate-pulse">
+                <CardContent className="p-8">
+                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                  <div className="space-y-2">
+                    <div className="h-3 bg-gray-200 rounded"></div>
+                    <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                    <div className="h-3 bg-gray-200 rounded w-4/6"></div>
                   </div>
-                </div>
-                
-                <blockquote className="text-gray-700 mb-6">
-                  "{testimonial.content}"
-                </blockquote>
-                
-                <div className="flex items-center">
-                  <img 
-                    src={testimonial.image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50"} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 object-cover rounded-full mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.location}</div>
+                  <div className="mt-6 flex items-center">
+                    <div className="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
+                    <div className="h-3 bg-gray-200 rounded w-24"></div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            displayTestimonials.slice(0, 3).map((testimonial, index) => (
+              <Card key={testimonial.id} className="bg-stone-light transform hover:scale-105 transition-all duration-300 hover:shadow-xl" style={{animationDelay: `${index * 150}ms`}}>
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-4">
+                    <div className="flex space-x-1">
+                      {renderStars(testimonial.rating)}
+                    </div>
+                  </div>
+                  
+                  <blockquote className="text-gray-700 mb-6">
+                    "{testimonial.content}"
+                  </blockquote>
+                  
+                  <div className="flex items-center">
+                    <img 
+                      src={testimonial.image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50"} 
+                      alt={testimonial.name}
+                      className="w-12 h-12 object-cover rounded-full mr-4"
+                    />
+                    <div>
+                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                      <div className="text-sm text-gray-600">{testimonial.location}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))
+          )}
         </div>
         
         <div className="text-center mt-12">
