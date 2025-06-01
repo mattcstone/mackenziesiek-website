@@ -11,9 +11,9 @@ export default function HeroSection({ agent }: HeroSectionProps) {
     <section className="relative bg-gradient-to-br from-black to-gray-800 text-white overflow-hidden">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
         style={{
-          backgroundImage: "url('/assets/shutterstock_626108123.jpg')"
+          backgroundImage: "url('/assets/shutterstock_284834021.jpg')"
         }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-gray-800/70"></div>
