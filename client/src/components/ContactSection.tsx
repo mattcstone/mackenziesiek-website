@@ -64,17 +64,17 @@ export default function ContactSection({ agent }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" className="py-16 lg:py-24 bg-gradient-to-br from-stone-blue to-blue-800 text-white">
+    <section id="contact" className="py-16 lg:py-24 bg-gradient-to-br from-black to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Find Your Charlotte Home?
+              Ready to Find Your In-Town Home?
             </h2>
             
-            <p className="text-xl text-blue-100 mb-8">
-              Let's chat about your home goals! I'm here to guide you through every step of the process, 
-              whether you're buying, selling, or just exploring your options.
+            <p className="text-xl text-gray-200 mb-8">
+              Let's chat about your goals! Whether you're a first-time buyer, relocating to Charlotte, 
+              or looking to upgrade your lifestyle, I'm here to help you find the perfect in-town home.
             </p>
             
             <div className="space-y-4 mb-8">

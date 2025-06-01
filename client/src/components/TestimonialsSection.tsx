@@ -16,25 +16,25 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
   const defaultTestimonials = [
     {
       id: 1,
-      name: "Mike & Jennifer Chen",
-      location: "Myers Park Buyers",
-      content: "Sarah made our home buying process so smooth! Her knowledge of Myers Park was incredible, and she found us the perfect home for our growing family. Couldn't recommend her more!",
+      name: "Alex Thompson",
+      location: "SouthEnd Condo Buyer",
+      content: "Mackenzie helped me find the perfect SouthEnd condo as a first-time buyer. Her knowledge of the area and what young professionals want was spot on. Love my new place!",
       rating: 5,
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50",
     },
     {
       id: 2,
-      name: "David & Lisa Rodriguez",
-      location: "Dilworth Sellers",
-      content: "We sold our Dilworth home in just 8 days! Sarah's marketing strategy and staging advice were spot on. She truly understands the Charlotte market.",
+      name: "Jessica Martinez",
+      location: "NoDa Townhome Buyer",
+      content: "Just relocated to Charlotte and Mackenzie made it so easy! She showed me all the best spots in NoDa and found me a townhome walking distance to everything I love.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50",
     },
     {
       id: 3,
-      name: "Ashley & Jordan Mills",
-      location: "South End Buyers",
-      content: "As first-time buyers, Sarah walked us through everything. Her local connections helped us get the best deals on inspections and financing. She's amazing!",
+      name: "Ryan & Taylor Kim",
+      location: "Dilworth Buyers",
+      content: "Mackenzie understood exactly what we wanted - walkable to great restaurants and nightlife. She found us the perfect place in Dilworth and made the whole process stress-free!",
       rating: 5,
       image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50",
     },
@@ -56,7 +56,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
             What My Clients Say
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real stories from families I've helped find their perfect Charlotte home
+            Real stories from young professionals I've helped find their perfect in-town Charlotte home
           </p>
         </div>
         

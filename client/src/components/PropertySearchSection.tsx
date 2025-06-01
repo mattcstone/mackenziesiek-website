@@ -33,14 +33,14 @@ export default function PropertySearchSection() {
   };
 
   return (
-    <section id="search" className="py-16 lg:py-24 bg-gradient-to-br from-stone-blue to-blue-800 text-white">
+    <section id="search" className="py-16 lg:py-24 bg-gradient-to-br from-black to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Find Your Dream Home
+            Find Your Perfect In-Town Home
           </h2>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Search Charlotte's latest listings with my advanced property search tools
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+            Search Charlotte's hottest in-town listings with YLOPO's advanced search tools
           </p>
         </div>
         
@@ -105,12 +105,12 @@ export default function PropertySearchSection() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button onClick={handleSearch} className="bg-stone-blue text-white hover:bg-blue-800 flex-1">
+              <Button onClick={handleSearch} className="bg-black text-white hover:bg-gray-800 flex-1">
                 <Search className="mr-2 h-4 w-4" />
                 Search Properties
               </Button>
               
-              <Button onClick={handleValuation} variant="outline" className="border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white">
+              <Button onClick={handleValuation} variant="outline" className="border-black text-black hover:bg-black hover:text-white">
                 <Calculator className="mr-2 h-4 w-4" />
                 Get Home Value
               </Button>
