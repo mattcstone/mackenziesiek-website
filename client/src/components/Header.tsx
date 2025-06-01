@@ -19,7 +19,7 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
               {agentName}
             </Link>
             <div className="flex items-center space-x-2">
-              <img src="/assets/Final-02.jpg" alt="Stone Realty Group Logo" className="h-6 w-6" />
+              <img src="/assets/stone-logo.svg" alt="Stone Realty Group Logo" className="h-6 w-6" />
               <div className="hidden sm:block text-stone-dark-gray text-sm">
                 Stone Realty Group
               </div>

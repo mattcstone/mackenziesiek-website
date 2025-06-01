@@ -83,7 +83,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
             
             <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
               <div className="flex items-center space-x-3">
-                <img src="/assets/Final-02.jpg" alt="Stone Realty Group" className="w-8 h-8" />
+                <img src="/assets/stone-logo.svg" alt="Stone Realty Group" className="w-8 h-8" />
                 <div>
                   <div className="text-sm font-semibold text-gray-900">Stone Realty Group</div>
                   <div className="text-xs text-gray-500">Licensed in NC</div>
