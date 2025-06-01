@@ -15,12 +15,16 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+      
+      // Only trigger if scroll delta is significant (reduces sensitivity)
+      if (scrollDelta < 10) return;
       
       if (currentScrollY < lastScrollY) {
         // Scrolling up
         setIsVisible(true);
-      } else if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-        // Scrolling down and past 100px
+      } else if (currentScrollY > 150 && currentScrollY > lastScrollY) {
+        // Scrolling down and past 150px (increased threshold)
         setIsVisible(false);
       }
       
@@ -33,7 +37,7 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
 
   return (
     <header 
-      className={`bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50 transition-transform duration-300 ease-in-out ${
+      className={`bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50 transition-transform duration-500 ease-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
