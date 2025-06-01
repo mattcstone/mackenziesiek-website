@@ -10,6 +10,15 @@ import type { Neighborhood, Agent } from "@shared/schema";
 export default function NeighborhoodPage() {
   const { slug } = useParams();
   
+  // Neighborhood-specific listing URLs
+  const getListingUrl = (neighborhoodSlug: string) => {
+    const listingUrls: Record<string, string> = {
+      'dilworth': 'https://mackenzie.mattstoneteam.com/t/3pAGyv',
+      // Add other neighborhood URLs as needed
+    };
+    return listingUrls[neighborhoodSlug] || 'https://mackenzie.mattstoneteam.com/';
+  };
+  
   const { data: neighborhood } = useQuery<Neighborhood>({
     queryKey: [`/api/neighborhoods/${slug}`],
     enabled: !!slug,
@@ -385,9 +394,16 @@ export default function NeighborhoodPage() {
                   <p className="text-sm text-gray-600 mb-4">
                     Let me help you find the perfect home in this amazing neighborhood.
                   </p>
-                  <Button asChild className="w-full bg-stone-blue hover:bg-blue-800">
-                    <a href="#contact">Contact Me</a>
-                  </Button>
+                  <div className="space-y-3">
+                    <Button asChild className="w-full bg-stone-blue hover:bg-blue-800">
+                      <a href={getListingUrl(displayNeighborhood.slug)} target="_blank" rel="noopener noreferrer">
+                        View {displayNeighborhood.name} Listings
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" className="w-full border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white">
+                      <a href="#contact">Contact Me</a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>
