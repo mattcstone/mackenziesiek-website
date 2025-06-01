@@ -17,35 +17,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
     enabled: isVisible,
   });
 
-  // Default testimonials if none exist in database
-  const defaultTestimonials = [
-    {
-      id: 1,
-      name: "Alex Thompson",
-      location: "SouthEnd Condo Buyer",
-      content: "Mackenzie helped me find the perfect SouthEnd condo as a first-time buyer. Her knowledge of the area and understanding of my lifestyle needs was spot on. Love my new place!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50",
-    },
-    {
-      id: 2,
-      name: "Jessica Martinez",
-      location: "NoDa Townhome Buyer",
-      content: "Just relocated to Charlotte and Mackenzie made it so easy! She showed me all the best spots in NoDa and found me a townhome walking distance to everything I love.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50",
-    },
-    {
-      id: 3,
-      name: "Ryan & Taylor Kim",
-      location: "Dilworth Buyers",
-      content: "Mackenzie understood exactly what we wanted - walkable to great restaurants and nightlife. She found us the perfect place in Dilworth and made the whole process stress-free!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50",
-    },
-  ];
-
-  const displayTestimonials = testimonials && testimonials.length > 0 ? testimonials : defaultTestimonials;
+  const displayTestimonials = testimonials || [];
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -95,33 +67,17 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
               </Card>
             ))
           ) : (
-            displayTestimonials.slice(0, 3).map((testimonial, index) => (
-              <Card key={testimonial.id} className="bg-stone-light transform hover:scale-105 transition-all duration-300 hover:shadow-xl" style={{animationDelay: `${index * 150}ms`}}>
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-4">
-                    <div className="flex space-x-1">
-                      {renderStars(testimonial.rating)}
-                    </div>
-                  </div>
-                  
-                  <blockquote className="text-gray-700 mb-6">
-                    "{testimonial.content}"
-                  </blockquote>
-                  
-                  <div className="flex items-center">
-                    <img 
-                      src={testimonial.image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50"} 
-                      alt={testimonial.name}
-                      className="w-12 h-12 object-cover rounded-full mr-4"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.location}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
+            <div className="col-span-3 text-center py-12">
+              <div className="bg-stone-light rounded-lg p-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Client Testimonials</h3>
+                <p className="text-gray-600 mb-4">
+                  Authentic client testimonials are being retrieved from verified sources.
+                </p>
+                <p className="text-sm text-gray-500">
+                  Please check back soon to see genuine reviews from Mackenzie's clients.
+                </p>
+              </div>
+            </div>
           )}
         </div>
         
