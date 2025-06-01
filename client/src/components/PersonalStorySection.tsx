@@ -17,9 +17,10 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 Your In-Town Charlotte Expert
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                I'm a Charlotte native who knows the pulse of this city. When I'm not helping young professionals 
-                find their perfect in-town home, you'll find me exploring Charlotte's incredible restaurant scene, 
-                catching Panthers games, or discovering the latest brewery in NoDa.
+                Charlotte native turned real estate matchmaker with a unique story. I grew up touring model homes with 
+                my builder dad and was a competitive equestrian for 10 years. With my UNC Charlotte finance degree and 
+                eye for design, I love helping people find their perfect home. When I'm off the clock, you'll find me 
+                browsing farmers markets, hiking trails, or at 300 East — my favorite cozy spot in Charlotte.
               </p>
             </div>
             
@@ -56,13 +57,67 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 </CardContent>
               </Card>
             </div>
+            
+            {/* Personal Details Section */}
+            <div className="mt-12 bg-gray-50 rounded-lg p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Get to Know Mackenzie</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Utensils className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Favorite Charlotte Restaurant</h4>
+                  <p className="text-gray-600 text-sm">300 East - It's such a cozy, charming spot with incredible food.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Coffee className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Weekend Vibes</h4>
+                  <p className="text-gray-600 text-sm">I'm all about farmers markets, a stroll on the rail trail, and catching a football game whenever I can.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Home className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Favorite Thing About Charlotte</h4>
+                  <p className="text-gray-600 text-sm">There's always something new; whether it's a cool local coffee shop or a new restaurant opening, Charlotte keeps it fresh and exciting.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Mountain className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Hobbies Outside of Real Estate</h4>
+                  <p className="text-gray-600 text-sm">I love interior design, traveling the world and visiting the NC mountains.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Fun Fact</h4>
+                  <p className="text-gray-600 text-sm">I was a competitive equestrian for 10 years! Horses were a huge part of my life growing up.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Handshake className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Why Real Estate?</h4>
+                  <p className="text-gray-600 text-sm">Growing up touring model homes with my builder dad sparked my passion for helping people find their perfect home.</p>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div className="space-y-6">
             <div className="rounded-2xl shadow-lg overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                alt="Family photo at local Charlotte park" 
+                src="/assets/mackenzie-headshot.jpg" 
+                alt="Mackenzie Siek headshot" 
                 className="w-full h-auto"
               />
             </div>
