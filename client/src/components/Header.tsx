@@ -13,7 +13,7 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
   return (
     <header className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center py-1">
+        <div className="flex justify-between items-center py-0">
           <div className="flex items-center space-x-8">
             <div className="flex items-center">
               <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-32 w-auto" />
@@ -37,9 +37,6 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
             <Link href="/sell" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
               Sell
             </Link>
-            <a href="#guides" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
-              Guides
-            </a>
             <a href="#contact" className="bg-black text-white px-6 py-3 rounded-none hover:bg-gray-800 transition-colors text-sm font-medium tracking-wide uppercase">
               Contact
             </a>
@@ -71,9 +68,6 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
               <Link href="/sell" className="block px-3 py-3 text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
                 Sell
               </Link>
-              <a href="#guides" className="block px-3 py-3 text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
-                Guides
-              </a>
               <a href="#contact" className="block px-3 py-3 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-sm font-medium tracking-wide uppercase">
                 Contact
               </a>
