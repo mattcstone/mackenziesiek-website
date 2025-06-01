@@ -64,6 +64,21 @@ export default function Footer({ agent }: FooterProps) {
           <p className="mt-2 text-sm">All information deemed reliable but not guaranteed. Equal Housing Opportunity.</p>
         </div>
       </div>
+      
+      {/* Legal Disclaimer Section */}
+      <div className="bg-gray-100 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+            <img src="/assets/stone-logo-black.png" alt="Stone Realty Group" className="h-12 w-auto" />
+            <img src="/attached_assets/Logo_Black@4x.png" alt="Stone Selling System" className="h-12 w-auto" />
+          </div>
+          <div className="text-center mt-6 text-gray-600 text-sm max-w-4xl mx-auto">
+            <p>
+              Equal Housing Opportunity. The 'Stone Selling System,' 'Stone Realty Group,' and the stylized hexagon 'O' logos are Registered Trademarks of Stone Realty Group. All Rights Reserved. © Copyright 2024 | <a href="#" className="text-gray-800 hover:underline">Privacy Policy</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
