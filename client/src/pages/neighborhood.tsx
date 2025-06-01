@@ -107,23 +107,114 @@ export default function NeighborhoodPage() {
             <div className="lg:col-span-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">About {displayNeighborhood.name}</h2>
               <div className="prose prose-lg max-w-none">
-                <p>
-                  {displayNeighborhood.description} This neighborhood offers a perfect blend of 
-                  historic charm and modern amenities, making it one of Charlotte's most sought-after areas.
-                </p>
-                <p>
-                  Residents enjoy tree-lined streets, beautiful parks, excellent schools, and easy access 
-                  to Uptown Charlotte. The area features a mix of architectural styles, from historic 
-                  Tudor and Colonial homes to newer custom builds.
-                </p>
-                <h3>What Makes {displayNeighborhood.name} Special</h3>
-                <ul>
-                  <li>Historic architecture and tree-lined streets</li>
-                  <li>Top-rated schools and family-friendly environment</li>
-                  <li>Close proximity to parks and recreational areas</li>
-                  <li>Easy access to Uptown Charlotte</li>
-                  <li>Strong sense of community</li>
-                </ul>
+                {displayNeighborhood.slug === 'midtown' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} Midtown Charlotte represents the perfect fusion of urban sophistication and Southern charm, offering residents an exciting lifestyle with world-class amenities at their doorstep.
+                    </p>
+                    
+                    <h3>The Metropolitan - Premier Shopping Destination</h3>
+                    <p>
+                      The crown jewel of Midtown is <strong>The Metropolitan</strong>, Charlotte's premier luxury shopping and lifestyle destination. This beautifully designed mixed-use development spans multiple city blocks and features an impressive collection of high-end retailers, award-winning restaurants, and sophisticated entertainment venues.
+                    </p>
+                    <p>
+                      The Metropolitan's outdoor shopping experience includes flagship stores from nationally recognized brands, unique local boutiques, and specialty shops. The carefully curated retail mix offers everything from fashion and home goods to specialty foods and services, creating a true destination for discerning shoppers.
+                    </p>
+                    
+                    <h3>Dining & Entertainment</h3>
+                    <p>
+                      The Metropolitan's restaurant collection features renowned chefs and celebrated dining concepts. From casual bistros with outdoor seating to upscale steakhouses and international cuisine, the dining scene attracts food enthusiasts from across the Charlotte region. The development also hosts seasonal events, live music, and cultural activities throughout the year.
+                    </p>
+                    
+                    <h3>Luxury Living in Midtown</h3>
+                    <p>
+                      Midtown offers some of Charlotte's most sought-after residential options, including luxury high-rise condominiums with panoramic city views, modern townhomes, and elegant single-family residences. The neighborhood appeals to young professionals, executives, and empty nesters who appreciate urban convenience without sacrificing quality of life.
+                    </p>
+                    
+                    <h3>Midtown Highlights</h3>
+                    <ul>
+                      <li>The Metropolitan - luxury shopping, dining, and entertainment complex</li>
+                      <li>High-rise condominiums with skyline and mountain views</li>
+                      <li>Proximity to Little Sugar Creek Greenway</li>
+                      <li>Easy access to Uptown Charlotte via major corridors</li>
+                      <li>Growing collection of trendy restaurants and bars</li>
+                      <li>Modern developments and new construction opportunities</li>
+                      <li>Central location between Uptown and SouthEnd</li>
+                    </ul>
+                  </>
+                ) : displayNeighborhood.slug === 'uptown' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} As Charlotte's central business district, Uptown offers the ultimate urban lifestyle with luxury high-rise living, world-class dining, and cultural attractions all within walking distance.
+                    </p>
+                    
+                    <h3>Urban Living at Its Finest</h3>
+                    <p>
+                      Uptown Charlotte features some of the city's most prestigious residential towers, offering panoramic views of the city skyline and surrounding mountains. From luxury condominiums to modern apartments, residents enjoy concierge services, rooftop amenities, and direct access to the city's business and entertainment districts.
+                    </p>
+                    
+                    <h3>Entertainment & Culture</h3>
+                    <p>
+                      Home to Bank of America Stadium (Carolina Panthers), Spectrum Center (Charlotte Hornets), and numerous concert venues, Uptown is Charlotte's entertainment hub. The area also features art galleries, museums, and the vibrant EpiCentre entertainment complex.
+                    </p>
+                    
+                    <h3>Uptown Highlights</h3>
+                    <ul>
+                      <li>Luxury high-rise living with concierge services</li>
+                      <li>Professional sports venues and entertainment complexes</li>
+                      <li>World-class dining and rooftop bars</li>
+                      <li>LYNX Blue Line light rail connectivity</li>
+                      <li>Walking distance to major corporate headquarters</li>
+                      <li>Cultural attractions and art galleries</li>
+                    </ul>
+                  </>
+                ) : displayNeighborhood.slug === 'plaza-midwood' ? (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} This vibrant arts district has become Charlotte's cultural heart, where historic charm meets contemporary creativity.
+                    </p>
+                    
+                    <h3>Arts & Culture Scene</h3>
+                    <p>
+                      Plaza Midwood is renowned for its thriving arts community, featuring local galleries, vintage shops, and eclectic restaurants housed in charming historic buildings. The neighborhood's creative energy attracts artists, musicians, and culture enthusiasts from across the region.
+                    </p>
+                    
+                    <h3>Local Dining & Nightlife</h3>
+                    <p>
+                      The dining scene in Plaza Midwood is authentically local, featuring everything from craft breweries and coffee roasters to internationally-inspired restaurants and late-night eateries. The neighborhood's walkable streets make it perfect for exploring multiple venues in one evening.
+                    </p>
+                    
+                    <h3>Plaza Midwood Highlights</h3>
+                    <ul>
+                      <li>Vibrant local arts and music scene</li>
+                      <li>Historic homes and tree-lined residential streets</li>
+                      <li>Eclectic mix of vintage shops and boutiques</li>
+                      <li>Award-winning local restaurants and breweries</li>
+                      <li>Walkable neighborhood with community events</li>
+                      <li>Close proximity to Freedom Park</li>
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      {displayNeighborhood.description} This neighborhood offers a perfect blend of 
+                      authentic Charlotte character and modern amenities, making it one of the city's most sought-after areas.
+                    </p>
+                    <p>
+                      Residents enjoy the unique character that defines this community, along with convenient access 
+                      to Charlotte's best dining, shopping, and entertainment. Each neighborhood in Charlotte offers 
+                      its own distinct personality and lifestyle.
+                    </p>
+                    <h3>What Makes {displayNeighborhood.name} Special</h3>
+                    <ul>
+                      <li>Authentic Charlotte neighborhood character</li>
+                      <li>Walkable streets and local businesses</li>
+                      <li>Close proximity to parks and green spaces</li>
+                      <li>Easy access to Uptown Charlotte</li>
+                      <li>Strong sense of community</li>
+                    </ul>
+                  </>
+                )}
               </div>
             </div>
 
