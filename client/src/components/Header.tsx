@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
@@ -9,6 +9,7 @@ interface HeaderProps {
 
 export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -63,15 +64,33 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
             <a href="#search" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
               Search
             </a>
-            <Link href="/compare" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
-              Compare
-            </Link>
-            <Link href="/reviews" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
-              Reviews
-            </Link>
-            <Link href="/sell" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
-              Sell
-            </Link>
+            
+            {/* Services Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsServicesDropdownOpen(true)}
+              onMouseLeave={() => setIsServicesDropdownOpen(false)}
+            >
+              <button className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2 flex items-center">
+                Services
+                <ChevronDown className="ml-1 h-3 w-3" />
+              </button>
+              
+              {isServicesDropdownOpen && (
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
+                  <Link href="/compare" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Property Compare
+                  </Link>
+                  <Link href="/reviews" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Client Reviews
+                  </Link>
+                  <Link href="/sell" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Sell Your Home
+                  </Link>
+                </div>
+              )}
+            </div>
+            
             <a href="#contact" className="bg-black text-white px-6 py-3 rounded-none hover:bg-gray-800 transition-colors text-sm font-medium tracking-wide uppercase min-h-[44px] flex items-center">
               Contact
             </a>
@@ -100,15 +119,18 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
               <a href="#search" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Search
               </a>
-              <Link href="/compare" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Compare
-              </Link>
-              <Link href="/reviews" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Reviews
-              </Link>
-              <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Sell
-              </Link>
+              <div className="px-4 py-2">
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Services</div>
+                <Link href="/compare" className="block px-2 py-2 text-gray-600 hover:text-black transition-colors text-sm min-h-[36px] flex items-center rounded">
+                  Property Compare
+                </Link>
+                <Link href="/reviews" className="block px-2 py-2 text-gray-600 hover:text-black transition-colors text-sm min-h-[36px] flex items-center rounded">
+                  Client Reviews
+                </Link>
+                <Link href="/sell" className="block px-2 py-2 text-gray-600 hover:text-black transition-colors text-sm min-h-[36px] flex items-center rounded">
+                  Sell Your Home
+                </Link>
+              </div>
               <a href="#contact" className="block px-4 py-4 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center justify-center rounded">
                 Contact
               </a>
