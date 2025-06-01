@@ -69,12 +69,12 @@ export default function ContactSection({ agent }: ContactSectionProps) {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-in-left">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Find Your In-Town Home?
+              Ready to Make Your Move?
             </h2>
             
             <p className="text-xl text-gray-200 mb-8">
-              Let's chat about your goals! Whether you're a first-time buyer, relocating to Charlotte, 
-              or looking to upgrade your lifestyle, I'm here to help you find the perfect in-town home.
+              Whether you're buying your first home, selling to upgrade, relocating to Charlotte, or exploring your options, 
+              I'm here to guide you through every step. Let's discuss your real estate goals and find the perfect solution for you.
             </p>
             
             <div className="space-y-4 mb-8">
