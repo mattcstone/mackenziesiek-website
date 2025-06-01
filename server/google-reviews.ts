@@ -71,8 +71,8 @@ export class GoogleReviewsService {
         ],
       });
 
-      // Try the newer API first
-      this.mybusiness = google.mybusinessbusinessinformation({
+      // Use the account management API
+      this.mybusiness = google.mybusinessaccountmanagement({
         version: 'v1',
         auth: this.auth,
       });
@@ -98,30 +98,59 @@ export class GoogleReviewsService {
       let reviews: any[] = [];
       
       try {
-        // Method 1: Use the business information API
-        const response = await this.mybusiness.accounts.locations.reviews.list({
-          parent: `accounts/*/locations/${profileId}`,
-        });
-        reviews = response.data.reviews || [];
-        console.log(`Found ${reviews.length} total reviews via business API`);
-      } catch (apiError) {
-        console.warn('Business API failed, trying alternative approach:', apiError);
+        // First, let's list accounts to find the correct account structure
+        const accountsResponse = await this.mybusiness.accounts.list();
+        console.log('Available accounts:', accountsResponse.data.accounts?.map(acc => acc.name));
         
-        // Method 2: Try Google Places API if available
-        try {
-          const placesApi = google.places({ version: 'v1', auth: this.auth });
-          const placesResponse = await placesApi.places.search({
-            textQuery: `Stone Realty Group Charlotte`,
-            fields: 'places.reviews'
-          });
+        if (accountsResponse.data.accounts && accountsResponse.data.accounts.length > 0) {
+          const accountName = accountsResponse.data.accounts[0].name;
+          console.log(`Using account: ${accountName}`);
           
-          if (placesResponse.data.places && placesResponse.data.places[0]) {
-            reviews = placesResponse.data.places[0].reviews || [];
-            console.log(`Found ${reviews.length} reviews via Places API`);
+          // Now try to get location reviews using the correct account path
+          try {
+            const locationsAPI = google.mybusinessbusinessinformation({
+              version: 'v1',
+              auth: this.auth,
+            });
+            
+            const response = await locationsAPI.accounts.locations.list({
+              parent: accountName,
+            });
+            
+            console.log('Available locations:', response.data.locations?.map(loc => ({ name: loc.name, title: loc.title })));
+            
+            // Find the location that matches our profile ID
+            const targetLocation = response.data.locations?.find(loc => 
+              loc.name?.includes(profileId) || loc.locationKey?.placeId === profileId
+            );
+            
+            if (targetLocation) {
+              console.log(`Found target location: ${targetLocation.name}`);
+              
+              // Get reviews for this location
+              const reviewsResponse = await locationsAPI.accounts.locations.reviews.list({
+                parent: targetLocation.name!,
+              });
+              
+              reviews = reviewsResponse.data.reviews || [];
+              console.log(`Found ${reviews.length} total reviews via business API`);
+            } else {
+              console.log('Target location not found, trying direct profile ID approach');
+              
+              // Try direct approach with profile ID
+              const directResponse = await locationsAPI.accounts.locations.reviews.list({
+                parent: `${accountName}/locations/${profileId}`,
+              });
+              
+              reviews = directResponse.data.reviews || [];
+              console.log(`Found ${reviews.length} total reviews via direct approach`);
+            }
+          } catch (locationError) {
+            console.warn('Location API failed:', locationError);
           }
-        } catch (placesError) {
-          console.warn('Places API also failed:', placesError);
         }
+      } catch (accountError) {
+        console.warn('Account listing failed:', accountError);
       }
       
       // Filter reviews that mention the agent name (case insensitive)
