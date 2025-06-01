@@ -63,6 +63,9 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
             <a href="#search" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
               Search
             </a>
+            <Link href="/compare" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
+              Compare
+            </Link>
             <Link href="/sell" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2">
               Sell
             </Link>
