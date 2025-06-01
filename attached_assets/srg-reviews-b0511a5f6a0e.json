@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "srg-reviews",
+  "private_key_id": "b0511a5f6a0ef05a938b9a83301b345e8857308d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC2UytSKrASGvim\nvLqGEIgCcRe7oAdeZhNTZhhEdWt6ytCPjPvhkz/fPNnwMHsRsHhfQDaQZgHA6F6n\nyTZQWRQv42aMZyuW+DZyd5kCEWvJFdIBBe4E6YxS+SaeXG7EeNfVm9Ta8G63OMlB\nP90MwdQYeLudOuUATI94QdTq9FsoCNE9mWcSa2QjQ+6sHsX6o467xymMLC7zsnYG\nGSbA4Ai3Z+yWYXd///zRlfBQ3ObLOstFrzSUdibN6htLjmJByLaPZQ6GDmGT6H1b\n0QRyJ/E2TRfYYMgfbliy182N4LEhrGPkz3PFlh5xVc92kXR+OgfzH3K7//5x2+km\n3vWAfRvtAgMBAAECggEAB0LUrNcKYA427N0DSKeL4x0B5vT+liHWjzG3sbJDb4Z4\nO99PgLJOjuNrgodLv26ZvKFgCuwlEbuvWVtIEHcbuLSDtv+82qxT7scYjt6GvmFi\nFaxYyFVMw1ks0o2305dEcTtdhMKihiV6zmBuuz1U5wyX3DEmQZbK9+0XP6wvnS57\ne47q4XNiP7ItstNQhK1ftrBUenQpSN9XvCeElgoPdK9oH+7oTvKNYPDEDwjFfU4C\nkqY/jziNIl9X84jSz8u005U7cQPlEm+Aa7PyM4cUfa6XoNVxRTJEFzEb+Zz3V0iI\nZSY2sZh0BOtWFpwDjvZkdnx9AkPIE3cEZpF8NU5vuQKBgQDjkmRYglqOjpcLBAj5\noq2vSO3rqSmmmAIIrUcxLT7hYyd+A4yiKJ+FKXGEaRwZ7/UO9osNqId62tfeYmAo\niwXq3iqaKJevObP07eX7gGheVar/9aNBm5MLZ01mkC9dnXOGnSur0Fvw26aO9upB\nTzcKcXSdFv63aCgG8YFaK6Rq1wKBgQDNGc6dJCWoWyfyRVAf6YcyB4pEesgZniD3\n5CxSA/h/iCbZvxBx5egvH8p6cP1dbODqvIXS0T4VyjinvJMFqyLbdJtC6AYWXa4S\nzmWmUrniDgm863aAkT3ZN2nrh7P6oK3P+Lhk6Vg6yh/zNqsbWfo4EyGQ6WPqt2ab\nPHBc30c62wKBgQCf/BWRZ6q0F6g19VM99FC4LsQcbWM7nBep8+9dshpHp0ZnP6WJ\nhpeGrPkCBkbcMSaNq2NcacM86kbiLzS8q+ewExnOIIVqiV1q7ihFZCN7ViyOHyjz\ngaShWrE+TlUOMhe6ZhoCgstwC2sPjKRo34CpVdOOcFEHrTCemP+/3XiMJwKBgHm1\nOMBTNO2Eul2v9+4X/BwaEVi1q4xYI6Q2iH5a0NmNB9Dq6m1MSs28BcFGz3LjK0zg\ndmE1vavchmYzJuOUPGkR9xhq60HWcXfDdtqN+LRGNE0hRP7iMVt24Kndq1Wsh7gE\nFhf7yFmKnA8Nf9gJOsyPvblqZdpg3sh7wwm5jWFFAoGAZhBla9JP5cxqHOxi0oHD\n7ZihZHyACbr9T8Oe/vhRofLeq1FmSwbVku5KyebOJVBfFhc6n1sANxDs2C2WQGhs\nnJY0siIjxyUraWFHAUoQR5w4dyOIeQ7CCT/vD6Wuq3bmePUTcuIhPtImhLdWFngf\n3xNrddUu3gsfCP9pIrkh1pk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "stone-realty-reviews@srg-reviews.iam.gserviceaccount.com",
+  "client_id": "110527673666615062331",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/stone-realty-reviews%40srg-reviews.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

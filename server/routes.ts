@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema } from "@shared/schema";
 import { z } from "zod";
+import { googleReviewsService } from "./google-reviews";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Agent routes
@@ -83,13 +84,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Testimonial routes
+  // Testimonial routes (includes Google reviews)
   app.get("/api/agents/:agentId/testimonials", async (req, res) => {
     try {
       const agentId = parseInt(req.params.agentId);
-      const testimonials = await storage.getTestimonialsByAgent(agentId);
-      res.json(testimonials);
+      
+      // Get stored testimonials
+      const storedTestimonials = await storage.getTestimonialsByAgent(agentId);
+      
+      // Get agent info to determine name for Google review filtering
+      const agent = await storage.getAgent(agentId);
+      if (!agent) {
+        return res.status(404).json({ message: "Agent not found" });
+      }
+      
+      // Try to fetch Google reviews mentioning the agent
+      let googleReviews: any[] = [];
+      try {
+        const profileId = "17917789645435239761"; // Stone Realty Group profile ID
+        const reviews = await googleReviewsService.getReviewsMentioningAgent(profileId, agent.name);
+        
+        // Convert Google reviews to testimonial format
+        googleReviews = reviews.map(review => ({
+          id: `google-${review.reviewId}`,
+          agentId: agentId,
+          clientName: review.reviewer.displayName,
+          content: review.comment,
+          rating: review.starRating === 'FIVE' ? 5 : 
+                  review.starRating === 'FOUR' ? 4 :
+                  review.starRating === 'THREE' ? 3 :
+                  review.starRating === 'TWO' ? 2 : 1,
+          date: review.createTime,
+          source: 'google',
+          profilePhotoUrl: review.reviewer.profilePhotoUrl
+        }));
+      } catch (error) {
+        console.error("Failed to fetch Google reviews:", error);
+        // Continue with stored testimonials only
+      }
+      
+      // Combine stored testimonials and Google reviews
+      const allTestimonials = [...storedTestimonials, ...googleReviews];
+      
+      res.json(allTestimonials);
     } catch (error) {
+      console.error("Error fetching testimonials:", error);
       res.status(500).json({ message: "Failed to fetch testimonials" });
     }
   });
