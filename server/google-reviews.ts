@@ -161,18 +161,44 @@ export class GoogleReviewsService {
 
       console.log(`Found ${agentReviews.length} reviews mentioning ${agentName}`);
 
-      // Transform to our format
-      return agentReviews.map((review: any) => ({
-        reviewId: review.name?.split('/').pop() || review.reviewId || Math.random().toString(),
-        reviewer: {
-          displayName: review.reviewer?.displayName || review.authorAttribution?.displayName || 'Anonymous',
-          profilePhotoUrl: review.reviewer?.profilePhotoUrl || review.authorAttribution?.photoUri,
-        },
-        starRating: review.starRating || review.rating || 'FIVE',
-        comment: review.comment || review.text?.text || '',
-        createTime: review.createTime || review.publishTime || new Date().toISOString(),
-        updateTime: review.updateTime || review.updateTime || new Date().toISOString(),
-      }));
+      // Transform to our format and prioritize reviews with profile photos
+      const transformedReviews = agentReviews.map((review: any) => {
+        const profilePhotoUrl = review.reviewer?.profilePhotoUrl || review.authorAttribution?.photoUri;
+        const hasProfilePhoto = profilePhotoUrl && profilePhotoUrl.trim() !== '';
+        
+        return {
+          reviewId: review.name?.split('/').pop() || review.reviewId || Math.random().toString(),
+          reviewer: {
+            displayName: review.reviewer?.displayName || review.authorAttribution?.displayName || 'Anonymous',
+            profilePhotoUrl: profilePhotoUrl,
+          },
+          starRating: review.starRating || review.rating || 'FIVE',
+          comment: review.comment || review.text?.text || '',
+          createTime: review.createTime || review.publishTime || new Date().toISOString(),
+          updateTime: review.updateTime || review.updateTime || new Date().toISOString(),
+          hasProfilePhoto: hasProfilePhoto,
+        };
+      });
+
+      // Sort to prioritize reviews with profile photos first, then by rating, then by date
+      const sortedReviews = transformedReviews.sort((a, b) => {
+        // First priority: reviews with profile photos
+        if (a.hasProfilePhoto && !b.hasProfilePhoto) return -1;
+        if (!a.hasProfilePhoto && b.hasProfilePhoto) return 1;
+        
+        // Second priority: higher star ratings
+        const ratingA = a.starRating === 'FIVE' ? 5 : a.starRating === 'FOUR' ? 4 : a.starRating === 'THREE' ? 3 : a.starRating === 'TWO' ? 2 : 1;
+        const ratingB = b.starRating === 'FIVE' ? 5 : b.starRating === 'FOUR' ? 4 : b.starRating === 'THREE' ? 3 : b.starRating === 'TWO' ? 2 : 1;
+        
+        if (ratingA !== ratingB) return ratingB - ratingA;
+        
+        // Third priority: more recent reviews
+        return new Date(b.createTime).getTime() - new Date(a.createTime).getTime();
+      });
+
+      console.log(`Prioritized ${sortedReviews.filter(r => r.hasProfilePhoto).length} reviews with profile photos`);
+      
+      return sortedReviews;
     } catch (error) {
       console.error('Failed to fetch Google reviews:', error);
       // Return empty array instead of throwing to gracefully handle API issues
