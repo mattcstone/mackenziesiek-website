@@ -18,7 +18,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
       id: 1,
       name: "Alex Thompson",
       location: "SouthEnd Condo Buyer",
-      content: "Mackenzie helped me find the perfect SouthEnd condo as a first-time buyer. Her knowledge of the area and what young professionals want was spot on. Love my new place!",
+      content: "Mackenzie helped me find the perfect SouthEnd condo as a first-time buyer. Her knowledge of the area and understanding of my lifestyle needs was spot on. Love my new place!",
       rating: 5,
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=50&h=50",
     },
@@ -56,7 +56,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
             What My Clients Say
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real stories from young professionals I've helped find their perfect in-town Charlotte home
+            Real stories from discerning clients I've helped find their exceptional in-town Charlotte home
           </p>
         </div>
         

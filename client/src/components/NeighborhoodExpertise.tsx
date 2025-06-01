@@ -117,7 +117,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {displayNeighborhoods.map((neighborhood) => (
             <Link key={neighborhood.id} href={`/neighborhood/${neighborhood.slug}`}>
               <div className="group cursor-pointer">
