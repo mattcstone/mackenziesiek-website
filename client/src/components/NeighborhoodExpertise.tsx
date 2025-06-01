@@ -115,7 +115,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
             Get to Know In-Town Charlotte
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I specialize in Charlotte's most prestigious in-town communities where discerning residents enjoy exceptional urban living.
+            Get to know my favorite areas
           </p>
         </div>
         
