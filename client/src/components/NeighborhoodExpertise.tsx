@@ -79,7 +79,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Plaza Midwood",
       slug: "plaza-midwood",
       description: "Eclectic neighborhood with local boutiques and eateries",
-      image: "/api/placeholder/400/300?text=Plaza+Midwood+Central+Ave",
+      image: "@assets/wes-hicks-rZ0sTRs9uco-unsplash.jpg",
       avgPrice: "Avg: $425K",
       walkScore: 68,
     },
@@ -122,9 +122,18 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
             <Link key={neighborhood.id} href={`/neighborhood/${neighborhood.slug}`}>
               <div className="group cursor-pointer" style={{animationDelay: `${index * 100}ms`}}>
                 <div className="relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
-                  <div className="w-full h-48 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-600 relative">
+                  <div className="w-full h-48 relative">
+                    {neighborhood.image && neighborhood.image.startsWith('@assets/') ? (
+                      <img 
+                        src={neighborhood.image.replace('@assets/', '/attached_assets/')} 
+                        alt={`${neighborhood.name} neighborhood`}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-700 to-slate-600"></div>
+                    )}
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
-                    <div className="relative h-full flex flex-col justify-end p-4 text-white">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                       <h3 className="text-lg font-bold mb-1 group-hover:text-yellow-200 transition-colors duration-300">{neighborhood.name}</h3>
                       <p className="text-sm text-gray-200 mb-2 line-clamp-2">{neighborhood.description}</p>
                       <div className="flex items-center text-xs">
