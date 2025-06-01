@@ -107,39 +107,36 @@ export default function NeighborhoodPage() {
             <div className="lg:col-span-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">About {displayNeighborhood.name}</h2>
               <div className="prose prose-lg max-w-none">
-                {displayNeighborhood.slug === 'midtown' ? (
+                {displayNeighborhood.slug === 'lake-norman' ? (
                   <>
                     <p>
-                      {displayNeighborhood.description} Midtown Charlotte represents the perfect fusion of urban sophistication and Southern charm, offering residents an exciting lifestyle with world-class amenities at their doorstep.
+                      {displayNeighborhood.description} Lake Norman represents the pinnacle of waterfront living in the Charlotte region, where luxury meets leisure in a stunning natural setting.
                     </p>
                     
-                    <h3>The Metropolitan - Premier Shopping Destination</h3>
+                    <h3>Waterfront Luxury Living</h3>
                     <p>
-                      The crown jewel of Midtown is <strong>The Metropolitan</strong>, Charlotte's premier luxury shopping and lifestyle destination. This beautifully designed mixed-use development spans multiple city blocks and features an impressive collection of high-end retailers, award-winning restaurants, and sophisticated entertainment venues.
-                    </p>
-                    <p>
-                      The Metropolitan's outdoor shopping experience includes flagship stores from nationally recognized brands, unique local boutiques, and specialty shops. The carefully curated retail mix offers everything from fashion and home goods to specialty foods and services, creating a true destination for discerning shoppers.
+                      Lake Norman offers an exclusive collection of custom waterfront homes, many featuring private docks, boat houses, and expansive lake views. The community attracts discerning buyers seeking a resort-style lifestyle with easy access to Charlotte's business centers. Properties range from elegant lakefront estates to modern architectural masterpieces.
                     </p>
                     
-                    <h3>Dining & Entertainment</h3>
+                    <h3>Boating & Recreation</h3>
                     <p>
-                      The Metropolitan's restaurant collection features renowned chefs and celebrated dining concepts. From casual bistros with outdoor seating to upscale steakhouses and international cuisine, the dining scene attracts food enthusiasts from across the Charlotte region. The development also hosts seasonal events, live music, and cultural activities throughout the year.
+                      As North Carolina's largest man-made lake, Lake Norman provides endless recreational opportunities including boating, fishing, swimming, and water sports. The area features multiple marinas, yacht clubs, and waterfront dining establishments. Golf courses, country clubs, and nature preserves offer additional lifestyle amenities for residents.
                     </p>
                     
-                    <h3>Luxury Living in Midtown</h3>
+                    <h3>Community & Lifestyle</h3>
                     <p>
-                      Midtown offers some of Charlotte's most sought-after residential options, including luxury high-rise condominiums with panoramic city views, modern townhomes, and elegant single-family residences. The neighborhood appeals to young professionals, executives, and empty nesters who appreciate urban convenience without sacrificing quality of life.
+                      Lake Norman communities are known for their privacy, security, and resort-style amenities. Many neighborhoods feature gated entries, community docks, and exclusive recreational facilities. The area maintains a peaceful, vacation-like atmosphere while providing convenient access to Charlotte's employment centers.
                     </p>
                     
-                    <h3>Midtown Highlights</h3>
+                    <h3>Lake Norman Highlights</h3>
                     <ul>
-                      <li>The Metropolitan - luxury shopping, dining, and entertainment complex</li>
-                      <li>High-rise condominiums with skyline and mountain views</li>
-                      <li>Proximity to Little Sugar Creek Greenway</li>
-                      <li>Easy access to Uptown Charlotte via major corridors</li>
-                      <li>Growing collection of trendy restaurants and bars</li>
-                      <li>Modern developments and new construction opportunities</li>
-                      <li>Central location between Uptown and SouthEnd</li>
+                      <li>Custom waterfront homes with private docks</li>
+                      <li>North Carolina's largest recreational lake</li>
+                      <li>Multiple marinas and yacht clubs</li>
+                      <li>Championship golf courses and country clubs</li>
+                      <li>Gated communities with luxury amenities</li>
+                      <li>30-minute drive to Uptown Charlotte</li>
+                      <li>Year-round boating and water activities</li>
                     </ul>
                   </>
                 ) : displayNeighborhood.slug === 'uptown' ? (
