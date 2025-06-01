@@ -19,7 +19,6 @@ export default function ContactSection({ agent }: ContactSectionProps) {
   const [formData, setFormData] = useState<ContactFormData>({
     firstName: "",
     lastName: "",
-    email: "",
     phone: "",
     interest: "",
     neighborhoods: "",
@@ -41,7 +40,6 @@ export default function ContactSection({ agent }: ContactSectionProps) {
       setFormData({
         firstName: "",
         lastName: "",
-        email: "",
         phone: "",
         interest: "",
         neighborhoods: "",
@@ -130,19 +128,10 @@ export default function ContactSection({ agent }: ContactSectionProps) {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <Input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                </div>
-                
-                <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
                   <Input
                     type="tel"
+                    required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />

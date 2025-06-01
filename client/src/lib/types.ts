@@ -8,7 +8,6 @@ export interface SearchFormData {
 export interface ContactFormData {
   firstName: string;
   lastName: string;
-  email: string;
   phone: string;
   interest: string;
   neighborhoods: string;

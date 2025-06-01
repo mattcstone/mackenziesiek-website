@@ -14,13 +14,12 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-6">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight hover:text-black transition-colors duration-300">
-                Your In-Town Charlotte Expert
+                Charlotte Market Insights & Services
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Charlotte native turned luxury real estate specialist with a unique story. I grew up touring model homes with 
-                my builder dad and was a competitive equestrian for 10 years. With my UNC Charlotte finance degree and 
-                refined eye for design, I bring sophistication to every transaction. When I'm off the clock, you'll find me 
-                browsing farmers markets, hiking trails, or at 300 East — my favorite refined dining spot in Charlotte.
+                Navigate Charlotte's competitive real estate market with confidence. I provide comprehensive market analysis, 
+                exclusive property access, and personalized strategies tailored to your investment goals. From first-time buyers 
+                to luxury investors, I deliver results through deep local knowledge and strategic negotiation.
               </p>
             </div>
             
@@ -29,8 +28,8 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
                     <Home className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-2">In-Town Specialist</h3>
-                    <p className="text-gray-600 text-sm">Expert in Uptown, SouthEnd, Dilworth & Myers Park</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">Market Analysis</h3>
+                    <p className="text-gray-600 text-sm">Comprehensive neighborhood pricing & trend reports</p>
                   </CardContent>
                 </Card>
               </div>
@@ -39,8 +38,8 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
                     <Users className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-2">Professional Focus</h3>
-                    <p className="text-gray-600 text-sm">Understanding discerning buyers' lifestyle needs</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">Buyer Representation</h3>
+                    <p className="text-gray-600 text-sm">Strategic negotiation & exclusive property access</p>
                   </CardContent>
                 </Card>
               </div>
@@ -49,8 +48,8 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
                     <Mountain className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-2">City Lifestyle</h3>
-                    <p className="text-gray-600 text-sm">Best restaurants, bars, and entertainment venues</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">Seller Services</h3>
+                    <p className="text-gray-600 text-sm">Professional staging, pricing & marketing strategy</p>
                   </CardContent>
                 </Card>
               </div>
@@ -59,8 +58,8 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
                     <Handshake className="h-8 w-8 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-2">Luxury Specialist</h3>
-                    <p className="text-gray-600 text-sm">Curating exceptional properties</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">Investment Consulting</h3>
+                    <p className="text-gray-600 text-sm">Portfolio growth & rental property guidance</p>
                   </CardContent>
                 </Card>
               </div>
