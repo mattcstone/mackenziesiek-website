@@ -33,12 +33,18 @@ export default function HeroSection({ agent }: HeroSectionProps) {
               {agent.bio}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
-                <a href="#contact">Exclusive Property Access</a>
+            <div className="grid grid-cols-2 gap-3">
+              <Button asChild size="sm" className="bg-blue-600 text-white hover:bg-blue-700 font-semibold px-6 py-3 rounded-lg shadow-lg">
+                <a href="#search">Access Listings</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-10 py-4 rounded-lg backdrop-blur-sm">
-                <a href="#search">Private Consultation</a>
+              <Button asChild size="sm" className="bg-red-600 text-white hover:bg-red-700 font-semibold px-6 py-3 rounded-lg shadow-lg">
+                <a href="#contact">Your Home's Value</a>
+              </Button>
+              <Button asChild size="sm" className="bg-green-600 text-white hover:bg-green-700 font-semibold px-6 py-3 rounded-lg shadow-lg">
+                <a href="#contact">Schedule Consultation</a>
+              </Button>
+              <Button asChild size="sm" className="bg-pink-600 text-white hover:bg-pink-700 font-semibold px-6 py-3 rounded-lg shadow-lg">
+                <a href="#about">4+ Years Experience</a>
               </Button>
             </div>
             
