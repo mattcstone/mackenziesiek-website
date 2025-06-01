@@ -13,22 +13,22 @@
   --card-foreground: 222 84% 4.9%;
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --primary: 217 91% 60%; /* Stone Blue */
-  --primary-foreground: 210 40% 98%;
+  --primary: 0 0% 0%; /* Matt Stone Team Black */
+  --primary-foreground: 0 0% 100%;
   --secondary: 210 40% 98%;
   --secondary-foreground: 222 84% 4.9%;
   --accent: 210 40% 98%;
   --accent-foreground: 222 84% 4.9%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
-  --ring: 217 91% 60%;
+  --ring: 0 0% 0%;
   --radius: 0.5rem;
   
-  /* Custom Stone Realty Colors */
-  --stone-blue: 217 91% 60%; /* #1e3a8a equivalent */
-  --stone-slate: 215 25% 48%; /* #64748b equivalent */
-  --stone-sky: 199 89% 48%; /* #0ea5e9 equivalent */
-  --stone-light: 210 40% 98%; /* #f8fafc equivalent */
+  /* Matt Stone Team Colors */
+  --stone-black: 0 0% 0%; /* Primary black */
+  --stone-white: 0 0% 100%; /* Pure white */
+  --stone-gray: 220 13% 91%; /* Light gray */
+  --stone-dark-gray: 220 9% 46%; /* Dark gray */
 }
 
 .dark {
@@ -64,35 +64,35 @@
 }
 
 @layer utilities {
-  .stone-blue {
-    color: hsl(var(--stone-blue));
+  .stone-black {
+    color: hsl(var(--stone-black));
   }
   
-  .bg-stone-blue {
-    background-color: hsl(var(--stone-blue));
+  .bg-stone-black {
+    background-color: hsl(var(--stone-black));
   }
   
-  .stone-slate {
-    color: hsl(var(--stone-slate));
+  .stone-white {
+    color: hsl(var(--stone-white));
   }
   
-  .bg-stone-slate {
-    background-color: hsl(var(--stone-slate));
+  .bg-stone-white {
+    background-color: hsl(var(--stone-white));
   }
   
-  .stone-sky {
-    color: hsl(var(--stone-sky));
+  .stone-gray {
+    color: hsl(var(--stone-gray));
   }
   
-  .bg-stone-sky {
-    background-color: hsl(var(--stone-sky));
+  .bg-stone-gray {
+    background-color: hsl(var(--stone-gray));
   }
   
-  .stone-light {
-    color: hsl(var(--stone-light));
+  .stone-dark-gray {
+    color: hsl(var(--stone-dark-gray));
   }
   
-  .bg-stone-light {
-    background-color: hsl(var(--stone-light));
+  .bg-stone-dark-gray {
+    background-color: hsl(var(--stone-dark-gray));
   }
 }

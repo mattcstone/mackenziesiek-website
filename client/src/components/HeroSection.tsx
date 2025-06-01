@@ -8,45 +8,45 @@ interface HeroSectionProps {
 
 export default function HeroSection({ agent }: HeroSectionProps) {
   return (
-    <section className="relative bg-gradient-to-br from-stone-blue to-blue-800 text-white">
+    <section className="relative bg-gradient-to-br from-black to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div className="inline-flex items-center bg-white/10 rounded-full px-4 py-2 text-sm">
               <Star className="text-yellow-400 mr-2 h-4 w-4" />
-              <span>Top 1% Agent in Charlotte</span>
+              <span>5-Star Agent in Charlotte</span>
             </div>
             
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Your Trusted Guide to
-              <span className="text-stone-sky"> Charlotte Living</span>
+              Your Guide to
+              <span className="text-gray-300"> In-Town Charlotte</span>
             </h1>
             
-            <p className="text-xl text-blue-100 leading-relaxed">
+            <p className="text-xl text-gray-200 leading-relaxed">
               {agent.bio}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-stone-blue hover:bg-gray-100">
+              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
                 <a href="#contact">Let's Find Your Home</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-stone-blue">
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
                 <a href="#search">Search Properties</a>
               </Button>
             </div>
             
             <div className="flex items-center space-x-6 pt-4">
               <div className="text-center">
-                <div className="text-2xl font-bold">{agent.homesSold}</div>
-                <div className="text-sm text-blue-200">Homes Sold</div>
+                <div className="text-2xl font-bold">{agent.homesSold}+</div>
+                <div className="text-sm text-gray-300">Homes Sold</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">{agent.avgDaysOnMarket}</div>
-                <div className="text-sm text-blue-200">Avg Days on Market</div>
+                <div className="text-sm text-gray-300">Avg Days on Market</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">{agent.rating}★</div>
-                <div className="text-sm text-blue-200">Client Rating</div>
+                <div className="text-sm text-gray-300">Client Rating</div>
               </div>
             </div>
           </div>
@@ -83,9 +83,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
             
             <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-stone-blue rounded flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">SR</span>
-                </div>
+                <img src="/assets/Final-02.jpg" alt="Stone Realty Group" className="w-8 h-8" />
                 <div>
                   <div className="text-sm font-semibold text-gray-900">Stone Realty Group</div>
                   <div className="text-xs text-gray-500">Licensed in NC</div>
