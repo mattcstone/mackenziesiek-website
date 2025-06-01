@@ -77,7 +77,7 @@ export default function SellPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header agentName="Mackenzie Stone" />
+      <Header agentName="Mackenzie Siek" />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-black to-gray-800 text-white py-20">

@@ -7,7 +7,7 @@ interface HeaderProps {
   agentName?: string;
 }
 
-export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
+export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
