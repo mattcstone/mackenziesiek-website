@@ -9,6 +9,7 @@ import NeighborhoodPage from "@/pages/neighborhood";
 import GuidePage from "@/pages/guide";
 import SellPage from "@/pages/sell";
 import ComparePage from "@/pages/compare";
+import ReviewsPage from "@/pages/reviews";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/guide/:slug" component={GuidePage} />
       <Route path="/sell" component={SellPage} />
       <Route path="/compare" component={ComparePage} />
+      <Route path="/reviews" component={ReviewsPage} />
       <Route component={NotFound} />
     </Switch>
   );
