@@ -130,7 +130,12 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
                       alt={`${neighborhood.name} neighborhood in Charlotte`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80";
+                        console.log(`Failed to load image: ${neighborhood.image}`);
+                        (e.target as HTMLImageElement).style.display = 'none';
+                        (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg, #64748b 0%, #475569 100%)';
+                      }}
+                      onLoad={() => {
+                        console.log(`Successfully loaded image: ${neighborhood.image}`);
                       }}
                     />
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
