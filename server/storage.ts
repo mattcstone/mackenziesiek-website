@@ -1,11 +1,13 @@
 import { 
-  agents, neighborhoods, guides, testimonials, leads, chatSessions,
+  agents, neighborhoods, guides, testimonials, leads, chatSessions, properties, propertyComparisons,
   type Agent, type InsertAgent,
   type Neighborhood, type InsertNeighborhood,
   type Guide, type InsertGuide,
   type Testimonial, type InsertTestimonial,
   type Lead, type InsertLead,
-  type ChatSession, type InsertChatSession
+  type ChatSession, type InsertChatSession,
+  type Property, type InsertProperty,
+  type PropertyComparison, type InsertPropertyComparison
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and } from "drizzle-orm";
@@ -44,6 +46,20 @@ export interface IStorage {
   getChatSession(sessionId: string): Promise<ChatSession | undefined>;
   createChatSession(session: InsertChatSession): Promise<ChatSession>;
   updateChatSession(sessionId: string, messages: any[]): Promise<ChatSession | undefined>;
+  
+  // Properties
+  getProperty(id: number): Promise<Property | undefined>;
+  getPropertiesByAgent(agentId: number): Promise<Property[]>;
+  getPropertiesByNeighborhood(neighborhoodId: number): Promise<Property[]>;
+  searchProperties(filters: any): Promise<Property[]>;
+  createProperty(property: InsertProperty): Promise<Property>;
+  updateProperty(id: number, property: Partial<InsertProperty>): Promise<Property | undefined>;
+  
+  // Property Comparisons
+  getPropertyComparison(id: number): Promise<PropertyComparison | undefined>;
+  getPropertyComparisonsBySession(sessionId: string): Promise<PropertyComparison[]>;
+  createPropertyComparison(comparison: InsertPropertyComparison): Promise<PropertyComparison>;
+  deletePropertyComparison(id: number): Promise<boolean>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -173,6 +189,73 @@ export class DatabaseStorage implements IStorage {
       .where(eq(chatSessions.sessionId, sessionId))
       .returning();
     return session || undefined;
+  }
+
+  // Properties
+  async getProperty(id: number): Promise<Property | undefined> {
+    const [property] = await db.select().from(properties).where(eq(properties.id, id));
+    return property || undefined;
+  }
+
+  async getPropertiesByAgent(agentId: number): Promise<Property[]> {
+    return await db.select().from(properties).where(eq(properties.agentId, agentId));
+  }
+
+  async getPropertiesByNeighborhood(neighborhoodId: number): Promise<Property[]> {
+    return await db.select().from(properties).where(eq(properties.neighborhoodId, neighborhoodId));
+  }
+
+  async searchProperties(filters: any): Promise<Property[]> {
+    const conditions = [];
+    
+    if (filters.agentId) {
+      conditions.push(eq(properties.agentId, filters.agentId));
+    }
+    if (filters.status) {
+      conditions.push(eq(properties.status, filters.status));
+    }
+    if (filters.propertyType) {
+      conditions.push(eq(properties.propertyType, filters.propertyType));
+    }
+    
+    if (conditions.length > 0) {
+      return await db.select().from(properties).where(and(...conditions));
+    }
+    
+    return await db.select().from(properties);
+  }
+
+  async createProperty(insertProperty: InsertProperty): Promise<Property> {
+    const [property] = await db.insert(properties).values(insertProperty).returning();
+    return property;
+  }
+
+  async updateProperty(id: number, insertProperty: Partial<InsertProperty>): Promise<Property | undefined> {
+    const [property] = await db.update(properties)
+      .set({ ...insertProperty, updatedAt: new Date() })
+      .where(eq(properties.id, id))
+      .returning();
+    return property || undefined;
+  }
+
+  // Property Comparisons
+  async getPropertyComparison(id: number): Promise<PropertyComparison | undefined> {
+    const [comparison] = await db.select().from(propertyComparisons).where(eq(propertyComparisons.id, id));
+    return comparison || undefined;
+  }
+
+  async getPropertyComparisonsBySession(sessionId: string): Promise<PropertyComparison[]> {
+    return await db.select().from(propertyComparisons).where(eq(propertyComparisons.sessionId, sessionId));
+  }
+
+  async createPropertyComparison(insertComparison: InsertPropertyComparison): Promise<PropertyComparison> {
+    const [comparison] = await db.insert(propertyComparisons).values(insertComparison).returning();
+    return comparison;
+  }
+
+  async deletePropertyComparison(id: number): Promise<boolean> {
+    const result = await db.delete(propertyComparisons).where(eq(propertyComparisons.id, id));
+    return (result.rowCount ?? 0) > 0;
   }
 }
 
