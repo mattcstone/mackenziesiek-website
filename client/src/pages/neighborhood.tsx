@@ -27,9 +27,9 @@ export default function NeighborhoodPage() {
   // Default agent for footer
   const defaultAgent: Agent = {
     id: 1,
-    firstName: "Sarah",
-    lastName: "Johnson",
-    email: "sarah@mattstoneteam.com",
+    firstName: "Mackenzie",
+    lastName: "Siek",
+    email: "mackenzie@mattstoneteam.com",
     phone: "(704) 555-0123",
     bio: "",
     headshot: null,

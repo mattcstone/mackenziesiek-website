@@ -55,12 +55,12 @@ export default function Footer({ agent }: FooterProps) {
           <div className="flex flex-col items-center space-y-8">
             <div className="flex items-center space-x-16">
               <img 
-                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=240&h=80" 
+                src="/attached_assets/rectlogo.png" 
                 alt="Stone Realty Group"
                 className="h-20 w-auto filter brightness-90"
               />
               <img 
-                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=240&h=80" 
+                src="/attached_assets/Logo_Black@4x.png" 
                 alt="The Stone Selling System"
                 className="h-20 w-auto filter brightness-90"
               />
