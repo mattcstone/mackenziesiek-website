@@ -130,29 +130,7 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
               />
             </div>
             
-            <Card>
-              <CardContent className="pt-6">
-                <h3 className="font-semibold text-gray-900 mb-3">My Charlotte Favorites</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-center">
-                    <MapPin className="text-black w-5 h-5 mr-3 flex-shrink-0" />
-                    <span>Specialty Areas: {agent.favoriteNeighborhood || "SouthEnd & NoDa"}</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Coffee className="text-black w-5 h-5 mr-3 flex-shrink-0" />
-                    <span>Coffee Fix: {agent.favoriteSpot || "Not Just Coffee"}</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Utensils className="text-black w-5 h-5 mr-3 flex-shrink-0" />
-                    <span>Dinner Spot: {agent.favoriteRestaurant || "Superica"}</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Activity className="text-black w-5 h-5 mr-3 flex-shrink-0" />
-                    <span>Passion: {agent.hobby || "Exploring Charlotte's food scene"}</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+
           </div>
         </div>
       </div>
