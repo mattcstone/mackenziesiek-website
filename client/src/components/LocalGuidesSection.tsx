@@ -23,37 +23,37 @@ export default function LocalGuidesSection({ agentId }: LocalGuidesSectionProps)
   const defaultGuides = [
     {
       id: 1,
-      title: "A Perfect Day in Myers Park",
-      slug: "perfect-day-myers-park",
-      excerpt: "Start with coffee at Park Road Shopping Center, stroll through Freedom Park, lunch at The Asbury, and end with dinner at Superica. Plus my favorite hidden gems!",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
+      title: "A Perfect Day in SouthEnd",
+      slug: "perfect-day-southend",
+      excerpt: "Start with coffee at Not Just Coffee, explore the Rail Trail, grab lunch at City Kitch, and end with rooftop drinks at Fahrenheit. The ultimate urban day!",
+      image: "https://images.unsplash.com/photo-1518176258769-f227c798150e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
       isFeatured: true,
       updatedAt: new Date("2024-01-15"),
     },
     {
       id: 2,
-      title: "Perfect Day in Dilworth",
-      slug: "perfect-day-dilworth",
-      excerpt: "Trendy cafes, local boutiques, and amazing restaurants",
-      image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
+      title: "Young Professional's Guide to NoDa",
+      slug: "young-professional-noda",
+      excerpt: "Art galleries, craft breweries, and the best nightlife spots",
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
       isFeatured: false,
       updatedAt: new Date("2024-01-01"),
     },
     {
       id: 3,
-      title: "Art Lover's Guide to NoDa",
-      slug: "art-lovers-guide-noda",
-      excerpt: "Galleries, live music, and creative spaces",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
+      title: "Foodie's Paradise: Dilworth",
+      slug: "foodie-paradise-dilworth",
+      excerpt: "The best restaurants and food experiences in Charlotte's trendiest neighborhood",
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
       isFeatured: false,
       updatedAt: new Date("2024-01-08"),
     },
     {
       id: 4,
-      title: "Urban Living in South End",
-      slug: "urban-living-south-end",
-      excerpt: "High-rises, light rail, and city conveniences",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
+      title: "First-Time Buyer's Guide to Plaza Midwood",
+      slug: "first-time-buyer-plaza-midwood",
+      excerpt: "Affordable, walkable, and full of character - perfect for young buyers",
+      image: "https://images.unsplash.com/photo-1565402170291-8491f14678db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
       isFeatured: false,
       updatedAt: new Date("2024-01-20"),
     },
@@ -113,21 +113,21 @@ export default function LocalGuidesSection({ agentId }: LocalGuidesSectionProps)
                 
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center text-sm text-gray-600">
-                    <Coffee className="text-stone-blue w-5 h-5 mr-3" />
-                    <span>Morning: Park Road Shopping Center</span>
+                    <Coffee className="text-black w-5 h-5 mr-3" />
+                    <span>Morning: Not Just Coffee & Rail Trail walk</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <TreePine className="text-stone-blue w-5 h-5 mr-3" />
-                    <span>Afternoon: Freedom Park & Little Sugar Creek Greenway</span>
+                    <TreePine className="text-black w-5 h-5 mr-3" />
+                    <span>Afternoon: City Kitch lunch & rooftop bars</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <Utensils className="text-stone-blue w-5 h-5 mr-3" />
-                    <span>Evening: Phillips Place dining</span>
+                    <Utensils className="text-black w-5 h-5 mr-3" />
+                    <span>Evening: Fahrenheit for drinks & dinner</span>
                   </div>
                 </div>
                 
                 <Link href={`/guide/${displayFeaturedGuides[0].slug}`}>
-                  <Button variant="link" className="text-stone-blue hover:text-blue-800 p-0">
+                  <Button variant="link" className="text-black hover:text-gray-600 p-0">
                     Read Full Guide <ArrowRight className="ml-1 h-4 w-4" />
                   </Button>
                 </Link>
@@ -164,7 +164,7 @@ export default function LocalGuidesSection({ agentId }: LocalGuidesSectionProps)
             ))}
             
             <div className="pt-4">
-              <Button className="w-full bg-stone-blue text-white hover:bg-blue-800">
+              <Button className="w-full bg-black text-white hover:bg-gray-800">
                 View All Neighborhood Guides
               </Button>
             </div>
