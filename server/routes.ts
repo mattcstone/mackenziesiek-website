@@ -221,6 +221,84 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Property routes
+  app.get("/api/properties", async (req, res) => {
+    try {
+      const filters = req.query;
+      const properties = await storage.searchProperties(filters);
+      res.json(properties);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch properties" });
+    }
+  });
+
+  app.get("/api/agents/:agentId/properties", async (req, res) => {
+    try {
+      const agentId = parseInt(req.params.agentId);
+      const properties = await storage.getPropertiesByAgent(agentId);
+      res.json(properties);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch agent properties" });
+    }
+  });
+
+  app.get("/api/properties/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const property = await storage.getProperty(id);
+      if (!property) {
+        return res.status(404).json({ message: "Property not found" });
+      }
+      res.json(property);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch property" });
+    }
+  });
+
+  app.post("/api/properties", async (req, res) => {
+    try {
+      const validatedProperty = insertPropertySchema.parse(req.body);
+      const property = await storage.createProperty(validatedProperty);
+      res.status(201).json(property);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid property data" });
+    }
+  });
+
+  // Property comparison routes
+  app.get("/api/property-comparisons/:sessionId", async (req, res) => {
+    try {
+      const sessionId = req.params.sessionId;
+      const comparisons = await storage.getPropertyComparisonsBySession(sessionId);
+      res.json(comparisons);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch comparisons" });
+    }
+  });
+
+  app.post("/api/property-comparisons", async (req, res) => {
+    try {
+      const validatedComparison = insertPropertyComparisonSchema.parse(req.body);
+      const comparison = await storage.createPropertyComparison(validatedComparison);
+      res.status(201).json(comparison);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid comparison data" });
+    }
+  });
+
+  app.delete("/api/property-comparisons/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const deleted = await storage.deletePropertyComparison(id);
+      if (!deleted) {
+        return res.status(404).json({ message: "Comparison not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete comparison" });
+    }
+  });
+
   app.post("/api/properties/valuation", async (req, res) => {
     try {
       // TODO: Integration with YLOPO home valuation API
