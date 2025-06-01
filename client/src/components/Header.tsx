@@ -13,10 +13,10 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
   return (
     <header className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center py-2">
+        <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-8">
             <div className="flex items-center">
-              <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-30 w-auto" />
+              <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-32 w-auto" />
             </div>
             <div className="hidden md:block h-8 w-px bg-gray-300"></div>
             <Link href="/" className="text-2xl lg:text-3xl font-light text-gray-900 hover:text-gray-700 transition-colors tracking-wide">
