@@ -27,11 +27,11 @@ export default function HeroSection({ agent }: HeroSectionProps) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
-                <a href="#contact">Let's Find Your Home</a>
+              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
+                <a href="#contact">Exclusive Property Access</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
-                <a href="#search">Search Properties</a>
+              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-10 py-4 rounded-lg backdrop-blur-sm">
+                <a href="#search">Private Consultation</a>
               </Button>
             </div>
             
@@ -65,28 +65,19 @@ export default function HeroSection({ agent }: HeroSectionProps) {
                 </div>
               )}
               
-              {agent.welcomeVideo && (
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <Button 
-                    size="lg"
-                    className="bg-white/90 hover:bg-white text-stone-blue w-16 h-16 rounded-full p-0"
-                    onClick={() => {
-                      // TODO: Implement video player modal
-                      console.log("Play welcome video:", agent.welcomeVideo);
-                    }}
-                  >
-                    <Play className="h-6 w-6 ml-1" />
-                  </Button>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
+                <div className="transform rotate-12 bg-white bg-opacity-95 px-8 py-4 rounded-lg shadow-2xl border">
+                  <span className="text-gray-800 font-bold text-lg">Video Coming Soon</span>
                 </div>
-              )}
+              </div>
             </div>
             
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-2xl border border-gray-100">
               <div className="flex items-center space-x-3">
-                <img src="/assets/stone-logo.svg" alt="Stone Realty Group" className="w-8 h-8" />
+                <img src="/assets/stone-logo-black.png" alt="Stone Realty Group" className="w-10 h-10" />
                 <div>
-                  <div className="text-sm font-semibold text-gray-900">Stone Realty Group</div>
-                  <div className="text-xs text-gray-500">Licensed in NC</div>
+                  <div className="text-sm font-bold text-gray-900">Stone Realty Group</div>
+                  <div className="text-xs text-gray-600 font-medium">Licensed in NC</div>
                 </div>
               </div>
             </div>
