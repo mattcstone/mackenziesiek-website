@@ -9,7 +9,7 @@ export default function Footer({ agent }: FooterProps) {
   return (
     <footer className="bg-slate-800 text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-12 pb-8">
           <div>
             <div className="text-xl font-bold mb-4">{agent.firstName} {agent.lastName}</div>
             <p className="text-gray-400 mb-4">
