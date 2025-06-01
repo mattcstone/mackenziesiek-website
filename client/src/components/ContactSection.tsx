@@ -83,24 +83,10 @@ export default function ContactSection({ agent }: ContactSectionProps) {
                 <span>{agent.phone}</span>
               </div>
               <div className="flex items-center">
-                <Mail className="text-gray-300 w-6 h-6 mr-4" />
-                <span>{agent.email}</span>
-              </div>
-              <div className="flex items-center">
                 <Clock className="text-gray-300 w-6 h-6 mr-4" />
                 <span>Available 7 days a week</span>
               </div>
             </div>
-            
-            <Card className="bg-white/10 border-white/20">
-              <CardContent className="p-6">
-                <h3 className="font-semibold mb-3 text-white">Quick Response Guarantee</h3>
-                <p className="text-gray-200 text-sm">
-                  I respond to all inquiries within 2 hours during business days, 
-                  and within 4 hours on weekends. Your time is valuable!
-                </p>
-              </CardContent>
-            </Card>
           </div>
           
           <Card>

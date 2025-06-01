@@ -53,7 +53,6 @@ export default function Footer({ agent }: FooterProps) {
             <h3 className="font-semibold mb-4">Contact Info</h3>
             <div className="space-y-2 text-gray-400">
               <p>{agent.phone}</p>
-              <p>{agent.email}</p>
               <p>Charlotte, NC</p>
             </div>
           </div>
