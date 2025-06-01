@@ -34,7 +34,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Uptown",
       slug: "uptown",
       description: "Charlotte's bustling business district with luxury high-rises",
-      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=Charlotte+Uptown+Skyline",
       avgPrice: "Avg: $650K",
       walkScore: 95,
     },
@@ -43,7 +43,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "SouthEnd",
       slug: "southend",
       description: "Modern high-rise living with light rail access",
-      image: "https://images.unsplash.com/photo-1486718448742-163d73305c09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=SouthEnd+Light+Rail",
       avgPrice: "Avg: $485K",
       walkScore: 85,
     },
@@ -52,7 +52,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Dilworth",
       slug: "dilworth",
       description: "Prestigious historic neighborhood with tree-lined streets",
-      image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=Dilworth+Historic+Homes",
       avgPrice: "Avg: $750K",
       walkScore: 78,
     },
@@ -61,7 +61,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "NoDa",
       slug: "noda",
       description: "Vibrant arts district with craft breweries and galleries",
-      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=NoDa+Arts+District",
       avgPrice: "Avg: $525K",
       walkScore: 72,
     },
@@ -70,7 +70,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Fourth Ward",
       slug: "fourth-ward",
       description: "Historic district in the heart of Uptown",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=Fourth+Ward+Historic",
       avgPrice: "Avg: $595K",
       walkScore: 88,
     },
@@ -79,7 +79,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Plaza Midwood",
       slug: "plaza-midwood",
       description: "Eclectic neighborhood with local boutiques and eateries",
-      image: "https://images.unsplash.com/photo-1565402170291-8491f14678db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=Plaza+Midwood+Central+Ave",
       avgPrice: "Avg: $425K",
       walkScore: 68,
     },
@@ -88,7 +88,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Midtown",
       slug: "midtown",
       description: "Growing urban corridor with mixed-use developments",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=Charlotte+Midtown",
       avgPrice: "Avg: $475K",
       walkScore: 75,
     },
@@ -97,7 +97,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Myers Park",
       slug: "myers-park",
       description: "Charlotte's most prestigious residential neighborhood",
-      image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+      image: "/api/placeholder/400/300?text=Myers+Park+Estates",
       avgPrice: "Avg: $850K",
       walkScore: 65,
     },
@@ -122,23 +122,20 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
             <Link key={neighborhood.id} href={`/neighborhood/${neighborhood.slug}`}>
               <div className="group cursor-pointer">
                 <div className="relative overflow-hidden rounded-2xl shadow-lg transition-transform group-hover:scale-105">
-                  <img 
-                    src={neighborhood.image || "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"} 
-                    alt={`${neighborhood.name} neighborhood`}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <h3 className="text-xl font-bold mb-1">{neighborhood.name}</h3>
-                    <p className="text-sm text-gray-200">{neighborhood.description}</p>
-                    <div className="flex items-center mt-2 text-sm">
-                      <span>{neighborhood.avgPrice || "Price varies"}</span>
-                      {neighborhood.walkScore && (
-                        <>
-                          <span className="mx-2">•</span>
-                          <span>Walk Score: {neighborhood.walkScore}</span>
-                        </>
-                      )}
+                  <div className="w-full h-64 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-600 relative">
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="relative h-full flex flex-col justify-end p-6 text-white">
+                      <h3 className="text-xl font-bold mb-1">{neighborhood.name}</h3>
+                      <p className="text-sm text-gray-200 mb-2">{neighborhood.description}</p>
+                      <div className="flex items-center text-sm">
+                        <span>{neighborhood.avgPrice || "Price varies"}</span>
+                        {neighborhood.walkScore && (
+                          <>
+                            <span className="mx-2">•</span>
+                            <span>Walk Score: {neighborhood.walkScore}</span>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -14,13 +14,13 @@ export default function Header({ agentName = "Sarah Johnson" }: HeaderProps) {
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="stone-black font-bold text-xl hover:text-gray-600 transition-colors">
-              {agentName}
+          <div className="flex items-center space-x-6">
+            <Link href="/" className="text-2xl lg:text-3xl text-black hover:text-gray-600 transition-colors" style={{fontFamily: 'serif'}}>
+              <span className="font-light italic">Mackenzie</span> <span className="font-bold">Siek</span>
             </Link>
             <div className="flex items-center space-x-3">
-              <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-8 w-auto" />
-              <div className="hidden sm:block text-stone-dark-gray text-sm font-medium">
+              <img src="/assets/stone-logo-black.png" alt="Stone Realty Group Logo" className="h-12 w-auto" />
+              <div className="hidden sm:block text-stone-dark-gray text-base font-medium">
                 Stone Realty Group
               </div>
             </div>
