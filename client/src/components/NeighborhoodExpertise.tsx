@@ -36,7 +36,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Uptown",
       slug: "uptown",
       description: "Charlotte's bustling business district with luxury high-rises",
-      image: "@assets/ryan-m-cJp16tjKAWk-unsplash.jpg",
+      image: "https://images.unsplash.com/photo-1516839611189-38bcceb204ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $650K",
       walkScore: 95,
     },
@@ -45,7 +45,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "SouthEnd",
       slug: "southend",
       description: "Modern high-rise living with light rail access",
-      image: "/api/placeholder/400/300?text=SouthEnd+Light+Rail",
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $485K",
       walkScore: 85,
     },
@@ -54,7 +54,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Dilworth",
       slug: "dilworth",
       description: "Prestigious historic neighborhood with tree-lined streets",
-      image: "/api/placeholder/400/300?text=Dilworth+Historic+Homes",
+      image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $750K",
       walkScore: 78,
     },
@@ -63,7 +63,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "NoDa",
       slug: "noda",
       description: "Vibrant arts district with craft breweries and galleries",
-      image: "/api/placeholder/400/300?text=NoDa+Arts+District",
+      image: "https://images.unsplash.com/photo-1514306191717-452ec28c7814?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $525K",
       walkScore: 72,
     },
@@ -72,7 +72,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Fourth Ward",
       slug: "fourth-ward",
       description: "Historic district in the heart of Uptown",
-      image: "/api/placeholder/400/300?text=Fourth+Ward+Historic",
+      image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $595K",
       walkScore: 88,
     },
@@ -81,7 +81,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Plaza Midwood",
       slug: "plaza-midwood",
       description: "Eclectic neighborhood with local boutiques and eateries",
-      image: "@assets/wes-hicks-rZ0sTRs9uco-unsplash.jpg",
+      image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $425K",
       walkScore: 68,
     },
@@ -90,7 +90,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Midtown",
       slug: "midtown",
       description: "Growing urban corridor with mixed-use developments",
-      image: "/api/placeholder/400/300?text=Charlotte+Midtown",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $475K",
       walkScore: 75,
     },
@@ -99,7 +99,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
       name: "Myers Park",
       slug: "myers-park",
       description: "Charlotte's most prestigious residential neighborhood",
-      image: "/api/placeholder/400/300?text=Myers+Park+Estates",
+      image: "https://images.unsplash.com/photo-1605276373954-0c4a0dac5cc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
       avgPrice: "Avg: $850K",
       walkScore: 65,
     },
@@ -125,15 +125,14 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
               <div className="group cursor-pointer" style={{animationDelay: `${index * 100}ms`}}>
                 <div className="relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
                   <div className="w-full h-48 relative">
-                    {neighborhood.image && neighborhood.image.startsWith('@assets/') ? (
-                      <img 
-                        src={neighborhood.image.replace('@assets/', '/attached_assets/')} 
-                        alt={`${neighborhood.name} neighborhood`}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-700 to-slate-600"></div>
-                    )}
+                    <img 
+                      src={neighborhood.image} 
+                      alt={`${neighborhood.name} neighborhood in Charlotte`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80";
+                      }}
+                    />
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                       <h3 className="text-lg font-bold mb-1 group-hover:text-yellow-200 transition-colors duration-300">{neighborhood.name}</h3>
