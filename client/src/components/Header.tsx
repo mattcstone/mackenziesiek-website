@@ -46,7 +46,7 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-8">
             <div className="flex items-center">
-              <img src="/attached_assets/rectlogo.png" alt="Stone Realty Group Logo" className="h-8 w-auto" />
+              <img src="/attached_assets/rectlogo.png" alt="Stone Realty Group Logo" className="h-10 w-auto" />
             </div>
             <div className="hidden md:block h-8 w-px bg-gray-300"></div>
             <Link href="/" className="text-2xl lg:text-3xl font-light text-gray-900 hover:text-gray-700 transition-colors tracking-wide">
