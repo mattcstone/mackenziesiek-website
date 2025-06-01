@@ -49,8 +49,24 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
   };
 
   return (
-    <section id="testimonials" className="py-8 lg:py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="relative py-8 lg:py-12 bg-gradient-to-br from-gray-50 to-stone-50 overflow-hidden">
+      {/* Decorative Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-64 h-64 bg-stone-600 rounded-full -translate-x-32 -translate-y-32"></div>
+        <div className="absolute top-1/3 right-0 w-96 h-96 bg-stone-400 rounded-full translate-x-48"></div>
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-stone-500 rounded-full translate-y-40"></div>
+      </div>
+      
+      {/* Subtle Grid Pattern */}
+      <div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(120, 119, 198, 0.15) 1px, transparent 0)`,
+          backgroundSize: '20px 20px'
+        }}
+      ></div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 animate-fade-in">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             What My Clients Say

@@ -8,8 +8,17 @@ interface HeroSectionProps {
 
 export default function HeroSection({ agent }: HeroSectionProps) {
   return (
-    <section className="relative bg-gradient-to-br from-black to-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <section className="relative bg-gradient-to-br from-black to-gray-800 text-white overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1561041930-9b939d8db9d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-gray-800/70"></div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <a 
