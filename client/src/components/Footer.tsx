@@ -57,15 +57,14 @@ export default function Footer({ agent }: FooterProps) {
             </div>
           </div>
         </div>
-        
       </div>
       
       {/* Legal Disclaimer Section */}
       <div className="bg-gray-50 py-12 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-16">
-            <img src="/assets/stone-logo-black.png" alt="Stone Realty Group" className="h-16 w-auto opacity-80" />
-            <img src="/assets/Logo_Black@4x.png" alt="Stone Selling System" className="h-16 w-auto opacity-80" />
+            <img src="/assets/stone-logo-black.png" alt="Stone Realty Group" className="h-24 w-auto opacity-80" />
+            <img src="/assets/Logo_Black@4x.png" alt="Stone Selling System" className="h-12 w-auto opacity-80" />
           </div>
           <div className="text-center mt-10 text-gray-600 text-sm max-w-5xl mx-auto leading-relaxed">
             <p>
