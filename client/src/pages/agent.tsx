@@ -51,8 +51,8 @@ export default function AgentPage() {
       <PersonalStorySection agent={displayAgent} />
       <NeighborhoodExpertise agentId={displayAgent.id} />
       <PropertySearchSection />
-      <LocalGuidesSection agentId={displayAgent.id} />
       <TestimonialsSection agentId={displayAgent.id} />
+      <LocalGuidesSection agentId={displayAgent.id} />
       <ContactSection agent={displayAgent} />
       <Footer agent={displayAgent} />
       <ChatBot agentName={displayAgent.firstName} agentId={displayAgent.id} />
