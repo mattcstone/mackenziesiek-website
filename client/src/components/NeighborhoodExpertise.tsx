@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
+import { useState, useEffect } from "react";
 import type { Neighborhood } from "@shared/schema";
 
 interface NeighborhoodExpertiseProps {
@@ -10,6 +11,34 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
   const { data: neighborhoods, isLoading } = useQuery<Neighborhood[]>({
     queryKey: [`/api/agents/${agentId}/neighborhoods`],
   });
+  
+  const [neighborhoodPhotos, setNeighborhoodPhotos] = useState<Record<string, string>>({});
+
+  // Fetch authentic Charlotte photos for neighborhoods without real images
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      const neighborhoodsToFetch = ['southend', 'dilworth', 'noda', 'fourth-ward', 'midtown', 'myers-park'];
+      
+      for (const neighborhood of neighborhoodsToFetch) {
+        try {
+          const response = await fetch(`/api/photos/charlotte/${neighborhood}`);
+          if (response.ok) {
+            const photos = await response.json();
+            if (photos.length > 0) {
+              setNeighborhoodPhotos(prev => ({
+                ...prev,
+                [neighborhood]: photos[0].urls.regular
+              }));
+            }
+          }
+        } catch (error) {
+          console.log(`Failed to fetch photo for ${neighborhood}`);
+        }
+      }
+    };
+
+    fetchPhotos();
+  }, []);
 
   if (isLoading) {
     return (
@@ -126,6 +155,12 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
                     {neighborhood.image && neighborhood.image.startsWith('@assets/') ? (
                       <img 
                         src={neighborhood.image.replace('@assets/', '/attached_assets/')} 
+                        alt={`${neighborhood.name} neighborhood`}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : neighborhoodPhotos[neighborhood.slug] ? (
+                      <img 
+                        src={neighborhoodPhotos[neighborhood.slug]} 
                         alt={`${neighborhood.name} neighborhood`}
                         className="w-full h-full object-cover"
                       />

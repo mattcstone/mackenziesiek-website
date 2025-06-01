@@ -176,6 +176,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Unsplash photos route
+  app.get("/api/photos/charlotte/:neighborhood", async (req, res) => {
+    try {
+      const { neighborhood } = req.params;
+      const accessKey = process.env.UNSPLASH_ACCESS_KEY;
+      
+      if (!accessKey) {
+        return res.status(500).json({ message: "Unsplash API key not configured" });
+      }
+      
+      const searchQuery = `Charlotte NC ${neighborhood}`;
+      const response = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(searchQuery)}&per_page=3&orientation=landscape`, {
+        headers: {
+          'Authorization': `Client-ID ${accessKey}`
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Unsplash API error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      res.json(data.results);
+    } catch (error) {
+      console.log(`Error fetching Unsplash photos: ${error}`);
+      res.status(500).json({ message: "Failed to fetch photos" });
+    }
+  });
+
   app.post("/api/properties/valuation", async (req, res) => {
     try {
       // TODO: Integration with YLOPO home valuation API
