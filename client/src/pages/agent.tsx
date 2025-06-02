@@ -24,7 +24,7 @@ export default function AgentPage() {
     firstName: "Mackenzie",
     lastName: "Siek",
     email: "mackenzie@mattstoneteam.com",
-    phone: "(704) 555-0123",
+    phone: "(704) 610-0959",
     bio: "Meet Mackenzie Siek — your trusted Charlotte real estate expert with deep local roots and an unmatched passion for helping clients find their perfect home. Growing up in Charlotte with a builder father, Mackenzie developed an early appreciation for quality construction and thoughtful design. Her background in finance from UNC Charlotte, combined with years of competitive equestrian experience, has instilled the discipline, attention to detail, and strategic thinking that sets her apart in today's market. Whether you're buying your first home or selling a luxury property, Mackenzie brings both expertise and genuine care to every transaction.",
     headshot: "/assets/mackenzie-headshot.jpg",
     welcomeVideo: "https://example.com/welcome-video.mp4",

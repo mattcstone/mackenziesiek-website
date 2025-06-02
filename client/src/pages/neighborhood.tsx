@@ -32,7 +32,7 @@ export default function NeighborhoodPage() {
     firstName: "Mackenzie",
     lastName: "Siek",
     email: "mackenzie@mattstoneteam.com",
-    phone: "(704) 555-0123",
+    phone: "(704) 610-0959",
     bio: "",
     headshot: null,
     welcomeVideo: null,

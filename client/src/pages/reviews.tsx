@@ -24,7 +24,7 @@ export default function ReviewsPage() {
     firstName: "Mackenzie",
     lastName: "Siek",
     email: "mackenzie@stonerealty.com",
-    phone: "(704) 555-0123",
+    phone: "(704) 610-0959",
     bio: "Passionate about helping clients find their perfect home in Charlotte's most vibrant neighborhoods.",
     headshot: null,
     welcomeVideo: null,

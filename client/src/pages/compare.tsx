@@ -11,7 +11,7 @@ export default function ComparePage() {
     firstName: "Mackenzie",
     lastName: "Siek",
     email: "mackenzie@stonerealty.com",
-    phone: "(704) 555-0123",
+    phone: "(704) 610-0959",
     bio: "Your trusted Charlotte real estate expert with deep knowledge of the city's most desirable neighborhoods. Specializing in in-town living, luxury condos, and investment properties.",
     headshot: "/assets/agent-headshot.jpg",
     welcomeVideo: null,
