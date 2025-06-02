@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +9,7 @@ import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award } fro
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import stoneSellingSystemLogo from "@assets/Logo_Black@4x.png";
 import sellersGuidePdf from "@assets/sellers-guide.pdf";
 
@@ -21,30 +23,48 @@ export default function SellPage() {
   });
   const { toast } = useToast();
 
+  const createSellerLeadMutation = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      return await apiRequest("POST", "/api/seller-leads", {
+        ...data,
+        agentId: 1 // Mackenzie's agent ID
+      });
+    },
+    onSuccess: () => {
+      // Create download link for the PDF
+      const link = document.createElement('a');
+      link.href = sellersGuidePdf;
+      link.download = 'stone-selling-system-guide.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast({
+        title: "Thank you!",
+        description: "Your selling guide is downloading now. We'll be in touch soon!"
+      });
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: ""
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to process request. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Create download link for the PDF
-    const link = document.createElement('a');
-    link.href = sellersGuidePdf;
-    link.download = 'stone-selling-system-guide.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    toast({
-      title: "Thank you!",
-      description: "Your selling guide is downloading now. We'll be in touch soon!"
-    });
-
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      address: ""
-    });
+    createSellerLeadMutation.mutate(formData);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,8 +199,12 @@ export default function SellPage() {
                       className="mt-1"
                     />
                   </div>
-                  <Button type="submit" className="w-full bg-black hover:bg-gray-800 text-white py-3">
-                    Download FREE Seller's Guide
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-black hover:bg-gray-800 text-white py-3"
+                    disabled={createSellerLeadMutation.isPending}
+                  >
+                    {createSellerLeadMutation.isPending ? "Processing..." : "Download FREE Seller's Guide"}
                   </Button>
                 </form>
               </CardContent>

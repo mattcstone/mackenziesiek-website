@@ -174,19 +174,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const lead = await storage.createLead(leadData);
       
       // Get agent information for Follow up Boss integration
-      const agent = await storage.getAgent(leadData.agentId);
-      if (agent) {
-        // Send to Follow up Boss CRM
-        await followUpBossService.createContactFormLead({
-          firstName: leadData.firstName,
-          lastName: leadData.lastName,
-          email: leadData.email,
-          phone: leadData.phone,
-          interest: leadData.interest || '',
-          neighborhoods: leadData.neighborhoods || '',
-          message: leadData.message || '',
-          agentName: `${agent.firstName} ${agent.lastName}`
-        });
+      if (leadData.agentId) {
+        const agent = await storage.getAgent(leadData.agentId);
+        if (agent) {
+          // Send to Follow up Boss CRM
+          await followUpBossService.createContactFormLead({
+            firstName: leadData.firstName,
+            lastName: leadData.lastName,
+            email: leadData.email,
+            phone: leadData.phone || '',
+            interest: leadData.interest || '',
+            neighborhoods: leadData.neighborhoods || '',
+            message: leadData.message || '',
+            agentName: `${agent.firstName} ${agent.lastName}`
+          });
+        }
       }
       
       res.status(201).json(lead);
