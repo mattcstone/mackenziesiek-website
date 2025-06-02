@@ -50,46 +50,7 @@ export default function ReviewsPage() {
       <Header agentName="Mackenzie Siek" />
       
       <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-black via-gray-900 to-gray-800 py-16 overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3Ccircle cx='37' cy='37' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }} />
-          </div>
-          
-          <div className="relative max-w-6xl mx-auto px-4 text-center">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Star className="h-4 w-4 text-white fill-current mr-2" />
-              <span className="text-white/90 text-sm font-medium">5.0★ Google Rating</span>
-            </div>
-            
-            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Every home sale and purchase is deeply personal. These authentic reviews reflect the trust 
-              my clients place in me to guide them through life's biggest decisions.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-white text-black hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
-                onClick={() => window.open('https://g.co/kgs/bMnHUoi', '_blank')}
-              >
-                <ExternalLink className="mr-2 h-5 w-5" />
-                Share Your Experience
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-black backdrop-blur-sm px-8 py-4 text-lg rounded-full transition-all duration-300"
-                onClick={() => window.open('https://g.co/kgs/L4E6zf4', '_blank')}
-              >
-                View All Reviews
-              </Button>
-            </div>
-          </div>
-        </section>
+
 
         {/* Reviews Grid */}
         <section id="reviews-grid" className="py-16 bg-gradient-to-b from-gray-50 to-white">
