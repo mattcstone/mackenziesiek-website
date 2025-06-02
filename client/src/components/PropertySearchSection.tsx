@@ -114,22 +114,6 @@ export default function PropertySearchSection() {
 
           </CardContent>
         </Card>
-        
-        {/* Quick Stats */}
-        <div className="grid md:grid-cols-3 gap-8 mt-16">
-          <div className="text-center">
-            <div className="text-3xl font-bold mb-2">{marketStats.activeListings.toLocaleString()}</div>
-            <div className="text-blue-200">Active Listings</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold mb-2">{marketStats.medianPrice}</div>
-            <div className="text-blue-200">Median Home Price</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold mb-2">{marketStats.avgDaysOnMarket}</div>
-            <div className="text-blue-200">Days on Market</div>
-          </div>
-        </div>
       </div>
     </section>
   );
