@@ -51,7 +51,7 @@ export default function ReviewsPage() {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-black via-gray-900 to-gray-800 py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-black via-gray-900 to-gray-800 py-16 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -65,14 +65,14 @@ export default function ReviewsPage() {
               <span className="text-white/90 text-sm font-medium">4.9/5 Average Rating</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Real Stories From
               <span className="block text-white">
                 Real Clients
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
               Every home sale and purchase is deeply personal. These authentic reviews reflect the trust 
               my clients place in me to guide them through life's biggest decisions.
             </p>
@@ -99,17 +99,17 @@ export default function ReviewsPage() {
         </section>
 
         {/* Reviews Grid */}
-        <section id="reviews-grid" className="py-20 bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center bg-black/10 rounded-full px-6 py-2 mb-6">
-                <span className="text-black font-semibold text-sm uppercase tracking-wider">Verified Reviews</span>
+        <section id="reviews-grid" className="py-16 bg-gradient-to-b from-gray-50 to-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center bg-black/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-black font-semibold text-xs uppercase tracking-wider">Verified Reviews</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 What Clients Say About
                 <span className="block text-black">Working With Mackenzie</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 These authentic testimonials come directly from Google My Business reviews, 
                 showcasing real experiences from Charlotte area home buyers and sellers.
               </p>
@@ -140,25 +140,25 @@ export default function ReviewsPage() {
                 ))}
               </div>
             ) : testimonials && testimonials.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {testimonials.slice(0, 6).map((testimonial, index) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {testimonials.map((testimonial, index) => (
                   <Card 
                     key={testimonial.id} 
                     className="bg-white hover:shadow-2xl transition-all duration-500 border-0 rounded-2xl overflow-hidden group transform hover:-translate-y-2" 
                     style={{animationDelay: `${index * 100}ms`}}
                   >
-                    <CardContent className="p-8 relative">
+                    <CardContent className="p-6 relative">
                       {/* Decorative quote mark */}
-                      <div className="absolute top-4 right-6 text-6xl text-black/10 font-serif leading-none">
+                      <div className="absolute top-3 right-4 text-4xl text-black/10 font-serif leading-none">
                         "
                       </div>
                       
-                      <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center justify-between mb-4">
                         <div className="flex space-x-1">
                           {renderStars(testimonial.rating)}
                         </div>
                         {(testimonial as any).source === 'google' && (
-                          <div className="flex items-center bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                          <div className="flex items-center bg-gradient-to-r from-blue-500 to-blue-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
                             <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -170,31 +170,22 @@ export default function ReviewsPage() {
                         )}
                       </div>
                       
-                      <blockquote className="text-gray-700 mb-8 text-base leading-relaxed font-medium relative z-10">
+                      <blockquote className="text-gray-700 mb-6 text-sm leading-relaxed relative z-10">
                         "{testimonial.content}"
                       </blockquote>
                       
                       <div className="flex items-center">
-                        <div className="relative">
-                          <img 
-                            src={(testimonial as any).profilePhotoUrl || testimonial.image || `https://images.unsplash.com/photo-150700321116${index + 1}-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=48&h=48`} 
-                            alt={(testimonial as any).clientName || testimonial.name}
-                            className="w-12 h-12 object-cover rounded-full mr-4 ring-2 ring-black/20"
-                          />
-                          {(testimonial as any).source === 'google' && (
-                            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                              <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            </div>
-                          )}
+                        <div className="relative mr-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center text-gray-600 font-semibold text-sm">
+                            {testimonial.name.charAt(0).toUpperCase()}
+                          </div>
                         </div>
                         <div>
-                          <div className="font-bold text-gray-900 text-base">
-                            {(testimonial as any).clientName || testimonial.name}
+                          <div className="font-semibold text-gray-900 text-sm">
+                            {testimonial.name}
                           </div>
-                          <div className="text-sm text-gray-500 font-medium">
-                            {(testimonial as any).source === 'google' ? 'Google Review' : testimonial.location}
+                          <div className="text-xs text-gray-500">
+                            {testimonial.location}
                           </div>
                         </div>
                       </div>
@@ -246,15 +237,15 @@ export default function ReviewsPage() {
                 </div>
                 <div className="h-16 w-px bg-gray-200 mx-8"></div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 mb-2">47+</div>
-                  <div className="text-gray-600 font-medium">Google Reviews</div>
+                  <div className="text-3xl font-bold text-gray-900 mb-2">{testimonials?.length || 0}</div>
+                  <div className="text-gray-600 font-medium">Client Reviews</div>
                 </div>
               </div>
             </div>
 
             {/* Call to Action */}
-            <div className="text-center mt-20">
-              <div className="bg-gradient-to-br from-black via-gray-900 to-gray-800 p-12 rounded-3xl max-w-4xl mx-auto relative overflow-hidden">
+            <div className="text-center mt-16">
+              <div className="bg-gradient-to-br from-black via-gray-900 to-gray-800 p-8 rounded-2xl max-w-3xl mx-auto relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute inset-0" style={{
@@ -263,14 +254,14 @@ export default function ReviewsPage() {
                 </div>
                 
                 <div className="relative z-10">
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                     Ready to Join These Happy Clients?
                   </h3>
-                  <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
+                  <p className="text-lg text-gray-200 mb-6 max-w-xl mx-auto leading-relaxed">
                     Experience the same exceptional service that earned these authentic five-star reviews. 
                     Let's make your Charlotte real estate dreams a reality.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button 
                       size="lg" 
                       className="bg-white text-black hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
