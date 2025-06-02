@@ -173,23 +173,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const leadData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(leadData);
       
-      // Send to Follow up Boss CRM asynchronously (don't wait for response)
+      // Send to Follow up Boss CRM 
       if (leadData.agentId) {
         const agent = await storage.getAgent(leadData.agentId);
         if (agent) {
-          // Process Follow up Boss integration in background
-          followUpBossService.createContactFormLead({
-            firstName: leadData.firstName,
-            lastName: leadData.lastName,
-            email: leadData.email,
-            phone: leadData.phone || '',
-            interest: leadData.interest || '',
-            neighborhoods: leadData.neighborhoods || '',
-            message: leadData.message || '',
-            agentName: `${agent.firstName} ${agent.lastName}`
-          }).catch(error => {
+          try {
+            await followUpBossService.createContactFormLead({
+              firstName: leadData.firstName,
+              lastName: leadData.lastName,
+              email: leadData.email,
+              phone: leadData.phone || '',
+              interest: leadData.interest || '',
+              neighborhoods: leadData.neighborhoods || '',
+              message: leadData.message || '',
+              agentName: `${agent.firstName} ${agent.lastName}`
+            });
+          } catch (error) {
             console.error('Follow up Boss integration error:', error);
-          });
+          }
         }
       }
       

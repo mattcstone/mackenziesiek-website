@@ -19,31 +19,42 @@ export class FollowUpBossService {
   }
 
   async createLead(leadData: FUBLead): Promise<any> {
-    // Log lead information for Follow up Boss integration
-    console.log('=== NEW LEAD FOR FOLLOW UP BOSS ===');
-    console.log(`Name: ${leadData.firstName} ${leadData.lastName || ''}`);
-    console.log(`Email: ${leadData.email || 'Not provided'}`);
-    console.log(`Phone: ${leadData.phone || 'Not provided'}`);
-    console.log(`Source: ${leadData.source}`);
-    console.log(`Message: ${leadData.message || 'No message'}`);
-    if (leadData.customFields) {
-      console.log(`Additional Info: ${JSON.stringify(leadData.customFields, null, 2)}`);
+    try {
+      // Send lead directly to Follow up Boss webhook
+      const webhookData = {
+        first_name: leadData.firstName,
+        last_name: leadData.lastName || '',
+        email: leadData.email || '',
+        phone: leadData.phone || '',
+        message: leadData.message || '',
+        source: leadData.source || 'Website'
+      };
+
+      console.log('Sending lead to Follow up Boss:', webhookData);
+
+      const response = await axios.post('https://api.followupboss.com/v1/webhooks/sources/MackenzieSiek.com', webhookData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      console.log('Successfully sent lead to Follow up Boss:', response.status);
+      return { success: true, status: response.status };
+    } catch (error: any) {
+      console.error('Failed to send lead to Follow up Boss:', error.response?.data || error.message);
+      
+      // Fallback: Log lead information for manual processing
+      console.log('=== FALLBACK - NEW LEAD FOR FOLLOW UP BOSS ===');
+      console.log(`Name: ${leadData.firstName} ${leadData.lastName || ''}`);
+      console.log(`Email: ${leadData.email || 'Not provided'}`);
+      console.log(`Phone: ${leadData.phone || 'Not provided'}`);
+      console.log(`Source: ${leadData.source}`);
+      console.log(`Message: ${leadData.message || 'No message'}`);
+      console.log(`Send to: ${this.fubEmail}`);
+      console.log('===============================================');
+      
+      return { success: false, error: error.message };
     }
-    console.log(`Send to: ${this.fubEmail}`);
-    console.log('===================================');
-    
-    // Return success status
-    return { 
-      success: true, 
-      fubEmail: this.fubEmail,
-      leadData: {
-        name: `${leadData.firstName} ${leadData.lastName || ''}`,
-        email: leadData.email,
-        phone: leadData.phone,
-        source: leadData.source,
-        message: leadData.message
-      }
-    };
   }
 
   async createContactFormLead(data: {
