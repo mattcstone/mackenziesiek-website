@@ -62,7 +62,7 @@ export class FollowUpBossService {
       email: data.email,
       phone: data.phone,
       message: `Interest: ${data.interest}\nNeighborhoods: ${data.neighborhoods}\nMessage: ${data.message}`,
-      source: 'Stone Realty Website - Contact Form',
+      source: 'SRG Agent Marketing',
       customFields: {
         interest: data.interest,
         neighborhoods: data.neighborhoods,
@@ -85,7 +85,7 @@ export class FollowUpBossService {
       email: data.email,
       phone: data.phone,
       message: `Downloaded Seller's Guide. Property Address: ${data.address}`,
-      source: 'Stone Realty Website - Seller Guide Download',
+      source: 'SRG Agent Marketing',
       customFields: {
         leadType: 'Seller',
         propertyAddress: data.address,
