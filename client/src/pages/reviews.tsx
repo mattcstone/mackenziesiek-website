@@ -264,17 +264,17 @@ export default function ReviewsPage() {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button 
                       size="lg" 
-                      className="bg-white text-black hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
+                      className="bg-white text-black hover:bg-gray-100 font-semibold px-6 py-3 text-base rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
                     >
                       Start Your Journey Today
                     </Button>
                     <Button 
                       size="lg" 
                       variant="outline"
-                      className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg rounded-full"
+                      className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-6 py-3 text-base rounded-full"
                       onClick={() => window.open('https://g.co/kgs/bMnHUoi', '_blank')}
                     >
-                      <ExternalLink className="mr-2 h-5 w-5" />
+                      <ExternalLink className="mr-2 h-4 w-4" />
                       Share Your Story
                     </Button>
                   </div>
