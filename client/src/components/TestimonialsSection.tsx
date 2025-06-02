@@ -82,13 +82,18 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
         </div>
         
         <div className="text-center mt-12">
-          <div className="inline-flex items-center bg-stone-light px-6 py-3 rounded-full">
-            <span className="text-2xl font-bold text-stone-blue mr-3">4.9/5</span>
+          <a 
+            href="https://www.google.com/maps/place/Stone+Realty+Group/@35.227085,-80.8431181,17z/data=!3m1!4b1!4m6!3m5!1s0x88569f8a6a7b9c4d:0xf8b85b6a5e3e9e9e!8m2!3d35.227085!4d-80.8431181!16s%2Fg%2F11c6w8l8xp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-stone-light px-6 py-3 rounded-full hover:bg-stone-200 transition-colors duration-200 cursor-pointer"
+          >
+            <span className="text-2xl font-bold text-stone-blue mr-3">5.0/5</span>
             <div className="flex space-x-1 mr-3">
               {renderStars(5)}
             </div>
-            <span className="text-gray-600">Based on <span className="font-semibold">47</span> Google Reviews</span>
-          </div>
+            <span className="text-gray-600">Based on <span className="font-semibold">542</span> Google Reviews</span>
+          </a>
         </div>
         
         {/* Section separator */}
