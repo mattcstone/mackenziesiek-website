@@ -36,7 +36,11 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
 
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
-    setIsLoading(true);
+    
+    // Delay showing typing indicator for more natural feel
+    setTimeout(() => {
+      setIsLoading(true);
+    }, 800);
 
     try {
       const response = await fetch('/api/chat', {
