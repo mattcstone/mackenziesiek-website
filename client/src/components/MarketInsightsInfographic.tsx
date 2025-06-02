@@ -620,7 +620,7 @@ export default function MarketInsightsInfographic() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-blue-600" />
-                6-Month Market Trends
+                24-Month Market Trends
               </CardTitle>
             </CardHeader>
             <CardContent>
