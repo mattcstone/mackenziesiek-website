@@ -41,13 +41,13 @@ This lead was automatically captured from the Stone Realty Group website.
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'hello@mattstoneteam.com',
-          pass: 'wSGb3pUt2Qc#UKX7'
+          user: 'Matt@mattstoneteam.com',
+          pass: 'ppwd sgnx vkqh zyol'
         }
       });
 
       await transporter.sendMail({
-        from: 'hello@mattstoneteam.com',
+        from: 'Matt@mattstoneteam.com',
         to: [this.fubEmail, 'Hello@mattstoneteam.com'],
         subject: emailSubject,
         text: emailBody
