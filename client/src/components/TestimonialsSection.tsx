@@ -19,7 +19,14 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
     enabled: isVisible,
   });
 
-  const displayTestimonials = testimonials || [];
+  // Sort testimonials to prioritize those with images
+  const sortedTestimonials = testimonials ? [...testimonials].sort((a, b) => {
+    if (a.image && !b.image) return -1;
+    if (!a.image && b.image) return 1;
+    return 0;
+  }) : [];
+  
+  const displayTestimonials = sortedTestimonials;
   const itemsPerPage = 3;
   const totalPages = Math.ceil(displayTestimonials.length / itemsPerPage);
 
@@ -59,7 +66,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
         
         <div className="relative">
           {/* Modern Navigation Arrows */}
-          {displayTestimonials.length > itemsPerPage && (
+          {displayTestimonials.length > itemsPerPage && totalPages > 1 && (
             <>
               <button
                 onClick={prevSlide}
@@ -178,7 +185,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
           </div>
 
           {/* Pagination Dots */}
-          {displayTestimonials.length > itemsPerPage && (
+          {displayTestimonials.length > itemsPerPage && totalPages > 1 && (
             <div className="flex justify-center mt-8 space-x-2">
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
