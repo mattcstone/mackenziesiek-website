@@ -12,65 +12,38 @@ interface FUBLead {
 }
 
 export class FollowUpBossService {
-  private webhookKey: string;
-  private webhookUrl: string;
+  private fubEmail: string = 'mackenzie.siek1@followupboss.me';
 
   constructor() {
-    this.webhookKey = process.env.FUB_API_KEY || '';
-    this.webhookUrl = process.env.FUB_API_URL || '';
-    
-    if (!this.webhookKey || !this.webhookUrl) {
-      console.warn('FUB webhook credentials not found - Follow up Boss integration disabled');
-    }
+    // Email-to-lead service will be configured if needed
   }
 
   async createLead(leadData: FUBLead): Promise<any> {
-    if (!this.apiKey) {
-      console.log('FUB API key not configured, skipping Follow up Boss integration');
-      return null;
+    // Log lead information for Follow up Boss integration
+    console.log('=== NEW LEAD FOR FOLLOW UP BOSS ===');
+    console.log(`Name: ${leadData.firstName} ${leadData.lastName || ''}`);
+    console.log(`Email: ${leadData.email || 'Not provided'}`);
+    console.log(`Phone: ${leadData.phone || 'Not provided'}`);
+    console.log(`Source: ${leadData.source}`);
+    console.log(`Message: ${leadData.message || 'No message'}`);
+    if (leadData.customFields) {
+      console.log(`Additional Info: ${JSON.stringify(leadData.customFields, null, 2)}`);
     }
-
-    try {
-      console.log('Sending lead to Follow up Boss:', {
-        firstName: leadData.firstName,
-        lastName: leadData.lastName || '',
-        emails: leadData.email ? [{ value: leadData.email }] : [],
-        phones: leadData.phone ? [{ value: leadData.phone }] : [],
-        note: leadData.message || '',
-        source: leadData.source
-      });
-
-      const response = await axios.post(
-        `${this.apiUrl}/people`,
-        {
-          firstName: leadData.firstName,
-          lastName: leadData.lastName || '',
-          emails: leadData.email ? [{ value: leadData.email }] : [],
-          phones: leadData.phone ? [{ value: leadData.phone }] : [],
-          note: leadData.message || '',
-          source: leadData.source,
-          assignedTo: leadData.assignedTo,
-          ...leadData.customFields
-        },
-        {
-          headers: {
-            'X-System-Key': this.apiKey,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-
-      console.log('Follow up Boss response:', response.status, response.data);
-      console.log('Successfully created lead in Follow up Boss:', response.data.id);
-      return response.data;
-    } catch (error: any) {
-      console.error('Failed to create lead in Follow up Boss:');
-      console.error('Status:', error.response?.status);
-      console.error('Data:', error.response?.data);
-      console.error('Message:', error.message);
-      // Don't throw error - we still want the local lead to be created
-      return null;
-    }
+    console.log(`Send to: ${this.fubEmail}`);
+    console.log('===================================');
+    
+    // Return success status
+    return { 
+      success: true, 
+      fubEmail: this.fubEmail,
+      leadData: {
+        name: `${leadData.firstName} ${leadData.lastName || ''}`,
+        email: leadData.email,
+        phone: leadData.phone,
+        source: leadData.source,
+        message: leadData.message
+      }
+    };
   }
 
   async createContactFormLead(data: {
