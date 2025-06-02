@@ -58,12 +58,13 @@ export default function ReviewsPage() {
                 <span className="text-black font-semibold text-xs uppercase tracking-wider">Verified Reviews</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                What Clients Say About
-                <span className="block text-black">Working With Mackenzie</span>
+                What Clients Say About Working With Mackenzie
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                These authentic testimonials come directly from Google My Business reviews, 
-                showcasing real experiences from Charlotte area home buyers and sellers.
+              <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-6">
+                Mackenzie's clients don't just remember the results — they remember how she made them feel throughout one of life's biggest decisions. The words below are pulled directly from verified Google reviews, offering a glimpse into the trust, care, and professionalism she brings to every home sale and purchase across the Charlotte area.
+              </p>
+              <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed italic">
+                These are real voices, real stories — and a testament to the passion and integrity that define Mackenzie's work.
               </p>
             </div>
 
