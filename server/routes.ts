@@ -6,6 +6,61 @@ import { z } from "zod";
 import { googleOAuthReviewsService } from "./google-oauth-reviews";
 import { followUpBossService } from "./followup-boss";
 
+// Helper function to extract contact information from chat conversation
+function extractContactInfo(conversationText: string) {
+  const text = conversationText.toLowerCase();
+  
+  // Extract phone numbers (various formats)
+  const phoneRegex = /(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/g;
+  const phoneMatches = conversationText.match(phoneRegex);
+  const phone = phoneMatches ? phoneMatches[phoneMatches.length - 1] : '';
+  
+  // Extract email addresses
+  const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
+  const emailMatches = conversationText.match(emailRegex);
+  const email = emailMatches ? emailMatches[emailMatches.length - 1] : '';
+  
+  // Extract names (looking for "my name is" or "I'm" patterns)
+  let firstName = '';
+  let lastName = '';
+  
+  const namePatterns = [
+    /(?:my name is|i'm|i am|this is)\s+([a-z]+)(?:\s+([a-z]+))?/i,
+    /([a-z]+)\s+([a-z]+).*(?:phone|number|call)/i
+  ];
+  
+  for (const pattern of namePatterns) {
+    const nameMatch = conversationText.match(pattern);
+    if (nameMatch) {
+      firstName = nameMatch[1] || '';
+      lastName = nameMatch[2] || '';
+      break;
+    }
+  }
+  
+  // Determine interest type based on conversation
+  let interest = 'General Inquiry';
+  if (text.includes('sell') || text.includes('selling') || text.includes('list')) {
+    interest = 'Selling';
+  } else if (text.includes('buy') || text.includes('buying') || text.includes('purchase') || text.includes('looking for')) {
+    interest = 'Buying';
+  } else if (text.includes('move') || text.includes('moving') || text.includes('relocat')) {
+    interest = 'Relocation';
+  }
+  
+  // Check if we have enough contact info to create a lead
+  const hasValidContact = (phone && phone.length >= 10) || (email && email.includes('@'));
+  
+  return {
+    hasValidContact,
+    firstName: firstName || null,
+    lastName: lastName || null,
+    phone: phone || null,
+    email: email || null,
+    interest
+  };
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Google OAuth routes for business reviews
   app.get("/auth/google", async (req, res) => {
@@ -311,6 +366,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
         timestamp: new Date()
       };
       messages.push(botResponse);
+
+      // Check if this conversation contains contact information and create FUB lead
+      const fullConversation = messages.map(m => m.content).join(' ');
+      const contactInfo = extractContactInfo(fullConversation);
+      
+      if (contactInfo.hasValidContact && agent) {
+        try {
+          // Create lead in local database
+          const leadData = {
+            agentId,
+            firstName: contactInfo.firstName || 'Chat',
+            lastName: contactInfo.lastName || 'Lead',
+            email: contactInfo.email || '',
+            phone: contactInfo.phone || '',
+            interest: contactInfo.interest || 'General Inquiry',
+            neighborhoods: '',
+            message: `Chat conversation lead. Summary: ${fullConversation.slice(-500)}`
+          };
+          
+          await storage.createLead(leadData);
+          
+          // Send to Follow up Boss CRM
+          await followUpBossService.createContactFormLead({
+            firstName: contactInfo.firstName || 'Chat',
+            lastName: contactInfo.lastName || 'Lead', 
+            email: contactInfo.email,
+            phone: contactInfo.phone,
+            interest: contactInfo.interest || 'General Inquiry',
+            neighborhoods: '',
+            message: `Chat Lead - ${fullConversation.slice(-300)}`,
+            agentName: `${agent.firstName} ${agent.lastName}`
+          });
+        } catch (error) {
+          console.error('Chat lead creation error:', error);
+        }
+      }
       
       if (!session) {
         const sessionData = insertChatSessionSchema.parse({
