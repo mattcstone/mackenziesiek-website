@@ -45,7 +45,7 @@ export class GoogleReviewsService {
     // Method 2: Local file
     if (!credentials) {
       try {
-        const credPath = path.join(process.cwd(), 'attached_assets', 'srg-reviews-new.json');
+        const credPath = path.join(process.cwd(), 'attached_assets', 'srg-reviews-4e84ef400d3f.json');
         if (fs.existsSync(credPath)) {
           const credFileContent = fs.readFileSync(credPath, 'utf8');
           credentials = JSON.parse(credFileContent);
