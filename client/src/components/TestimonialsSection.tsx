@@ -29,6 +29,9 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
   const displayTestimonials = sortedTestimonials;
   const itemsPerPage = 3;
   const totalPages = Math.ceil(displayTestimonials.length / itemsPerPage);
+  
+  // Debug navigation visibility
+  console.log('Testimonials count:', displayTestimonials.length, 'Total pages:', totalPages, 'Should show nav:', displayTestimonials.length > itemsPerPage && totalPages > 1);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalPages);

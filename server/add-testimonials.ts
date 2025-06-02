@@ -24,21 +24,24 @@ async function addAuthenticTestimonials() {
       name: "Ayokunle Osho",
       location: "Charlotte, NC",
       content: "Working with Mackenzie Siek was fun. We had worked together on a different property last year and it was a success. We were able to duplicate the process this year. She is always professional no matter how many times we broke the ice. She is versatile, knowledgeable and accessible.",
-      rating: 5
+      rating: 5,
+      image: "/attached_assets/Screenshot 2025-06-02 051243.png"
     },
     {
       agentId,
       name: "Ryan McNally",
       location: "Charlotte, NC",
       content: "Mackenzie for the third year in a row has been one the top realtors that has done business with my inspection team. She has a unique blend of confidence, competence, and charisma about her that I've never seen for someone her age!. After working with mackenzie for many years, I can also confidently say myself that Mackenzie is a loyal partner and friend! You can't go wrong with once you've met her. There are a lot of realtors out there, but very few are truly GREAT like Mackenzie is! It has been wonderful to watch her climb up the ladder of realtors in the charlotte area, and I know she will only continue to grow and flourish!",
-      rating: 5
+      rating: 5,
+      image: "/attached_assets/Screenshot 2025-06-02 051234.png"
     },
     {
       agentId,
       name: "Keller Beck",
       location: "Charlotte, NC",
       content: "Mackenzie has such great knowledge of the Charlotte area market. She is our go to realtor for any real estate questions or searches. She has fantastic insights and her customer service is unmatched. That girl works 24/7 to get her clients what they need. Highly recommend!",
-      rating: 5
+      rating: 5,
+      image: "/attached_assets/Screenshot 2025-06-02 051226.png"
     },
     {
       agentId,
