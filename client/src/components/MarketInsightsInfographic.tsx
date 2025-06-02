@@ -20,10 +20,10 @@ import {
   Zap,
   Search,
   Filter,
-  School,
   Car,
   ShoppingBag,
-  TreePine
+  TreePine,
+  Info
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -79,8 +79,6 @@ interface NeighborhoodData {
   growth: number;
   daysOnMarket: number;
   walkScore: number;
-  schoolRating: string;
-  crimeIndex: 'Low' | 'Medium' | 'High';
   priceRange: 'Under 300K' | '300K-500K' | '500K-750K' | 'Over 750K';
   type: 'Urban' | 'Suburban' | 'Luxury' | 'Historic';
   amenities: string[];
@@ -95,11 +93,9 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 12.5, 
     daysOnMarket: 18,
     walkScore: 72,
-    schoolRating: 'A+',
-    crimeIndex: 'Low',
     priceRange: '300K-500K',
     type: 'Suburban',
-    amenities: ['Top Schools', 'Shopping Centers', 'Golf Courses', 'Parks']
+    amenities: ['Shopping Centers', 'Golf Courses', 'Parks']
   },
   { 
     name: 'Lake Norman', 
@@ -109,8 +105,6 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 15.2, 
     daysOnMarket: 22,
     walkScore: 45,
-    schoolRating: 'A',
-    crimeIndex: 'Low',
     priceRange: '500K-750K',
     type: 'Luxury',
     amenities: ['Waterfront', 'Boating', 'Private Communities', 'Country Clubs']
@@ -123,8 +117,6 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 8.7, 
     daysOnMarket: 12,
     walkScore: 95,
-    schoolRating: 'B+',
-    crimeIndex: 'Medium',
     priceRange: '300K-500K',
     type: 'Urban',
     amenities: ['Walkable', 'Nightlife', 'Restaurants', 'Transit Access']
@@ -137,8 +129,6 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 18.9, 
     daysOnMarket: 8,
     walkScore: 88,
-    schoolRating: 'B',
-    crimeIndex: 'Medium',
     priceRange: 'Under 300K',
     type: 'Historic',
     amenities: ['Arts District', 'Breweries', 'Music Venues', 'Historic Charm']
@@ -151,11 +141,9 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 10.3, 
     daysOnMarket: 16,
     walkScore: 58,
-    schoolRating: 'A',
-    crimeIndex: 'Low',
     priceRange: '300K-500K',
     type: 'Suburban',
-    amenities: ['Corporate Hub', 'Shopping', 'Dining', 'Family Friendly']
+    amenities: ['Corporate Hub', 'Shopping', 'Dining']
   },
   { 
     name: 'Myers Park', 
@@ -165,11 +153,9 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 9.8, 
     daysOnMarket: 28,
     walkScore: 62,
-    schoolRating: 'A+',
-    crimeIndex: 'Low',
     priceRange: 'Over 750K',
     type: 'Luxury',
-    amenities: ['Historic Homes', 'Tree-lined Streets', 'Country Club', 'Premium Schools']
+    amenities: ['Historic Homes', 'Tree-lined Streets', 'Country Club']
   },
   { 
     name: 'Dilworth', 
@@ -179,8 +165,6 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 14.2, 
     daysOnMarket: 15,
     walkScore: 78,
-    schoolRating: 'A-',
-    crimeIndex: 'Low',
     priceRange: '500K-750K',
     type: 'Historic',
     amenities: ['Walkable', 'Historic District', 'Local Shops', 'Community Feel']
@@ -193,11 +177,9 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 22.1, 
     daysOnMarket: 9,
     walkScore: 85,
-    schoolRating: 'B+',
-    crimeIndex: 'Medium',
     priceRange: 'Under 300K',
     type: 'Historic',
-    amenities: ['Trendy', 'Food Scene', 'Vintage Shops', 'Young Professionals']
+    amenities: ['Trendy', 'Food Scene', 'Vintage Shops', 'Entertainment']
   },
   { 
     name: 'Cornelius', 
@@ -207,11 +189,9 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 11.7, 
     daysOnMarket: 20,
     walkScore: 42,
-    schoolRating: 'A-',
-    crimeIndex: 'Low',
     priceRange: '300K-500K',
     type: 'Suburban',
-    amenities: ['Lake Access', 'Family Oriented', 'New Developments', 'Good Schools']
+    amenities: ['Lake Access', 'New Developments']
   },
   { 
     name: 'Huntersville', 
@@ -221,11 +201,9 @@ const allNeighborhoodData: NeighborhoodData[] = [
     growth: 13.4, 
     daysOnMarket: 17,
     walkScore: 48,
-    schoolRating: 'A',
-    crimeIndex: 'Low',
     priceRange: '300K-500K',
     type: 'Suburban',
-    amenities: ['Family Communities', 'Shopping', 'NASCAR Hall of Fame Area', 'Growth Area']
+    amenities: ['Shopping', 'NASCAR Hall of Fame Area', 'Growth Area']
   }
 ];
 
@@ -269,19 +247,16 @@ export default function MarketInsightsInfographic() {
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
-  const [schoolFilter, setSchoolFilter] = useState<string>('all');
-
   const filteredNeighborhoods = useMemo(() => {
     return allNeighborhoodData.filter(neighborhood => {
       const matchesSearch = neighborhood.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            neighborhood.zipCode.includes(searchTerm);
       const matchesPrice = priceFilter === 'all' || neighborhood.priceRange === priceFilter;
       const matchesType = typeFilter === 'all' || neighborhood.type === typeFilter;
-      const matchesSchool = schoolFilter === 'all' || neighborhood.schoolRating.startsWith(schoolFilter);
       
-      return matchesSearch && matchesPrice && matchesType && matchesSchool;
+      return matchesSearch && matchesPrice && matchesType;
     });
-  }, [searchTerm, priceFilter, typeFilter, schoolFilter]);
+  }, [searchTerm, priceFilter, typeFilter]);
 
   const StatCard = ({ metric, index }: { metric: MarketMetric; index: number }) => {
     const IconComponent = metric.icon;
@@ -500,16 +475,7 @@ export default function MarketInsightsInfographic() {
                   </SelectContent>
                 </Select>
                 
-                <Select value={schoolFilter} onValueChange={setSchoolFilter}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="School Rating" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Schools</SelectItem>
-                    <SelectItem value="A">A+ Schools</SelectItem>
-                    <SelectItem value="B">B+ Schools</SelectItem>
-                  </SelectContent>
-                </Select>
+
               </div>
             </CardContent>
           </Card>
@@ -530,8 +496,8 @@ export default function MarketInsightsInfographic() {
                         <CardTitle className="text-lg">{neighborhood.name}</CardTitle>
                         <p className="text-sm text-gray-600">Zip Code: {neighborhood.zipCode}</p>
                       </div>
-                      <Badge variant={neighborhood.crimeIndex === 'Low' ? 'default' : 'secondary'}>
-                        {neighborhood.crimeIndex} Crime
+                      <Badge variant="outline">
+                        {neighborhood.type}
                       </Badge>
                     </div>
                   </CardHeader>
@@ -553,8 +519,8 @@ export default function MarketInsightsInfographic() {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex items-center gap-2">
-                        <School className="h-4 w-4 text-blue-600" />
-                        <span className="text-sm font-medium">{neighborhood.schoolRating}</span>
+                        <MapPin className="h-4 w-4 text-blue-600" />
+                        <span className="text-sm font-medium">{neighborhood.type}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Car className="h-4 w-4 text-green-600" />
@@ -596,7 +562,7 @@ export default function MarketInsightsInfographic() {
                     setSearchTerm('');
                     setPriceFilter('all');
                     setTypeFilter('all');
-                    setSchoolFilter('all');
+
                   }}
                   className="mt-4"
                 >
