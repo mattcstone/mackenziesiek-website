@@ -14,7 +14,7 @@ export default function ReviewsPage() {
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <Star key={i} className={`h-4 w-4 ${i < rating ? "text-yellow-400 fill-current" : "text-gray-300"}`} />
+      <Star key={i} className={`h-4 w-4 ${i < rating ? "text-black fill-current" : "text-gray-300"}`} />
     ));
   };
 
@@ -51,7 +51,7 @@ export default function ReviewsPage() {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-stone-blue via-stone-blue-dark to-gray-900 py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-black via-gray-900 to-gray-800 py-24 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -61,18 +61,18 @@ export default function ReviewsPage() {
           
           <div className="relative max-w-6xl mx-auto px-4 text-center">
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Star className="h-4 w-4 text-yellow-400 fill-current mr-2" />
+              <Star className="h-4 w-4 text-white fill-current mr-2" />
               <span className="text-white/90 text-sm font-medium">4.9/5 Average Rating</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
               Real Stories From
-              <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="block text-white">
                 Real Clients
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-4xl mx-auto leading-relaxed">
               Every home sale and purchase is deeply personal. These authentic reviews reflect the trust 
               my clients place in me to guide them through life's biggest decisions.
             </p>
@@ -80,7 +80,7 @@ export default function ReviewsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500 font-bold px-8 py-4 text-lg rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                className="bg-white text-black hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
                 onClick={() => window.open('https://g.co/kgs/bMnHUoi', '_blank')}
               >
                 <ExternalLink className="mr-2 h-5 w-5" />
@@ -102,12 +102,12 @@ export default function ReviewsPage() {
         <section id="reviews-grid" className="py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <div className="inline-flex items-center bg-stone-blue/10 rounded-full px-6 py-2 mb-6">
-                <span className="text-stone-blue font-semibold text-sm uppercase tracking-wider">Verified Reviews</span>
+              <div className="inline-flex items-center bg-black/10 rounded-full px-6 py-2 mb-6">
+                <span className="text-black font-semibold text-sm uppercase tracking-wider">Verified Reviews</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 What Clients Say About
-                <span className="block text-stone-blue">Working With Mackenzie</span>
+                <span className="block text-black">Working With Mackenzie</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 These authentic testimonials come directly from Google My Business reviews, 
@@ -149,7 +149,7 @@ export default function ReviewsPage() {
                   >
                     <CardContent className="p-8 relative">
                       {/* Decorative quote mark */}
-                      <div className="absolute top-4 right-6 text-6xl text-stone-blue/10 font-serif leading-none">
+                      <div className="absolute top-4 right-6 text-6xl text-black/10 font-serif leading-none">
                         "
                       </div>
                       
@@ -179,7 +179,7 @@ export default function ReviewsPage() {
                           <img 
                             src={(testimonial as any).profilePhotoUrl || testimonial.image || `https://images.unsplash.com/photo-150700321116${index + 1}-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=48&h=48`} 
                             alt={(testimonial as any).clientName || testimonial.name}
-                            className="w-12 h-12 object-cover rounded-full mr-4 ring-2 ring-stone-blue/20"
+                            className="w-12 h-12 object-cover rounded-full mr-4 ring-2 ring-black/20"
                           />
                           {(testimonial as any).source === 'google' && (
                             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
@@ -205,7 +205,7 @@ export default function ReviewsPage() {
             ) : (
               <div className="text-center py-20">
                 <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-16 shadow-2xl max-w-3xl mx-auto border border-gray-100">
-                  <div className="w-20 h-20 bg-gradient-to-br from-stone-blue to-stone-blue-dark rounded-full flex items-center justify-center mx-auto mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center mx-auto mb-8">
                     <Star className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">
@@ -222,7 +222,7 @@ export default function ReviewsPage() {
                   </div>
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-stone-blue to-stone-blue-dark hover:from-stone-blue-dark hover:to-gray-900 text-white font-bold px-8 py-4 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
+                    className="bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-bold px-8 py-4 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
                     onClick={() => window.open('https://g.co/kgs/bMnHUoi', '_blank')}
                   >
                     <ExternalLink className="mr-2 h-6 w-6" />
@@ -236,7 +236,7 @@ export default function ReviewsPage() {
             <div className="text-center mt-20">
               <div className="bg-gradient-to-r from-white to-gray-50 px-12 py-8 rounded-3xl shadow-2xl inline-flex items-center border border-gray-100">
                 <div className="text-center mr-8">
-                  <div className="text-5xl font-bold bg-gradient-to-r from-stone-blue to-stone-blue-dark bg-clip-text text-transparent mb-2">
+                  <div className="text-5xl font-bold text-black mb-2">
                     4.9
                   </div>
                   <div className="flex space-x-1 mb-2">
@@ -254,7 +254,7 @@ export default function ReviewsPage() {
 
             {/* Call to Action */}
             <div className="text-center mt-20">
-              <div className="bg-gradient-to-br from-stone-blue via-stone-blue-dark to-gray-900 p-12 rounded-3xl max-w-4xl mx-auto relative overflow-hidden">
+              <div className="bg-gradient-to-br from-black via-gray-900 to-gray-800 p-12 rounded-3xl max-w-4xl mx-auto relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute inset-0" style={{
