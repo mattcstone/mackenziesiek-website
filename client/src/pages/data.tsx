@@ -11,6 +11,12 @@ export default function DataPage() {
       buttonText: "View"
     },
     {
+      title: "Buyer's Guide",
+      icon: FileText,
+      action: () => window.open('/attached_assets/SRG Buyer Presentation (8).pdf', '_blank'),
+      buttonText: "View"
+    },
+    {
       title: "Market Analytics Dashboard",
       icon: BarChart3,
       action: () => window.open('https://www.charlotterealtors.com/market-data/', '_blank'),
