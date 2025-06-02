@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import WhyStoneRealtySection from "@/components/WhyStoneRealtySection";
@@ -17,6 +18,18 @@ import type { Agent } from "@shared/schema";
 
 export default function AgentPage() {
   const { slug } = useParams();
+  
+  // Check if user navigated to contact section and scroll to it
+  useEffect(() => {
+    if (window.location.hash === '#contact') {
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }, []);
   
   // Default agent for demonstration (would normally come from database)
   const defaultAgent: Agent = {
