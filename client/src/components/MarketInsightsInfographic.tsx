@@ -378,7 +378,7 @@ export default function MarketInsightsInfographic() {
               <Button variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
                 Schedule Consultation
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+              <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 bg-transparent">
                 Download Market Report
               </Button>
             </div>
