@@ -434,12 +434,9 @@ export default function NeighborhoodPage() {
                     </Button>
                     <Button 
                       variant="outline" 
-                      className="w-full border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white"
+                      className="w-full border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white bg-white"
                       onClick={() => {
-                        const contactSection = document.getElementById('contact');
-                        if (contactSection) {
-                          contactSection.scrollIntoView({ behavior: 'smooth' });
-                        }
+                        window.location.href = '/#contact';
                       }}
                     >
                       Contact Me
