@@ -7,7 +7,7 @@ export default function DataPage() {
     {
       title: "Stone Selling System",
       icon: FileText,
-      action: () => window.open('/attached_assets/sellers-guide.pdf', '_blank'),
+      action: () => window.open('/attached_assets/Compressed_Stone Selling System Digital Presentation.pdf', '_blank'),
       buttonText: "View"
     },
     {
