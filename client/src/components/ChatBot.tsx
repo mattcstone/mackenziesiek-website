@@ -127,7 +127,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
                 <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-xs p-3 rounded-lg text-sm ${
                     message.role === "user" 
-                      ? "bg-stone-blue text-white" 
+                      ? "bg-blue-600 text-white" 
                       : "bg-gray-100 text-gray-900"
                   }`}>
                     {message.content}
