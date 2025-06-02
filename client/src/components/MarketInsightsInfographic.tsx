@@ -366,25 +366,7 @@ export default function MarketInsightsInfographic() {
         </div>
       )}
 
-      {/* CTA Section */}
-      <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <CardContent className="p-6">
-          <div className="text-center space-y-4">
-            <h3 className="text-xl font-semibold">Ready to Navigate Charlotte's Market?</h3>
-            <p className="text-blue-100">
-              Let our expert team guide you through Charlotte's dynamic real estate landscape with data-driven insights and local expertise.
-            </p>
-            <div className="flex justify-center gap-4">
-              <Button variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
-                Schedule Consultation
-              </Button>
-              <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 bg-transparent">
-                Download Market Report
-              </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+
     </div>
   );
 }
