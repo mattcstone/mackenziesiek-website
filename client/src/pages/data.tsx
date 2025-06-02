@@ -1,53 +1,38 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileText, Download, ExternalLink, Users, BarChart3, Calendar, Phone } from "lucide-react";
+import { FileText, Users, BarChart3, Calendar, Phone, Eye } from "lucide-react";
 
 export default function DataPage() {
   const resources = [
     {
       title: "Seller's Guide",
-      description: "Comprehensive guide for sellers featuring The Stone Selling System",
       icon: FileText,
-      type: "PDF",
-      action: () => {
-        const link = document.createElement('a');
-        link.href = '/attached_assets/sellers-guide.pdf';
-        link.download = 'Stone-Realty-Sellers-Guide.pdf';
-        link.click();
-      },
-      buttonText: "Download Guide"
+      action: () => window.open('/attached_assets/sellers-guide.pdf', '_blank'),
+      buttonText: "View"
     },
     {
       title: "Market Analytics Dashboard",
-      description: "Real-time Charlotte market data and neighborhood statistics",
       icon: BarChart3,
-      type: "Link",
       action: () => window.open('https://www.charlotterealtors.com/market-data/', '_blank'),
-      buttonText: "View Analytics"
+      buttonText: "View"
     },
     {
       title: "Buyer Resources",
-      description: "First-time homebuyer guides and financing information",
       icon: Users,
-      type: "Portal",
       action: () => window.open('https://www.nchfa.com/', '_blank'),
-      buttonText: "Access Portal"
+      buttonText: "View"
     },
     {
       title: "Showing Schedule",
-      description: "Coordinate and manage property showings efficiently",
       icon: Calendar,
-      type: "Tool",
       action: () => window.open('https://showingtime.com/', '_blank'),
-      buttonText: "Open Calendar"
+      buttonText: "View"
     },
     {
       title: "Follow Up Boss CRM",
-      description: "Lead management and client communication platform",
       icon: Phone,
-      type: "CRM",
       action: () => window.open('https://app.followupboss.com/', '_blank'),
-      buttonText: "Access CRM"
+      buttonText: "View"
     }
   ];
 
@@ -70,32 +55,22 @@ export default function DataPage() {
               return (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-stone-blue/10 rounded-lg">
-                        <IconComponent className="h-6 w-6 text-stone-blue" />
-                      </div>
-                      <div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="p-2 bg-stone-blue/10 rounded-lg">
+                          <IconComponent className="h-6 w-6 text-stone-blue" />
+                        </div>
                         <CardTitle className="text-lg">{resource.title}</CardTitle>
-                        <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                          {resource.type}
-                        </span>
                       </div>
+                      <Button 
+                        onClick={resource.action}
+                        className="bg-stone-blue hover:bg-blue-800 text-white"
+                      >
+                        <Eye className="h-4 w-4 mr-2" />
+                        {resource.buttonText}
+                      </Button>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">{resource.description}</p>
-                    <Button 
-                      onClick={resource.action}
-                      className="w-full bg-stone-blue hover:bg-blue-800"
-                    >
-                      {resource.icon === FileText ? (
-                        <Download className="h-4 w-4 mr-2" />
-                      ) : (
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                      )}
-                      {resource.buttonText}
-                    </Button>
-                  </CardContent>
                 </Card>
               );
             })}
