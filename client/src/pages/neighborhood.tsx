@@ -363,34 +363,58 @@ export default function NeighborhoodPage() {
             </div>
 
             <div className="space-y-6">
-              <Card>
+              <Card className="bg-black text-white">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">Quick Stats</h3>
+                  <h3 className="font-semibold text-white mb-4">Market Stats</h3>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <DollarSign className="h-5 w-5 text-stone-blue mr-2" />
-                        <span className="text-sm text-gray-600">Average Price</span>
+                        <DollarSign className="h-5 w-5 text-yellow-400 mr-2" />
+                        <span className="text-sm text-gray-300">Average Price</span>
                       </div>
-                      <span className="font-semibold">{displayNeighborhood.avgPrice}</span>
+                      <span className="font-semibold text-white">{displayNeighborhood.avgPrice}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <TrendingUp className="h-5 w-5 text-yellow-400 mr-2" />
+                        <span className="text-sm text-gray-300">Days on Market</span>
+                      </div>
+                      <span className="font-semibold text-white">18 days</span>
                     </div>
                     
                     {displayNeighborhood.walkScore && (
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                          <MapPin className="h-5 w-5 text-stone-blue mr-2" />
-                          <span className="text-sm text-gray-600">Walk Score</span>
+                          <MapPin className="h-5 w-5 text-yellow-400 mr-2" />
+                          <span className="text-sm text-gray-300">Walk Score</span>
                         </div>
-                        <span className="font-semibold">{displayNeighborhood.walkScore}</span>
+                        <span className="font-semibold text-white">{displayNeighborhood.walkScore}</span>
                       </div>
                     )}
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <TrendingUp className="h-5 w-5 text-stone-blue mr-2" />
-                        <span className="text-sm text-gray-600">Market Trend</span>
+                        <TrendingUp className="h-5 w-5 text-yellow-400 mr-2" />
+                        <span className="text-sm text-gray-300">Market Trend</span>
                       </div>
-                      <span className="font-semibold text-green-600">Rising</span>
+                      <span className="font-semibold text-green-400">Rising</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <DollarSign className="h-5 w-5 text-yellow-400 mr-2" />
+                        <span className="text-sm text-gray-300">Price per Sq Ft</span>
+                      </div>
+                      <span className="font-semibold text-white">$285</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <TrendingUp className="h-5 w-5 text-yellow-400 mr-2" />
+                        <span className="text-sm text-gray-300">Annual Growth</span>
+                      </div>
+                      <span className="font-semibold text-green-400">+8.2%</span>
                     </div>
                   </div>
                 </CardContent>
@@ -408,8 +432,17 @@ export default function NeighborhoodPage() {
                         View {displayNeighborhood.name} Listings
                       </a>
                     </Button>
-                    <Button asChild variant="outline" className="w-full border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white">
-                      <Link href="/#contact">Contact Me</Link>
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white"
+                      onClick={() => {
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                          contactSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                    >
+                      Contact Me
                     </Button>
                   </div>
                 </CardContent>
