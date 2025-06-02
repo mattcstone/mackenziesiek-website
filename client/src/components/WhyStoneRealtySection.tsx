@@ -53,8 +53,8 @@ export default function WhyStoneRealtySection() {
         </div>
 
         <div className="bg-gradient-to-r from-stone-blue/90 to-blue-700/90 backdrop-blur-sm rounded-2xl p-6 text-white text-center border border-white/20">
-          <p className="text-blue-100 max-w-4xl mx-auto text-sm leading-relaxed">
-            Stone Realty Group, under the leadership of Matt Stone, boasts an impressive 18-year track record in real estate, with over $1.5 billion in closed transactions. In 2023, Matt earned recognition as the 2nd ranked agent out of 8,000 in Charlotte by Real Producers Magazine. Matt leads a powerhouse team of brokers, meticulously selected and trained to meet and uphold 'The Stone Standard.' The team's success is achieved, in part, by leveraging cutting-edge technology and our bespoke property marketing program, "The Stone Selling System." With nearly 1,000 five-star client reviews across various platforms, the team is steadfast in its mission to deliver an unparalleled client experience while preserving the personal touch.
+          <p className="text-white max-w-4xl mx-auto text-sm leading-relaxed">
+            Stone Realty Group, under the leadership of Matt Stone, boasts an impressive 18-year track record in real estate, with over $1.5 billion in closed transactions. In 2023, Matt earned recognition as the 2nd ranked agent out of 8,000 in Charlotte by Real Producers Magazine. Matt leads a powerhouse team of brokers, meticulously selected and trained to meet and uphold 'The Stone Standard.' The team's success is achieved, in part, by leveraging cutting-edge technology and our bespoke property marketing program, "The Stone Selling System." The team is steadfast in its mission to deliver an unparalleled client experience.
           </p>
         </div>
       </div>

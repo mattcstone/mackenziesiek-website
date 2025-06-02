@@ -217,7 +217,7 @@ export default function SellPage() {
               </div>
               <h3 className="font-semibold mb-2">Global Marketing Reach</h3>
               <p className="text-gray-600 text-sm">
-                We spend over $2M annually on marketing across Zillow, Realtor.com, social media, and more.
+                We spend over $2M annually on marketing across Zillow, Realtor®.com, social media, and more.
               </p>
             </div>
 
