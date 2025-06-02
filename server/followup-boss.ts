@@ -53,8 +53,11 @@ export class FollowUpBossService {
           ...leadData.customFields
         },
         {
+          auth: {
+            username: this.apiKey,
+            password: ''
+          },
           headers: {
-            'Authorization': `Bearer ${this.apiKey}`,
             'Content-Type': 'application/json'
           }
         }
