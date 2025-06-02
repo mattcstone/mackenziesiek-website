@@ -46,6 +46,11 @@ export class GoogleAPIReviewsService {
         
         if (response.data.status === 'OK' && response.data.result.reviews) {
           console.log(`Found ${response.data.result.reviews.length} total reviews for Stone Realty Group`);
+          console.log('Sample review content:', response.data.result.reviews.slice(0, 2).map((r: any) => ({
+            author: r.author_name,
+            text: r.text ? r.text.substring(0, 100) + '...' : 'No text',
+            rating: r.rating
+          })));
           return response.data.result.reviews.map((review: any) => ({
             reviewId: review.time?.toString() || Math.random().toString(),
             reviewer: {
@@ -74,10 +79,16 @@ export class GoogleAPIReviewsService {
     try {
       const allReviews = await this.getReviewsForLocation(profileId);
       
-      // Filter reviews that mention the agent name
-      const mentioningAgent = allReviews.filter(review => 
-        review.comment.toLowerCase().includes(agentName.toLowerCase())
-      );
+      console.log(`Searching ${allReviews.length} reviews for mentions of "${agentName}"`);
+      
+      // Filter reviews that mention the agent name (case insensitive)
+      const mentioningAgent = allReviews.filter(review => {
+        const hasMatch = review.comment.toLowerCase().includes(agentName.toLowerCase());
+        if (hasMatch) {
+          console.log(`Found review mentioning ${agentName} by ${review.reviewer.displayName}: "${review.comment.substring(0, 100)}..."`);
+        }
+        return hasMatch;
+      });
       
       console.log(`Found ${mentioningAgent.length} reviews mentioning ${agentName}`);
       return mentioningAgent;
