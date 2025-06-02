@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { Star } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Testimonial } from "@shared/schema";
 import logoPath from "@assets/Final-02.png";
 import { useLazyLoading } from "@/hooks/use-lazy-loading";
+import { useState } from "react";
 
 interface TestimonialsSectionProps {
   agentId: number;
@@ -11,6 +12,7 @@ interface TestimonialsSectionProps {
 
 export default function TestimonialsSection({ agentId }: TestimonialsSectionProps) {
   const { ref, isVisible } = useLazyLoading();
+  const [currentIndex, setCurrentIndex] = useState(0);
   
   const { data: testimonials, isLoading } = useQuery<Testimonial[]>({
     queryKey: [`/api/agents/${agentId}/testimonials`],
@@ -18,6 +20,16 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
   });
 
   const displayTestimonials = testimonials || [];
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(displayTestimonials.length / itemsPerPage);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalPages);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+  };
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -27,16 +39,13 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
 
   return (
     <section ref={ref} id="testimonials" className="relative py-8 lg:py-12 bg-gradient-to-br from-gray-50 to-stone-50 overflow-hidden">
-
-      
       {/* Subtle Grid Pattern */}
       <div 
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(120, 119, 198, 0.15) 1px, transparent 0)`,
-          backgroundSize: '20px 20px'
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
-      ></div>
+      />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 animate-fade-in">
@@ -48,59 +57,119 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-3 gap-8">
-          {isLoading ? (
-            [1, 2, 3].map((i) => (
-              <Card key={i} className="bg-white animate-pulse">
-                <CardContent className="p-8">
-                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
-                  <div className="space-y-2">
-                    <div className="h-3 bg-gray-200 rounded"></div>
-                    <div className="h-3 bg-gray-200 rounded w-5/6"></div>
-                    <div className="h-3 bg-gray-200 rounded w-4/6"></div>
+        <div className="relative">
+          {/* Navigation Arrows */}
+          {displayTestimonials.length > itemsPerPage && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-50 transition-colors duration-200"
+                aria-label="Previous testimonials"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-600" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-50 transition-colors duration-200"
+                aria-label="Next testimonials"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-600" />
+              </button>
+            </>
+          )}
+
+          <div className="overflow-hidden">
+            <div 
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {isLoading ? (
+                <div className="w-full flex-shrink-0">
+                  <div className="grid lg:grid-cols-3 gap-8">
+                    {[1, 2, 3].map((i) => (
+                      <Card key={i} className="bg-white animate-pulse">
+                        <CardContent className="p-8">
+                          <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                          <div className="space-y-2">
+                            <div className="h-3 bg-gray-200 rounded"></div>
+                            <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                            <div className="h-3 bg-gray-200 rounded w-4/6"></div>
+                          </div>
+                          <div className="mt-6 flex items-center">
+                            <div className="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
+                            <div className="h-3 bg-gray-200 rounded w-24"></div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
                   </div>
-                  <div className="mt-6 flex items-center">
-                    <div className="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
-                    <div className="h-3 bg-gray-200 rounded w-24"></div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          ) : displayTestimonials && displayTestimonials.length > 0 ? (
-            displayTestimonials.slice(0, 3).map((testimonial, index) => (
-              <Card key={testimonial.id} className="bg-white hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <div className="flex space-x-1 mb-4">
-                    {renderStars(testimonial.rating)}
-                  </div>
-                  <blockquote className="text-gray-700 mb-6 text-sm leading-relaxed">
-                    "{testimonial.content}"
-                  </blockquote>
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-gradient-to-br from-stone-blue to-stone-blue-dark rounded-full flex items-center justify-center mr-3">
-                      <span className="text-white font-bold text-sm">
-                        {testimonial.name.split(' ').map(n => n[0]).join('')}
-                      </span>
+                </div>
+              ) : displayTestimonials && displayTestimonials.length > 0 ? (
+                Array.from({ length: totalPages }, (_, pageIndex) => {
+                  const start = pageIndex * itemsPerPage;
+                  const pageTestimonials = displayTestimonials.slice(start, start + itemsPerPage);
+                  
+                  return (
+                    <div key={pageIndex} className="w-full flex-shrink-0">
+                      <div className="grid lg:grid-cols-3 gap-8">
+                        {pageTestimonials.map((testimonial) => (
+                          <Card key={testimonial.id} className="bg-white hover:shadow-lg transition-shadow duration-300">
+                            <CardContent className="p-8">
+                              <div className="flex space-x-1 mb-4">
+                                {renderStars(testimonial.rating)}
+                              </div>
+                              <blockquote className="text-gray-700 mb-6 text-sm leading-relaxed">
+                                "{testimonial.content}"
+                              </blockquote>
+                              <div className="flex items-center">
+                                <div className="w-10 h-10 bg-gradient-to-br from-stone-blue to-stone-blue-dark rounded-full flex items-center justify-center mr-3">
+                                  <span className="text-white font-bold text-sm">
+                                    {testimonial.name.split(' ').map(n => n[0]).join('')}
+                                  </span>
+                                </div>
+                                <div>
+                                  <div className="font-semibold text-gray-900 text-sm">{testimonial.name}</div>
+                                  <div className="text-xs text-gray-500">{testimonial.location}</div>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm">{testimonial.name}</div>
-                      <div className="text-xs text-gray-500">{testimonial.location}</div>
+                  );
+                })
+              ) : (
+                <div className="w-full flex-shrink-0">
+                  <div className="text-center py-12">
+                    <div className="bg-stone-light rounded-lg p-8">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Client Testimonials</h3>
+                      <p className="text-gray-600 mb-4">
+                        Authentic client testimonials are being retrieved from verified sources.
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Please check back soon to see genuine reviews from Mackenzie's clients.
+                      </p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            <div className="col-span-3 text-center py-12">
-              <div className="bg-stone-light rounded-lg p-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Client Testimonials</h3>
-                <p className="text-gray-600 mb-4">
-                  Authentic client testimonials are being retrieved from verified sources.
-                </p>
-                <p className="text-sm text-gray-500">
-                  Please check back soon to see genuine reviews from Mackenzie's clients.
-                </p>
-              </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Pagination Dots */}
+          {displayTestimonials.length > itemsPerPage && (
+            <div className="flex justify-center mt-8 space-x-2">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                    i === currentIndex ? 'bg-stone-blue' : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to testimonial page ${i + 1}`}
+                />
+              ))}
             </div>
           )}
         </div>

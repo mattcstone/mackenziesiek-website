@@ -1,17 +1,23 @@
 import { db } from './db';
 import { testimonials } from '@shared/schema';
+import { eq } from 'drizzle-orm';
 
 async function addAuthenticTestimonials() {
   // Get Mackenzie's agent ID (assuming she's ID 1)
   const agentId = 1;
 
+  // Clear existing testimonials first
+  await db.delete(testimonials).where(eq(testimonials.agentId, agentId));
+
   const authenticTestimonials = [
+    // Reviews with profile photos (prioritized)
     {
       agentId,
       name: "Bryan Arvelo Bonilla",
-      location: "Charlotte, NC",
+      location: "Charlotte, NC", 
       content: "From start to finish, Mackenzie made the home buying process feel smooth and stress-free. Her knowledge of the market, attention to detail, and genuine care for her clients set her apart. She always took the time to answer our many questions and made sure we felt confident in every decision we made. If you're looking for someone who is professional, kind, and truly invested in your success, we highly recommend Mackenzie!",
-      rating: 5
+      rating: 5,
+      image: "/attached_assets/Screenshot 2025-06-02 051251.png"
     },
     {
       agentId,
