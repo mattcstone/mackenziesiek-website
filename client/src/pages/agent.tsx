@@ -50,8 +50,8 @@ export default function AgentPage() {
     <div className="min-h-screen">
       <Header agentName={`${displayAgent.firstName} ${displayAgent.lastName}`} />
       <HeroSection agent={displayAgent} />
-      <WhyStoneRealtySection />
       <PersonalStorySection agent={displayAgent} />
+      <WhyStoneRealtySection />
       <NeighborhoodExpertise agentId={displayAgent.id} />
       <PropertySearchSection />
       <TestimonialsSection agentId={displayAgent.id} />
