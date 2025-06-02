@@ -212,11 +212,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const messages = Array.isArray(session.messages) ? session.messages : [];
         messages.push({ role: "user", content: message, timestamp: new Date() });
         
-        // TODO: Integration with GPT API for intelligent responses
-        // For now, return a simple response
+        // Get agent info for personalized responses
+        const agent = await storage.getAgent(agentId);
+        const agentName = agent ? `${agent.firstName} ${agent.lastName}` : "the agent";
+        
+        // Generate AI response using OpenAI with realistic delay
+        const { generateChatResponse } = await import("./openai");
+        const conversationHistory = messages
+          .filter(msg => msg.role === "user" || msg.role === "assistant")
+          .map(msg => ({
+            role: msg.role as 'user' | 'assistant',
+            content: msg.content
+          }));
+        
+        // Add realistic delay based on response length (simulate typing time)
+        const baseDelay = 1500; // Base 1.5 seconds
+        const messageLength = message.length;
+        const typingDelay = Math.min(baseDelay + (messageLength * 30), 4000); // Max 4 seconds
+        
+        await new Promise(resolve => setTimeout(resolve, typingDelay));
+        
+        const aiResponse = await generateChatResponse(message, agentName, conversationHistory);
+        
         const botResponse = {
           role: "assistant",
-          content: "Thank you for your message! I'm Sarah's AI assistant. For immediate assistance, please call me at (704) 555-0123 or fill out the contact form.",
+          content: aiResponse,
           timestamp: new Date()
         };
         messages.push(botResponse);

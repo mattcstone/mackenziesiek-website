@@ -25,9 +25,10 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   const sendMessage = async () => {
     if (!inputValue.trim()) return;
 
+    const messageText = inputValue;
     const userMessage: ChatMessage = {
       role: "user",
-      content: inputValue,
+      content: messageText,
       timestamp: new Date(),
     };
 
@@ -36,19 +37,46 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
     setIsLoading(true);
 
     try {
-      // TODO: Integrate with GPT API for intelligent responses
-      // For now, simulate a response
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const sessionId = `session_${agentId}_${Date.now()}`;
       
-      const botResponse: ChatMessage = {
-        role: "assistant",
-        content: `Thank you for your question about "${inputValue}". I'm still learning about Charlotte real estate! For immediate assistance, please call ${agentName} directly or fill out the contact form.`,
-        timestamp: new Date(),
-      };
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sessionId,
+          agentId,
+          message: messageText,
+        }),
+      });
 
-      setMessages(prev => [...prev, botResponse]);
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const data = await response.json();
+      
+      // Get the latest assistant message from the session
+      const latestMessage = data.messages[data.messages.length - 1];
+      
+      if (latestMessage && latestMessage.role === 'assistant') {
+        const botResponse: ChatMessage = {
+          role: "assistant",
+          content: latestMessage.content,
+          timestamp: new Date(latestMessage.timestamp),
+        };
+
+        setMessages(prev => [...prev, botResponse]);
+      }
     } catch (error) {
       console.error("Chat error:", error);
+      const errorResponse: ChatMessage = {
+        role: "assistant",
+        content: `I'm having trouble connecting right now. For immediate assistance, please call ${agentName} directly or fill out the contact form.`,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorResponse]);
     } finally {
       setIsLoading(false);
     }
@@ -105,8 +133,13 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-100 text-gray-900 max-w-xs p-3 rounded-lg text-sm">
-                    Typing...
+                  <div className="bg-gray-100 text-gray-900 max-w-xs p-3 rounded-lg text-sm flex items-center space-x-1">
+                    <span>Typing</span>
+                    <div className="flex space-x-1">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full animate-bounce"></div>
+                      <div className="w-1 h-1 bg-gray-600 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                      <div className="w-1 h-1 bg-gray-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    </div>
                   </div>
                 </div>
               )}
