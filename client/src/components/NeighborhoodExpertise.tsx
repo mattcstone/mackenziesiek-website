@@ -126,7 +126,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
                 <div className="relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
                   <div className="w-full h-48 relative">
                     <img 
-                      src={neighborhood.image} 
+                      src={neighborhood.image || ""} 
                       alt={`${neighborhood.name} neighborhood in Charlotte`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
