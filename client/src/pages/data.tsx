@@ -11,9 +11,9 @@ export default function DataPage() {
       buttonText: "View"
     },
     {
-      title: "Buyer's Guide",
+      title: "Buyer Presentation",
       icon: FileText,
-      action: () => window.open('/attached_assets/SRG Buyer Presentation (8).pdf', '_blank'),
+      action: () => window.open('/attached_assets/Compressed_SRG Buyer Presentation.pdf', '_blank'),
       buttonText: "View"
     },
 
