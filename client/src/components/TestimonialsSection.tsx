@@ -66,6 +66,30 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
                 </CardContent>
               </Card>
             ))
+          ) : displayTestimonials && displayTestimonials.length > 0 ? (
+            displayTestimonials.slice(0, 3).map((testimonial, index) => (
+              <Card key={testimonial.id} className="bg-white hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-8">
+                  <div className="flex space-x-1 mb-4">
+                    {renderStars(testimonial.rating)}
+                  </div>
+                  <blockquote className="text-gray-700 mb-6 text-sm leading-relaxed">
+                    "{testimonial.content}"
+                  </blockquote>
+                  <div className="flex items-center">
+                    <img 
+                      src={testimonial.image || `https://images.unsplash.com/photo-150700321116${index + 1}-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40`} 
+                      alt={testimonial.name}
+                      className="w-10 h-10 object-cover rounded-full mr-3"
+                    />
+                    <div>
+                      <div className="font-semibold text-gray-900 text-sm">{testimonial.name}</div>
+                      <div className="text-xs text-gray-500">{testimonial.location}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))
           ) : (
             <div className="col-span-3 text-center py-12">
               <div className="bg-stone-light rounded-lg p-8">
@@ -83,7 +107,7 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
         
         <div className="text-center mt-12">
           <a 
-            href="https://www.google.com/maps/place/Stone+Realty+Group/@35.227085,-80.8431181,17z/data=!3m1!4b1!4m6!3m5!1s0x88569f8a6a7b9c4d:0xf8b85b6a5e3e9e9e!8m2!3d35.227085!4d-80.8431181!16s%2Fg%2F11c6w8l8xp"
+            href="https://g.co/kgs/bMnHUoi"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center bg-stone-light px-6 py-3 rounded-full hover:bg-stone-200 transition-colors duration-200 cursor-pointer"
