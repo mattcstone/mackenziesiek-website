@@ -1,0 +1,79 @@
+import axios from 'axios';
+
+interface GoogleReview {
+  reviewId: string;
+  reviewer: {
+    displayName: string;
+    profilePhotoUrl?: string;
+  };
+  starRating: string;
+  comment: string;
+  createTime: string;
+  updateTime: string;
+}
+
+export class GoogleAPIReviewsService {
+  private apiKey: string | null = null;
+
+  constructor() {
+    this.apiKey = process.env.GOOGLE_BUSINESS_PROFILE_API_KEY || process.env.GOOGLE_MY_BUSINESS_API_KEY || null;
+    
+    if (this.apiKey) {
+      console.log('Google API Reviews service initialized with API key');
+    } else {
+      console.warn('No Google API key found for reviews');
+    }
+  }
+
+  async getReviewsForLocation(locationId: string): Promise<GoogleReview[]> {
+    if (!this.apiKey) {
+      console.warn('No API key available for Google reviews');
+      return [];
+    }
+
+    try {
+      // Try the Google Places API approach first
+      const placesUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${locationId}&fields=reviews&key=${this.apiKey}`;
+      
+      const response = await axios.get(placesUrl);
+      
+      if (response.data.status === 'OK' && response.data.result.reviews) {
+        return response.data.result.reviews.map((review: any) => ({
+          reviewId: review.time?.toString() || Math.random().toString(),
+          reviewer: {
+            displayName: review.author_name || 'Anonymous',
+            profilePhotoUrl: review.profile_photo_url
+          },
+          starRating: review.rating?.toString() || '5',
+          comment: review.text || '',
+          createTime: new Date(review.time * 1000).toISOString(),
+          updateTime: new Date(review.time * 1000).toISOString()
+        }));
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('Error fetching reviews from Google API:', error);
+      return [];
+    }
+  }
+
+  async getReviewsMentioningAgent(profileId: string, agentName: string): Promise<GoogleReview[]> {
+    try {
+      const allReviews = await this.getReviewsForLocation(profileId);
+      
+      // Filter reviews that mention the agent name
+      const mentioningAgent = allReviews.filter(review => 
+        review.comment.toLowerCase().includes(agentName.toLowerCase())
+      );
+      
+      console.log(`Found ${mentioningAgent.length} reviews mentioning ${agentName}`);
+      return mentioningAgent;
+    } catch (error) {
+      console.error('Error getting reviews mentioning agent:', error);
+      return [];
+    }
+  }
+}
+
+export const googleAPIReviewsService = new GoogleAPIReviewsService();

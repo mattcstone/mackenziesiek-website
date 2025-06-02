@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema } from "@shared/schema";
 import { z } from "zod";
-import { googleReviewsService } from "./google-reviews";
+import { googleAPIReviewsService } from "./google-api-reviews";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Agent routes
@@ -102,7 +102,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let googleReviews: any[] = [];
       try {
         const profileId = "17917789645435239761"; // Stone Realty Group profile ID
-        const reviews = await googleReviewsService.getReviewsMentioningAgent(profileId, `${agent.firstName} ${agent.lastName}`);
+        const reviews = await googleAPIReviewsService.getReviewsMentioningAgent(profileId, `${agent.firstName} ${agent.lastName}`);
         
         // Convert Google reviews to testimonial format
         googleReviews = reviews.map(review => ({
