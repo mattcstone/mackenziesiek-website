@@ -231,12 +231,11 @@ export default function ReviewsPage() {
                     </Button>
                     <Button 
                       size="lg" 
-                      variant="outline"
-                      className="border-2 border-white text-white hover:bg-white hover:text-black backdrop-blur-sm px-6 py-3 text-base rounded-full transition-all duration-300 font-semibold"
+                      className="bg-white text-black hover:bg-gray-100 border-2 border-white px-6 py-3 text-base rounded-full transition-all duration-300 font-semibold"
                       onClick={() => window.open('https://g.co/kgs/L4E6zf4', '_blank')}
                     >
-                      <ExternalLink className="mr-2 h-4 w-4 text-white group-hover:text-black" />
-                      <span className="text-white group-hover:text-black">Share Your Story</span>
+                      <ExternalLink className="mr-2 h-4 w-4 text-black" />
+                      Share Your Story
                     </Button>
                   </div>
                 </div>
