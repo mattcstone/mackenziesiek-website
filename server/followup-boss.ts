@@ -37,18 +37,18 @@ This lead was automatically captured from the Stone Realty Group website.
 
       console.log('Sending lead email to Follow up Boss:', this.fubEmail);
 
-      // Try to send email via SMTP if configured
-      const transporter = nodemailer.createTransporter({
+      // Send email via SMTP using Matt Stone Team credentials
+      const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_APP_PASSWORD
+          user: 'hello@mattstoneteam.com',
+          pass: 'wSGb3pUt2Qc#UKX7'
         }
       });
 
       await transporter.sendMail({
-        from: process.env.GMAIL_USER,
-        to: this.fubEmail,
+        from: 'hello@mattstoneteam.com',
+        to: [this.fubEmail, 'Hello@mattstoneteam.com'],
         subject: emailSubject,
         text: emailBody
       });
