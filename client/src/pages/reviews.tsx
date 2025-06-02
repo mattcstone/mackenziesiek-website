@@ -189,6 +189,7 @@ export default function ReviewsPage() {
                   </svg>
                   <span className="text-lg font-semibold text-gray-700">Google</span>
                 </div>
+                <div className="h-16 w-px bg-gray-200 mx-8"></div>
                 <div className="text-center mr-8">
                   <div className="text-5xl font-bold text-black mb-2">
                     5.0
