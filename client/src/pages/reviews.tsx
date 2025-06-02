@@ -62,15 +62,8 @@ export default function ReviewsPage() {
           <div className="relative max-w-6xl mx-auto px-4 text-center">
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <Star className="h-4 w-4 text-white fill-current mr-2" />
-              <span className="text-white/90 text-sm font-medium">4.9/5 Average Rating</span>
+              <span className="text-white/90 text-sm font-medium">5.0★ Google Rating</span>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Real Stories From
-              <span className="block text-white">
-                Real Clients
-              </span>
-            </h1>
             
             <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
               Every home sale and purchase is deeply personal. These authentic reviews reflect the trust 
@@ -89,8 +82,8 @@ export default function ReviewsPage() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg rounded-full"
-                onClick={() => document.getElementById('reviews-grid')?.scrollIntoView({ behavior: 'smooth' })}
+                className="border-2 border-white text-white hover:bg-white hover:text-black backdrop-blur-sm px-8 py-4 text-lg rounded-full transition-all duration-300"
+                onClick={() => window.open('https://g.co/kgs/L4E6zf4', '_blank')}
               >
                 View All Reviews
               </Button>
@@ -102,6 +95,13 @@ export default function ReviewsPage() {
         <section id="reviews-grid" className="py-16 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Real Stories From
+                <span className="block text-black">
+                  Real Clients
+                </span>
+              </h1>
+              
               <div className="inline-flex items-center bg-black/10 rounded-full px-4 py-2 mb-4">
                 <span className="text-black font-semibold text-xs uppercase tracking-wider">Verified Reviews</span>
               </div>
@@ -271,8 +271,8 @@ export default function ReviewsPage() {
                     <Button 
                       size="lg" 
                       variant="outline"
-                      className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-6 py-3 text-base rounded-full"
-                      onClick={() => window.open('https://g.co/kgs/bMnHUoi', '_blank')}
+                      className="border-2 border-white text-white hover:bg-white hover:text-black backdrop-blur-sm px-6 py-3 text-base rounded-full transition-all duration-300"
+                      onClick={() => window.open('https://g.co/kgs/L4E6zf4', '_blank')}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Share Your Story
