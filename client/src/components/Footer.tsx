@@ -8,8 +8,8 @@ interface FooterProps {
 export default function Footer({ agent }: FooterProps) {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-16">
           <div>
             <div className="text-2xl font-bold mb-6">{agent.firstName} {agent.lastName}</div>
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
