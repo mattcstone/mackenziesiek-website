@@ -20,28 +20,38 @@ export class FollowUpBossService {
 
   async createLead(leadData: FUBLead): Promise<any> {
     try {
-      // Send lead directly to Follow up Boss webhook
-      const webhookData = {
-        first_name: leadData.firstName,
-        last_name: leadData.lastName || '',
-        email: leadData.email || '',
-        phone: leadData.phone || '',
-        message: leadData.message || '',
+      // Send lead to Follow up Boss using their REST API
+      const personData = {
+        firstName: leadData.firstName,
+        lastName: leadData.lastName || '',
+        emails: leadData.email ? [{ value: leadData.email }] : [],
+        phones: leadData.phone ? [{ value: leadData.phone }] : [],
+        note: leadData.message || '',
         source: leadData.source || 'Website'
       };
 
-      console.log('Sending lead to Follow up Boss:', webhookData);
+      console.log('Sending lead to Follow up Boss API:', personData);
 
-      const response = await axios.post('https://api.followupboss.com/v1/webhooks/sources/MackenzieSiek.com', webhookData, {
+      // Use the API key we have stored in FUB_API_KEY
+      const apiKey = process.env.FUB_API_KEY;
+      if (!apiKey) {
+        throw new Error('Follow up Boss API key not configured');
+      }
+
+      const response = await axios.post('https://api.followupboss.com/v1/people', personData, {
+        auth: {
+          username: apiKey,
+          password: ''
+        },
         headers: {
           'Content-Type': 'application/json'
         }
       });
 
-      console.log('Successfully sent lead to Follow up Boss:', response.status);
-      return { success: true, status: response.status };
+      console.log('Successfully sent lead to Follow up Boss:', response.status, response.data?.id);
+      return { success: true, status: response.status, fubId: response.data?.id };
     } catch (error: any) {
-      console.error('Failed to send lead to Follow up Boss:', error.response?.data || error.message);
+      console.error('Failed to send lead to Follow up Boss:', error.response?.status, error.response?.data || error.message);
       
       // Fallback: Log lead information for manual processing
       console.log('=== FALLBACK - NEW LEAD FOR FOLLOW UP BOSS ===');
