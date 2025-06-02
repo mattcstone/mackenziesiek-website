@@ -5,15 +5,10 @@ export default function WhyStoneRealtySection() {
     <section className="py-12 bg-black relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4 border border-white/20">
-            <Award className="h-4 w-4 text-yellow-400 mr-2" />
-            <span className="text-white text-sm font-semibold">Charlotte's Premier Choice</span>
-          </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
             Why Stone Realty Group
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Charlotte's leading real estate team with an unmatched track record of success. 
             When you work with us, you're backed by years of expertise and thousands of satisfied clients.
           </p>
         </div>
