@@ -49,20 +49,13 @@ export default function ReviewsPage() {
     <div className="min-h-screen bg-white">
       <Header agentName="Mackenzie Siek" />
       
-      <main className="pt-20">
+      <main className="pt-16">
 
 
         {/* Reviews Grid */}
         <section id="reviews-grid" className="py-16 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Real Stories From
-                <span className="block text-black">
-                  Real Clients
-                </span>
-              </h1>
-              
               <div className="inline-flex items-center bg-black/10 rounded-full px-4 py-2 mb-4">
                 <span className="text-black font-semibold text-xs uppercase tracking-wider">Verified Reviews</span>
               </div>
