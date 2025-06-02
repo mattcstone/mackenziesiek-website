@@ -5,7 +5,7 @@ import { FileText, Users, BarChart3, Calendar, Phone, Eye } from "lucide-react";
 export default function DataPage() {
   const resources = [
     {
-      title: "Seller's Guide",
+      title: "Stone Selling System",
       icon: FileText,
       action: () => window.open('/attached_assets/sellers-guide.pdf', '_blank'),
       buttonText: "View"
