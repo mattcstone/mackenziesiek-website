@@ -3,9 +3,42 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema } from "@shared/schema";
 import { z } from "zod";
-import { googleAPIReviewsService } from "./google-api-reviews";
+import { googleOAuthReviewsService } from "./google-oauth-reviews";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Google OAuth routes for business reviews
+  app.get("/auth/google", async (req, res) => {
+    try {
+      const authUrl = googleOAuthReviewsService.getAuthUrl();
+      res.redirect(authUrl);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to generate auth URL" });
+    }
+  });
+
+  app.get("/auth/google/callback", async (req, res) => {
+    try {
+      const { code } = req.query;
+      if (code) {
+        await googleOAuthReviewsService.setCredentials(code as string);
+        res.send(`
+          <html>
+            <body>
+              <h2>Google Business Profile Access Authorized!</h2>
+              <p>You can now close this window and return to your website.</p>
+              <p>The system can now access your authentic Google Business reviews.</p>
+              <script>setTimeout(() => window.close(), 3000);</script>
+            </body>
+          </html>
+        `);
+      } else {
+        res.status(400).json({ message: "No authorization code received" });
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Failed to process authorization" });
+    }
+  });
+
   // Agent routes
   app.get("/api/agents", async (req, res) => {
     try {
@@ -102,7 +135,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let googleReviews: any[] = [];
       try {
         const profileId = "17917789645435239761"; // Stone Realty Group profile ID
-        const reviews = await googleAPIReviewsService.getReviewsMentioningAgent(profileId, agent.firstName);
+        const reviews = await googleOAuthReviewsService.getReviewsMentioningAgent(agent.firstName);
         
         // Convert Google reviews to testimonial format
         googleReviews = reviews.map(review => ({
