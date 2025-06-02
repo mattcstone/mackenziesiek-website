@@ -94,7 +94,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
     <div className="fixed bottom-6 right-6 z-50">
       {!isOpen ? (
         <div className="relative cursor-pointer" onClick={() => setIsOpen(true)}>
-          <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-lg border-4 border-green-400 animate-pulse">
+          <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-lg border-4 border-green-400" style={{animation: 'pulse 3s ease-in-out infinite'}}>
             <img 
               src={mackenziePhoto} 
               alt="Chat with Mackenzie"
