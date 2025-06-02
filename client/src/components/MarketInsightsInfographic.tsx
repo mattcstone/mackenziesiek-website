@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line, Area, AreaChart } from 'recharts';
 import { 
   Home, 
@@ -15,7 +17,13 @@ import {
   Calendar,
   Target,
   Award,
-  Zap
+  Zap,
+  Search,
+  Filter,
+  School,
+  Car,
+  ShoppingBag,
+  TreePine
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -63,12 +71,162 @@ const marketMetrics: MarketMetric[] = [
   }
 ];
 
-const neighborhoodData = [
-  { name: 'South Charlotte', price: 485000, sales: 285, growth: 12.5 },
-  { name: 'Lake Norman', price: 520000, sales: 165, growth: 15.2 },
-  { name: 'Uptown', price: 395000, sales: 95, growth: 8.7 },
-  { name: 'NoDa', price: 285000, sales: 145, growth: 18.9 },
-  { name: 'Ballantyne', price: 465000, sales: 125, growth: 10.3 }
+interface NeighborhoodData {
+  name: string;
+  zipCode: string;
+  price: number;
+  sales: number;
+  growth: number;
+  daysOnMarket: number;
+  walkScore: number;
+  schoolRating: string;
+  crimeIndex: 'Low' | 'Medium' | 'High';
+  priceRange: 'Under 300K' | '300K-500K' | '500K-750K' | 'Over 750K';
+  type: 'Urban' | 'Suburban' | 'Luxury' | 'Historic';
+  amenities: string[];
+}
+
+const allNeighborhoodData: NeighborhoodData[] = [
+  { 
+    name: 'South Charlotte', 
+    zipCode: '28277', 
+    price: 485000, 
+    sales: 285, 
+    growth: 12.5, 
+    daysOnMarket: 18,
+    walkScore: 72,
+    schoolRating: 'A+',
+    crimeIndex: 'Low',
+    priceRange: '300K-500K',
+    type: 'Suburban',
+    amenities: ['Top Schools', 'Shopping Centers', 'Golf Courses', 'Parks']
+  },
+  { 
+    name: 'Lake Norman', 
+    zipCode: '28117', 
+    price: 520000, 
+    sales: 165, 
+    growth: 15.2, 
+    daysOnMarket: 22,
+    walkScore: 45,
+    schoolRating: 'A',
+    crimeIndex: 'Low',
+    priceRange: '500K-750K',
+    type: 'Luxury',
+    amenities: ['Waterfront', 'Boating', 'Private Communities', 'Country Clubs']
+  },
+  { 
+    name: 'Uptown', 
+    zipCode: '28202', 
+    price: 395000, 
+    sales: 95, 
+    growth: 8.7, 
+    daysOnMarket: 12,
+    walkScore: 95,
+    schoolRating: 'B+',
+    crimeIndex: 'Medium',
+    priceRange: '300K-500K',
+    type: 'Urban',
+    amenities: ['Walkable', 'Nightlife', 'Restaurants', 'Transit Access']
+  },
+  { 
+    name: 'NoDa', 
+    zipCode: '28205', 
+    price: 285000, 
+    sales: 145, 
+    growth: 18.9, 
+    daysOnMarket: 8,
+    walkScore: 88,
+    schoolRating: 'B',
+    crimeIndex: 'Medium',
+    priceRange: 'Under 300K',
+    type: 'Historic',
+    amenities: ['Arts District', 'Breweries', 'Music Venues', 'Historic Charm']
+  },
+  { 
+    name: 'Ballantyne', 
+    zipCode: '28277', 
+    price: 465000, 
+    sales: 125, 
+    growth: 10.3, 
+    daysOnMarket: 16,
+    walkScore: 58,
+    schoolRating: 'A',
+    crimeIndex: 'Low',
+    priceRange: '300K-500K',
+    type: 'Suburban',
+    amenities: ['Corporate Hub', 'Shopping', 'Dining', 'Family Friendly']
+  },
+  { 
+    name: 'Myers Park', 
+    zipCode: '28207', 
+    price: 875000, 
+    sales: 78, 
+    growth: 9.8, 
+    daysOnMarket: 28,
+    walkScore: 62,
+    schoolRating: 'A+',
+    crimeIndex: 'Low',
+    priceRange: 'Over 750K',
+    type: 'Luxury',
+    amenities: ['Historic Homes', 'Tree-lined Streets', 'Country Club', 'Premium Schools']
+  },
+  { 
+    name: 'Dilworth', 
+    zipCode: '28203', 
+    price: 525000, 
+    sales: 112, 
+    growth: 14.2, 
+    daysOnMarket: 15,
+    walkScore: 78,
+    schoolRating: 'A-',
+    crimeIndex: 'Low',
+    priceRange: '500K-750K',
+    type: 'Historic',
+    amenities: ['Walkable', 'Historic District', 'Local Shops', 'Community Feel']
+  },
+  { 
+    name: 'Plaza Midwood', 
+    zipCode: '28205', 
+    price: 315000, 
+    sales: 198, 
+    growth: 22.1, 
+    daysOnMarket: 9,
+    walkScore: 85,
+    schoolRating: 'B+',
+    crimeIndex: 'Medium',
+    priceRange: 'Under 300K',
+    type: 'Historic',
+    amenities: ['Trendy', 'Food Scene', 'Vintage Shops', 'Young Professionals']
+  },
+  { 
+    name: 'Cornelius', 
+    zipCode: '28031', 
+    price: 445000, 
+    sales: 89, 
+    growth: 11.7, 
+    daysOnMarket: 20,
+    walkScore: 42,
+    schoolRating: 'A-',
+    crimeIndex: 'Low',
+    priceRange: '300K-500K',
+    type: 'Suburban',
+    amenities: ['Lake Access', 'Family Oriented', 'New Developments', 'Good Schools']
+  },
+  { 
+    name: 'Huntersville', 
+    zipCode: '28078', 
+    price: 398000, 
+    sales: 156, 
+    growth: 13.4, 
+    daysOnMarket: 17,
+    walkScore: 48,
+    schoolRating: 'A',
+    crimeIndex: 'Low',
+    priceRange: '300K-500K',
+    type: 'Suburban',
+    amenities: ['Family Communities', 'Shopping', 'NASCAR Hall of Fame Area', 'Growth Area']
+  }
 ];
 
 const buyerDemographics = [
@@ -89,6 +247,23 @@ const monthlyTrends = [
 
 export default function MarketInsightsInfographic() {
   const [selectedView, setSelectedView] = useState<'overview' | 'neighborhoods' | 'trends'>('overview');
+  const [selectedMetric, setSelectedMetric] = useState<'value' | 'homes' | 'days'>('value');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [priceFilter, setPriceFilter] = useState<string>('all');
+  const [typeFilter, setTypeFilter] = useState<string>('all');
+  const [schoolFilter, setSchoolFilter] = useState<string>('all');
+
+  const filteredNeighborhoods = useMemo(() => {
+    return allNeighborhoodData.filter(neighborhood => {
+      const matchesSearch = neighborhood.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           neighborhood.zipCode.includes(searchTerm);
+      const matchesPrice = priceFilter === 'all' || neighborhood.priceRange === priceFilter;
+      const matchesType = typeFilter === 'all' || neighborhood.type === typeFilter;
+      const matchesSchool = schoolFilter === 'all' || neighborhood.schoolRating.startsWith(schoolFilter);
+      
+      return matchesSearch && matchesPrice && matchesType && matchesSchool;
+    });
+  }, [searchTerm, priceFilter, typeFilter, schoolFilter]);
 
   const StatCard = ({ metric, index }: { metric: MarketMetric; index: number }) => {
     const IconComponent = metric.icon;
@@ -261,42 +436,162 @@ export default function MarketInsightsInfographic() {
       {/* Neighborhoods View */}
       {selectedView === 'neighborhoods' && (
         <div className="space-y-6">
+          {/* Search and Filter Controls */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-blue-600" />
-                Top Performing Neighborhoods
+                <Filter className="h-5 w-5 text-blue-600" />
+                Search & Filter Neighborhoods
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-64 mb-6">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={neighborhoodData}>
-                    <XAxis dataKey="name" />
-                    <YAxis tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`} />
-                    <Bar dataKey="price" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {neighborhoodData.map((neighborhood, index) => (
-                  <div key={index} className="p-4 border rounded-lg">
-                    <h4 className="font-semibold text-gray-900">{neighborhood.name}</h4>
-                    <p className="text-2xl font-bold text-blue-600">
-                      ${(neighborhood.price / 1000).toFixed(0)}K
-                    </p>
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <span>{neighborhood.sales} sales</span>
-                      <Badge variant="outline" className="text-green-700">
-                        +{neighborhood.growth}%
-                      </Badge>
-                    </div>
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Input
+                    placeholder="Search by name or zip code..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+                
+                <Select value={priceFilter} onValueChange={setPriceFilter}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Price Range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Prices</SelectItem>
+                    <SelectItem value="Under 300K">Under $300K</SelectItem>
+                    <SelectItem value="300K-500K">$300K - $500K</SelectItem>
+                    <SelectItem value="500K-750K">$500K - $750K</SelectItem>
+                    <SelectItem value="Over 750K">Over $750K</SelectItem>
+                  </SelectContent>
+                </Select>
+                
+                <Select value={typeFilter} onValueChange={setTypeFilter}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Neighborhood Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Types</SelectItem>
+                    <SelectItem value="Urban">Urban</SelectItem>
+                    <SelectItem value="Suburban">Suburban</SelectItem>
+                    <SelectItem value="Luxury">Luxury</SelectItem>
+                    <SelectItem value="Historic">Historic</SelectItem>
+                  </SelectContent>
+                </Select>
+                
+                <Select value={schoolFilter} onValueChange={setSchoolFilter}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="School Rating" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Schools</SelectItem>
+                    <SelectItem value="A">A+ Schools</SelectItem>
+                    <SelectItem value="B">B+ Schools</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </CardContent>
           </Card>
+
+          {/* Neighborhood Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredNeighborhoods.map((neighborhood, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-lg">{neighborhood.name}</CardTitle>
+                        <p className="text-sm text-gray-600">Zip Code: {neighborhood.zipCode}</p>
+                      </div>
+                      <Badge variant={neighborhood.crimeIndex === 'Low' ? 'default' : 'secondary'}>
+                        {neighborhood.crimeIndex} Crime
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-2xl font-bold text-blue-600">
+                          ${(neighborhood.price / 1000).toFixed(0)}K
+                        </p>
+                        <p className="text-xs text-gray-500">Median Price</p>
+                      </div>
+                      <div>
+                        <p className="text-lg font-semibold">
+                          {neighborhood.daysOnMarket}d
+                        </p>
+                        <p className="text-xs text-gray-500">Days on Market</p>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex items-center gap-2">
+                        <School className="h-4 w-4 text-blue-600" />
+                        <span className="text-sm font-medium">{neighborhood.schoolRating}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Car className="h-4 w-4 text-green-600" />
+                        <span className="text-sm">Walk Score: {neighborhood.walkScore}</span>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <p className="text-sm font-medium text-gray-700 mb-2">Key Amenities:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {neighborhood.amenities.slice(0, 3).map((amenity, i) => (
+                          <Badge key={i} variant="outline" className="text-xs">
+                            {amenity}
+                          </Badge>
+                        ))}
+                        {neighborhood.amenities.length > 3 && (
+                          <Badge variant="outline" className="text-xs">
+                            +{neighborhood.amenities.length - 3} more
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between pt-2 border-t">
+                      <span className="text-sm text-gray-600">{neighborhood.sales} sales</span>
+                      <Badge className="text-green-700">
+                        <TrendingUp className="w-3 h-3 mr-1" />
+                        +{neighborhood.growth}%
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+          
+          {filteredNeighborhoods.length === 0 && (
+            <Card>
+              <CardContent className="text-center py-8">
+                <p className="text-gray-500">No neighborhoods match your current filters.</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setSearchTerm('');
+                    setPriceFilter('all');
+                    setTypeFilter('all');
+                    setSchoolFilter('all');
+                  }}
+                  className="mt-4"
+                >
+                  Clear Filters
+                </Button>
+              </CardContent>
+            </Card>
+          )}
         </div>
       )}
 
