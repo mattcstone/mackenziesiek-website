@@ -14,7 +14,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import BackToTop from "@/components/BackToTop";
-import MarketTrendStoryWidget from "@/components/MarketTrendStoryWidget";
+import MarketInsightsInfographic from "@/components/MarketInsightsInfographic";
 import type { Agent } from "@shared/schema";
 
 export default function AgentPage() {
@@ -76,7 +76,7 @@ export default function AgentPage() {
               Stay informed with real-time market trends and expert analysis from our team
             </p>
           </div>
-          <MarketTrendStoryWidget />
+          <MarketInsightsInfographic />
         </div>
       </section>
       <WhyStoneRealtySection />
