@@ -173,12 +173,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const leadData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(leadData);
       
-      // Get agent information for Follow up Boss integration
+      // Send to Follow up Boss CRM asynchronously (don't wait for response)
       if (leadData.agentId) {
         const agent = await storage.getAgent(leadData.agentId);
         if (agent) {
-          // Send to Follow up Boss CRM
-          await followUpBossService.createContactFormLead({
+          // Process Follow up Boss integration in background
+          followUpBossService.createContactFormLead({
             firstName: leadData.firstName,
             lastName: leadData.lastName,
             email: leadData.email,
@@ -187,6 +187,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             neighborhoods: leadData.neighborhoods || '',
             message: leadData.message || '',
             agentName: `${agent.firstName} ${agent.lastName}`
+          }).catch(error => {
+            console.error('Follow up Boss integration error:', error);
           });
         }
       }
@@ -228,17 +230,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const lead = await storage.createLead(leadData);
       
-      // Get agent information for Follow up Boss integration
+      // Send to Follow up Boss CRM asynchronously (don't wait for response)
       const agent = await storage.getAgent(sellerData.agentId);
       if (agent) {
-        // Send to Follow up Boss CRM
-        await followUpBossService.createSellerGuideLead({
+        // Process Follow up Boss integration in background
+        followUpBossService.createSellerGuideLead({
           firstName: sellerData.firstName,
           lastName: sellerData.lastName,
           email: sellerData.email,
           phone: sellerData.phone,
           address: sellerData.address,
           agentName: `${agent.firstName} ${agent.lastName}`
+        }).catch(error => {
+          console.error('Follow up Boss integration error:', error);
         });
       }
       
