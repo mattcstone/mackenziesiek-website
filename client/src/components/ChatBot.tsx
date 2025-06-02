@@ -127,7 +127,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
                 <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-xs p-3 rounded-lg text-sm ${
                     message.role === "user" 
-                      ? "bg-blue-600 text-white" 
+                      ? "bg-black text-white" 
                       : "bg-gray-100 text-gray-900"
                   }`}>
                     {message.content}
@@ -151,7 +151,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
             <div className="border-t p-4">
               <div className="flex space-x-2">
                 <Input
-                  placeholder="Ask me anything..."
+                  placeholder=""
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
