@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import type { ChatMessage } from "@/lib/types";
+import mackenziePhoto from "@assets/Mackenzie.jpg";
 
 interface ChatBotProps {
   agentName: string;
@@ -15,7 +16,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: `Hi! I'm ${agentName}'s AI assistant. Ask me about neighborhoods, home prices, or anything else about Charlotte real estate!`,
+      content: "Ask me about neighborhoods, home prices, or anything else about Charlotte real estate!",
       timestamp: new Date(),
     },
   ]);
@@ -92,13 +93,16 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {!isOpen ? (
-        <Button
-          onClick={() => setIsOpen(true)}
-          size="lg"
-          className="bg-stone-blue hover:bg-blue-800 text-white w-16 h-16 rounded-full shadow-lg"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </Button>
+        <div className="relative cursor-pointer" onClick={() => setIsOpen(true)}>
+          <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-lg border-4 border-green-400 animate-pulse">
+            <img 
+              src={mackenziePhoto} 
+              alt="Chat with Mackenzie"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white"></div>
+        </div>
       ) : (
         <Card className="w-80 h-96 shadow-2xl">
           <CardHeader className="bg-stone-blue text-white p-4 rounded-t-lg">
