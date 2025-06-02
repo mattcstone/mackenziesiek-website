@@ -31,6 +31,15 @@ export class FollowUpBossService {
     }
 
     try {
+      console.log('Sending lead to Follow up Boss:', {
+        firstName: leadData.firstName,
+        lastName: leadData.lastName || '',
+        emails: leadData.email ? [{ value: leadData.email }] : [],
+        phones: leadData.phone ? [{ value: leadData.phone }] : [],
+        note: leadData.message || '',
+        source: leadData.source
+      });
+
       const response = await axios.post(
         `${this.apiUrl}/people`,
         {
@@ -51,10 +60,14 @@ export class FollowUpBossService {
         }
       );
 
+      console.log('Follow up Boss response:', response.status, response.data);
       console.log('Successfully created lead in Follow up Boss:', response.data.id);
       return response.data;
     } catch (error: any) {
-      console.error('Failed to create lead in Follow up Boss:', error.response?.data || error.message);
+      console.error('Failed to create lead in Follow up Boss:');
+      console.error('Status:', error.response?.status);
+      console.error('Data:', error.response?.data);
+      console.error('Message:', error.message);
       // Don't throw error - we still want the local lead to be created
       return null;
     }
