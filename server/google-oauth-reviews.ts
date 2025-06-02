@@ -22,10 +22,15 @@ export class GoogleOAuthReviewsService {
     this.clientId = process.env.GOOGLE_OAUTH_CLIENT_ID || '60115906243-6tjj7h2siv156f1sbq5s1bl3qsuohbni.apps.googleusercontent.com';
     this.clientSecret = process.env.GOOGLE_OAUTH_CLIENT_SECRET || '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';
     
+    // Use the correct Replit URL for OAuth callback
+    const redirectUri = process.env.REPL_SLUG 
+      ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co/auth/google/callback`
+      : 'http://localhost:5000/auth/google/callback';
+      
     this.oauth2Client = new google.auth.OAuth2(
       this.clientId,
       this.clientSecret,
-      'http://localhost:5000/auth/google/callback'
+      redirectUri
     );
     
     console.log('Google OAuth Reviews service initialized');
