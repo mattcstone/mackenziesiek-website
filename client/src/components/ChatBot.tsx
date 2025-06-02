@@ -40,7 +40,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
     // Delay showing typing indicator for more natural feel
     setTimeout(() => {
       setIsLoading(true);
-    }, 800);
+    }, 3600);
 
     try {
       const response = await fetch('/api/chat', {
