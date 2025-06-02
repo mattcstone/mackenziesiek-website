@@ -427,9 +427,9 @@ export default function NeighborhoodPage() {
                     Let me help you find the perfect home in this amazing neighborhood.
                   </p>
                   <div className="space-y-3">
-                    <Button asChild className="w-full bg-stone-blue hover:bg-blue-800">
+                    <Button asChild className="w-full bg-black text-white hover:bg-gray-800 transition-all duration-200">
                       <a href={getListingUrl(displayNeighborhood.slug)} target="_blank" rel="noopener noreferrer">
-                        View {displayNeighborhood.name} Listings
+                        Search {displayNeighborhood.name} Listings
                       </a>
                     </Button>
                     <Button 
