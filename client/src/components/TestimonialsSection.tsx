@@ -122,11 +122,19 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
                                 "{testimonial.content}"
                               </blockquote>
                               <div className="flex items-center">
-                                <div className="w-10 h-10 bg-gradient-to-br from-stone-blue to-stone-blue-dark rounded-full flex items-center justify-center mr-3">
-                                  <span className="text-white font-bold text-sm">
-                                    {testimonial.name.split(' ').map(n => n[0]).join('')}
-                                  </span>
-                                </div>
+                                {testimonial.image ? (
+                                  <img 
+                                    src={testimonial.image} 
+                                    alt={testimonial.name}
+                                    className="w-10 h-10 object-cover rounded-full mr-3"
+                                  />
+                                ) : (
+                                  <div className="w-10 h-10 bg-gradient-to-br from-stone-blue to-stone-blue-dark rounded-full flex items-center justify-center mr-3">
+                                    <span className="text-white font-bold text-sm">
+                                      {testimonial.name.split(' ').map(n => n[0]).join('')}
+                                    </span>
+                                  </div>
+                                )}
                                 <div>
                                   <div className="font-semibold text-gray-900 text-sm">{testimonial.name}</div>
                                   <div className="text-xs text-gray-500">{testimonial.location}</div>
