@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import WhyStoneRealtySection from "@/components/WhyStoneRealtySection";
 import PersonalStorySection from "@/components/PersonalStorySection";
 import NeighborhoodExpertise from "@/components/NeighborhoodExpertise";
+import NeighborhoodHeatMap from "@/components/NeighborhoodHeatMap";
 import PropertySearchSection from "@/components/PropertySearchSection";
 import LocalGuidesSection from "@/components/LocalGuidesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -53,6 +54,7 @@ export default function AgentPage() {
       <PersonalStorySection agent={displayAgent} />
       <WhyStoneRealtySection />
       <NeighborhoodExpertise agentId={displayAgent.id} />
+      <NeighborhoodHeatMap agentId={displayAgent.id} />
       <PropertySearchSection />
       <TestimonialsSection agentId={displayAgent.id} />
       <LocalGuidesSection agentId={displayAgent.id} />

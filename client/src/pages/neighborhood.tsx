@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NeighborhoodHeatMap from "@/components/NeighborhoodHeatMap";
 import type { Neighborhood, Agent } from "@shared/schema";
 
 export default function NeighborhoodPage() {
@@ -410,6 +411,9 @@ export default function NeighborhoodPage() {
           </div>
         </div>
       </section>
+
+      {/* Market Heat Map Section */}
+      <NeighborhoodHeatMap agentId={1} />
 
       <Footer agent={defaultAgent} />
     </div>
