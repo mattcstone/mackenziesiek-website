@@ -198,8 +198,8 @@ export default function ReviewsPage() {
                 </div>
                 <div className="h-16 w-px bg-gray-200 mx-8"></div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 mb-2">{testimonials?.length || 0}</div>
-                  <div className="text-gray-600 font-medium">Client Reviews</div>
+                  <div className="text-3xl font-bold text-gray-900 mb-2">542</div>
+                  <div className="text-gray-600 font-medium">Reviews</div>
                 </div>
               </div>
             </div>
