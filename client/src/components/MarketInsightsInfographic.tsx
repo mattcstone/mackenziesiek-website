@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line, Area, AreaChart } from 'recharts';
 import { 
   Home, 
@@ -265,42 +266,67 @@ export default function MarketInsightsInfographic() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1 }}
+        whileHover={{ scale: 1.02, y: -2 }}
       >
-        <Card className="relative overflow-hidden">
-          <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className={`p-2 rounded-lg ${
-                  metric.trend === 'up' ? 'bg-green-100' : 
-                  metric.trend === 'down' ? 'bg-blue-100' : 'bg-gray-100'
-                }`}>
-                  <IconComponent className={`h-4 w-4 ${
-                    metric.trend === 'up' ? 'text-green-600' : 
-                    metric.trend === 'down' ? 'text-blue-600' : 'text-gray-600'
-                  }`} />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Card className="relative overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-200">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className={`p-2 rounded-lg ${
+                        metric.trend === 'up' ? 'bg-green-100' : 
+                        metric.trend === 'down' ? 'bg-blue-100' : 'bg-gray-100'
+                      }`}>
+                        <IconComponent className={`h-4 w-4 ${
+                          metric.trend === 'up' ? 'text-green-600' : 
+                          metric.trend === 'down' ? 'text-blue-600' : 'text-gray-600'
+                        }`} />
+                      </div>
+                      <Badge 
+                        variant={metric.trend === 'up' ? 'default' : 'secondary'}
+                        className="flex items-center gap-1"
+                      >
+                        {metric.trend === 'up' ? (
+                          <TrendingUp className="w-3 h-3" />
+                        ) : metric.trend === 'down' ? (
+                          <TrendingDown className="w-3 h-3" />
+                        ) : null}
+                        {metric.change}
+                      </Badge>
+                    </div>
+                    <Info className="h-4 w-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-1">
+                    <h3 className="text-2xl font-bold text-gray-900">{metric.value}</h3>
+                    <p className="text-sm font-medium text-gray-700">{metric.title}</p>
+                    <p className="text-xs text-gray-500">{metric.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="max-w-xs bg-slate-900 text-white p-3 rounded-lg shadow-lg">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <p className="font-semibold mb-1 text-sm">{metric.title} Insights</p>
+                <p className="text-xs mb-2">{metric.description}</p>
+                <div className="border-t border-gray-600 pt-2">
+                  <p className="text-xs opacity-90">
+                    {metric.trend === 'up' ? '📈 Positive market indicator showing growth momentum' : 
+                     metric.trend === 'down' ? '📉 Market adjustment - monitor for opportunities' :
+                     '📊 Stable market conditions with steady performance'}
+                  </p>
                 </div>
-                <Badge 
-                  variant={metric.trend === 'up' ? 'default' : 'secondary'}
-                  className="flex items-center gap-1"
-                >
-                  {metric.trend === 'up' ? (
-                    <TrendingUp className="w-3 h-3" />
-                  ) : metric.trend === 'down' ? (
-                    <TrendingDown className="w-3 h-3" />
-                  ) : null}
-                  {metric.change}
-                </Badge>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-1">
-              <h3 className="text-2xl font-bold text-gray-900">{metric.value}</h3>
-              <p className="text-sm font-medium text-gray-700">{metric.title}</p>
-              <p className="text-xs text-gray-500">{metric.description}</p>
-            </div>
-          </CardContent>
-        </Card>
+              </motion.div>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </motion.div>
     );
   };
@@ -489,65 +515,91 @@ export default function MarketInsightsInfographic() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-lg">{neighborhood.name}</CardTitle>
-                        <p className="text-sm text-gray-600">Zip Code: {neighborhood.zipCode}</p>
-                      </div>
-                      <Badge variant="outline">
-                        {neighborhood.type}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-2xl font-bold text-blue-600">
-                          ${(neighborhood.price / 1000).toFixed(0)}K
-                        </p>
-                        <p className="text-xs text-gray-500">Median Price</p>
-                      </div>
-                      <div>
-                        <p className="text-lg font-semibold">
-                          {neighborhood.daysOnMarket}d
-                        </p>
-                        <p className="text-xs text-gray-500">Days on Market</p>
-                      </div>
-                    </div>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                        <CardHeader>
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <CardTitle className="text-lg">{neighborhood.name}</CardTitle>
+                              <p className="text-sm text-gray-600">Zip Code: {neighborhood.zipCode}</p>
+                            </div>
+                            <Badge variant="outline">
+                              {neighborhood.type}
+                            </Badge>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-2xl font-bold text-blue-600">
+                                ${(neighborhood.price / 1000).toFixed(0)}K
+                              </p>
+                              <p className="text-xs text-gray-500">Median Price</p>
+                            </div>
+                            <div>
+                              <p className="text-lg font-semibold">
+                                {neighborhood.daysOnMarket}d
+                              </p>
+                              <p className="text-xs text-gray-500">Days on Market</p>
+                            </div>
+                          </div>
                     
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-blue-600" />
-                        <span className="text-sm font-medium">{neighborhood.type}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Car className="h-4 w-4 text-green-600" />
-                        <span className="text-sm">Walk Score: {neighborhood.walkScore}</span>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <p className="text-sm font-medium text-gray-700 mb-2">Key Amenities:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {neighborhood.amenities.map((amenity, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">
-                            {amenity}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between pt-2 border-t">
-                      <span className="text-sm text-gray-600">{neighborhood.sales} sales</span>
-                      <Badge className="text-green-700">
-                        <TrendingUp className="w-3 h-3 mr-1" />
-                        +{neighborhood.growth}%
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="flex items-center gap-2">
+                              <MapPin className="h-4 w-4 text-blue-600" />
+                              <span className="text-sm font-medium">{neighborhood.type}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Car className="h-4 w-4 text-green-600" />
+                              <span className="text-sm">Walk Score: {neighborhood.walkScore}</span>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <p className="text-sm font-medium text-gray-700 mb-2">Key Amenities:</p>
+                            <div className="flex flex-wrap gap-1">
+                              {neighborhood.amenities.map((amenity, i) => (
+                                <Badge key={i} variant="outline" className="text-xs">
+                                  {amenity}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center justify-between pt-2 border-t">
+                            <span className="text-sm text-gray-600">{neighborhood.sales} sales</span>
+                            <Badge className="text-green-700">
+                              <TrendingUp className="w-3 h-3 mr-1" />
+                              +{neighborhood.growth}%
+                            </Badge>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-sm bg-slate-900 text-white p-3 rounded-lg shadow-lg">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <p className="font-semibold mb-1 text-sm">{neighborhood.name} Market Data</p>
+                        <div className="text-xs space-y-1">
+                          <p>💰 Median Price: ${(neighborhood.price / 1000).toFixed(0)}K</p>
+                          <p>⏰ Avg Days on Market: {neighborhood.daysOnMarket} days</p>
+                          <p>📈 Growth Rate: +{neighborhood.growth}% YoY</p>
+                          <p>🚶 Walkability Score: {neighborhood.walkScore}/100</p>
+                        </div>
+                        <div className="border-t border-gray-600 pt-2 mt-2">
+                          <p className="text-xs opacity-90">
+                            {neighborhood.type} neighborhood in zip code {neighborhood.zipCode}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </motion.div>
             ))}
           </div>
@@ -562,7 +614,6 @@ export default function MarketInsightsInfographic() {
                     setSearchTerm('');
                     setPriceFilter('all');
                     setTypeFilter('all');
-
                   }}
                   className="mt-4"
                 >
