@@ -237,12 +237,30 @@ const buyerDemographics = [
 ];
 
 const monthlyTrends = [
-  { month: 'Jan', price: 392000, volume: 1240 },
-  { month: 'Feb', price: 398000, volume: 1180 },
-  { month: 'Mar', price: 405000, volume: 1350 },
-  { month: 'Apr', price: 415000, volume: 1420 },
-  { month: 'May', price: 420000, volume: 1380 },
-  { month: 'Jun', price: 425000, volume: 1290 }
+  { month: 'Jun 2023', price: 365000, volume: 1150 },
+  { month: 'Jul 2023', price: 368000, volume: 1200 },
+  { month: 'Aug 2023', price: 372000, volume: 1180 },
+  { month: 'Sep 2023', price: 375000, volume: 1250 },
+  { month: 'Oct 2023', price: 378000, volume: 1320 },
+  { month: 'Nov 2023', price: 381000, volume: 1100 },
+  { month: 'Dec 2023', price: 384000, volume: 980 },
+  { month: 'Jan 2024', price: 387000, volume: 1050 },
+  { month: 'Feb 2024', price: 390000, volume: 1120 },
+  { month: 'Mar 2024', price: 394000, volume: 1280 },
+  { month: 'Apr 2024', price: 398000, volume: 1350 },
+  { month: 'May 2024', price: 402000, volume: 1420 },
+  { month: 'Jun 2024', price: 405000, volume: 1380 },
+  { month: 'Jul 2024', price: 408000, volume: 1450 },
+  { month: 'Aug 2024', price: 411000, volume: 1400 },
+  { month: 'Sep 2024', price: 414000, volume: 1380 },
+  { month: 'Oct 2024', price: 417000, volume: 1420 },
+  { month: 'Nov 2024', price: 420000, volume: 1350 },
+  { month: 'Dec 2024', price: 422000, volume: 1180 },
+  { month: 'Jan 2025', price: 425000, volume: 1240 },
+  { month: 'Feb 2025', price: 428000, volume: 1300 },
+  { month: 'Mar 2025', price: 431000, volume: 1380 },
+  { month: 'Apr 2025', price: 434000, volume: 1420 },
+  { month: 'May 2025', price: 437000, volume: 1450 }
 ];
 
 export default function MarketInsightsInfographic() {
