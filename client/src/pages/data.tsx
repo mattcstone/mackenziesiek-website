@@ -70,26 +70,7 @@ export default function DataPage() {
             })}
           </div>
 
-          <div className="mt-12 bg-white rounded-lg shadow-md p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Reference</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Contact Information</h3>
-                <p className="text-gray-600">Phone: (704) 610-0959</p>
-                <p className="text-gray-600">Email: Hello@mattstoneteam.com</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Office Hours</h3>
-                <p className="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Emergency Contact</h3>
-                <p className="text-gray-600">After-hours: (704) 610-0959</p>
-                <p className="text-gray-600">Available 24/7 for clients</p>
-              </div>
-            </div>
-          </div>
+
 
           <div className="mt-8 text-center">
             <p className="text-gray-500 text-sm">
