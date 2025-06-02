@@ -12,15 +12,15 @@ interface FUBLead {
 }
 
 export class FollowUpBossService {
-  private apiKey: string;
-  private apiUrl: string;
+  private webhookKey: string;
+  private webhookUrl: string;
 
   constructor() {
-    this.apiKey = process.env.FUB_API_KEY || '';
-    this.apiUrl = process.env.FUB_API_URL || 'https://api.followupboss.com/v1';
+    this.webhookKey = process.env.FUB_API_KEY || '';
+    this.webhookUrl = process.env.FUB_API_URL || '';
     
-    if (!this.apiKey) {
-      console.warn('FUB_API_KEY not found - Follow up Boss integration disabled');
+    if (!this.webhookKey || !this.webhookUrl) {
+      console.warn('FUB webhook credentials not found - Follow up Boss integration disabled');
     }
   }
 
