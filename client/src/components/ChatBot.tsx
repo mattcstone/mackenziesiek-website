@@ -23,6 +23,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId] = useState(`session_${agentId}_${Date.now()}`);
+  const [isFirstMessage, setIsFirstMessage] = useState(true);
 
   const sendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -37,10 +38,12 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
     
-    // Delay showing typing indicator for more natural feel
+    // Variable delay: 5.7s for first message, 4-8s for subsequent messages
+    const delay = isFirstMessage ? 5700 : Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000;
+    
     setTimeout(() => {
       setIsLoading(true);
-    }, 5700);
+    }, delay);
 
     try {
       const response = await fetch('/api/chat', {
@@ -73,6 +76,11 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
 
         setMessages(prev => [...prev, botResponse]);
       }
+      
+      // Mark that the first message has been sent
+      if (isFirstMessage) {
+        setIsFirstMessage(false);
+      }
     } catch (error) {
       console.error("Chat error:", error);
       const errorResponse: ChatMessage = {
@@ -81,6 +89,11 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorResponse]);
+      
+      // Mark that the first message has been sent even on error
+      if (isFirstMessage) {
+        setIsFirstMessage(false);
+      }
     } finally {
       setIsLoading(false);
     }
