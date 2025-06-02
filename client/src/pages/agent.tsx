@@ -66,19 +66,7 @@ export default function AgentPage() {
       <Header agentName={`${displayAgent.firstName} ${displayAgent.lastName}`} />
       <HeroSection agent={displayAgent} />
       <PersonalStorySection agent={displayAgent} />
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Charlotte Market Insights
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Stay informed with real-time market trends and expert analysis from our team
-            </p>
-          </div>
-          <MarketInsightsInfographic />
-        </div>
-      </section>
+
       <WhyStoneRealtySection />
       <NeighborhoodExpertise agentId={displayAgent.id} />
       <PropertySearchSection />

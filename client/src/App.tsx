@@ -13,6 +13,7 @@ import ReviewsPage from "@/pages/reviews";
 import DataPage from "@/pages/data";
 import MarketAnalyticsPage from "@/pages/market-analytics";
 import MarketTrendsPage from "@/pages/market-trends";
+import MarketInsightsPage from "@/pages/market-insights";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/data" component={DataPage} />
       <Route path="/market-analytics" component={MarketAnalyticsPage} />
       <Route path="/market-trends" component={MarketTrendsPage} />
+      <Route path="/market-insights" component={MarketInsightsPage} />
       <Route path="/reviews" component={ReviewsPage} />
       <Route component={NotFound} />
     </Switch>
