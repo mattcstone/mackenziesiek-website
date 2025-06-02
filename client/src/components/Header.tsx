@@ -49,7 +49,15 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               <img src="/attached_assets/rectlogo.png" alt="Stone Realty Group Logo" className="h-10 w-auto" />
             </div>
             <div className="hidden md:block h-8 w-px bg-gray-300"></div>
-            <Link href="/" className="text-2xl lg:text-3xl font-light text-gray-900 hover:text-gray-700 transition-colors tracking-wide">
+            <Link 
+              href="/" 
+              className="text-2xl lg:text-3xl font-light text-gray-900 hover:text-gray-700 transition-colors tracking-wide"
+              onClick={() => {
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+              }}
+            >
               {agentName}
             </Link>
           </div>
