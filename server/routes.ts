@@ -102,7 +102,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let googleReviews: any[] = [];
       try {
         const profileId = "17917789645435239761"; // Stone Realty Group profile ID
-        const reviews = await googleAPIReviewsService.getReviewsMentioningAgent(profileId, `${agent.firstName} ${agent.lastName}`);
+        const reviews = await googleAPIReviewsService.getReviewsMentioningAgent(profileId, agent.firstName);
         
         // Convert Google reviews to testimonial format
         googleReviews = reviews.map(review => ({

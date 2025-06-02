@@ -32,28 +32,40 @@ export class GoogleAPIReviewsService {
     }
 
     try {
-      // Try the Google Places API approach first
-      const placesUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${locationId}&fields=reviews&key=${this.apiKey}`;
+      // First, try to find the Place ID for Stone Realty Group
+      const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=Stone+Realty+Group+Charlotte+NC&key=${this.apiKey}`;
+      const searchResponse = await axios.get(searchUrl);
       
-      const response = await axios.get(placesUrl);
-      
-      if (response.data.status === 'OK' && response.data.result.reviews) {
-        return response.data.result.reviews.map((review: any) => ({
-          reviewId: review.time?.toString() || Math.random().toString(),
-          reviewer: {
-            displayName: review.author_name || 'Anonymous',
-            profilePhotoUrl: review.profile_photo_url
-          },
-          starRating: review.rating?.toString() || '5',
-          comment: review.text || '',
-          createTime: new Date(review.time * 1000).toISOString(),
-          updateTime: new Date(review.time * 1000).toISOString()
-        }));
+      if (searchResponse.data.status === 'OK' && searchResponse.data.results.length > 0) {
+        const placeId = searchResponse.data.results[0].place_id;
+        console.log(`Found Place ID for Stone Realty Group: ${placeId}`);
+        
+        // Now get reviews using the Place ID
+        const placesUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${this.apiKey}`;
+        const response = await axios.get(placesUrl);
+        
+        if (response.data.status === 'OK' && response.data.result.reviews) {
+          console.log(`Found ${response.data.result.reviews.length} total reviews for Stone Realty Group`);
+          return response.data.result.reviews.map((review: any) => ({
+            reviewId: review.time?.toString() || Math.random().toString(),
+            reviewer: {
+              displayName: review.author_name || 'Anonymous',
+              profilePhotoUrl: review.profile_photo_url
+            },
+            starRating: review.rating?.toString() || '5',
+            comment: review.text || '',
+            createTime: new Date(review.time * 1000).toISOString(),
+            updateTime: new Date(review.time * 1000).toISOString()
+          }));
+        }
       }
       
       return [];
     } catch (error) {
       console.error('Error fetching reviews from Google API:', error);
+      if (error.response) {
+        console.error('API Error Response:', error.response.data);
+      }
       return [];
     }
   }
