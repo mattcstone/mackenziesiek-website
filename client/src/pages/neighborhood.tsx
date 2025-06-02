@@ -433,13 +433,11 @@ export default function NeighborhoodPage() {
                       </a>
                     </Button>
                     <Button 
+                      asChild
                       variant="outline" 
-                      className="w-full border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white bg-white"
-                      onClick={() => {
-                        window.location.href = '/#contact';
-                      }}
+                      className="w-full border-2 border-stone-blue text-stone-blue bg-white hover:bg-gray-50 hover:border-stone-blue hover:text-stone-blue transition-all duration-200"
                     >
-                      Contact Me
+                      <a href="/#contact">Contact Me</a>
                     </Button>
                   </div>
                 </CardContent>
