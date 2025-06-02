@@ -16,7 +16,7 @@ export class GoogleAPIReviewsService {
   private apiKey: string | null = null;
 
   constructor() {
-    this.apiKey = process.env.GOOGLE_BUSINESS_PROFILE_API_KEY || process.env.GOOGLE_MY_BUSINESS_API_KEY || null;
+    this.apiKey = process.env.GOOGLE_BUSINESS_PROFILE_API_KEY || process.env.GOOGLE_MY_BUSINESS_API_KEY || 'AIzaSyCKO9DDGO1fXpiqx0CuZcy2tIi-0BmUuU0';
     
     if (this.apiKey) {
       console.log('Google API Reviews service initialized with API key');
