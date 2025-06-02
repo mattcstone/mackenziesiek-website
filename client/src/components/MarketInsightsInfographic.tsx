@@ -565,16 +565,11 @@ export default function MarketInsightsInfographic() {
                     <div>
                       <p className="text-sm font-medium text-gray-700 mb-2">Key Amenities:</p>
                       <div className="flex flex-wrap gap-1">
-                        {neighborhood.amenities.slice(0, 3).map((amenity, i) => (
+                        {neighborhood.amenities.map((amenity, i) => (
                           <Badge key={i} variant="outline" className="text-xs">
                             {amenity}
                           </Badge>
                         ))}
-                        {neighborhood.amenities.length > 3 && (
-                          <Badge variant="outline" className="text-xs">
-                            +{neighborhood.amenities.length - 3} more
-                          </Badge>
-                        )}
                       </div>
                     </div>
                     
