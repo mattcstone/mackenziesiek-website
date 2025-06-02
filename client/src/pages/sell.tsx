@@ -213,6 +213,30 @@ export default function SellPage() {
         </div>
       </section>
 
+      {/* Home Value Analysis Tool */}
+      <section className="py-16 bg-gradient-to-br from-black via-gray-900 to-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Get Your Free Home Analysis
+            </h2>
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+              Find out your home value, equity, refinance options and much more with our comprehensive analysis tool.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <iframe 
+              src="https://mackenzie.mattstoneteam.com/SELLER"
+              className="w-full h-[800px] border-0"
+              title="Home Value Analysis Tool"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Stone Selling System Features */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
