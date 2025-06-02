@@ -51,20 +51,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
               </Button>
             </div>
             
-            <div className="flex items-center space-x-6 pt-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold">{agent.homesSold}+</div>
-                <div className="text-sm text-gray-300">Homes Sold</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">{agent.rating}★</div>
-                <div className="text-sm text-gray-300">Client Rating</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">4+</div>
-                <div className="text-sm text-gray-300">Years Experience</div>
-              </div>
-            </div>
+
           </div>
           
           <div className="relative">

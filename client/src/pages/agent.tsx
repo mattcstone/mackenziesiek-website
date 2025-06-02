@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import WhyStoneRealtySection from "@/components/WhyStoneRealtySection";
 import PersonalStorySection from "@/components/PersonalStorySection";
 import NeighborhoodExpertise from "@/components/NeighborhoodExpertise";
 import PropertySearchSection from "@/components/PropertySearchSection";
@@ -49,6 +50,7 @@ export default function AgentPage() {
     <div className="min-h-screen">
       <Header agentName={`${displayAgent.firstName} ${displayAgent.lastName}`} />
       <HeroSection agent={displayAgent} />
+      <WhyStoneRealtySection />
       <PersonalStorySection agent={displayAgent} />
       <NeighborhoodExpertise agentId={displayAgent.id} />
       <PropertySearchSection />
