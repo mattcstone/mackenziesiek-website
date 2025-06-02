@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import NeighborhoodModal from './NeighborhoodModal';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line, Area, AreaChart } from 'recharts';
 import { 
   Home, 
@@ -24,7 +25,8 @@ import {
   Car,
   ShoppingBag,
   TreePine,
-  Info
+  Info,
+  X
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -248,6 +250,7 @@ export default function MarketInsightsInfographic() {
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState<NeighborhoodData | null>(null);
   const filteredNeighborhoods = useMemo(() => {
     return allNeighborhoodData.filter(neighborhood => {
       const matchesSearch = neighborhood.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -330,6 +333,145 @@ export default function MarketInsightsInfographic() {
       </motion.div>
     );
   };
+
+  const NeighborhoodDetailModal = ({ neighborhood }: { neighborhood: NeighborhoodData }) => (
+    <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+      <DialogHeader>
+        <DialogTitle className="text-3xl font-bold text-gray-900 mb-2">
+          {neighborhood.name}
+        </DialogTitle>
+        <p className="text-lg text-gray-600">Zip Code: {neighborhood.zipCode} • {neighborhood.type} Neighborhood</p>
+      </DialogHeader>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+        {/* Key Metrics */}
+        <div className="space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            <Card className="p-6">
+              <div className="text-center">
+                <p className="text-4xl font-bold text-blue-600 mb-2">
+                  ${(neighborhood.price / 1000).toFixed(0)}K
+                </p>
+                <p className="text-sm text-gray-600">Median Home Price</p>
+              </div>
+            </Card>
+            
+            <Card className="p-6">
+              <div className="text-center">
+                <p className="text-4xl font-bold text-green-600 mb-2">
+                  {neighborhood.daysOnMarket}
+                </p>
+                <p className="text-sm text-gray-600">Days on Market</p>
+              </div>
+            </Card>
+            
+            <Card className="p-6">
+              <div className="text-center">
+                <p className="text-4xl font-bold text-purple-600 mb-2">
+                  +{neighborhood.growth}%
+                </p>
+                <p className="text-sm text-gray-600">YoY Growth</p>
+              </div>
+            </Card>
+            
+            <Card className="p-6">
+              <div className="text-center">
+                <p className="text-4xl font-bold text-orange-600 mb-2">
+                  {neighborhood.walkScore}
+                </p>
+                <p className="text-sm text-gray-600">Walk Score</p>
+              </div>
+            </Card>
+          </div>
+          
+          {/* Market Activity */}
+          <Card className="p-6">
+            <h3 className="text-xl font-semibold mb-4">Market Activity</h3>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Total Sales (Last 12 Months)</span>
+                <span className="font-semibold text-lg">{neighborhood.sales}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Price Range</span>
+                <Badge variant="outline" className="text-sm">{neighborhood.priceRange}</Badge>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Neighborhood Type</span>
+                <Badge className="text-sm">{neighborhood.type}</Badge>
+              </div>
+            </div>
+          </Card>
+        </div>
+        
+        {/* Amenities & Features */}
+        <div className="space-y-6">
+          <Card className="p-6">
+            <h3 className="text-xl font-semibold mb-4">Key Amenities & Features</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {neighborhood.amenities.map((amenity, i) => (
+                <div key={i} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                  <span className="text-sm font-medium">{amenity}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
+          
+          {/* Walkability Info */}
+          <Card className="p-6">
+            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Car className="h-5 w-5 text-green-600" />
+              Walkability & Transportation
+            </h3>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Walk Score</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-20 bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-green-600 h-2 rounded-full" 
+                      style={{ width: `${neighborhood.walkScore}%` }}
+                    ></div>
+                  </div>
+                  <span className="font-semibold">{neighborhood.walkScore}/100</span>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600">
+                {neighborhood.walkScore >= 90 ? "Walker's Paradise - daily errands do not require a car" :
+                 neighborhood.walkScore >= 70 ? "Very Walkable - most errands can be accomplished on foot" :
+                 neighborhood.walkScore >= 50 ? "Somewhat Walkable - some errands can be accomplished on foot" :
+                 "Car-Dependent - most errands require a car"}
+              </p>
+            </div>
+          </Card>
+          
+          {/* Investment Outlook */}
+          <Card className="p-6 bg-blue-50">
+            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-blue-600" />
+              Investment Outlook
+            </h3>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-700">
+                <span className="font-medium">Growth Trend:</span> 
+                {neighborhood.growth > 15 ? " Strong appreciation with above-market growth" :
+                 neighborhood.growth > 10 ? " Solid appreciation with steady growth" :
+                 neighborhood.growth > 5 ? " Moderate growth in line with market" :
+                 " Conservative growth with stable values"}
+              </p>
+              <p className="text-sm text-gray-700">
+                <span className="font-medium">Market Velocity:</span> 
+                {neighborhood.daysOnMarket < 15 ? " Fast-moving market with high demand" :
+                 neighborhood.daysOnMarket < 25 ? " Balanced market with normal activity" :
+                 " Slower market with longer selling times"}
+              </p>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </DialogContent>
+  );
 
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6">
@@ -515,10 +657,10 @@ export default function MarketInsightsInfographic() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Card className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:border-blue-200 border-2"
+                          onClick={() => setSelectedNeighborhood(neighborhood)}>
                         <CardHeader>
                           <div className="flex items-start justify-between">
                             <div>
