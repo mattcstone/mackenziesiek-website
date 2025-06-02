@@ -44,8 +44,8 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
     
-    // Human-like delay: 5-10 seconds for more realistic typing
-    const delay = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
+    // Human-like delay: 8-15 seconds for more realistic typing
+    const delay = Math.floor(Math.random() * (15000 - 8000 + 1)) + 8000;
     
     setTimeout(() => {
       setIsLoading(true);
