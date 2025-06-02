@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleOAuthReviewsService } from "./google-oauth-reviews";
+import { followUpBossService } from "./followup-boss";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Google OAuth routes for business reviews
@@ -172,8 +173,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const leadData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(leadData);
       
-      // TODO: Integration with Follow Up Boss CRM
-      // This would send the lead to Follow Up Boss API
+      // Get agent information for Follow up Boss integration
+      const agent = await storage.getAgent(leadData.agentId);
+      if (agent) {
+        // Send to Follow up Boss CRM
+        await followUpBossService.createContactFormLead({
+          firstName: leadData.firstName,
+          lastName: leadData.lastName,
+          email: leadData.email,
+          phone: leadData.phone,
+          interest: leadData.interest || '',
+          neighborhoods: leadData.neighborhoods || '',
+          message: leadData.message || '',
+          agentName: `${agent.firstName} ${agent.lastName}`
+        });
+      }
       
       res.status(201).json(lead);
     } catch (error) {
@@ -181,6 +195,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid lead data", errors: error.errors });
       }
       res.status(500).json({ message: "Failed to create lead" });
+    }
+  });
+
+  // Seller's guide lead capture
+  app.post("/api/seller-leads", async (req, res) => {
+    try {
+      const sellerLeadSchema = z.object({
+        firstName: z.string().min(1),
+        lastName: z.string().min(1),
+        email: z.string().email(),
+        phone: z.string().min(1),
+        address: z.string().optional().default(''),
+        agentId: z.number()
+      });
+      
+      const sellerData = sellerLeadSchema.parse(req.body);
+      
+      // Create lead in local database
+      const leadData = {
+        agentId: sellerData.agentId,
+        firstName: sellerData.firstName,
+        lastName: sellerData.lastName,
+        email: sellerData.email,
+        phone: sellerData.phone,
+        interest: 'Selling',
+        neighborhoods: '',
+        message: `Downloaded Seller's Guide. Property Address: ${sellerData.address}`
+      };
+      
+      const lead = await storage.createLead(leadData);
+      
+      // Get agent information for Follow up Boss integration
+      const agent = await storage.getAgent(sellerData.agentId);
+      if (agent) {
+        // Send to Follow up Boss CRM
+        await followUpBossService.createSellerGuideLead({
+          firstName: sellerData.firstName,
+          lastName: sellerData.lastName,
+          email: sellerData.email,
+          phone: sellerData.phone,
+          address: sellerData.address,
+          agentName: `${agent.firstName} ${agent.lastName}`
+        });
+      }
+      
+      res.status(201).json(lead);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid seller lead data", errors: error.errors });
+      }
+      res.status(500).json({ message: "Failed to create seller lead" });
     }
   });
 
