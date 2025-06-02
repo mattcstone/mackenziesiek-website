@@ -16,30 +16,7 @@ export default function DataPage() {
       action: () => window.open('/attached_assets/SRG Buyer Presentation (8).pdf', '_blank'),
       buttonText: "View"
     },
-    {
-      title: "Market Analytics Dashboard", 
-      icon: BarChart3,
-      action: () => window.open('/market-analytics', '_blank'),
-      buttonText: "View"
-    },
-    {
-      title: "Buyer Resources",
-      icon: Users,
-      action: () => window.open('https://www.nchfa.com/', '_blank'),
-      buttonText: "View"
-    },
-    {
-      title: "Showing Schedule",
-      icon: Calendar,
-      action: () => window.open('https://showingtime.com/', '_blank'),
-      buttonText: "View"
-    },
-    {
-      title: "Follow Up Boss CRM",
-      icon: Phone,
-      action: () => window.open('https://app.followupboss.com/', '_blank'),
-      buttonText: "View"
-    }
+
   ];
 
   return (
