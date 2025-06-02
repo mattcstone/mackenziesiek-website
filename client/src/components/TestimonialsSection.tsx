@@ -53,27 +53,39 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
             What My Clients Say
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real stories from Charlotte homebuyers
+            Real experiences from buyers and sellers across the Charlotte metro area
           </p>
         </div>
         
         <div className="relative">
-          {/* Navigation Arrows */}
+          {/* Modern Navigation Arrows */}
           {displayTestimonials.length > itemsPerPage && (
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-50 transition-colors duration-200"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 
+                          bg-gradient-to-r from-stone-blue to-stone-blue-dark 
+                          text-white rounded-full shadow-xl p-3 
+                          hover:shadow-2xl hover:scale-110 
+                          transition-all duration-300 ease-out
+                          border-2 border-white/20
+                          backdrop-blur-sm"
                 aria-label="Previous testimonials"
               >
-                <ChevronLeft className="w-5 h-5 text-gray-600" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-50 transition-colors duration-200"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 
+                          bg-gradient-to-r from-stone-blue to-stone-blue-dark 
+                          text-white rounded-full shadow-xl p-3 
+                          hover:shadow-2xl hover:scale-110 
+                          transition-all duration-300 ease-out
+                          border-2 border-white/20
+                          backdrop-blur-sm"
                 aria-label="Next testimonials"
               >
-                <ChevronRight className="w-5 h-5 text-gray-600" />
+                <ChevronRight className="w-5 h-5" />
               </button>
             </>
           )}
