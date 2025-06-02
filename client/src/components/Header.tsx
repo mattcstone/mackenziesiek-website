@@ -68,20 +68,20 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               
               {isServicesDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  <a href="#about" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    About
-                  </a>
-                  <a href="#neighborhoods" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Areas
-                  </a>
                   <a href="#search" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Search
                   </a>
-                  <Link href="/reviews" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Reviews
-                  </Link>
                   <Link href="/sell" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Sell
+                  </Link>
+                  <a href="#neighborhoods" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Areas
+                  </a>
+                  <a href="#about" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    About
+                  </a>
+                  <Link href="/reviews" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Reviews
                   </Link>
                 </div>
               )}
@@ -106,20 +106,20 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
         {isMobileMenuOpen && (
           <div className="lg:hidden">
             <div className="px-6 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
-              <a href="#about" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                About
-              </a>
-              <a href="#neighborhoods" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Areas
-              </a>
               <a href="#search" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Search
               </a>
-              <Link href="/reviews" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Reviews
-              </Link>
               <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Sell
+              </Link>
+              <a href="#neighborhoods" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Areas
+              </a>
+              <a href="#about" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                About
+              </a>
+              <Link href="/reviews" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Reviews
               </Link>
               <a href="#contact" className="block px-4 py-4 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center justify-center rounded">
                 Contact

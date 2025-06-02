@@ -80,7 +80,9 @@ export default function ContactSection({ agent }: ContactSectionProps) {
             <div className="space-y-4 mb-8">
               <div className="flex items-center">
                 <Phone className="text-gray-300 w-6 h-6 mr-4" />
-                <span>{agent.phone}</span>
+                <a href={`tel:${agent.phone}`} className="hover:text-white transition-colors cursor-pointer">
+                  {agent.phone}
+                </a>
               </div>
               <div className="flex items-center">
                 <Clock className="text-gray-300 w-6 h-6 mr-4" />

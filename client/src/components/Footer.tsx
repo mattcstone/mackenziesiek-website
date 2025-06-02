@@ -57,12 +57,12 @@ export default function Footer({ agent }: FooterProps) {
               <img 
                 src="/attached_assets/rectlogo.png" 
                 alt="Stone Realty Group"
-                className="h-20 w-auto filter brightness-200 invert"
+                className="h-16 w-auto filter brightness-200 invert"
               />
               <img 
                 src="/attached_assets/Logo_Black@4x.png" 
                 alt="The Stone Selling System"
-                className="h-20 w-auto filter brightness-200 invert"
+                className="h-16 w-auto filter brightness-200 invert"
               />
             </div>
             <div className="text-gray-400 text-center max-w-4xl">
