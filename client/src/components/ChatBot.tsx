@@ -22,6 +22,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId] = useState(`session_${agentId}_${Date.now()}`);
 
   const sendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -38,8 +39,6 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
     setIsLoading(true);
 
     try {
-      const sessionId = `session_${agentId}_${Date.now()}`;
-      
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
