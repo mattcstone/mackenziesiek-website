@@ -53,11 +53,8 @@ export class FollowUpBossService {
           ...leadData.customFields
         },
         {
-          auth: {
-            username: this.apiKey,
-            password: ''
-          },
           headers: {
+            'X-System-Key': this.apiKey,
             'Content-Type': 'application/json'
           }
         }
