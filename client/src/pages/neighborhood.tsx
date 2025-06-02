@@ -1,17 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, Link } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, MapPin, DollarSign, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NeighborhoodAmenitiesMap from "@/components/NeighborhoodAmenitiesMap";
+import ContactModal from "@/components/ContactModal";
 
 import type { Neighborhood, Agent } from "@shared/schema";
 
 export default function NeighborhoodPage() {
   const { slug } = useParams();
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   
   // Scroll to top when component mounts or slug changes
   useEffect(() => {
@@ -433,11 +435,11 @@ export default function NeighborhoodPage() {
                       </a>
                     </Button>
                     <Button 
-                      asChild
                       variant="outline" 
                       className="w-full border-2 border-stone-blue text-stone-blue bg-white hover:bg-gray-50 hover:border-stone-blue hover:text-stone-blue transition-all duration-200"
+                      onClick={() => setIsContactModalOpen(true)}
                     >
-                      <a href="/#contact">Contact Me</a>
+                      Contact Me
                     </Button>
                   </div>
                 </CardContent>
@@ -451,6 +453,13 @@ export default function NeighborhoodPage() {
       <NeighborhoodAmenitiesMap neighborhoodSlug={displayNeighborhood.slug} />
 
       <Footer agent={defaultAgent} />
+      
+      <ContactModal 
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        agentId={defaultAgent.id}
+        defaultNeighborhood={displayNeighborhood.name}
+      />
     </div>
   );
 }
