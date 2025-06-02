@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,12 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId] = useState(`session_${agentId}_${Date.now()}`);
   const [isFirstMessage, setIsFirstMessage] = useState(true);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom when new messages are added
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isLoading]);
 
   const sendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -38,8 +44,8 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
     
-    // Variable delay: 5.7s for first message, 4-8s for subsequent messages
-    const delay = isFirstMessage ? 5700 : Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000;
+    // Improved delay: 2-3s for first message, 3-5s for subsequent messages
+    const delay = isFirstMessage ? Math.floor(Math.random() * (3000 - 2000 + 1)) + 2000 : Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
     
     setTimeout(() => {
       setIsLoading(true);
@@ -163,6 +169,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
                   </div>
                 </div>
               )}
+              <div ref={messagesEndRef} />
             </div>
             
             <div className="border-t p-4">
