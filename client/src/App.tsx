@@ -11,6 +11,7 @@ import SellPage from "@/pages/sell";
 import ComparePage from "@/pages/compare";
 import ReviewsPage from "@/pages/reviews";
 import DataPage from "@/pages/data";
+import MarketAnalyticsPage from "@/pages/market-analytics";
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/guide/:slug" component={GuidePage} />
       <Route path="/sell" component={SellPage} />
       <Route path="/data" component={DataPage} />
+      <Route path="/market-analytics" component={MarketAnalyticsPage} />
       <Route path="/reviews" component={ReviewsPage} />
       <Route component={NotFound} />
     </Switch>

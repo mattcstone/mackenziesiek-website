@@ -17,9 +17,9 @@ export default function DataPage() {
       buttonText: "View"
     },
     {
-      title: "Market Analytics Dashboard",
+      title: "Market Analytics Dashboard", 
       icon: BarChart3,
-      action: () => window.open('https://www.charlotterealtors.com/market-data/', '_blank'),
+      action: () => window.open('/market-analytics', '_blank'),
       buttonText: "View"
     },
     {

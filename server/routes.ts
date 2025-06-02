@@ -5,6 +5,7 @@ import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insert
 import { z } from "zod";
 import { googleOAuthReviewsService } from "./google-oauth-reviews";
 import { followUpBossService } from "./followup-boss";
+import { marketDataService } from "./market-data";
 
 // Helper function to extract contact information from chat conversation
 function extractContactInfo(conversationText: string) {
@@ -319,6 +320,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(leads);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch leads" });
+    }
+  });
+
+  // Market data route
+  app.post("/api/market-data", async (req, res) => {
+    try {
+      const { zipCode } = req.body;
+      
+      if (!zipCode) {
+        return res.status(400).json({ message: "Zip code is required" });
+      }
+      
+      const marketData = await marketDataService.getMarketData(zipCode);
+      res.json(marketData);
+    } catch (error) {
+      console.error('Market data API error:', error);
+      res.status(500).json({ message: "Failed to fetch market data" });
     }
   });
 
