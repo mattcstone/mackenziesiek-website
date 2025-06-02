@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, Link } from "wouter";
+import { useEffect } from "react";
 import { ArrowLeft, MapPin, DollarSign, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +12,11 @@ import type { Neighborhood, Agent } from "@shared/schema";
 
 export default function NeighborhoodPage() {
   const { slug } = useParams();
+  
+  // Scroll to top when component mounts or slug changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
   
   // Neighborhood-specific listing URLs
   const getListingUrl = (neighborhoodSlug: string) => {
