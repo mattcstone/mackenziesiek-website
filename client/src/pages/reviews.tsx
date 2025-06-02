@@ -266,14 +266,14 @@ export default function ReviewsPage() {
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
                     Ready to Join These Happy Clients?
                   </h3>
-                  <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+                  <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
                     Experience the same exceptional service that earned these authentic five-star reviews. 
                     Let's make your Charlotte real estate dreams a reality.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-6 justify-center">
                     <Button 
                       size="lg" 
-                      className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500 font-bold px-8 py-4 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
+                      className="bg-white text-black hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
                     >
                       Start Your Journey Today
                     </Button>
