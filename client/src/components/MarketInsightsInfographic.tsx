@@ -237,35 +237,35 @@ const buyerDemographics = [
 ];
 
 const monthlyTrends = [
-  { month: 'Jun 2023', price: 365000, volume: 1150 },
-  { month: 'Jul 2023', price: 368000, volume: 1200 },
-  { month: 'Aug 2023', price: 372000, volume: 1180 },
-  { month: 'Sep 2023', price: 375000, volume: 1250 },
-  { month: 'Oct 2023', price: 378000, volume: 1320 },
-  { month: 'Nov 2023', price: 381000, volume: 1100 },
-  { month: 'Dec 2023', price: 384000, volume: 980 },
-  { month: 'Jan 2024', price: 387000, volume: 1050 },
-  { month: 'Feb 2024', price: 390000, volume: 1120 },
-  { month: 'Mar 2024', price: 394000, volume: 1280 },
-  { month: 'Apr 2024', price: 398000, volume: 1350 },
-  { month: 'May 2024', price: 402000, volume: 1420 },
-  { month: 'Jun 2024', price: 405000, volume: 1380 },
-  { month: 'Jul 2024', price: 408000, volume: 1450 },
-  { month: 'Aug 2024', price: 411000, volume: 1400 },
-  { month: 'Sep 2024', price: 414000, volume: 1380 },
-  { month: 'Oct 2024', price: 417000, volume: 1420 },
-  { month: 'Nov 2024', price: 420000, volume: 1350 },
-  { month: 'Dec 2024', price: 422000, volume: 1180 },
-  { month: 'Jan 2025', price: 425000, volume: 1240 },
-  { month: 'Feb 2025', price: 428000, volume: 1300 },
-  { month: 'Mar 2025', price: 431000, volume: 1380 },
-  { month: 'Apr 2025', price: 434000, volume: 1420 },
-  { month: 'May 2025', price: 437000, volume: 1450 }
+  { month: 'Jun 2023', price: 365000, volume: 1150, inventory: 2850, daysOnMarket: 32, pricePerSqFt: 185, newListings: 1890 },
+  { month: 'Jul 2023', price: 368000, volume: 1200, inventory: 2780, daysOnMarket: 30, pricePerSqFt: 187, newListings: 1950 },
+  { month: 'Aug 2023', price: 372000, volume: 1180, inventory: 2720, daysOnMarket: 28, pricePerSqFt: 189, newListings: 1820 },
+  { month: 'Sep 2023', price: 375000, volume: 1250, inventory: 2650, daysOnMarket: 26, pricePerSqFt: 191, newListings: 1980 },
+  { month: 'Oct 2023', price: 378000, volume: 1320, inventory: 2580, daysOnMarket: 25, pricePerSqFt: 193, newListings: 2050 },
+  { month: 'Nov 2023', price: 381000, volume: 1100, inventory: 2620, daysOnMarket: 28, pricePerSqFt: 194, newListings: 1650 },
+  { month: 'Dec 2023', price: 384000, volume: 980, inventory: 2680, daysOnMarket: 35, pricePerSqFt: 196, newListings: 1420 },
+  { month: 'Jan 2024', price: 387000, volume: 1050, inventory: 2720, daysOnMarket: 38, pricePerSqFt: 197, newListings: 1580 },
+  { month: 'Feb 2024', price: 390000, volume: 1120, inventory: 2690, daysOnMarket: 35, pricePerSqFt: 199, newListings: 1680 },
+  { month: 'Mar 2024', price: 394000, volume: 1280, inventory: 2620, daysOnMarket: 30, pricePerSqFt: 201, newListings: 1850 },
+  { month: 'Apr 2024', price: 398000, volume: 1350, inventory: 2550, daysOnMarket: 28, pricePerSqFt: 203, newListings: 1920 },
+  { month: 'May 2024', price: 402000, volume: 1420, inventory: 2480, daysOnMarket: 25, pricePerSqFt: 205, newListings: 2080 },
+  { month: 'Jun 2024', price: 405000, volume: 1380, inventory: 2450, daysOnMarket: 24, pricePerSqFt: 207, newListings: 1980 },
+  { month: 'Jul 2024', price: 408000, volume: 1450, inventory: 2400, daysOnMarket: 22, pricePerSqFt: 209, newListings: 2120 },
+  { month: 'Aug 2024', price: 411000, volume: 1400, inventory: 2380, daysOnMarket: 21, pricePerSqFt: 211, newListings: 2050 },
+  { month: 'Sep 2024', price: 414000, volume: 1380, inventory: 2350, daysOnMarket: 20, pricePerSqFt: 213, newListings: 2000 },
+  { month: 'Oct 2024', price: 417000, volume: 1420, inventory: 2320, daysOnMarket: 19, pricePerSqFt: 215, newListings: 2100 },
+  { month: 'Nov 2024', price: 420000, volume: 1350, inventory: 2340, daysOnMarket: 22, pricePerSqFt: 217, newListings: 1850 },
+  { month: 'Dec 2024', price: 422000, volume: 1180, inventory: 2380, daysOnMarket: 28, pricePerSqFt: 218, newListings: 1650 },
+  { month: 'Jan 2025', price: 425000, volume: 1240, inventory: 2410, daysOnMarket: 32, pricePerSqFt: 220, newListings: 1780 },
+  { month: 'Feb 2025', price: 428000, volume: 1300, inventory: 2390, daysOnMarket: 30, pricePerSqFt: 222, newListings: 1880 },
+  { month: 'Mar 2025', price: 431000, volume: 1380, inventory: 2350, daysOnMarket: 26, pricePerSqFt: 224, newListings: 1950 },
+  { month: 'Apr 2025', price: 434000, volume: 1420, inventory: 2320, daysOnMarket: 24, pricePerSqFt: 226, newListings: 2020 },
+  { month: 'May 2025', price: 437000, volume: 1450, inventory: 2290, daysOnMarket: 22, pricePerSqFt: 228, newListings: 2100 }
 ];
 
 export default function MarketInsightsInfographic() {
   const [selectedView, setSelectedView] = useState<'overview' | 'neighborhoods' | 'trends'>('overview');
-  const [selectedMetric, setSelectedMetric] = useState<'value' | 'homes' | 'days'>('value');
+  const [selectedMetric, setSelectedMetric] = useState<'price' | 'volume' | 'inventory' | 'daysOnMarket' | 'pricePerSqFt' | 'newListings'>('price');
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
@@ -624,54 +624,230 @@ export default function MarketInsightsInfographic() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-64">
+              {/* Metric Selection */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                <Button
+                  variant={selectedMetric === 'price' ? 'default' : 'outline'}
+                  onClick={() => setSelectedMetric('price')}
+                  size="sm"
+                >
+                  <DollarSign className="w-4 h-4 mr-1" />
+                  Median Price
+                </Button>
+                <Button
+                  variant={selectedMetric === 'volume' ? 'default' : 'outline'}
+                  onClick={() => setSelectedMetric('volume')}
+                  size="sm"
+                >
+                  <Home className="w-4 h-4 mr-1" />
+                  Sales Volume
+                </Button>
+                <Button
+                  variant={selectedMetric === 'inventory' ? 'default' : 'outline'}
+                  onClick={() => setSelectedMetric('inventory')}
+                  size="sm"
+                >
+                  <Building className="w-4 h-4 mr-1" />
+                  Inventory
+                </Button>
+                <Button
+                  variant={selectedMetric === 'daysOnMarket' ? 'default' : 'outline'}
+                  onClick={() => setSelectedMetric('daysOnMarket')}
+                  size="sm"
+                >
+                  <Clock className="w-4 h-4 mr-1" />
+                  Days on Market
+                </Button>
+                <Button
+                  variant={selectedMetric === 'pricePerSqFt' ? 'default' : 'outline'}
+                  onClick={() => setSelectedMetric('pricePerSqFt')}
+                  size="sm"
+                >
+                  <Target className="w-4 h-4 mr-1" />
+                  Price/Sq Ft
+                </Button>
+                <Button
+                  variant={selectedMetric === 'newListings' ? 'default' : 'outline'}
+                  onClick={() => setSelectedMetric('newListings')}
+                  size="sm"
+                >
+                  <Zap className="w-4 h-4 mr-1" />
+                  New Listings
+                </Button>
+              </div>
+
+              {/* Main Chart */}
+              <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={monthlyTrends}>
-                    <XAxis dataKey="month" />
-                    <YAxis 
-                      yAxisId="price"
-                      orientation="left"
-                      tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+                    <XAxis 
+                      dataKey="month" 
+                      tick={{ fontSize: 12 }}
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
                     />
                     <YAxis 
-                      yAxisId="volume"
-                      orientation="right"
-                      tickFormatter={(value) => value.toString()}
+                      tickFormatter={(value) => {
+                        if (selectedMetric === 'price') return `$${(value / 1000).toFixed(0)}K`;
+                        if (selectedMetric === 'pricePerSqFt') return `$${value}`;
+                        if (selectedMetric === 'inventory') return `${(value / 1000).toFixed(1)}K`;
+                        return value.toLocaleString();
+                      }}
                     />
                     <Area
-                      yAxisId="price"
                       type="monotone"
-                      dataKey="price"
+                      dataKey={selectedMetric}
                       stroke="#2563eb"
-                      strokeWidth={2}
+                      strokeWidth={3}
                       fill="url(#colorGradient)"
-                    />
-                    <Line
-                      yAxisId="volume"
-                      type="monotone"
-                      dataKey="volume"
-                      stroke="#dc2626"
-                      strokeWidth={2}
-                      dot={{ fill: '#dc2626', strokeWidth: 2, r: 4 }}
                     />
                     <defs>
                       <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0.05}/>
+                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0.1}/>
                       </linearGradient>
                     </defs>
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
-              
-              <div className="mt-4 flex justify-center gap-6 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
-                  <span>Median Price</span>
+            </CardContent>
+          </Card>
+
+          {/* Market Summary Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Current Inventory</p>
+                    <p className="text-2xl font-bold text-blue-600">
+                      {monthlyTrends[monthlyTrends.length - 1].inventory.toLocaleString()}
+                    </p>
+                  </div>
+                  <Building className="h-8 w-8 text-blue-600" />
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-600 rounded-full"></div>
-                  <span>Sales Volume</span>
+                <p className="text-xs text-gray-500 mt-1">Available homes</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Avg Days on Market</p>
+                    <p className="text-2xl font-bold text-green-600">
+                      {monthlyTrends[monthlyTrends.length - 1].daysOnMarket}
+                    </p>
+                  </div>
+                  <Clock className="h-8 w-8 text-green-600" />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Current month</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Price per Sq Ft</p>
+                    <p className="text-2xl font-bold text-purple-600">
+                      ${monthlyTrends[monthlyTrends.length - 1].pricePerSqFt}
+                    </p>
+                  </div>
+                  <Target className="h-8 w-8 text-purple-600" />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Current average</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">New Listings</p>
+                    <p className="text-2xl font-bold text-orange-600">
+                      {monthlyTrends[monthlyTrends.length - 1].newListings.toLocaleString()}
+                    </p>
+                  </div>
+                  <Zap className="h-8 w-8 text-orange-600" />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">This month</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Detailed Analytics */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Award className="h-5 w-5 text-blue-600" />
+                Market Performance Analytics
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Inventory vs Sales Chart */}
+                <div>
+                  <h4 className="font-semibold mb-3">Inventory vs Sales Volume (Last 12 Months)</h4>
+                  <div className="h-48">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={monthlyTrends.slice(-12)}>
+                        <XAxis dataKey="month" tick={{ fontSize: 10 }} />
+                        <YAxis yAxisId="left" tickFormatter={(value) => `${(value / 1000).toFixed(1)}K`} />
+                        <YAxis yAxisId="right" orientation="right" />
+                        <Line yAxisId="left" type="monotone" dataKey="inventory" stroke="#ef4444" strokeWidth={2} name="Inventory" />
+                        <Line yAxisId="right" type="monotone" dataKey="volume" stroke="#10b981" strokeWidth={2} name="Sales" />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                {/* New Listings vs Closed Sales */}
+                <div>
+                  <h4 className="font-semibold mb-3">Market Activity (Last 12 Months)</h4>
+                  <div className="h-48">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={monthlyTrends.slice(-12)}>
+                        <XAxis dataKey="month" tick={{ fontSize: 10 }} />
+                        <YAxis />
+                        <Bar dataKey="newListings" fill="#3b82f6" name="New Listings" />
+                        <Bar dataKey="volume" fill="#f59e0b" name="Closed Sales" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Insights */}
+              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <h4 className="font-semibold text-blue-900 mb-3">Market Insights</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                  <div>
+                    <p className="text-blue-800">
+                      <span className="font-medium">Inventory Trend:</span> 
+                      {monthlyTrends[monthlyTrends.length - 1].inventory < monthlyTrends[monthlyTrends.length - 12].inventory 
+                        ? " Decreasing inventory indicates seller's market conditions"
+                        : " Increasing inventory suggests more buyer options"
+                      }
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-blue-800">
+                      <span className="font-medium">Price Appreciation:</span> 
+                      {((monthlyTrends[monthlyTrends.length - 1].price / monthlyTrends[0].price - 1) * 100).toFixed(1)}% 
+                      over 24 months
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-blue-800">
+                      <span className="font-medium">Market Velocity:</span> 
+                      {monthlyTrends[monthlyTrends.length - 1].daysOnMarket < monthlyTrends[0].daysOnMarket 
+                        ? " Homes selling faster than 2 years ago"
+                        : " Homes taking longer to sell"
+                      }
+                    </p>
+                  </div>
                 </div>
               </div>
             </CardContent>
