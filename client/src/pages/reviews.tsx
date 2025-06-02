@@ -189,7 +189,7 @@ export default function ReviewsPage() {
               <div className="bg-gradient-to-r from-white to-gray-50 px-12 py-8 rounded-3xl shadow-2xl inline-flex items-center border border-gray-100">
                 <div className="text-center mr-8">
                   <div className="text-5xl font-bold text-black mb-2">
-                    4.9
+                    5.0
                   </div>
                   <div className="flex space-x-1 mb-2">
                     {renderStars(5)}
@@ -232,11 +232,11 @@ export default function ReviewsPage() {
                     <Button 
                       size="lg" 
                       variant="outline"
-                      className="border-2 border-white text-white hover:bg-white hover:text-black backdrop-blur-sm px-6 py-3 text-base rounded-full transition-all duration-300"
+                      className="border-2 border-white text-white hover:bg-white hover:text-black backdrop-blur-sm px-6 py-3 text-base rounded-full transition-all duration-300 font-semibold"
                       onClick={() => window.open('https://g.co/kgs/L4E6zf4', '_blank')}
                     >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Share Your Story
+                      <ExternalLink className="mr-2 h-4 w-4 text-white group-hover:text-black" />
+                      <span className="text-white group-hover:text-black">Share Your Story</span>
                     </Button>
                   </div>
                 </div>
