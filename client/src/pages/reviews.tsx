@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 import type { Testimonial } from "@shared/schema";
 import BackToTop from "@/components/BackToTop";
 
@@ -218,6 +219,7 @@ export default function ReviewsPage() {
                     <Button 
                       size="lg" 
                       className="bg-white text-black hover:bg-gray-100 font-semibold px-6 py-3 text-base rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
+                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                     >
                       Start Your Journey Today
                     </Button>
@@ -234,6 +236,11 @@ export default function ReviewsPage() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact">
+          <ContactSection agent={defaultAgent} />
         </section>
       </main>
 
