@@ -401,7 +401,7 @@ export default function NeighborhoodPage() {
                       </a>
                     </Button>
                     <Button asChild variant="outline" className="w-full border-stone-blue text-stone-blue hover:bg-stone-blue hover:text-white">
-                      <a href="#contact">Contact Me</a>
+                      <Link href="/#contact">Contact Me</Link>
                     </Button>
                   </div>
                 </CardContent>
