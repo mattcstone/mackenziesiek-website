@@ -73,11 +73,11 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
               <button
                 onClick={prevSlide}
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 
-                          bg-gradient-to-r from-stone-blue to-stone-blue-dark 
+                          bg-gray-700 hover:bg-gray-600
                           text-white rounded-full shadow-xl p-3 
                           hover:shadow-2xl hover:scale-110 
                           transition-all duration-300 ease-out
-                          border-2 border-white/20
+                          border-2 border-gray-600
                           backdrop-blur-sm"
                 aria-label="Previous testimonials"
               >
@@ -86,11 +86,11 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
               <button
                 onClick={nextSlide}
                 className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 
-                          bg-gradient-to-r from-stone-blue to-stone-blue-dark 
+                          bg-gray-700 hover:bg-gray-600
                           text-white rounded-full shadow-xl p-3 
                           hover:shadow-2xl hover:scale-110 
                           transition-all duration-300 ease-out
-                          border-2 border-white/20
+                          border-2 border-gray-600
                           backdrop-blur-sm"
                 aria-label="Next testimonials"
               >

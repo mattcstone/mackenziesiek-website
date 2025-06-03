@@ -57,7 +57,6 @@ export default function Footer({ agent }: FooterProps) {
               </div>
               <div className="mt-4 space-y-2">
                 <Link href="/sell" className="block hover:text-white transition-colors text-lg">Sell Your Home</Link>
-                <Link href="/market-insights" className="block hover:text-white transition-colors text-lg">Market Insights</Link>
               </div>
             </div>
           </div>
