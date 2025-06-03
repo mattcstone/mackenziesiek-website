@@ -434,7 +434,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(session);
     } catch (error) {
-      res.status(500).json({ message: "Failed to process chat message" });
+      console.error('Chat API error:', error);
+      res.status(500).json({ 
+        message: "Failed to process chat message",
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
     }
   });
 
