@@ -289,7 +289,7 @@ export default function MarketInsightsInfographic() {
 
       {/* Navigation */}
       <div className="flex justify-center space-x-1 bg-gray-100 rounded-lg p-1">
-        {['overview', 'neighborhoods', 'trends'].map((view) => (
+        {['overview', 'neighborhoods'].map((view) => (
           <Button
             key={view}
             variant={selectedView === view ? 'default' : 'ghost'}
@@ -354,161 +354,8 @@ export default function MarketInsightsInfographic() {
               );
             })}
           </div>
-        </div>
-      )}
 
-      {/* Neighborhoods View */}
-      {selectedView === 'neighborhoods' && (
-        <div className="space-y-6">
-          {/* Search and Filter Controls */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Filter className="h-5 w-5 text-blue-600" />
-                Search & Filter Neighborhoods
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                  <Input
-                    placeholder="Search by name or zip code..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
-                
-                <Select value={priceFilter} onValueChange={setPriceFilter}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Price Range" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Prices</SelectItem>
-                    <SelectItem value="Under 300K">Under $300K</SelectItem>
-                    <SelectItem value="300K-500K">$300K - $500K</SelectItem>
-                    <SelectItem value="500K-750K">$500K - $750K</SelectItem>
-                    <SelectItem value="Over 750K">Over $750K</SelectItem>
-                  </SelectContent>
-                </Select>
-                
-                <Select value={typeFilter} onValueChange={setTypeFilter}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Neighborhood Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Types</SelectItem>
-                    <SelectItem value="Urban">Urban</SelectItem>
-                    <SelectItem value="Suburban">Suburban</SelectItem>
-                    <SelectItem value="Luxury">Luxury</SelectItem>
-                    <SelectItem value="Historic">Historic</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Neighborhood Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredNeighborhoods.map((neighborhood, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <Card 
-                  className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer hover:border-blue-200 border-2"
-                  onClick={() => handleNeighborhoodClick(neighborhood)}
-                >
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-lg">{neighborhood.name}</CardTitle>
-                        <p className="text-sm text-gray-600">Zip Code: {neighborhood.zipCode}</p>
-                      </div>
-                      <Badge variant="outline">
-                        {neighborhood.type}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-2xl font-bold text-blue-600">
-                          ${(neighborhood.price / 1000).toFixed(0)}K
-                        </p>
-                        <p className="text-xs text-gray-500">Median Price</p>
-                      </div>
-                      <div>
-                        <p className="text-lg font-semibold">
-                          {neighborhood.daysOnMarket}d
-                        </p>
-                        <p className="text-xs text-gray-500">Days on Market</p>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-blue-600" />
-                        <span className="text-sm font-medium">{neighborhood.type}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Car className="h-4 w-4 text-green-600" />
-                        <span className="text-sm">Walk Score: {neighborhood.walkScore}</span>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <p className="text-sm font-medium text-gray-700 mb-2">Key Amenities:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {neighborhood.amenities.map((amenity, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">
-                            {amenity}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between pt-2 border-t">
-                      <span className="text-sm text-gray-600">{neighborhood.sales} sales</span>
-                      <Badge className="text-green-700">
-                        <TrendingUp className="w-3 h-3 mr-1" />
-                        +{neighborhood.growth}%
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-          
-          {filteredNeighborhoods.length === 0 && (
-            <Card>
-              <CardContent className="text-center py-8">
-                <p className="text-gray-500">No neighborhoods match your current filters.</p>
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setSearchTerm('');
-                    setPriceFilter('all');
-                    setTypeFilter('all');
-                  }}
-                  className="mt-4"
-                >
-                  Clear Filters
-                </Button>
-              </CardContent>
-            </Card>
-          )}
-        </div>
-      )}
-
-      {/* Trends View */}
-      {selectedView === 'trends' && (
-        <div className="space-y-6">
+          {/* 24-Month Market Trends Chart */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -662,6 +509,157 @@ export default function MarketInsightsInfographic() {
           </Card>
         </div>
       )}
+
+      {/* Neighborhoods View */}
+      {selectedView === 'neighborhoods' && (
+        <div className="space-y-6">
+          {/* Search and Filter Controls */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Filter className="h-5 w-5 text-blue-600" />
+                Search & Filter Neighborhoods
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Input
+                    placeholder="Search by name or zip code..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+                
+                <Select value={priceFilter} onValueChange={setPriceFilter}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Price Range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Prices</SelectItem>
+                    <SelectItem value="Under 300K">Under $300K</SelectItem>
+                    <SelectItem value="300K-500K">$300K - $500K</SelectItem>
+                    <SelectItem value="500K-750K">$500K - $750K</SelectItem>
+                    <SelectItem value="Over 750K">Over $750K</SelectItem>
+                  </SelectContent>
+                </Select>
+                
+                <Select value={typeFilter} onValueChange={setTypeFilter}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Neighborhood Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Types</SelectItem>
+                    <SelectItem value="Urban">Urban</SelectItem>
+                    <SelectItem value="Suburban">Suburban</SelectItem>
+                    <SelectItem value="Luxury">Luxury</SelectItem>
+                    <SelectItem value="Historic">Historic</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Neighborhood Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredNeighborhoods.map((neighborhood, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <Card 
+                  className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer hover:border-blue-200 border-2"
+                  onClick={() => handleNeighborhoodClick(neighborhood)}
+                >
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-lg">{neighborhood.name}</CardTitle>
+                        <p className="text-sm text-gray-600">Zip Code: {neighborhood.zipCode}</p>
+                      </div>
+                      <Badge variant="outline">
+                        {neighborhood.type}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-2xl font-bold text-blue-600">
+                          ${(neighborhood.price / 1000).toFixed(0)}K
+                        </p>
+                        <p className="text-xs text-gray-500">Median Price</p>
+                      </div>
+                      <div>
+                        <p className="text-lg font-semibold">
+                          {neighborhood.daysOnMarket}d
+                        </p>
+                        <p className="text-xs text-gray-500">Days on Market</p>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-blue-600" />
+                        <span className="text-sm font-medium">{neighborhood.type}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Car className="h-4 w-4 text-green-600" />
+                        <span className="text-sm">Walk Score: {neighborhood.walkScore}</span>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <p className="text-sm font-medium text-gray-700 mb-2">Key Amenities:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {neighborhood.amenities.map((amenity, i) => (
+                          <Badge key={i} variant="outline" className="text-xs">
+                            {amenity}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between pt-2 border-t">
+                      <span className="text-sm text-gray-600">{neighborhood.sales} sales</span>
+                      <Badge className="text-green-700">
+                        <TrendingUp className="w-3 h-3 mr-1" />
+                        +{neighborhood.growth}%
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+          
+          {filteredNeighborhoods.length === 0 && (
+            <Card>
+              <CardContent className="text-center py-8">
+                <p className="text-gray-500">No neighborhoods match your current filters.</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setSearchTerm('');
+                    setPriceFilter('all');
+                    setTypeFilter('all');
+                  }}
+                  className="mt-4"
+                >
+                  Clear Filters
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      )}
+
+
 
       {/* Neighborhood Modal */}
       <NeighborhoodModal
