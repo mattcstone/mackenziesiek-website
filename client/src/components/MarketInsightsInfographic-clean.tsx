@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import NeighborhoodModal from './NeighborhoodModal';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line, Area, AreaChart } from 'recharts';
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line, Area, AreaChart, Tooltip, Legend } from 'recharts';
 import { 
   Home, 
   TrendingUp, 
@@ -234,7 +234,6 @@ const monthlyTrends = [
 
 export default function MarketInsightsInfographic() {
   const [selectedView, setSelectedView] = useState<'overview' | 'neighborhoods' | 'trends'>('overview');
-  const [selectedMetric, setSelectedMetric] = useState<'price' | 'volume' | 'inventory' | 'daysOnMarket' | 'pricePerSqFt' | 'newListings'>('price');
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
@@ -255,6 +254,27 @@ export default function MarketInsightsInfographic() {
   const handleNeighborhoodClick = (neighborhood: NeighborhoodData) => {
     setSelectedNeighborhood(neighborhood);
     setModalOpen(true);
+  };
+
+  // Custom tooltip component for the multi-line chart
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
+          <p className="font-semibold text-gray-900 mb-2">{`${label}`}</p>
+          {payload.map((entry: any, index: number) => (
+            <p key={index} style={{ color: entry.color }} className="text-sm">
+              {`${entry.name}: ${entry.payload[entry.dataKey] ? 
+                (entry.dataKey === 'price' ? `$${(entry.payload[entry.dataKey] / 1000).toFixed(0)}K` :
+                 entry.dataKey === 'pricePerSqFt' ? `$${entry.payload[entry.dataKey]}` :
+                 entry.dataKey === 'inventory' ? `${(entry.payload[entry.dataKey] / 1000).toFixed(1)}K` :
+                 entry.payload[entry.dataKey].toLocaleString()) : 'N/A'}`}
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -493,96 +513,151 @@ export default function MarketInsightsInfographic() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-blue-600" />
-                24-Month Market Trends
+                24-Month Market Trends - All Metrics
               </CardTitle>
+              <p className="text-sm text-gray-600">
+                Hover over any line to see detailed values for that time period
+              </p>
             </CardHeader>
             <CardContent>
-              {/* Metric Selection */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                <Button
-                  variant={selectedMetric === 'price' ? 'default' : 'outline'}
-                  onClick={() => setSelectedMetric('price')}
-                  size="sm"
-                >
-                  <DollarSign className="w-4 h-4 mr-1" />
-                  Median Price
-                </Button>
-                <Button
-                  variant={selectedMetric === 'volume' ? 'default' : 'outline'}
-                  onClick={() => setSelectedMetric('volume')}
-                  size="sm"
-                >
-                  <Home className="w-4 h-4 mr-1" />
-                  Sales Volume
-                </Button>
-                <Button
-                  variant={selectedMetric === 'inventory' ? 'default' : 'outline'}
-                  onClick={() => setSelectedMetric('inventory')}
-                  size="sm"
-                >
-                  <Building className="w-4 h-4 mr-1" />
-                  Inventory
-                </Button>
-                <Button
-                  variant={selectedMetric === 'daysOnMarket' ? 'default' : 'outline'}
-                  onClick={() => setSelectedMetric('daysOnMarket')}
-                  size="sm"
-                >
-                  <Clock className="w-4 h-4 mr-1" />
-                  Days on Market
-                </Button>
-                <Button
-                  variant={selectedMetric === 'pricePerSqFt' ? 'default' : 'outline'}
-                  onClick={() => setSelectedMetric('pricePerSqFt')}
-                  size="sm"
-                >
-                  <Target className="w-4 h-4 mr-1" />
-                  Price/Sq Ft
-                </Button>
-                <Button
-                  variant={selectedMetric === 'newListings' ? 'default' : 'outline'}
-                  onClick={() => setSelectedMetric('newListings')}
-                  size="sm"
-                >
-                  <Zap className="w-4 h-4 mr-1" />
-                  New Listings
-                </Button>
-              </div>
-
-              {/* Main Chart */}
-              <div className="h-80">
+              {/* Combined Multi-Line Chart */}
+              <div className="h-96">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={monthlyTrends}>
+                  <LineChart data={monthlyTrends}>
                     <XAxis 
                       dataKey="month" 
-                      tick={{ fontSize: 12 }}
+                      tick={{ fontSize: 10 }}
                       angle={-45}
                       textAnchor="end"
                       height={60}
                     />
+                    
+                    {/* Left Y-axis for Price data */}
                     <YAxis 
-                      tickFormatter={(value) => {
-                        if (selectedMetric === 'price') return `$${(value / 1000).toFixed(0)}K`;
-                        if (selectedMetric === 'pricePerSqFt') return `$${value}`;
-                        if (selectedMetric === 'inventory') return `${(value / 1000).toFixed(1)}K`;
-                        return value.toLocaleString();
-                      }}
+                      yAxisId="price"
+                      orientation="left"
+                      tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+                      domain={['dataMin - 10000', 'dataMax + 10000']}
                     />
-                    <Area
+                    
+                    {/* Right Y-axis for Volume/Inventory data */}
+                    <YAxis 
+                      yAxisId="volume"
+                      orientation="right"
+                      tickFormatter={(value) => (value / 1000).toFixed(1) + 'K'}
+                      domain={['dataMin - 100', 'dataMax + 100']}
+                    />
+                    
+                    <Tooltip content={<CustomTooltip />} />
+                    <Legend />
+                    
+                    {/* Median Price Line */}
+                    <Line
+                      yAxisId="price"
                       type="monotone"
-                      dataKey={selectedMetric}
+                      dataKey="price"
                       stroke="#2563eb"
                       strokeWidth={3}
-                      fill="url(#colorGradient)"
+                      name="Median Price"
+                      dot={{ fill: '#2563eb', strokeWidth: 2, r: 3 }}
+                      activeDot={{ r: 6, fill: '#2563eb' }}
                     />
-                    <defs>
-                      <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0.1}/>
-                      </linearGradient>
-                    </defs>
-                  </AreaChart>
+                    
+                    {/* Price Per Sq Ft Line */}
+                    <Line
+                      yAxisId="price"
+                      type="monotone"
+                      dataKey="pricePerSqFt"
+                      stroke="#7c3aed"
+                      strokeWidth={2}
+                      name="Price/Sq Ft"
+                      dot={{ fill: '#7c3aed', strokeWidth: 2, r: 2 }}
+                      activeDot={{ r: 5, fill: '#7c3aed' }}
+                    />
+                    
+                    {/* Sales Volume Line */}
+                    <Line
+                      yAxisId="volume"
+                      type="monotone"
+                      dataKey="volume"
+                      stroke="#059669"
+                      strokeWidth={3}
+                      name="Sales Volume"
+                      dot={{ fill: '#059669', strokeWidth: 2, r: 3 }}
+                      activeDot={{ r: 6, fill: '#059669' }}
+                    />
+                    
+                    {/* Inventory Line */}
+                    <Line
+                      yAxisId="volume"
+                      type="monotone"
+                      dataKey="inventory"
+                      stroke="#dc2626"
+                      strokeWidth={2}
+                      name="Inventory"
+                      dot={{ fill: '#dc2626', strokeWidth: 2, r: 2 }}
+                      activeDot={{ r: 5, fill: '#dc2626' }}
+                    />
+                    
+                    {/* New Listings Line */}
+                    <Line
+                      yAxisId="volume"
+                      type="monotone"
+                      dataKey="newListings"
+                      stroke="#f59e0b"
+                      strokeWidth={2}
+                      name="New Listings"
+                      dot={{ fill: '#f59e0b', strokeWidth: 2, r: 2 }}
+                      activeDot={{ r: 5, fill: '#f59e0b' }}
+                    />
+                    
+                    {/* Days on Market Line (scaled to fit) */}
+                    <Line
+                      yAxisId="volume"
+                      type="monotone"
+                      dataKey="daysOnMarket"
+                      stroke="#8b5cf6"
+                      strokeWidth={2}
+                      name="Days on Market"
+                      dot={{ fill: '#8b5cf6', strokeWidth: 2, r: 2 }}
+                      activeDot={{ r: 5, fill: '#8b5cf6' }}
+                    />
+                  </LineChart>
                 </ResponsiveContainer>
+              </div>
+              
+              {/* Legend with Icons */}
+              <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5 bg-blue-600"></div>
+                  <DollarSign className="w-4 h-4 text-blue-600" />
+                  <span>Median Price</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5 bg-green-600"></div>
+                  <Home className="w-4 h-4 text-green-600" />
+                  <span>Sales Volume</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5 bg-red-600"></div>
+                  <Building className="w-4 h-4 text-red-600" />
+                  <span>Inventory</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5 bg-purple-600"></div>
+                  <Clock className="w-4 h-4 text-purple-600" />
+                  <span>Days on Market</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5 bg-purple-500"></div>
+                  <Target className="w-4 h-4 text-purple-500" />
+                  <span>Price/Sq Ft</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5 bg-yellow-600"></div>
+                  <Zap className="w-4 h-4 text-yellow-600" />
+                  <span>New Listings</span>
+                </div>
               </div>
             </CardContent>
           </Card>
