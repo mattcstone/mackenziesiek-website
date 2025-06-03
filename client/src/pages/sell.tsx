@@ -104,14 +104,7 @@ export default function SellPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                Sell Your Home with 
-                <span className="text-yellow-400"> The Stone Standard</span>
-              </h1>
-              <p className="text-xl mb-8 text-gray-300">
-                Experience unparalleled service with our proven Stone Selling System. 
-                Over $1.5 billion in transactions and 1,000+ five-star reviews.
-              </p>
+
               
               {/* Experience The Stone Standard Metrics */}
               <div className="mb-8">
