@@ -103,45 +103,6 @@ export default function SellPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-
-              
-              {/* Experience The Stone Standard Metrics */}
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white text-center mb-6">Experience The Stone Standard</h3>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
-                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
-                      <TrendingUp className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="text-3xl font-bold text-white mb-1">18</div>
-                    <div className="text-sm text-gray-300">Years in Business</div>
-                  </div>
-                  
-                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
-                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
-                      <Home className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="text-3xl font-bold text-white mb-1">2500+</div>
-                    <div className="text-sm text-gray-300">Homes Sold</div>
-                  </div>
-                  
-                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
-                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
-                      <DollarSign className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="text-3xl font-bold text-white mb-1">$1.5B</div>
-                    <div className="text-sm text-gray-300">Closed Transactions</div>
-                  </div>
-                  
-                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
-                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
-                      <Star className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="text-3xl font-bold text-white mb-1">1,000</div>
-                    <div className="text-sm text-gray-300">5-Star Reviews</div>
-                  </div>
-                </div>
-              </div>
             </div>
             
             {/* Lead Capture Form */}
@@ -285,6 +246,49 @@ export default function SellPage() {
           </div>
         </div>
       </section>
+
+      {/* Experience The Stone Standard Metrics */}
+      <section className="py-16 bg-gradient-to-br from-black to-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Experience The Stone Standard</h2>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-full flex items-center justify-center">
+                <TrendingUp className="h-8 w-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-white mb-2">18</div>
+              <div className="text-gray-300">Years in Business</div>
+            </div>
+            
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-full flex items-center justify-center">
+                <Home className="h-8 w-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-white mb-2">2500+</div>
+              <div className="text-gray-300">Homes Sold</div>
+            </div>
+            
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-full flex items-center justify-center">
+                <DollarSign className="h-8 w-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-white mb-2">$1.5B</div>
+              <div className="text-gray-300">Closed Transactions</div>
+            </div>
+            
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-full flex items-center justify-center">
+                <Star className="h-8 w-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-white mb-2">1,000</div>
+              <div className="text-gray-300">5-Star Reviews</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Market Coverage */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
