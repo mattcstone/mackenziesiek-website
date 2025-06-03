@@ -101,94 +101,7 @@ export default function SellPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-black to-gray-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-            </div>
-            
-            {/* Lead Capture Form */}
-            <Card className="bg-white text-black">
-              <CardHeader className="text-center">
-                <img 
-                  src={stoneSellingSystemLogo} 
-                  alt="Stone Selling System" 
-                  className="h-16 mx-auto mb-4"
-                />
-                <CardTitle className="text-2xl">Get Your FREE Seller's Guide</CardTitle>
-                <CardDescription>
-                  Download our comprehensive guide to selling your home in Charlotte
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="phone">Phone</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="address">Home Address</Label>
-                    <Input
-                      id="address"
-                      name="address"
-                      value={formData.address}
-                      onChange={handleInputChange}
-                      placeholder="For accurate market analysis"
-                      className="mt-1"
-                    />
-                  </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-black hover:bg-gray-800 text-white py-3"
-                    disabled={createSellerLeadMutation.isPending}
-                  >
-                    {createSellerLeadMutation.isPending ? "Processing..." : "Download FREE Seller's Guide"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+          <div className="text-center">
           </div>
         </div>
       </section>
@@ -349,6 +262,96 @@ export default function SellPage() {
           </div>
         </div>
       </section>
+
+      {/* Get Your FREE Seller's Guide Form */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Card className="bg-white text-black">
+            <CardHeader className="text-center">
+              <img 
+                src={stoneSellingSystemLogo} 
+                alt="Stone Selling System" 
+                className="h-16 mx-auto mb-4"
+              />
+              <CardTitle className="text-2xl">Get Your FREE Seller's Guide</CardTitle>
+              <CardDescription>
+                Download our comprehensive guide to selling your home in Charlotte
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="firstName">First Name</Label>
+                    <Input
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="address">Home Address</Label>
+                  <Input
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    placeholder="For accurate market analysis"
+                    className="mt-1"
+                  />
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-black hover:bg-gray-800 text-white py-3"
+                  disabled={createSellerLeadMutation.isPending}
+                >
+                  {createSellerLeadMutation.isPending ? "Processing..." : "Download FREE Seller's Guide"}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Call to Action */}
       <section className="py-16 bg-black text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
