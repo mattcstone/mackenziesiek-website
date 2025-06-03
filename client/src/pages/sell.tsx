@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award, DollarSign, Star } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import stoneSellingSystemLogo from "@assets/Logo_Black@4x.png";
@@ -95,8 +96,48 @@ export default function SellPage() {
     createdAt: new Date()
   };
 
+  const sellPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Stone Selling System - Sell Your Home in Charlotte",
+    "description": "Professional home selling services in Charlotte, NC with proven marketing system, 18 years experience, $1.5B in sales",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "name": "Mackenzie Siek",
+      "telephone": "(704) 610-0959",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Charlotte",
+        "addressRegion": "NC",
+        "addressCountry": "US"
+      }
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Charlotte Metro Area, NC"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "FREE Seller's Guide",
+      "description": "Comprehensive guide to selling your home in Charlotte"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "1000"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="Sell Your Home in Charlotte NC | Stone Selling System | Mackenzie Siek Realtor"
+        description="Sell your Charlotte home with the proven Stone Selling System. 18+ years experience, $1.5B in sales, 1000+ 5-star reviews. Professional photography, global marketing, quick sales. FREE Seller's Guide."
+        keywords="sell home Charlotte NC, Charlotte real estate agent, Stone Selling System, Mackenzie Siek realtor, sell house Charlotte, Charlotte home seller, real estate Charlotte NC"
+        canonicalUrl="https://mackenzie.mattstoneteam.com/sell"
+        schema={sellPageSchema}
+        ogImage="/assets/shutterstock_284834021.jpg"
+      />
       <Header agentName="Mackenzie Siek" />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-black to-gray-800 text-white py-20">

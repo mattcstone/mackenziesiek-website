@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import MarketInsightsInfographic from '@/components/MarketInsightsInfographic-clean';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 export default function MarketInsightsPage() {
   // Scroll to top when component mounts
@@ -9,8 +10,37 @@ export default function MarketInsightsPage() {
     window.scrollTo(0, 0);
   }, []);
 
+  const marketInsightsSchema = {
+    "@context": "https://schema.org",
+    "@type": "Report",
+    "name": "Charlotte Real Estate Market Insights",
+    "description": "Current Charlotte real estate market data including home prices, days on market, and trends across 25+ neighborhoods",
+    "author": {
+      "@type": "RealEstateAgent",
+      "name": "Mackenzie Siek",
+      "telephone": "(704) 610-0959"
+    },
+    "about": {
+      "@type": "Place",
+      "name": "Charlotte Metro Area, NC"
+    },
+    "datePublished": new Date().toISOString(),
+    "publisher": {
+      "@type": "Organization",
+      "name": "Stone Realty Group"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Charlotte Real Estate Market Insights | Current Market Data | Mackenzie Siek Realtor"
+        description="Get current Charlotte real estate market insights including home prices, days on market, and trends across 25+ neighborhoods. Expert analysis from top Charlotte realtor Mackenzie Siek."
+        keywords="Charlotte real estate market, Charlotte home prices, Charlotte market trends, Charlotte neighborhoods, real estate market data, Charlotte housing market, market insights Charlotte NC"
+        canonicalUrl="https://mackenzie.mattstoneteam.com/market-insights"
+        schema={marketInsightsSchema}
+        ogImage="/assets/shutterstock_284834021.jpg"
+      />
       <Header agentName="Mackenzie Siek" />
       
       <div className="bg-gray-50 py-16">

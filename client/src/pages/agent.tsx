@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import BackToTop from "@/components/BackToTop";
 import MarketInsightsInfographic from "@/components/MarketInsightsInfographic";
+import SEO from "@/components/SEO";
 import type { Agent } from "@shared/schema";
 
 export default function AgentPage() {
