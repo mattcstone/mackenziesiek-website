@@ -532,19 +532,18 @@ export default function MarketInsightsInfographic() {
                       height={60}
                     />
                     
-                    {/* Left Y-axis for Price data */}
+                    {/* Hidden Y-axes for scaling only */}
                     <YAxis 
                       yAxisId="price"
                       orientation="left"
-                      tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+                      hide={true}
                       domain={['dataMin - 10000', 'dataMax + 10000']}
                     />
                     
-                    {/* Right Y-axis for Volume/Inventory data */}
                     <YAxis 
                       yAxisId="volume"
                       orientation="right"
-                      tickFormatter={(value) => (value / 1000).toFixed(1) + 'K'}
+                      hide={true}
                       domain={['dataMin - 100', 'dataMax + 100']}
                     />
                     
