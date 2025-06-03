@@ -98,7 +98,6 @@ export default function SellPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header agentName="Mackenzie Siek" />
-      
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-black to-gray-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -232,9 +231,6 @@ export default function SellPage() {
           </div>
         </div>
       </section>
-
-
-
       {/* Stone Selling System Features */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -289,7 +285,6 @@ export default function SellPage() {
           </div>
         </div>
       </section>
-
       {/* Market Coverage */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -322,7 +317,7 @@ export default function SellPage() {
             </div>
             
             <div className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-bold mb-6 text-center">Why Choose The Stone Standard?</h3>
+              <h3 className="text-xl font-bold mb-6 text-center">Why Choose The Stone Selling System?</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
                   <Award className="h-6 w-6 text-yellow-500 mr-3 mt-1" />
@@ -350,7 +345,6 @@ export default function SellPage() {
           </div>
         </div>
       </section>
-
       {/* Call to Action */}
       <section className="py-16 bg-black text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -375,7 +369,6 @@ export default function SellPage() {
           </div>
         </div>
       </section>
-
       <Footer agent={defaultAgent} />
     </div>
   );
