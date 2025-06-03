@@ -9,6 +9,7 @@ import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award, Doll
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import stoneSellingSystemLogo from "@assets/Logo_Black@4x.png";
@@ -139,6 +140,9 @@ export default function SellPage() {
         ogImage="/assets/shutterstock_284834021.jpg"
       />
       <Header agentName="Mackenzie Siek" />
+      <Breadcrumbs items={[
+        { label: "Sell Your Home" }
+      ]} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-black to-gray-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
