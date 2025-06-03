@@ -68,11 +68,11 @@ export default function HeroSection({ agent }: HeroSectionProps) {
                 </div>
               )}
               
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
-                <div className="transform rotate-12 bg-white bg-opacity-95 px-8 py-4 rounded-lg shadow-2xl border">
-                  <span className="text-gray-800 font-bold text-lg">Video Coming Soon</span>
-                </div>
-              </div>
+              <img 
+                src="/attached_assets/Untitled design.png" 
+                alt="Mackenzie Siek - Charlotte Real Estate Agent with luxury home"
+                className="w-full h-full object-cover rounded-lg shadow-2xl"
+              />
             </div>
             
 
