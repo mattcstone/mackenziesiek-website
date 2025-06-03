@@ -16,6 +16,7 @@ import ChatBot from "@/components/ChatBot";
 import BackToTop from "@/components/BackToTop";
 import MarketInsightsInfographic from "@/components/MarketInsightsInfographic";
 import SEO from "@/components/SEO";
+import LocalSEO from "@/components/LocalSEO";
 import type { Agent } from "@shared/schema";
 
 export default function AgentPage() {
@@ -62,8 +63,109 @@ export default function AgentPage() {
 
   const displayAgent = agent || defaultAgent;
 
+  const homePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Mackenzie Siek",
+    "url": "https://mackenzie.mattstoneteam.com",
+    "telephone": "(704) 610-0959",
+    "email": "mackenzie@mattstoneteam.com",
+    "image": "/assets/Mackenzie.jpg",
+    "description": "Top Charlotte Realtor specializing in SouthEnd, NoDa, Dilworth & Fourth Ward. Expert in in-town Charlotte living with 18+ years experience.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Charlotte",
+      "addressRegion": "NC",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "SouthEnd Charlotte"
+      },
+      {
+        "@type": "Place", 
+        "name": "NoDa Charlotte"
+      },
+      {
+        "@type": "Place",
+        "name": "Dilworth Charlotte"
+      },
+      {
+        "@type": "Place",
+        "name": "Fourth Ward Charlotte"
+      },
+      {
+        "@type": "Place",
+        "name": "Uptown Charlotte"
+      }
+    ],
+    "knowsAbout": ["Charlotte Real Estate", "Condo Sales", "First Time Buyers", "Investment Properties", "Luxury Homes"],
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Stone Realty Group",
+      "description": "Premier real estate brokerage with $1.5B in sales and 1000+ 5-star reviews"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "1000"
+    },
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Real Estate License",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "North Carolina Real Estate Commission"
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Mackenzie Siek - Top Charlotte Realtor® | SouthEnd, NoDa, Dilworth Specialist | Stone Realty Group"
+        description="Charlotte's premier Realtor® Mackenzie Siek specializes in SouthEnd condos, NoDa homes, Dilworth & Fourth Ward properties. 18+ years experience, 1000+ 5-star reviews. Your expert for in-town Charlotte living."
+        keywords="Charlotte Realtor, SouthEnd condos, NoDa homes, Dilworth real estate, Fourth Ward properties, Charlotte real estate agent, in-town Charlotte, luxury condos Charlotte, Stone Realty Group"
+        canonicalUrl="https://mackenzie.mattstoneteam.com"
+        schema={homePageSchema}
+        ogImage="/assets/Mackenzie.jpg"
+      />
+      <LocalSEO 
+        businessName="Mackenzie Siek - Stone Realty Group"
+        cityState="Charlotte, NC"
+        phone="(704) 610-0959"
+        website="https://mackenzie.mattstoneteam.com"
+        serviceAreas={[
+          "SouthEnd Charlotte",
+          "NoDa Charlotte", 
+          "Dilworth Charlotte",
+          "Fourth Ward Charlotte",
+          "Uptown Charlotte",
+          "Myers Park Charlotte",
+          "Plaza Midwood Charlotte",
+          "Belmont NC",
+          "Davidson NC",
+          "Cornelius NC",
+          "Huntersville NC",
+          "Matthews NC",
+          "Mint Hill NC",
+          "Pineville NC",
+          "Fort Mill SC",
+          "Rock Hill SC",
+          "Gastonia NC",
+          "Concord NC",
+          "Kannapolis NC",
+          "Indian Trail NC",
+          "Weddington NC",
+          "Wesley Chapel NC",
+          "Ballantyne Charlotte",
+          "South Park Charlotte",
+          "University City Charlotte"
+        ]}
+      />
       <Header agentName={`${displayAgent.firstName} ${displayAgent.lastName}`} />
       <HeroSection agent={displayAgent} />
       <PersonalStorySection agent={displayAgent} />

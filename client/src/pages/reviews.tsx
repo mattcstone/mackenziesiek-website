@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import type { Testimonial } from "@shared/schema";
 import BackToTop from "@/components/BackToTop";
+import SEO from "@/components/SEO";
 
 export default function ReviewsPage() {
   const { data: testimonials, isLoading } = useQuery<Testimonial[]>({
@@ -46,8 +47,40 @@ export default function ReviewsPage() {
     updatedAt: null,
   };
 
+  const reviewsPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Client Reviews - Mackenzie Siek Charlotte Realtor",
+    "description": "Read authentic client reviews and testimonials for Charlotte Realtor Mackenzie Siek. 1000+ 5-star reviews from satisfied home buyers and sellers.",
+    "about": {
+      "@type": "RealEstateAgent",
+      "name": "Mackenzie Siek"
+    },
+    "review": testimonials?.map(testimonial => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": testimonial.name
+      },
+      "reviewBody": testimonial.content,
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": testimonial.rating,
+        "bestRating": "5"
+      }
+    })) || []
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="Client Reviews & Testimonials | Mackenzie Siek Charlotte Realtor | 1000+ 5-Star Reviews"
+        description="Read authentic client reviews for Charlotte Realtor Mackenzie Siek. Over 1000 five-star testimonials from satisfied home buyers and sellers in Charlotte, NC. See why clients choose Mackenzie."
+        keywords="Mackenzie Siek reviews, Charlotte realtor testimonials, client reviews Charlotte NC, real estate agent reviews, Stone Realty Group reviews, Charlotte home buyer reviews"
+        canonicalUrl="https://mackenzie.mattstoneteam.com/reviews"
+        schema={reviewsPageSchema}
+        ogImage="/assets/Mackenzie.jpg"
+      />
       <Header agentName="Mackenzie Siek" />
       
       <main className="pt-4">
