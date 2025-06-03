@@ -56,22 +56,10 @@ export default function HeroSection({ agent }: HeroSectionProps) {
           
           <div className="relative">
             <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-              {agent.headshot ? (
-                <img 
-                  src={agent.headshot} 
-                  alt={`${agent.firstName} ${agent.lastName} professional headshot`}
-                  className="w-full h-80 object-cover"
-                />
-              ) : (
-                <div className="w-full h-80 bg-gray-800 flex items-center justify-center">
-                  <span className="text-gray-400">Professional Photo Coming Soon</span>
-                </div>
-              )}
-              
               <img 
                 src="/attached_assets/Untitled design.png" 
                 alt="Mackenzie Siek - Charlotte Real Estate Agent with luxury home"
-                className="w-full h-full object-cover rounded-lg shadow-2xl"
+                className="w-full h-80 object-cover rounded-lg shadow-2xl"
               />
             </div>
             
