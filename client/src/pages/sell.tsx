@@ -113,9 +113,6 @@ export default function SellPage() {
                 Over $1.5 billion in transactions and 1,000+ five-star reviews.
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
-                <Badge className="bg-yellow-400 text-black px-4 py-2 text-sm">
-                  #2 Agent in Charlotte 2023
-                </Badge>
                 <Badge className="bg-gray-700 text-white px-4 py-2 text-sm">
                   $1.5B+ Transaction Volume
                 </Badge>
