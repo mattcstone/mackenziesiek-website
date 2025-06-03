@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award } from "lucide-react";
+import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award, DollarSign, Star } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
@@ -112,13 +112,43 @@ export default function SellPage() {
                 Experience unparalleled service with our proven Stone Selling System. 
                 Over $1.5 billion in transactions and 1,000+ five-star reviews.
               </p>
-              <div className="flex flex-wrap gap-4 mb-8">
-                <Badge className="bg-gray-700 text-white px-4 py-2 text-sm">
-                  $1.5B+ Transaction Volume
-                </Badge>
-                <Badge className="bg-gray-700 text-white px-4 py-2 text-sm">
-                  1,000+ Five-Star Reviews
-                </Badge>
+              
+              {/* Experience The Stone Standard Metrics */}
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-white text-center mb-6">Experience The Stone Standard</h3>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
+                      <TrendingUp className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="text-3xl font-bold text-white mb-1">18</div>
+                    <div className="text-sm text-gray-300">Years in Business</div>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
+                      <Home className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="text-3xl font-bold text-white mb-1">2500+</div>
+                    <div className="text-sm text-gray-300">Homes Sold</div>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
+                      <DollarSign className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="text-3xl font-bold text-white mb-1">$1.5B</div>
+                    <div className="text-sm text-gray-300">Closed Transactions</div>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 mx-auto mb-3 bg-gray-700 rounded-full flex items-center justify-center">
+                      <Star className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="text-3xl font-bold text-white mb-1">1,000</div>
+                    <div className="text-sm text-gray-300">5-Star Reviews</div>
+                  </div>
+                </div>
               </div>
             </div>
             
