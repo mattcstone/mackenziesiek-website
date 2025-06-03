@@ -36,7 +36,6 @@ export default function Footer({ agent }: FooterProps) {
               <li><Link href="/neighborhood/southend" className="hover:text-white transition-colors text-lg">SouthEnd Homes</Link></li>
               <li><Link href="/neighborhood/noda" className="hover:text-white transition-colors text-lg">NoDa Real Estate</Link></li>
               <li><Link href="/neighborhood/dilworth" className="hover:text-white transition-colors text-lg">Dilworth Properties</Link></li>
-              <li><Link href="/neighborhood/fourth-ward" className="hover:text-white transition-colors text-lg">Fourth Ward Condos</Link></li>
               <li><Link href="/neighborhood/uptown" className="hover:text-white transition-colors text-lg">Uptown Charlotte</Link></li>
             </ul>
           </div>
