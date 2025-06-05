@@ -16,7 +16,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: "Ask me about neighborhoods, home prices, or anything else about Charlotte real estate!",
+      content: "Hi there! I'm Mackenzie with Stone Realty Group. How can I help you with Charlotte real estate today?",
       timestamp: new Date(),
     },
   ]);
@@ -43,13 +43,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
 
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
-    
-    // Human-like delay: 8-15 seconds for more realistic typing
-    const delay = Math.floor(Math.random() * (15000 - 8000 + 1)) + 8000;
-    
-    setTimeout(() => {
-      setIsLoading(true);
-    }, delay);
+    setIsLoading(true);
 
     try {
       const response = await fetch('/api/chat', {

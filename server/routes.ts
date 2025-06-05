@@ -369,12 +369,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
           content: msg.content
         }));
       
-      // Add realistic delay based on response length (simulate typing time)
-      const baseDelay = 1500; // Base 1.5 seconds
+      // Add realistic human-like delay based on message complexity
       const messageLength = message.length;
-      const typingDelay = Math.min(baseDelay + (messageLength * 30), 4000); // Max 4 seconds
+      const wordCount = message.split(' ').length;
       
-      await new Promise(resolve => setTimeout(resolve, typingDelay));
+      // Base reading time: 200-300 words per minute (human reading speed)
+      const readingTime = (wordCount / 250) * 60 * 1000; // milliseconds
+      
+      // Thinking time: varies based on message complexity
+      const thinkingTime = Math.random() * 2000 + 1000; // 1-3 seconds random thinking
+      
+      // Typing simulation: average 40 WPM with variation
+      const expectedResponseLength = Math.min(messageLength * 0.8 + 50, 150); // estimate response length
+      const typingTime = (expectedResponseLength / 5) * (60000 / 40); // 40 WPM typing speed
+      
+      // Total delay with human variation
+      const totalDelay = Math.min(
+        readingTime + thinkingTime + (typingTime * 0.3), // Only 30% of full typing time
+        6000 // Max 6 seconds to keep conversation flowing
+      );
+      
+      // Minimum delay to feel natural (even for short messages)
+      const finalDelay = Math.max(totalDelay, 2000);
+      
+      await new Promise(resolve => setTimeout(resolve, finalDelay));
       
       const aiResponse = await generateChatResponse(message, agentName, conversationHistory);
       
