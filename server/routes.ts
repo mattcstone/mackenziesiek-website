@@ -129,6 +129,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/neighborhoods/all", async (req, res) => {
+    try {
+      const neighborhoods = await storage.getAllNeighborhoods();
+      res.json(neighborhoods);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch all neighborhoods" });
+    }
+  });
+
   app.get("/api/neighborhoods/:slug", async (req, res) => {
     try {
       const neighborhood = await storage.getNeighborhoodBySlug(req.params.slug);

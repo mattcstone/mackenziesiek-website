@@ -26,6 +26,7 @@ export interface IStorage {
   getNeighborhood(id: number): Promise<Neighborhood | undefined>;
   getNeighborhoodBySlug(slug: string): Promise<Neighborhood | undefined>;
   getNeighborhoodsByAgent(agentId: number): Promise<Neighborhood[]>;
+  getAllNeighborhoods(): Promise<Neighborhood[]>;
   createNeighborhood(neighborhood: InsertNeighborhood): Promise<Neighborhood>;
   
   // Guides
@@ -124,6 +125,10 @@ export class DatabaseStorage implements IStorage {
 
   async getNeighborhoodsByAgent(agentId: number): Promise<Neighborhood[]> {
     return await db.select().from(neighborhoods).where(eq(neighborhoods.agentId, agentId));
+  }
+
+  async getAllNeighborhoods(): Promise<Neighborhood[]> {
+    return await db.select().from(neighborhoods);
   }
 
   async createNeighborhood(insertNeighborhood: InsertNeighborhood): Promise<Neighborhood> {
