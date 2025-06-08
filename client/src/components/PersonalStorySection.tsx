@@ -17,10 +17,14 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 Your In-Town Charlotte Expert
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Charlotte native turned luxury real estate specialist with a unique story. I grew up touring model homes with 
-                my builder dad and was a competitive equestrian for 10 years. With my UNC Charlotte finance degree and 
-                refined eye for design, I bring sophistication to every transaction. When I'm off the clock, you'll find me 
-                browsing farmers markets, hiking trails, or at 300 East — my favorite refined dining spot in Charlotte.
+                Born and raised in Charlotte, real estate flows through my veins! Growing up, I spent countless weekends 
+                exploring model homes with my builder father, absorbing everything from foundation to finish work. Those early 
+                experiences sparked my passion for exceptional design and quality craftsmanship. Add 10 years of competitive 
+                equestrian training to the mix, and you'll understand my relentless drive for excellence and attention to detail. 
+                My UNC Charlotte finance degree gives me the analytical edge to navigate complex transactions, while my refined 
+                aesthetic ensures every property shines. When I'm not helping clients achieve their real estate dreams, you'll 
+                catch me discovering treasures at local farmers markets, conquering hiking trails, or savoring an incredible 
+                meal at 300 East — hands down, the most sophisticated dining experience Charlotte has to offer!
               </p>
             </div>
             
