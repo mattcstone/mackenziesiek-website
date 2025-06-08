@@ -21,8 +21,8 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
                 exploring model homes with my builder father, absorbing everything from foundation to finish work. Those early 
                 experiences sparked my passion for exceptional design and quality craftsmanship. Add 10 years of competitive 
                 equestrian training to the mix, and you'll understand my relentless drive for excellence and attention to detail. 
-                My UNC Charlotte finance degree gives me the analytical edge to navigate complex transactions, while my refined 
-                aesthetic ensures every property shines. When I'm not helping clients achieve their real estate dreams, you'll 
+                My UNC Charlotte finance degree gives me the analytical edge to navigate complex transactions, while my 
+                appreciation for good design helps every property showcase its best features. When I'm not helping clients achieve their real estate dreams, you'll 
                 catch me discovering treasures at local farmers markets, conquering hiking trails, or planning my next 
                 international adventure — I'm passionate about exploring new cultures and bringing that global perspective 
                 to Charlotte's diverse real estate market!
