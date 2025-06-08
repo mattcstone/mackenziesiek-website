@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Home, TrendingUp, TrendingDown, Search, Filter, Users, Car, DollarSign } from "lucide-react";
+import CharlotteMap from "@/components/CharlotteMap";
 import type { Neighborhood, Agent } from "@shared/schema";
 
 export default function NeighborhoodsPage() {
@@ -347,64 +348,56 @@ export default function NeighborhoodsPage() {
         </div>
       </section>
 
-      {/* Neighborhoods Grid */}
+      {/* Map and Neighborhoods Grid */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {/* Interactive Map */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-center">Charlotte Neighborhoods Map</h2>
+            <CharlotteMap 
+              neighborhoods={charlotteNeighborhoods}
+              onNeighborhoodSelect={(neighborhood) => {
+                // Auto-search for selected neighborhood
+                setSearchTerm(neighborhood.name);
+              }}
+            />
+          </div>
+
+          {/* Compact Neighborhoods Grid */}
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {filteredNeighborhoods.map((neighborhood) => (
-              <Card key={neighborhood.id} className="hover:shadow-lg transition-all duration-300 group">
-                <CardHeader className="pb-3">
-                  <div className="flex justify-between items-start">
+              <Card key={neighborhood.id} className="hover:shadow-md transition-all duration-200 group">
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    {/* Header */}
                     <div>
-                      <CardTitle className="text-lg group-hover:text-blue-600 transition-colors">
+                      <h3 className="font-semibold text-sm group-hover:text-blue-600 transition-colors line-clamp-1">
                         {neighborhood.name}
-                      </CardTitle>
-                      <p className="text-sm text-gray-500">ZIP: {neighborhood.zipCode}</p>
+                      </h3>
+                      <Badge variant="outline" className="text-xs mt-1">
+                        {neighborhood.type}
+                      </Badge>
                     </div>
-                    <Badge variant="outline" className="text-xs">
-                      {neighborhood.type}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  {/* Price and Key Stats */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center p-3 bg-blue-50 rounded-lg">
-                      <div className="text-lg font-bold text-blue-600">
-                        {neighborhood.avgPrice}
+                    
+                    {/* Stats */}
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="text-center p-2 bg-blue-50 rounded">
+                        <div className="font-bold text-blue-600">{neighborhood.avgPrice}</div>
+                        <div className="text-gray-600">Avg Price</div>
                       </div>
-                      <div className="text-xs text-gray-600">Avg Price</div>
-                    </div>
-                    <div className="text-center p-3 bg-green-50 rounded-lg">
-                      <div className="text-lg font-bold text-green-600">
-                        {neighborhood.walkScore || 'N/A'}
+                      <div className="text-center p-2 bg-green-50 rounded">
+                        <div className="font-bold text-green-600">{neighborhood.walkScore || 'N/A'}</div>
+                        <div className="text-gray-600">Walk Score</div>
                       </div>
-                      <div className="text-xs text-gray-600">Walk Score</div>
                     </div>
+                    
+                    {/* Action Button */}
+                    <Link href={`/neighborhood/${neighborhood.slug}`}>
+                      <Button size="sm" className="w-full text-xs bg-blue-600 hover:bg-blue-700">
+                        View Details
+                      </Button>
+                    </Link>
                   </div>
-                  
-                  {/* Key Features */}
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 text-sm">
-                      <MapPin className="h-4 w-4 text-gray-400" />
-                      <span className="text-gray-600">{neighborhood.type}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <Car className="h-4 w-4 text-gray-400" />
-                      <span className="text-gray-600">
-                        {neighborhood.walkScore && neighborhood.walkScore > 70 ? 'Very Walkable' :
-                         neighborhood.walkScore && neighborhood.walkScore > 50 ? 'Somewhat Walkable' : 'Car-Dependent'}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  {/* Action Button */}
-                  <Link href={`/neighborhood/${neighborhood.slug}`}>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                      View Details
-                    </Button>
-                  </Link>
                 </CardContent>
               </Card>
             ))}
