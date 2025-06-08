@@ -27,66 +27,8 @@ export default function NeighborhoodAmenitiesMap({ neighborhoodSlug }: Neighborh
 
   // Curated authentic Charlotte neighborhood amenities
   const getAmenitiesForNeighborhood = (slug: string): Amenity[] => {
-    const amenityData: Record<string, Amenity[]> = {
-      "uptown": [
-        { id: 1, name: "The Manchester", category: "restaurant", rating: 4.6, address: "201 S College St", distance: "0.2 mi", description: "Upscale American dining with city views", priceLevel: "$$$", hours: "5PM-10PM", phone: "(704) 372-4468" },
-        { id: 2, name: "First Ward Park", category: "park", rating: 4.4, address: "301 E 7th St", distance: "0.3 mi", description: "Urban park with walking trails and skyline views" },
-        { id: 3, name: "EpiCentre", category: "shopping", rating: 4.1, address: "210 E Trade St", distance: "0.1 mi", description: "Entertainment complex with shops, restaurants, and nightlife" },
-        { id: 4, name: "CTC Transit Center", category: "transit", rating: 4.0, address: "310 E Trade St", distance: "0.2 mi", description: "Major transit hub with light rail and bus connections" },
-        { id: 5, name: "Not Just Coffee", category: "coffee", rating: 4.5, address: "123 S Tryon St", distance: "0.1 mi", description: "Local coffee roaster with artisan pastries", priceLevel: "$$" }
-      ],
-      "southend": [
-        { id: 6, name: "Fahrenheit", category: "restaurant", rating: 4.7, address: "620 S Tryon St", distance: "0.1 mi", description: "Rooftop dining with panoramic city views", priceLevel: "$$$$", hours: "5PM-11PM" },
-        { id: 7, name: "The Rail Trail", category: "park", rating: 4.5, address: "Along light rail line", distance: "0.0 mi", description: "Greenway trail perfect for walking and biking" },
-        { id: 8, name: "South End Brewery District", category: "shopping", rating: 4.3, address: "Multiple locations", distance: "0.2 mi", description: "Cluster of craft breweries and trendy shops" },
-        { id: 9, name: "New Bern Station", category: "transit", rating: 4.2, address: "1520 South Blvd", distance: "0.1 mi", description: "Light rail station with direct access to Uptown" },
-        { id: 10, name: "Undercurrent Coffee", category: "coffee", rating: 4.6, address: "1500 South Blvd", distance: "0.2 mi", description: "Specialty coffee with local art gallery", priceLevel: "$$" }
-      ],
-      "dilworth": [
-        { id: 11, name: "Good Food on Montford", category: "restaurant", rating: 4.5, address: "1701 Montford Dr", distance: "0.3 mi", description: "Farm-to-table dining in historic setting", priceLevel: "$$$" },
-        { id: 12, name: "Freedom Park", category: "park", rating: 4.7, address: "1908 East Blvd", distance: "0.2 mi", description: "98-acre park with lake, trails, and sports facilities" },
-        { id: 13, name: "East Boulevard Shopping", category: "shopping", rating: 4.2, address: "East Boulevard", distance: "0.1 mi", description: "Local boutiques and specialty shops" },
-        { id: 14, name: "Alexander Graham Middle", category: "school", rating: 4.3, address: "1501 Sardis Rd N", distance: "0.8 mi", description: "Highly-rated public middle school" },
-        { id: 15, name: "Summit Coffee", category: "coffee", rating: 4.4, address: "128 Summit Ave", distance: "0.4 mi", description: "Neighborhood coffee shop with outdoor seating", priceLevel: "$" }
-      ],
-      "plaza-midwood": [
-        { id: 16, name: "Hawkers Asian Street Food", category: "restaurant", rating: 4.4, address: "1200 Central Ave", distance: "0.2 mi", description: "Vibrant Asian street food in eclectic setting", priceLevel: "$$" },
-        { id: 17, name: "The Evening Muse", category: "restaurant", rating: 4.3, address: "3227 N Davidson St", distance: "0.3 mi", description: "Live music venue with craft cocktails", priceLevel: "$$" },
-        { id: 18, name: "Central Avenue Corridor", category: "shopping", rating: 4.1, address: "Central Avenue", distance: "0.1 mi", description: "Vintage shops, galleries, and local businesses" },
-        { id: 19, name: "The Plaza", category: "park", rating: 4.0, address: "1525 Central Ave", distance: "0.2 mi", description: "Community green space with farmers market" },
-        { id: 20, name: "Amélie's French Bakery", category: "coffee", rating: 4.6, address: "2424 N Davidson St", distance: "0.4 mi", description: "24-hour French bakery and café", priceLevel: "$$" }
-      ],
-      "myers-park": [
-        { id: 21, name: "The Capital Grille", category: "restaurant", rating: 4.5, address: "201 N Tryon St", distance: "1.2 mi", description: "Upscale steakhouse with extensive wine list", priceLevel: "$$$$" },
-        { id: 22, name: "Freedom Park", category: "park", rating: 4.7, address: "1908 East Blvd", distance: "0.5 mi", description: "Premier Charlotte park with lake and trails" },
-        { id: 23, name: "Phillips Place", category: "shopping", rating: 4.2, address: "6805 Phillips Pl Ct", distance: "1.8 mi", description: "Upscale shopping with boutiques and dining" },
-        { id: 24, name: "Myers Park High School", category: "school", rating: 4.6, address: "2400 Colony Rd", distance: "0.8 mi", description: "Top-rated public high school" },
-        { id: 25, name: "Not Just Coffee", category: "coffee", rating: 4.5, address: "1403 East Blvd", distance: "0.6 mi", description: "Local roaster with community atmosphere", priceLevel: "$$" }
-      ],
-      "noda": [
-        { id: 26, name: "Haberdash", category: "restaurant", rating: 4.5, address: "3106 N Davidson St", distance: "0.1 mi", description: "Modern Southern cuisine in trendy setting", priceLevel: "$$$" },
-        { id: 27, name: "NoDa Brewing Company", category: "restaurant", rating: 4.4, address: "2921 N Tryon St", distance: "0.2 mi", description: "Local brewery with food trucks and events", priceLevel: "$$" },
-        { id: 28, name: "North Davidson Arts District", category: "shopping", rating: 4.3, address: "N Davidson St", distance: "0.1 mi", description: "Art galleries, studios, and unique shops" },
-        { id: 29, name: "Villa Heights Park", category: "park", rating: 4.1, address: "1300 Berryhill Rd", distance: "0.7 mi", description: "Community park with playground and sports courts" },
-        { id: 30, name: "Smelly Cat Coffee", category: "coffee", rating: 4.4, address: "3107 N Davidson St", distance: "0.1 mi", description: "Local favorite with live music and art", priceLevel: "$" }
-      ],
-      "fourth-ward": [
-        { id: 31, name: "5Church Charlotte", category: "restaurant", rating: 4.4, address: "127 N Tryon St", distance: "0.4 mi", description: "Contemporary American in historic church", priceLevel: "$$$" },
-        { id: 32, name: "Fourth Ward Park", category: "park", rating: 4.3, address: "301 N Poplar St", distance: "0.1 mi", description: "Historic neighborhood park with walking paths" },
-        { id: 33, name: "7th Street Public Market", category: "shopping", rating: 4.0, address: "224 E 7th St", distance: "0.3 mi", description: "Local market with food vendors and shops" },
-        { id: 34, name: "Alexander Graham Middle", category: "school", rating: 4.3, address: "1501 Sardis Rd N", distance: "2.1 mi", description: "Highly-rated CMS middle school" },
-        { id: 35, name: "Caribou Coffee", category: "coffee", rating: 4.1, address: "100 N Tryon St", distance: "0.5 mi", description: "National chain with consistent quality", priceLevel: "$$" }
-      ],
-      "lake-norman": [
-        { id: 36, name: "Dressler's Restaurant", category: "restaurant", rating: 4.6, address: "120 Lighthouse Way", distance: "2.1 mi", description: "Upscale lakefront dining with seasonal menu", priceLevel: "$$$$" },
-        { id: 37, name: "Lake Norman State Park", category: "park", rating: 4.8, address: "159 Inland Sea Ln", distance: "8.2 mi", description: "Large state park with swimming, hiking, and camping" },
-        { id: 38, name: "Birkdale Village", category: "shopping", rating: 4.4, address: "8712 Lindholm Dr", distance: "5.3 mi", description: "Outdoor lifestyle shopping with dining and entertainment" },
-        { id: 39, name: "North Mecklenburg High", category: "school", rating: 4.4, address: "11201 Verhoeff Dr", distance: "3.8 mi", description: "Top-rated public high school" },
-        { id: 40, name: "Starbucks", category: "coffee", rating: 4.2, address: "Multiple locations", distance: "1.5 mi", description: "National coffee chain with lake area locations", priceLevel: "$$" }
-      ]
-    };
-
-    return amenityData[slug] || [];
+    // Amenities will be populated from authentic business data sources like Google Places API
+    return [];
   };
 
   const amenities = getAmenitiesForNeighborhood(neighborhoodSlug);

@@ -60,6 +60,21 @@ export interface IStorage {
   getPropertyComparisonsBySession(sessionId: string): Promise<PropertyComparison[]>;
   createPropertyComparison(comparison: InsertPropertyComparison): Promise<PropertyComparison>;
   deletePropertyComparison(id: number): Promise<boolean>;
+  
+  // Blog Posts
+  getBlogPost(id: number): Promise<BlogPost | undefined>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  getBlogPostsByAgent(agentId: number, status?: string): Promise<BlogPost[]>;
+  getPublishedBlogPosts(): Promise<BlogPost[]>;
+  createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
+  updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined>;
+  deleteBlogPost(id: number): Promise<boolean>;
+  
+  // Media Uploads
+  getMediaUpload(id: number): Promise<MediaUpload | undefined>;
+  getMediaUploadsByAgent(agentId: number): Promise<MediaUpload[]>;
+  createMediaUpload(upload: InsertMediaUpload): Promise<MediaUpload>;
+  deleteMediaUpload(id: number): Promise<boolean>;
 }
 
 export class DatabaseStorage implements IStorage {
