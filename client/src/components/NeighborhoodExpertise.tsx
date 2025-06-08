@@ -96,7 +96,7 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
                               case 'Uptown': return 'Urban Core';
                               case 'SouthEnd': return 'Modern Living';
                               case 'Fourth Ward': return 'Historic Charm';
-                              case 'Dilworth': return 'Family Friendly';
+                              case 'Dilworth': return 'Historic Charm';
                               case 'NoDa': return 'Arts District';
                               case 'Plaza Midwood': return 'Creative Hub';
                               default: return 'Explore';
