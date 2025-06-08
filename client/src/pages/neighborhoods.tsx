@@ -32,6 +32,11 @@ export default function NeighborhoodsPage() {
     favoriteNeighborhood: "In-town Charlotte",
     favoriteSpot: "Farmers markets & the Rail Trail",
     favoriteRestaurant: "300 East",
+    hobby: null,
+    homesSold: 0,
+    avgDaysOnMarket: 0,
+    rating: "5.0",
+    isActive: true,
     createdAt: new Date()
   };
 

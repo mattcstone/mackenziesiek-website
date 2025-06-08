@@ -89,9 +89,9 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
                   <Link href="/sell" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Sell
                   </Link>
-                  <a href="#neighborhoods" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Areas
-                  </a>
+                  <Link href="/neighborhoods" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Charlotte Neighborhoods
+                  </Link>
                   <a href="#about" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     About
                   </a>
@@ -133,9 +133,9 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Sell
               </Link>
-              <a href="#neighborhoods" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Areas
-              </a>
+              <Link href="/neighborhoods" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Charlotte Neighborhoods
+              </Link>
               <a href="#about" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 About
               </a>
