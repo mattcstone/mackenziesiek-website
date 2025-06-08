@@ -28,87 +28,24 @@ interface MarketStory {
 }
 
 const marketStories: MarketStory[] = [
-  {
-    id: 'charlotte-growth',
-    title: 'Charlotte\'s Remarkable Growth Story',
-    period: 'Last 6 Months',
-    location: 'Greater Charlotte Metro',
-    narrative: 'Charlotte continues to attract families and professionals from across the nation, driving consistent demand in our real estate market. The combination of strong job growth, excellent schools, and quality of life has created a compelling story for homebuyers.',
-    keyMetric: {
-      value: '$425,000',
-      change: '+8.2%',
-      trend: 'up'
-    },
-    data: [
-      { month: 'Jan', value: 392000, homes: 1240, days: 32 },
-      { month: 'Feb', value: 398000, homes: 1180, days: 28 },
-      { month: 'Mar', value: 405000, homes: 1350, days: 25 },
-      { month: 'Apr', value: 415000, homes: 1420, days: 22 },
-      { month: 'May', value: 420000, homes: 1380, days: 18 },
-      { month: 'Jun', value: 425000, homes: 1290, days: 15 }
-    ],
-    insights: [
-      'Corporate relocations driving 35% of luxury home sales',
-      'South Charlotte remains the most sought-after area',
-      'New construction can\'t keep pace with demand'
-    ],
-    nextStory: 'luxury-market'
-  },
-  {
-    id: 'luxury-market',
-    title: 'Luxury Market Resilience',
-    period: 'Current Quarter',
-    location: 'South Charlotte & Lake Norman',
-    narrative: 'The luxury segment ($750K+) shows remarkable strength, with executive relocations and local business growth fueling demand. Properties with unique features and prime locations are commanding premium prices.',
-    keyMetric: {
-      value: '$895,000',
-      change: '+12.5%',
-      trend: 'up'
-    },
-    data: [
-      { month: 'Jan', value: 795000, homes: 85, days: 45 },
-      { month: 'Feb', value: 820000, homes: 92, days: 42 },
-      { month: 'Mar', value: 845000, homes: 78, days: 38 },
-      { month: 'Apr', value: 865000, homes: 96, days: 35 },
-      { month: 'May', value: 880000, homes: 88, days: 28 },
-      { month: 'Jun', value: 895000, homes: 82, days: 22 }
-    ],
-    insights: [
-      'Waterfront properties seeing 18% price appreciation',
-      'Smart home features now expected standard',
-      'Private schools proximity driving location premiums'
-    ],
-    nextStory: 'first-time-buyers'
-  },
-  {
-    id: 'first-time-buyers',
-    title: 'First-Time Buyer Opportunities',
-    period: 'Emerging Trends',
-    location: 'NoDa, Plaza Midwood & University Area',
-    narrative: 'Despite market challenges, strategic opportunities exist for first-time buyers willing to consider emerging neighborhoods with strong growth potential and urban amenities.',
-    keyMetric: {
-      value: '$285,000',
-      change: '+5.8%',
-      trend: 'up'
-    },
-    data: [
-      { month: 'Jan', value: 268000, homes: 320, days: 18 },
-      { month: 'Feb', value: 272000, homes: 298, days: 16 },
-      { month: 'Mar', value: 275000, homes: 285, days: 14 },
-      { month: 'Apr', value: 278000, homes: 310, days: 12 },
-      { month: 'May', value: 282000, homes: 295, days: 10 },
-      { month: 'Jun', value: 285000, homes: 275, days: 8 }
-    ],
-    insights: [
-      'Urban neighborhoods offering best value proposition',
-      'Transit-oriented development creating opportunities',
-      'Millennial buyers prioritizing walkability'
-    ],
-    nextStory: 'charlotte-growth'
-  }
+  // Market stories will be populated from authentic data sources
 ];
 
 export default function MarketTrendStoryWidget() {
+  // Component disabled until authentic market data is available
+  if (marketStories.length === 0) {
+    return (
+      <div className="w-full max-w-4xl mx-auto">
+        <Card className="p-8 text-center">
+          <CardContent>
+            <h3 className="text-lg font-semibold text-gray-600 mb-2">Market Trend Stories</h3>
+            <p className="text-gray-500">Authentic market data will be displayed here once connected to real estate data sources.</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [selectedMetric, setSelectedMetric] = useState<'value' | 'homes' | 'days'>('value');
