@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, Navigation, Zap } from "lucide-react";
+import { MapPin, Navigation, Zap, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -18,63 +18,63 @@ interface CharlotteMapProps {
   onNeighborhoodSelect?: (neighborhood: Neighborhood) => void;
 }
 
-// Charlotte neighborhood coordinates (approximate)
+// Charlotte neighborhood coordinates for positioning on our styled map
 const neighborhoodCoordinates: Record<string, { x: number; y: number; zone: string }> = {
-  // Urban Core
-  "uptown": { x: 50, y: 45, zone: "urban" },
-  "fourth-ward": { x: 48, y: 42, zone: "urban" },
-  "southend": { x: 52, y: 55, zone: "urban" },
-  "noda": { x: 55, y: 35, zone: "urban" },
-  "plaza-midwood": { x: 58, y: 40, zone: "urban" },
-  "dilworth": { x: 45, y: 48, zone: "historic" },
-  "optimist-park": { x: 56, y: 38, zone: "urban" },
+  // Urban Core - Center of Charlotte
+  "uptown": { x: 50, y: 50, zone: "urban" },
+  "fourth-ward": { x: 48, y: 47, zone: "urban" },
+  "southend": { x: 52, y: 58, zone: "urban" },
+  "noda": { x: 58, y: 38, zone: "urban" },
+  "plaza-midwood": { x: 62, y: 45, zone: "urban" },
+  "dilworth": { x: 45, y: 55, zone: "historic" },
+  "optimist-park": { x: 56, y: 40, zone: "urban" },
   
   // Historic Areas
-  "myers-park": { x: 42, y: 55, zone: "historic" },
-  "eastover": { x: 40, y: 58, zone: "historic" },
-  "elizabeth": { x: 52, y: 42, zone: "historic" },
-  "chantilly": { x: 50, y: 48, zone: "historic" },
-  "sedgefield": { x: 46, y: 52, zone: "historic" },
+  "myers-park": { x: 42, y: 58, zone: "historic" },
+  "eastover": { x: 40, y: 62, zone: "historic" },
+  "elizabeth": { x: 54, y: 47, zone: "historic" },
+  "chantilly": { x: 50, y: 52, zone: "historic" },
+  "sedgefield": { x: 46, y: 56, zone: "historic" },
   
   // South Charlotte
-  "ballantyne": { x: 48, y: 75, zone: "south" },
-  "south-park": { x: 45, y: 62, zone: "south" },
-  "pineville": { x: 42, y: 70, zone: "south" },
-  "steele-creek": { x: 35, y: 65, zone: "south" },
-  "weddington": { x: 65, y: 72, zone: "south" },
+  "ballantyne": { x: 48, y: 78, zone: "south" },
+  "south-park": { x: 45, y: 68, zone: "south" },
+  "pineville": { x: 42, y: 75, zone: "south" },
+  "steele-creek": { x: 35, y: 70, zone: "south" },
+  "weddington": { x: 68, y: 75, zone: "south" },
   
   // University Area
-  "university-city": { x: 70, y: 30, zone: "university" },
-  "university-area": { x: 72, y: 32, zone: "university" },
+  "university-city": { x: 75, y: 32, zone: "university" },
+  "university-area": { x: 77, y: 35, zone: "university" },
   
   // North/Lake Norman
-  "davidson": { x: 40, y: 15, zone: "north" },
-  "cornelius": { x: 42, y: 18, zone: "north" },
-  "huntersville": { x: 45, y: 20, zone: "north" },
-  "lake-norman": { x: 38, y: 12, zone: "north" },
+  "davidson": { x: 40, y: 18, zone: "north" },
+  "cornelius": { x: 42, y: 22, zone: "north" },
+  "huntersville": { x: 45, y: 25, zone: "north" },
+  "lake-norman": { x: 38, y: 15, zone: "north" },
   
   // East
-  "matthews": { x: 72, y: 55, zone: "east" },
-  "mint-hill": { x: 75, y: 50, zone: "east" },
-  "indian-trail": { x: 78, y: 58, zone: "east" },
-  "concord": { x: 82, y: 35, zone: "east" },
+  "matthews": { x: 75, y: 58, zone: "east" },
+  "mint-hill": { x: 78, y: 52, zone: "east" },
+  "indian-trail": { x: 82, y: 62, zone: "east" },
+  "concord": { x: 85, y: 30, zone: "east" },
   
   // West
-  "west-end": { x: 25, y: 45, zone: "west" },
-  "belmont": { x: 20, y: 55, zone: "west" },
-  "gastonia": { x: 15, y: 50, zone: "west" },
-  "mountain-island-lake": { x: 22, y: 40, zone: "west" }
+  "west-end": { x: 25, y: 48, zone: "west" },
+  "belmont": { x: 20, y: 58, zone: "west" },
+  "gastonia": { x: 15, y: 55, zone: "west" },
+  "mountain-island-lake": { x: 22, y: 42, zone: "west" }
 };
 
 const zoneColors = {
-  urban: "bg-blue-500 border-blue-600",
-  historic: "bg-purple-500 border-purple-600", 
-  south: "bg-green-500 border-green-600",
-  university: "bg-orange-500 border-orange-600",
-  north: "bg-cyan-500 border-cyan-600",
-  east: "bg-red-500 border-red-600",
-  west: "bg-yellow-500 border-yellow-600",
-  default: "bg-gray-500 border-gray-600"
+  urban: "#3b82f6",
+  historic: "#8b5cf6", 
+  south: "#10b981",
+  university: "#f59e0b",
+  north: "#06b6d4",
+  east: "#ef4444",
+  west: "#eab308",
+  default: "#6b7280"
 };
 
 export default function CharlotteMap({ neighborhoods, onNeighborhoodSelect }: CharlotteMapProps) {
@@ -88,29 +88,58 @@ export default function CharlotteMap({ neighborhoods, onNeighborhoodSelect }: Ch
 
   return (
     <div className="relative">
-      {/* Map Container */}
-      <div className="relative bg-gradient-to-br from-green-50 to-blue-50 rounded-lg border-2 border-gray-200 overflow-hidden">
-        {/* Map Background with Charlotte outline */}
-        <svg viewBox="0 0 100 100" className="w-full h-96">
-          {/* Charlotte metro area outline */}
-          <path
-            d="M20,20 L80,20 L85,25 L85,75 L80,80 L20,80 L15,75 L15,25 Z"
-            fill="rgba(255,255,255,0.7)"
-            stroke="#cbd5e1"
-            strokeWidth="0.5"
+      {/* Professional Styled Map */}
+      <div className="relative rounded-xl overflow-hidden shadow-2xl border">
+        {/* Map Background with Satellite-Style Gradient */}
+        <div 
+          className="w-full h-96 relative"
+          style={{
+            background: `
+              linear-gradient(135deg, 
+                #1a4b5c 0%, 
+                #2d5a3d 25%, 
+                #4a6741 50%, 
+                #6b7d4f 75%, 
+                #8b9364 100%
+              )
+            `
+          }}
+        >
+          {/* Topographic-style overlay */}
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `
+                radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(circle at 70% 60%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px, 75px 75px, 100px 100px'
+            }}
           />
           
-          {/* Major highways/roads */}
-          <line x1="10" y1="50" x2="90" y2="50" stroke="#9ca3af" strokeWidth="0.3" opacity="0.6" />
-          <line x1="50" y1="10" x2="50" y2="90" stroke="#9ca3af" strokeWidth="0.3" opacity="0.6" />
-          <line x1="25" y1="25" x2="75" y2="75" stroke="#9ca3af" strokeWidth="0.2" opacity="0.4" />
-          <line x1="75" y1="25" x2="25" y2="75" stroke="#9ca3af" strokeWidth="0.2" opacity="0.4" />
+          {/* Highway lines */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {/* I-77 (North-South) */}
+            <line x1="48" y1="0" x2="52" y2="100" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+            {/* I-85 (Northeast-Southwest) */}
+            <line x1="0" y1="20" x2="100" y2="80" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+            {/* I-485 (Outer loop) */}
+            <ellipse cx="50" cy="50" rx="35" ry="30" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.3" />
+          </svg>
           
           {/* Uptown center marker */}
-          <circle cx="50" cy="45" r="1.5" fill="#1f2937" opacity="0.8" />
-          <text x="50" y="40" textAnchor="middle" fontSize="2.5" fill="#1f2937" fontWeight="bold">
-            Uptown
-          </text>
+          <div 
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 z-20"
+            style={{ left: '50%', top: '50%' }}
+          >
+            <div className="bg-white rounded-full p-2 shadow-lg border-2 border-blue-500">
+              <MapPin className="h-4 w-4 text-blue-600" />
+            </div>
+            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/90 px-2 py-1 rounded text-xs font-semibold whitespace-nowrap">
+              Uptown Charlotte
+            </div>
+          </div>
           
           {/* Neighborhood markers */}
           {neighborhoods.map((neighborhood) => {
@@ -118,92 +147,101 @@ export default function CharlotteMap({ neighborhoods, onNeighborhoodSelect }: Ch
             if (!coords) return null;
             
             const zone = coords.zone;
-            const colorClass = zoneColors[zone as keyof typeof zoneColors] || zoneColors.default;
+            const color = zoneColors[zone as keyof typeof zoneColors] || zoneColors.default;
             const isHovered = hoveredNeighborhood === neighborhood.slug;
             const isSelected = selectedNeighborhood?.id === neighborhood.id;
             
             return (
-              <g key={neighborhood.id}>
-                <circle
-                  cx={coords.x}
-                  cy={coords.y}
-                  r={isHovered || isSelected ? "1.5" : "1"}
-                  className={`${colorClass.split(' ')[0]} cursor-pointer transition-all duration-200`}
-                  opacity={isHovered || isSelected ? "1" : "0.8"}
-                  stroke="white"
-                  strokeWidth="0.3"
-                  onClick={() => handleNeighborhoodClick(neighborhood)}
-                  onMouseEnter={() => setHoveredNeighborhood(neighborhood.slug)}
-                  onMouseLeave={() => setHoveredNeighborhood(null)}
+              <div
+                key={neighborhood.id}
+                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:scale-125 z-10"
+                style={{ 
+                  left: `${coords.x}%`, 
+                  top: `${coords.y}%`,
+                  zIndex: isHovered || isSelected ? 30 : 10
+                }}
+                onClick={() => handleNeighborhoodClick(neighborhood)}
+                onMouseEnter={() => setHoveredNeighborhood(neighborhood.slug)}
+                onMouseLeave={() => setHoveredNeighborhood(null)}
+              >
+                <div 
+                  className="w-3 h-3 rounded-full border-2 border-white shadow-lg transition-all duration-200"
+                  style={{ 
+                    backgroundColor: color,
+                    transform: isHovered || isSelected ? 'scale(1.5)' : 'scale(1)'
+                  }}
                 />
                 {(isHovered || isSelected) && (
-                  <text
-                    x={coords.x}
-                    y={coords.y - 2.5}
-                    textAnchor="middle"
-                    fontSize="1.8"
-                    fill="#1f2937"
-                    fontWeight="bold"
-                    className="pointer-events-none"
-                  >
+                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/95 px-2 py-1 rounded shadow-lg text-xs font-medium whitespace-nowrap z-40">
                     {neighborhood.name}
-                  </text>
+                  </div>
                 )}
-              </g>
+              </div>
             );
           })}
-        </svg>
+        </div>
         
-        {/* Legend */}
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-md">
-          <h4 className="font-semibold text-sm mb-2">Areas</h4>
-          <div className="space-y-1.5 text-xs">
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-              <span>Urban Core</span>
+        {/* Enhanced Legend */}
+        <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-xl border">
+          <h4 className="font-bold text-sm mb-3 text-gray-800">Charlotte Areas</h4>
+          <div className="space-y-2 text-xs">
+            <div className="flex items-center space-x-3">
+              <div className="w-3 h-3 rounded-full border border-white shadow-sm" style={{backgroundColor: zoneColors.urban}}></div>
+              <span className="text-gray-700">Urban Core</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-              <span>Historic</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-3 h-3 rounded-full border border-white shadow-sm" style={{backgroundColor: zoneColors.historic}}></div>
+              <span className="text-gray-700">Historic Districts</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span>South Charlotte</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-3 h-3 rounded-full border border-white shadow-sm" style={{backgroundColor: zoneColors.south}}></div>
+              <span className="text-gray-700">South Charlotte</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-              <span>University</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-3 h-3 rounded-full border border-white shadow-sm" style={{backgroundColor: zoneColors.university}}></div>
+              <span className="text-gray-700">University Area</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-cyan-500 rounded-full"></div>
-              <span>North/Lake</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-3 h-3 rounded-full border border-white shadow-sm" style={{backgroundColor: zoneColors.north}}></div>
+              <span className="text-gray-700">Lake Norman</span>
             </div>
+          </div>
+        </div>
+
+        {/* Map Controls */}
+        <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-xl border">
+          <div className="flex items-center space-x-2 text-xs text-gray-600">
+            <MapPin className="h-4 w-4" />
+            <span>Click neighborhoods to explore</span>
           </div>
         </div>
       </div>
       
-      {/* Selected Neighborhood Info */}
+      {/* Selected Neighborhood Info Panel */}
       {selectedNeighborhood && (
-        <div className="mt-4 p-4 bg-white rounded-lg border shadow-sm">
+        <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border shadow-lg">
           <div className="flex items-start justify-between">
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <h3 className="font-semibold text-lg">{selectedNeighborhood.name}</h3>
-                <Badge variant="outline">{selectedNeighborhood.type}</Badge>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <h3 className="font-bold text-xl text-gray-800">{selectedNeighborhood.name}</h3>
+                <Badge variant="outline" className="bg-white/80">{selectedNeighborhood.type}</Badge>
               </div>
-              <div className="flex items-center space-x-4 text-sm text-gray-600">
-                <div className="flex items-center space-x-1">
-                  <Zap className="h-4 w-4" />
-                  <span>Avg Price: {selectedNeighborhood.avgPrice || 'N/A'}</span>
+              <div className="flex items-center space-x-6 text-sm">
+                <div className="flex items-center space-x-2">
+                  <Zap className="h-5 w-5 text-blue-600" />
+                  <span className="font-medium">Avg Price:</span>
+                  <span className="font-semibold text-blue-700">{selectedNeighborhood.avgPrice || 'N/A'}</span>
                 </div>
-                <div className="flex items-center space-x-1">
-                  <Navigation className="h-4 w-4" />
-                  <span>Walk Score: {selectedNeighborhood.walkScore || 'N/A'}</span>
+                <div className="flex items-center space-x-2">
+                  <Navigation className="h-5 w-5 text-green-600" />
+                  <span className="font-medium">Walk Score:</span>
+                  <span className="font-semibold text-green-700">{selectedNeighborhood.walkScore || 'N/A'}</span>
                 </div>
               </div>
             </div>
             <Link href={`/neighborhood/${selectedNeighborhood.slug}`}>
-              <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+              <Button className="bg-blue-600 hover:bg-blue-700 shadow-md">
+                <ExternalLink className="h-4 w-4 mr-2" />
                 View Details
               </Button>
             </Link>
