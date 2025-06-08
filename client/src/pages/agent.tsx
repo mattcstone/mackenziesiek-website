@@ -7,7 +7,7 @@ import WhyStoneRealtySection from "@/components/WhyStoneRealtySection";
 import PersonalStorySection from "@/components/PersonalStorySection";
 import NeighborhoodExpertise from "@/components/NeighborhoodExpertise";
 
-import PropertySearchSection from "@/components/PropertySearchSection";
+
 import LocalGuidesSection from "@/components/LocalGuidesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
@@ -172,7 +172,6 @@ export default function AgentPage() {
 
       <WhyStoneRealtySection />
       <NeighborhoodExpertise agentId={displayAgent.id} />
-      <PropertySearchSection />
       <TestimonialsSection agentId={displayAgent.id} />
       <LocalGuidesSection agentId={displayAgent.id} />
       <ContactSection agent={displayAgent} />
