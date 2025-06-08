@@ -14,6 +14,9 @@ import DataPage from "@/pages/data";
 import MarketAnalyticsPage from "@/pages/market-analytics";
 import MarketTrendsPage from "@/pages/market-trends";
 import MarketInsightsPage from "@/pages/market-insights";
+import BlogPage from "@/pages/blog";
+import BlogPostPage from "@/pages/blog-post";
+import AdminPage from "@/pages/admin";
 
 function Router() {
   return (
@@ -23,6 +26,9 @@ function Router() {
       <Route path="/neighborhood/:slug" component={NeighborhoodPage} />
       <Route path="/guide/:slug" component={GuidePage} />
       <Route path="/sell" component={SellPage} />
+      <Route path="/blog" component={BlogPage} />
+      <Route path="/blog/:slug" component={BlogPostPage} />
+      <Route path="/admin" component={AdminPage} />
       <Route path="/data" component={DataPage} />
       <Route path="/market-analytics" component={MarketAnalyticsPage} />
       <Route path="/market-trends" component={MarketTrendsPage} />

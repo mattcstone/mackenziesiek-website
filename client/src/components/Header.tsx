@@ -101,6 +101,9 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
                   <Link href="/market-insights" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Market Insights
                   </Link>
+                  <Link href="/blog" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Blog
+                  </Link>
                 </div>
               )}
             </div>
