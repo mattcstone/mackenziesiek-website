@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MapPin, Phone } from "lucide-react";
 import { Link } from "wouter";
 import type { Agent } from "@shared/schema";
 
@@ -47,10 +47,7 @@ export default function Footer({ agent }: FooterProps) {
                 <Phone className="h-5 w-5" />
                 <a href="tel:7046100959" className="hover:text-white transition-colors text-lg">(704) 610-0959</a>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5" />
-                <a href="mailto:mackenzie@mattstoneteam.com" className="hover:text-white transition-colors text-lg">mackenzie@mattstoneteam.com</a>
-              </div>
+
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5" />
                 <span className="text-lg">Charlotte, NC Metro Area</span>
