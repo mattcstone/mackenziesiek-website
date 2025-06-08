@@ -1,5 +1,5 @@
 import { 
-  agents, neighborhoods, guides, testimonials, leads, chatSessions, properties, propertyComparisons,
+  agents, neighborhoods, guides, testimonials, leads, chatSessions, properties, propertyComparisons, blogPosts, mediaUploads,
   type Agent, type InsertAgent,
   type Neighborhood, type InsertNeighborhood,
   type Guide, type InsertGuide,
@@ -7,7 +7,9 @@ import {
   type Lead, type InsertLead,
   type ChatSession, type InsertChatSession,
   type Property, type InsertProperty,
-  type PropertyComparison, type InsertPropertyComparison
+  type PropertyComparison, type InsertPropertyComparison,
+  type BlogPost, type InsertBlogPost,
+  type MediaUpload, type InsertMediaUpload
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and } from "drizzle-orm";
@@ -270,6 +272,71 @@ export class DatabaseStorage implements IStorage {
 
   async deletePropertyComparison(id: number): Promise<boolean> {
     const result = await db.delete(propertyComparisons).where(eq(propertyComparisons.id, id));
+    return (result.rowCount ?? 0) > 0;
+  }
+
+  // Blog Posts
+  async getBlogPost(id: number): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.id, id));
+    return post || undefined;
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    return post || undefined;
+  }
+
+  async getBlogPostsByAgent(agentId: number, status?: string): Promise<BlogPost[]> {
+    const conditions = [eq(blogPosts.agentId, agentId)];
+    if (status) {
+      conditions.push(eq(blogPosts.status, status));
+    }
+    return await db.select().from(blogPosts).where(and(...conditions)).orderBy(desc(blogPosts.createdAt));
+  }
+
+  async getPublishedBlogPosts(): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts)
+      .where(eq(blogPosts.status, 'published'))
+      .orderBy(desc(blogPosts.publishedAt));
+  }
+
+  async createBlogPost(insertPost: InsertBlogPost): Promise<BlogPost> {
+    const [post] = await db.insert(blogPosts).values(insertPost).returning();
+    return post;
+  }
+
+  async updateBlogPost(id: number, insertPost: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
+    const [post] = await db.update(blogPosts)
+      .set({ ...insertPost, updatedAt: new Date() })
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return post || undefined;
+  }
+
+  async deleteBlogPost(id: number): Promise<boolean> {
+    const result = await db.delete(blogPosts).where(eq(blogPosts.id, id));
+    return (result.rowCount ?? 0) > 0;
+  }
+
+  // Media Uploads
+  async getMediaUpload(id: number): Promise<MediaUpload | undefined> {
+    const [upload] = await db.select().from(mediaUploads).where(eq(mediaUploads.id, id));
+    return upload || undefined;
+  }
+
+  async getMediaUploadsByAgent(agentId: number): Promise<MediaUpload[]> {
+    return await db.select().from(mediaUploads)
+      .where(eq(mediaUploads.agentId, agentId))
+      .orderBy(desc(mediaUploads.uploadedAt));
+  }
+
+  async createMediaUpload(insertUpload: InsertMediaUpload): Promise<MediaUpload> {
+    const [upload] = await db.insert(mediaUploads).values(insertUpload).returning();
+    return upload;
+  }
+
+  async deleteMediaUpload(id: number): Promise<boolean> {
+    const result = await db.delete(mediaUploads).where(eq(mediaUploads.id, id));
     return (result.rowCount ?? 0) > 0;
   }
 }

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema } from "@shared/schema";
+import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema, insertBlogPostSchema, insertMediaUploadSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleOAuthReviewsService } from "./google-oauth-reviews";
 import { followUpBossService } from "./followup-boss";
@@ -613,6 +613,110 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ message: "Failed to get home valuation" });
+    }
+  });
+
+  // Blog routes
+  app.get("/api/blog", async (req, res) => {
+    try {
+      const posts = await storage.getPublishedBlogPosts();
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch blog posts" });
+    }
+  });
+
+  app.get("/api/blog/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch blog post" });
+    }
+  });
+
+  app.get("/api/agents/:agentId/blog", async (req, res) => {
+    try {
+      const agentId = parseInt(req.params.agentId);
+      const status = req.query.status as string;
+      const posts = await storage.getBlogPostsByAgent(agentId, status);
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch agent blog posts" });
+    }
+  });
+
+  app.post("/api/blog", async (req, res) => {
+    try {
+      const validatedPost = insertBlogPostSchema.parse(req.body);
+      const post = await storage.createBlogPost(validatedPost);
+      res.status(201).json(post);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid blog post data" });
+    }
+  });
+
+  app.put("/api/blog/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const validatedPost = insertBlogPostSchema.partial().parse(req.body);
+      const post = await storage.updateBlogPost(id, validatedPost);
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid blog post data" });
+    }
+  });
+
+  app.delete("/api/blog/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const deleted = await storage.deleteBlogPost(id);
+      if (!deleted) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete blog post" });
+    }
+  });
+
+  // Media upload routes
+  app.get("/api/agents/:agentId/media", async (req, res) => {
+    try {
+      const agentId = parseInt(req.params.agentId);
+      const media = await storage.getMediaUploadsByAgent(agentId);
+      res.json(media);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch media uploads" });
+    }
+  });
+
+  app.post("/api/media/upload", async (req, res) => {
+    try {
+      const validatedUpload = insertMediaUploadSchema.parse(req.body);
+      const upload = await storage.createMediaUpload(validatedUpload);
+      res.status(201).json(upload);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid media upload data" });
+    }
+  });
+
+  app.delete("/api/media/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const deleted = await storage.deleteMediaUpload(id);
+      if (!deleted) {
+        return res.status(404).json({ message: "Media upload not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete media upload" });
     }
   });
 
