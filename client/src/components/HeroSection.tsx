@@ -9,14 +9,26 @@ interface HeroSectionProps {
 export default function HeroSection({ agent }: HeroSectionProps) {
   return (
     <section className="relative bg-gradient-to-br from-black to-gray-800 text-white overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
-        style={{
-          backgroundImage: "url('/assets/shutterstock_284834021.jpg')"
-        }}
-      ></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-gray-800/70"></div>
+      {/* Background Video */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-30"
+        >
+          <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/mp4" />
+          {/* Fallback background image if video fails to load */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+            style={{
+              backgroundImage: "url('/assets/shutterstock_284834021.jpg')"
+            }}
+          ></div>
+        </video>
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/75 to-gray-800/75"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
