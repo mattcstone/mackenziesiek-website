@@ -70,19 +70,19 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
           </div>
           
           <nav className="hidden lg:flex items-center space-x-10">
-            {/* Main Menu Dropdown */}
+            {/* Main Menu Dropdown - Charlotte Neighborhoods removed */}
             <div 
               className="relative"
               onMouseEnter={() => setIsServicesDropdownOpen(true)}
               onMouseLeave={() => setIsServicesDropdownOpen(false)}
             >
-              <button className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2 flex items-center">
+              <button className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2 flex items-center" key="menu-button-updated">
                 Menu
                 <ChevronDown className="ml-1 h-3 w-3" />
               </button>
               
               {isServicesDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50" key={`dropdown-${Date.now()}`}>
                   <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Search Listings
                   </a>
