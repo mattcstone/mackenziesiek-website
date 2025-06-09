@@ -20,7 +20,7 @@ const InteractiveButton = forwardRef<HTMLButtonElement, InteractiveButtonProps>(
     };
     
     const variantClasses = {
-      primary: "bg-stone-blue hover:bg-stone-blue-dark text-white shadow-lg hover:shadow-xl focus:ring-stone-blue",
+      primary: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl focus:ring-blue-600",
       secondary: "bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl focus:ring-gray-300",
       outline: "border-2 border-current bg-transparent hover:bg-current hover:text-white focus:ring-current",
       ghost: "bg-transparent hover:bg-white/10 backdrop-blur-sm focus:ring-white/20"
@@ -29,7 +29,7 @@ const InteractiveButton = forwardRef<HTMLButtonElement, InteractiveButtonProps>(
     const animationClasses = {
       scale: "hover:scale-105 active:scale-95",
       slide: "hover:translate-y-[-2px] active:translate-y-0",
-      glow: "hover:shadow-2xl hover:shadow-stone-blue/25",
+      glow: "hover:shadow-2xl hover:shadow-blue-500/25",
       bounce: "hover:animate-bounce-gentle active:scale-95"
     };
     
