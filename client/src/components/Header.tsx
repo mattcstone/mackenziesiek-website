@@ -13,29 +13,16 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Define menu items explicitly - no Charlotte Neighborhoods
-  const menuItems = [
-    { href: "https://mackenzie.mattstoneteam.com/", label: "Search Listings", external: true },
-    { href: "/sell", label: "Sell", external: false },
-    { href: "#about", label: "About", external: false },
-    { href: "/reviews", label: "Reviews", external: false },
-    { href: "/market-insights", label: "Market Insights", external: false },
-    { href: "/blog", label: "Blog", external: false }
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDelta = Math.abs(currentScrollY - lastScrollY);
       
-      // Only trigger if scroll delta is significant (reduces sensitivity)
       if (scrollDelta < 10) return;
       
       if (currentScrollY < lastScrollY) {
-        // Scrolling up
         setIsVisible(true);
       } else if (currentScrollY > 150 && currentScrollY > lastScrollY) {
-        // Scrolling down and past 150px (increased threshold)
         setIsVisible(false);
       }
       
@@ -80,36 +67,36 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
           </div>
           
           <nav className="hidden lg:flex items-center space-x-10">
-            {/* Main Menu Dropdown - Charlotte Neighborhoods removed */}
             <div 
               className="relative"
               onMouseEnter={() => setIsServicesDropdownOpen(true)}
               onMouseLeave={() => setIsServicesDropdownOpen(false)}
             >
-              <button className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2 flex items-center" key="menu-button-updated">
+              <button className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2 flex items-center">
                 Menu
                 <ChevronDown className="ml-1 h-3 w-3" />
               </button>
               
               {isServicesDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  {menuItems.map((item, index) => 
-                    item.external ? (
-                      <a key={`menu-${index}-${item.label}`} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                        {item.label}
-                      </a>
-                    ) : (
-                      item.href.startsWith('#') ? (
-                        <a key={`menu-${index}-${item.label}`} href={item.href} className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                          {item.label}
-                        </a>
-                      ) : (
-                        <Link key={`menu-${index}-${item.label}`} href={item.href} className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                          {item.label}
-                        </Link>
-                      )
-                    )
-                  )}
+                  <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Search Listings
+                  </a>
+                  <Link href="/sell" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Sell
+                  </Link>
+                  <a href="#about" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    About
+                  </a>
+                  <Link href="/reviews" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Reviews
+                  </Link>
+                  <Link href="/market-insights" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Market Insights
+                  </Link>
+                  <Link href="/blog" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Blog
+                  </Link>
                 </div>
               )}
             </div>
@@ -133,23 +120,24 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
         {isMobileMenuOpen && (
           <div className="lg:hidden">
             <div className="px-6 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
-              {menuItems.map((item, index) => 
-                item.external ? (
-                  <a key={`mobile-${index}-${item.label}`} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                    {item.label}
-                  </a>
-                ) : (
-                  item.href.startsWith('#') ? (
-                    <a key={`mobile-${index}-${item.label}`} href={item.href} className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link key={`mobile-${index}-${item.label}`} href={item.href} className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                      {item.label}
-                    </Link>
-                  )
-                )
-              )}
+              <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Search Listings
+              </a>
+              <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Sell
+              </Link>
+              <a href="#about" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                About
+              </a>
+              <Link href="/reviews" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Reviews
+              </Link>
+              <Link href="/market-insights" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Market Insights
+              </Link>
+              <Link href="/blog" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Blog
+              </Link>
               <a href="#contact" className="block px-4 py-4 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center justify-center rounded">
                 Contact
               </a>
