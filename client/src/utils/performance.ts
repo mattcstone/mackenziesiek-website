@@ -10,17 +10,24 @@ export function measurePerformance() {
         console.log('LCP:', entry.startTime);
       }
       if (entry.entryType === 'first-input') {
-        console.log('FID:', entry.processingStart - entry.startTime);
+        const fidEntry = entry as any;
+        console.log('FID:', fidEntry.processingStart - fidEntry.startTime);
       }
       if (entry.entryType === 'layout-shift') {
-        if (!entry.hadRecentInput) {
-          console.log('CLS:', entry.value);
+        const clsEntry = entry as any;
+        if (!clsEntry.hadRecentInput) {
+          console.log('CLS:', clsEntry.value);
         }
       }
     }
   });
 
-  observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+  try {
+    observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+  } catch (e) {
+    // Fallback for browsers that don't support all entry types
+    observer.observe({ entryTypes: ['largest-contentful-paint'] });
+  }
 
   // Measure Time to First Byte and other metrics
   window.addEventListener('load', () => {
@@ -30,7 +37,7 @@ export function measurePerformance() {
       'TTFB': navigation.responseStart - navigation.requestStart,
       'DOM Load': navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
       'Page Load': navigation.loadEventEnd - navigation.loadEventStart,
-      'Total Load Time': navigation.loadEventEnd - navigation.navigationStart
+      'Total Load Time': navigation.loadEventEnd - navigation.fetchStart
     });
   });
 }
