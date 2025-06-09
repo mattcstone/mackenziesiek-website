@@ -48,9 +48,12 @@ export default function Footer({ agent }: FooterProps) {
                 <a href="tel:7046100959" className="hover:text-white transition-colors text-lg">(704) 610-0959</a>
               </div>
 
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5" />
-                <span className="text-lg">Charlotte, NC Metro Area</span>
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                <div className="text-lg">
+                  <div>2459 Wilkinson Blvd STE 310</div>
+                  <div>Charlotte, NC 28208</div>
+                </div>
               </div>
               <div className="mt-4 space-y-2">
                 <Link href="/sell" className="block hover:text-white transition-colors text-lg">Sell Your Home</Link>
@@ -62,16 +65,16 @@ export default function Footer({ agent }: FooterProps) {
         {/* Bottom Section */}
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col items-center space-y-8">
-            <div className="flex items-center space-x-16">
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-12 lg:space-x-16 w-full">
               <img 
                 src="/attached_assets/rectlogo.png" 
                 alt="Stone Realty Group"
-                className="h-16 w-auto filter brightness-200 invert"
+                className="h-12 sm:h-14 lg:h-16 w-auto filter brightness-200 invert max-w-[200px] sm:max-w-none"
               />
               <img 
                 src="/attached_assets/Logo_Black@4x.png" 
                 alt="The Stone Selling System"
-                className="h-16 w-auto filter brightness-200 invert"
+                className="h-12 sm:h-14 lg:h-16 w-auto filter brightness-200 invert max-w-[200px] sm:max-w-none"
               />
             </div>
             <div className="text-gray-400 text-center max-w-4xl">

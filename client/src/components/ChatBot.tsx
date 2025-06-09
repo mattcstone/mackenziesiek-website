@@ -107,20 +107,20 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
       {!isOpen ? (
         <div className="relative cursor-pointer" onClick={() => setIsOpen(true)}>
-          <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-lg border-4 border-green-400" style={{animation: 'pulse 3s ease-in-out infinite'}}>
+          <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden shadow-lg border-4 border-green-400" style={{animation: 'pulse 3s ease-in-out infinite'}}>
             <img 
               src={mackenziePhoto} 
               alt="Chat with Mackenzie"
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white"></div>
+          <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-green-400 rounded-full border-2 border-white"></div>
         </div>
       ) : (
-        <Card className="w-80 h-96 shadow-2xl">
+        <Card className="w-72 h-80 sm:w-80 sm:h-96 shadow-2xl max-w-[calc(100vw-2rem)]">
           <CardHeader className="bg-stone-blue text-white p-4 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div>
