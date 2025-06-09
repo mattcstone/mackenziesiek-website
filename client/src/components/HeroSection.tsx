@@ -1,5 +1,5 @@
-import { Play, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Play, Star, ArrowRight, Home } from "lucide-react";
+import { InteractiveButton } from "@/components/ui/interactive-button";
 import type { Agent } from "@shared/schema";
 
 interface HeroSectionProps {
@@ -55,12 +55,30 @@ export default function HeroSection({ agent }: HeroSectionProps) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
-                <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer">Access Listings</a>
-              </Button>
-              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100 font-semibold px-10 py-4 rounded-lg shadow-lg">
-                <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer">Your Home's Value</a>
-              </Button>
+              <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer">
+                <InteractiveButton 
+                  variant="secondary" 
+                  animation="scale" 
+                  size="lg"
+                  className="w-full sm:w-auto group"
+                >
+                  <Home className="w-5 h-5 mr-2 transition-transform group-hover:rotate-12" />
+                  Access Listings
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                </InteractiveButton>
+              </a>
+              <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer">
+                <InteractiveButton 
+                  variant="secondary" 
+                  animation="glow" 
+                  size="lg"
+                  className="w-full sm:w-auto group shimmer-effect"
+                >
+                  <Star className="w-5 h-5 mr-2 transition-transform group-hover:scale-125" />
+                  Your Home's Value
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                </InteractiveButton>
+              </a>
             </div>
             
 
