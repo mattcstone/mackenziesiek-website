@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award, DollarSign, Star } from "lucide-react";
+import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award, DollarSign, Star, ArrowRight, Phone } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -386,13 +386,17 @@ export default function SellPage() {
                     className="mt-1"
                   />
                 </div>
-                <Button 
+                <InteractiveButton 
                   type="submit" 
-                  className="w-full bg-black hover:bg-gray-800 text-white py-3"
+                  variant="primary"
+                  animation="glow"
+                  size="lg"
+                  className="w-full bg-black hover:bg-gray-800 text-white py-3 group shimmer-effect"
                   disabled={createSellerLeadMutation.isPending}
                 >
                   {createSellerLeadMutation.isPending ? "Processing..." : "Download FREE Seller's Guide"}
-                </Button>
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                </InteractiveButton>
               </form>
             </CardContent>
           </Card>
@@ -410,16 +414,29 @@ export default function SellPage() {
             is crucial. We don't take that responsibility lightly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-yellow-400 text-black hover:bg-yellow-500 px-8 py-4">
-              <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer">
+            <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer">
+              <InteractiveButton 
+                variant="secondary" 
+                animation="glow" 
+                size="lg"
+                className="bg-yellow-400 text-black hover:bg-yellow-500 px-8 py-4 group shimmer-effect w-full sm:w-auto"
+              >
+                <DollarSign className="w-5 h-5 mr-2 transition-transform group-hover:scale-125" />
                 Get Your Home Value
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 py-4">
-              <a href="tel:(704) 755-5095">
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+              </InteractiveButton>
+            </a>
+            <a href="tel:(704) 755-5095">
+              <InteractiveButton 
+                variant="outline" 
+                animation="bounce" 
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-black px-8 py-4 group w-full sm:w-auto"
+              >
+                <Phone className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
                 Call (704) 755-5095
-              </a>
-            </Button>
+              </InteractiveButton>
+            </a>
           </div>
         </div>
       </section>
