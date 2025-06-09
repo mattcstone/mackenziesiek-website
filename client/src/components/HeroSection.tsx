@@ -90,6 +90,9 @@ export default function HeroSection({ agent }: HeroSectionProps) {
                 src="/attached_assets/Untitled design.png" 
                 alt="Mackenzie Siek - Charlotte Real Estate Agent with luxury home"
                 className="w-full h-80 object-cover rounded-lg shadow-2xl"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
             

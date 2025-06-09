@@ -71,6 +71,8 @@ export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertise
                       src={neighborhood.image || ""} 
                       alt={`${neighborhood.name} neighborhood in Charlotte`}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         console.log(`Failed to load image: ${neighborhood.image}`);
                         (e.target as HTMLImageElement).style.display = 'none';

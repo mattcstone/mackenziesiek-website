@@ -56,9 +56,19 @@
     </script>
     
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="https://mackenzie.mattstoneteam.com">
+    
+    <!-- Critical resource preloads -->
+    <link rel="preload" href="/attached_assets/Untitled design.png" as="image" fetchpriority="high">
+    <link rel="preload" href="/attached_assets/rectlogo.png" as="image" fetchpriority="high">
+    
+    <!-- Optimized font loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
   <body>
     <div id="root"></div>
