@@ -5,6 +5,42 @@ import { setupVite, serveStatic, log } from "./vite";
 import path from "path";
 
 const app = express();
+
+// Performance optimizations
+app.use(compression({
+  level: 6,
+  threshold: 1024,
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
+
+// Security and caching headers
+app.use((req, res, next) => {
+  // Cache static assets for 1 year
+  if (req.url.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+  // Cache API responses for 5 minutes
+  else if (req.url.startsWith('/api/')) {
+    res.setHeader('Cache-Control', 'public, max-age=300');
+  }
+  // Cache HTML for 1 hour but allow revalidation
+  else {
+    res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+  }
+  
+  // Security headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

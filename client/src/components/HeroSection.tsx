@@ -92,7 +92,6 @@ export default function HeroSection({ agent }: HeroSectionProps) {
                 className="w-full h-80 object-cover rounded-lg shadow-2xl"
                 loading="eager"
                 decoding="async"
-                fetchPriority="high"
               />
             </div>
             
