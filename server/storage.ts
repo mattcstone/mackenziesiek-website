@@ -135,12 +135,12 @@ export class DatabaseStorage implements IStorage {
       'dilworth', 'myers-park', 'fourth-ward', 'lake-norman'
     ];
     
-    return await db.select().from(neighborhoods)
-      .where(and(
-        eq(neighborhoods.agentId, agentId),
-        inArray(neighborhoods.slug, featuredSlugs)
-      ))
+    const allNeighborhoods = await db.select().from(neighborhoods)
+      .where(eq(neighborhoods.agentId, agentId))
       .orderBy(neighborhoods.name);
+    
+    // Filter to only featured neighborhoods
+    return allNeighborhoods.filter(n => featuredSlugs.includes(n.slug));
   }
 
   async getAllNeighborhoods(): Promise<Neighborhood[]> {
