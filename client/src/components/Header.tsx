@@ -13,6 +13,16 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Define menu items explicitly - no Charlotte Neighborhoods
+  const menuItems = [
+    { href: "https://mackenzie.mattstoneteam.com/", label: "Search Listings", external: true },
+    { href: "/sell", label: "Sell", external: false },
+    { href: "#about", label: "About", external: false },
+    { href: "/reviews", label: "Reviews", external: false },
+    { href: "/market-insights", label: "Market Insights", external: false },
+    { href: "/blog", label: "Blog", external: false }
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -83,25 +93,18 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               
               {isServicesDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  {[
-                    { href: "https://mackenzie.mattstoneteam.com/", label: "Search Listings", external: true },
-                    { href: "/sell", label: "Sell", external: false },
-                    { href: "#about", label: "About", external: false },
-                    { href: "/reviews", label: "Reviews", external: false },
-                    { href: "/market-insights", label: "Market Insights", external: false },
-                    { href: "/blog", label: "Blog", external: false }
-                  ].map((item, index) => 
+                  {menuItems.map((item, index) => 
                     item.external ? (
-                      <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                      <a key={`menu-${index}-${item.label}`} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                         {item.label}
                       </a>
                     ) : (
                       item.href.startsWith('#') ? (
-                        <a key={index} href={item.href} className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                        <a key={`menu-${index}-${item.label}`} href={item.href} className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                           {item.label}
                         </a>
                       ) : (
-                        <Link key={index} href={item.href} className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                        <Link key={`menu-${index}-${item.label}`} href={item.href} className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                           {item.label}
                         </Link>
                       )
@@ -130,25 +133,18 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
         {isMobileMenuOpen && (
           <div className="lg:hidden">
             <div className="px-6 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
-              {[
-                { href: "https://mackenzie.mattstoneteam.com/", label: "Search Listings", external: true },
-                { href: "/sell", label: "Sell", external: false },
-                { href: "#about", label: "About", external: false },
-                { href: "/reviews", label: "Reviews", external: false },
-                { href: "/market-insights", label: "Market Insights", external: false },
-                { href: "/blog", label: "Blog", external: false }
-              ].map((item, index) => 
+              {menuItems.map((item, index) => 
                 item.external ? (
-                  <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                  <a key={`mobile-${index}-${item.label}`} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                     {item.label}
                   </a>
                 ) : (
                   item.href.startsWith('#') ? (
-                    <a key={index} href={item.href} className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                    <a key={`mobile-${index}-${item.label}`} href={item.href} className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                       {item.label}
                     </a>
                   ) : (
-                    <Link key={index} href={item.href} className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                    <Link key={`mobile-${index}-${item.label}`} href={item.href} className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                       {item.label}
                     </Link>
                   )
