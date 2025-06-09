@@ -84,8 +84,13 @@ export interface IStorage {
 export class DatabaseStorage implements IStorage {
   // Agents
   async getAgent(id: number): Promise<Agent | undefined> {
-    const [agent] = await db.select().from(agents).where(eq(agents.id, id));
-    return agent || undefined;
+    try {
+      const [agent] = await db.select().from(agents).where(eq(agents.id, id));
+      return agent || undefined;
+    } catch (error) {
+      console.error('Error fetching agent:', error);
+      return undefined;
+    }
   }
 
   async getAgentBySlug(slug: string): Promise<Agent | undefined> {
