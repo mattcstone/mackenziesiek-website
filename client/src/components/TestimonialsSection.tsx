@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import type { Testimonial } from "@shared/schema";
 import logoPath from "@assets/Final-02.png";
 import { useLazyLoading } from "@/hooks/use-lazy-loading";
@@ -8,6 +9,31 @@ import { useState } from "react";
 
 interface TestimonialsSectionProps {
   agentId: number;
+}
+
+// Component for truncated text with read more functionality
+function TruncatedText({ text, maxLength = 150 }: { text: string; maxLength?: number }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  if (text.length <= maxLength) {
+    return <span>"{text}"</span>;
+  }
+  
+  const truncatedText = text.slice(0, maxLength) + "...";
+  
+  return (
+    <span>
+      "{isExpanded ? text : truncatedText}"
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="ml-2 h-auto p-0 text-stone-blue hover:text-stone-blue-dark font-medium text-xs"
+      >
+        {isExpanded ? "Read Less" : "Read More"}
+      </Button>
+    </span>
+  );
 }
 
 export default function TestimonialsSection({ agentId }: TestimonialsSectionProps) {
@@ -134,15 +160,15 @@ export default function TestimonialsSection({ agentId }: TestimonialsSectionProp
                     <div key={pageIndex} className="w-full flex-shrink-0">
                       <div className="grid lg:grid-cols-3 gap-8">
                         {pageTestimonials.map((testimonial) => (
-                          <Card key={testimonial.id} className="bg-white hover:shadow-lg transition-shadow duration-300">
-                            <CardContent className="p-8">
+                          <Card key={testimonial.id} className="bg-white hover:shadow-lg transition-shadow duration-300 h-[280px] flex flex-col">
+                            <CardContent className="p-8 flex flex-col flex-1">
                               <div className="flex space-x-1 mb-4">
                                 {renderStars(testimonial.rating)}
                               </div>
-                              <blockquote className="text-gray-700 mb-6 text-sm leading-relaxed">
-                                "{testimonial.content}"
+                              <blockquote className="text-gray-700 mb-6 text-sm leading-relaxed flex-1">
+                                <TruncatedText text={testimonial.content} maxLength={120} />
                               </blockquote>
-                              <div className="flex items-center">
+                              <div className="flex items-center mt-auto">
                                 {testimonial.image ? (
                                   <img 
                                     src={testimonial.image} 
