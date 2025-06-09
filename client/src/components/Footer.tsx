@@ -41,7 +41,7 @@ export default function Footer({ agent }: FooterProps) {
           </div>
           
           <div>
-            <h3 className="text-xl font-semibold mb-6">Contact & Services</h3>
+            <h3 className="text-xl font-semibold mb-6">Contact</h3>
             <div className="space-y-3 text-gray-300">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5" />
