@@ -16,7 +16,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
           muted
           loop
           playsInline
-          className="w-full h-full object-cover opacity-70"
+          className="w-full h-full object-cover opacity-80 sm:opacity-70"
         >
           <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/mp4" />
           {/* Fallback background image if video fails to load */}
@@ -28,7 +28,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
           ></div>
         </video>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-gray-800/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-gray-800/40 sm:from-black/50 sm:to-gray-800/50"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
