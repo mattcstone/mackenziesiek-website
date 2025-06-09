@@ -28,7 +28,7 @@ export function AccessibilityMenu() {
           setIsOpen(true);
           announce('Accessibility menu opened');
         }}
-        className="fixed bottom-4 right-20 z-50 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg"
+        className="fixed bottom-20 right-4 z-[60] bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg border-2 border-white"
         aria-label="Open accessibility menu"
         title="Accessibility Options"
       >
@@ -39,7 +39,7 @@ export function AccessibilityMenu() {
 
   return (
     <div 
-      className="fixed bottom-4 right-4 z-50 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg shadow-xl p-4 w-80"
+      className="fixed bottom-20 right-4 z-[60] bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg shadow-xl p-4 w-80"
       role="dialog"
       aria-labelledby="accessibility-menu-title"
       aria-modal="true"

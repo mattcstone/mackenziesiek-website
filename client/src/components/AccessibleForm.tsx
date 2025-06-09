@@ -97,15 +97,7 @@ export function AccessibleField({
       </label>
       
       <div className="relative">
-        {typeof children === 'function' 
-          ? children({ 
-              id, 
-              required, 
-              'aria-invalid': !!error,
-              'aria-describedby': describedBy 
-            })
-          : children
-        }
+        {children}
       </div>
 
       {helpText && (
