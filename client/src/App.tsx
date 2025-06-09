@@ -3,9 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 
-import { AccessibilityProvider } from "./components/AccessibilityProvider";
-import { AccessibilityMenu } from "./components/AccessibilityMenu";
-import { SkipToContent } from "./components/SkipToContent";
+// Accessibility components removed to fix crashes
 import NotFound from "@/pages/not-found";
 import AgentPage from "@/pages/agent";
 import NeighborhoodPage from "@/pages/neighborhood";
@@ -47,12 +45,8 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AccessibilityProvider>
-        <SkipToContent />
-        <Toaster />
-        <Router />
-        <AccessibilityMenu />
-      </AccessibilityProvider>
+      <Toaster />
+      <Router />
     </QueryClientProvider>
   );
 }
