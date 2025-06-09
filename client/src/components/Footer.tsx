@@ -55,9 +55,6 @@ export default function Footer({ agent }: FooterProps) {
                   <div>Charlotte, NC 28208</div>
                 </div>
               </div>
-              <div className="mt-4 space-y-2">
-                <Link href="/sell" className="block hover:text-white transition-colors text-lg">Sell Your Home</Link>
-              </div>
             </div>
           </div>
         </div>
