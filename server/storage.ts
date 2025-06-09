@@ -188,9 +188,14 @@ export class DatabaseStorage implements IStorage {
 
   // Testimonials
   async getTestimonialsByAgent(agentId: number): Promise<Testimonial[]> {
-    return await db.select().from(testimonials)
-      .where(eq(testimonials.agentId, agentId))
-      .orderBy(desc(testimonials.createdAt));
+    try {
+      return await db.select().from(testimonials)
+        .where(eq(testimonials.agentId, agentId))
+        .orderBy(desc(testimonials.createdAt));
+    } catch (error) {
+      console.error('Error fetching testimonials:', error);
+      throw new Error('Failed to fetch testimonials from database');
+    }
   }
 
   async createTestimonial(insertTestimonial: InsertTestimonial): Promise<Testimonial> {
