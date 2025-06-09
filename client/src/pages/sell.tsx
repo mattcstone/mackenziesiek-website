@@ -79,7 +79,7 @@ export default function SellPage() {
   const defaultAgent = {
     id: 1,
     firstName: "Mackenzie",
-    lastName: "Stone",
+    lastName: "Siek",
     email: "mackenzie@mattstoneteam.com",
     phone: "(704) 610-0959",
     bio: "Your trusted Charlotte real estate expert",
