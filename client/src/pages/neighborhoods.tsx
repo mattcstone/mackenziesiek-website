@@ -19,9 +19,8 @@ export default function NeighborhoodsPage() {
     window.scrollTo(0, 0);
   }, []);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("price");
+  const [sortBy, setSortBy] = useState("name");
   const [filterType, setFilterType] = useState("all");
-  const [priceRange, setPriceRange] = useState("all");
 
   // Default agent data
   const defaultAgent: Agent = {
@@ -200,24 +199,12 @@ export default function NeighborhoodsPage() {
       
       const matchesType = filterType === "all" || n.type === filterType;
       
-      let matchesPrice = true;
-      if (priceRange !== "all") {
-        const price = parseInt(n.avgPrice?.replace(/[$,]/g, '') || '0');
-        switch (priceRange) {
-          case "under-300k": matchesPrice = price < 300000; break;
-          case "300k-500k": matchesPrice = price >= 300000 && price < 500000; break;
-          case "500k-plus": matchesPrice = price >= 500000; break;
-        }
-      }
-      
-      return matchesSearch && matchesType && matchesPrice;
+      return matchesSearch && matchesType;
     });
 
     // Sort neighborhoods
     filtered.sort((a, b) => {
       switch (sortBy) {
-        case "price":
-          return parseInt(a.avgPrice?.replace(/[$,]/g, '') || '0') - parseInt(b.avgPrice?.replace(/[$,]/g, '') || '0');
         case "name":
           return a.name.localeCompare(b.name);
         case "walkScore":
@@ -228,7 +215,7 @@ export default function NeighborhoodsPage() {
     });
 
     return filtered;
-  }, [charlotteNeighborhoods, searchTerm, sortBy, filterType, priceRange]);
+  }, [charlotteNeighborhoods, searchTerm, sortBy, filterType]);
 
   const uniqueTypes = Array.from(new Set(charlotteNeighborhoods.map(n => n.type).filter(Boolean)));
 
@@ -284,7 +271,7 @@ export default function NeighborhoodsPage() {
       {/* Search and Filter Section */}
       <section className="py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
@@ -301,7 +288,6 @@ export default function NeighborhoodsPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="name">Name A-Z</SelectItem>
-                <SelectItem value="price">Price Low-High</SelectItem>
                 <SelectItem value="walkScore">Walk Score</SelectItem>
               </SelectContent>
             </Select>
@@ -315,18 +301,6 @@ export default function NeighborhoodsPage() {
                 {uniqueTypes.map(type => (
                   <SelectItem key={type} value={type}>{type}</SelectItem>
                 ))}
-              </SelectContent>
-            </Select>
-            
-            <Select value={priceRange} onValueChange={setPriceRange}>
-              <SelectTrigger>
-                <SelectValue placeholder="Price range" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Prices</SelectItem>
-                <SelectItem value="under-300k">Under $300K</SelectItem>
-                <SelectItem value="300k-500k">$300K - $500K</SelectItem>
-                <SelectItem value="500k-plus">$500K+</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -385,11 +359,7 @@ export default function NeighborhoodsPage() {
                     </div>
                     
                     {/* Stats */}
-                    <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="text-center p-2 bg-blue-50 rounded">
-                        <div className="font-bold text-blue-600">{neighborhood.avgPrice}</div>
-                        <div className="text-gray-600">Avg Price</div>
-                      </div>
+                    <div className="grid grid-cols-1 gap-2 text-xs">
                       <div className="text-center p-2 bg-green-50 rounded">
                         <div className="font-bold text-green-600">{neighborhood.walkScore || 'N/A'}</div>
                         <div className="text-gray-600">Walk Score</div>
