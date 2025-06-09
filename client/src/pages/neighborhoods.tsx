@@ -5,11 +5,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { InteractiveButton } from "@/components/ui/interactive-button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Home, TrendingUp, TrendingDown, Search, Filter, Users, Car, DollarSign } from "lucide-react";
+import { MapPin, Home, TrendingUp, TrendingDown, Search, Filter, Users, Car, DollarSign, Phone, ArrowRight } from "lucide-react";
 import CharlotteMap from "@/components/CharlotteMap";
 import type { Neighborhood, Agent } from "@shared/schema";
 
@@ -331,19 +331,20 @@ export default function NeighborhoodsPage() {
             <p className="text-gray-600">
               Showing {filteredNeighborhoods.length} of {charlotteNeighborhoods.length} neighborhoods
             </p>
-            <Button
+            <InteractiveButton
               variant="outline"
+              animation="bounce"
               onClick={() => {
                 setSearchTerm("");
                 setSortBy("price");
                 setFilterType("all");
                 setPriceRange("all");
               }}
-              className="flex items-center space-x-2"
+              className="flex items-center space-x-2 group"
             >
-              <Filter className="h-4 w-4" />
+              <Filter className="h-4 w-4 transition-transform group-hover:rotate-12" />
               <span>Clear Filters</span>
-            </Button>
+            </InteractiveButton>
           </div>
         </div>
       </section>
@@ -393,9 +394,15 @@ export default function NeighborhoodsPage() {
                     
                     {/* Action Button */}
                     <Link href={`/neighborhood/${neighborhood.slug}`}>
-                      <Button size="sm" className="w-full text-xs bg-blue-600 hover:bg-blue-700">
+                      <InteractiveButton 
+                        variant="primary" 
+                        animation="scale" 
+                        size="sm" 
+                        className="w-full text-xs bg-blue-600 hover:bg-blue-700 group"
+                      >
                         View Details
-                      </Button>
+                        <MapPin className="w-3 h-3 ml-1 transition-transform group-hover:scale-110" />
+                      </InteractiveButton>
                     </Link>
                   </div>
                 </CardContent>
@@ -408,16 +415,17 @@ export default function NeighborhoodsPage() {
               <div className="text-gray-500 text-lg mb-4">
                 No neighborhoods match your search criteria
               </div>
-              <Button
+              <InteractiveButton
                 onClick={() => {
                   setSearchTerm("");
                   setFilterType("all");
                   setPriceRange("all");
                 }}
                 variant="outline"
+                animation="bounce"
               >
                 Clear all filters
-              </Button>
+              </InteractiveButton>
             </div>
           )}
         </div>
@@ -433,12 +441,29 @@ export default function NeighborhoodsPage() {
             Get personalized neighborhood recommendations and market insights from Charlotte's trusted real estate expert.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-black hover:bg-gray-100">
-              <a href="tel:(704) 610-0959">Call (704) 610-0959</a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
-              <a href="#contact">Schedule Consultation</a>
-            </Button>
+            <a href="tel:(704) 610-0959">
+              <InteractiveButton 
+                variant="secondary" 
+                animation="glow" 
+                size="lg"
+                className="w-full sm:w-auto group"
+              >
+                <Phone className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
+                Call (704) 610-0959
+              </InteractiveButton>
+            </a>
+            <a href="#contact">
+              <InteractiveButton 
+                variant="outline" 
+                animation="slide" 
+                size="lg"
+                className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-black group"
+              >
+                <Users className="w-5 h-5 mr-2 transition-transform group-hover:rotate-12" />
+                Schedule Consultation
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+              </InteractiveButton>
+            </a>
           </div>
         </div>
       </section>
