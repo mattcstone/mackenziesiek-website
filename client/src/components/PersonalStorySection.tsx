@@ -8,10 +8,10 @@ interface PersonalStorySectionProps {
 
 export default function PersonalStorySection({ agent }: PersonalStorySectionProps) {
   return (
-    <section id="about" className="py-12 lg:py-16 bg-gradient-to-br from-gray-50 to-white">
+    <section id="about" className="py-8 lg:py-12 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-3 space-y-8 animate-fade-in-up">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+          <div className="lg:col-span-2 space-y-6 animate-fade-in-up">
             <div className="space-y-4">
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight hover:text-black transition-colors duration-300">
                 Your In-Town Charlotte Expert
@@ -26,43 +26,43 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
               </p>
             </div>
             
-            {/* Expertise Cards - Single Row Layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Expertise Cards */}
+            <div className="grid grid-cols-2 gap-4">
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    <Home className="h-8 w-8 text-black mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-bold text-gray-900 mb-3 text-lg">In-Town Specialist</h3>
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-5">
+                    <Home className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">In-Town Specialist</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">Expert in Uptown, SouthEnd, Dilworth & Myers Park</p>
                   </CardContent>
                 </Card>
               </div>
               
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    <Users className="h-8 w-8 text-black mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-bold text-gray-900 mb-3 text-lg">Professional Focus</h3>
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-5">
+                    <Users className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">Professional Focus</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">Understanding discerning buyers' lifestyle needs</p>
                   </CardContent>
                 </Card>
               </div>
               
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    <Mountain className="h-8 w-8 text-black mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-bold text-gray-900 mb-3 text-lg">City Lifestyle</h3>
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-5">
+                    <Mountain className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">City Lifestyle</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">Best restaurants, bars, and entertainment venues</p>
                   </CardContent>
                 </Card>
               </div>
               
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    <Handshake className="h-8 w-8 text-black mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-bold text-gray-900 mb-3 text-lg">Luxury Specialist</h3>
+                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-5">
+                    <Handshake className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">Luxury Specialist</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">Curating exceptional properties</p>
                   </CardContent>
                 </Card>
@@ -71,12 +71,13 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
           </div>
           
           {/* Image and Personal Details */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="rounded-2xl shadow-2xl overflow-hidden bg-white p-1">
+          <div className="space-y-4">
+            <div className="rounded-xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
               <img 
                 src="/assets/mackenzie-headshot.jpg" 
                 alt="Mackenzie Siek headshot" 
-                className="w-full h-auto rounded-xl"
+                className="w-full h-auto"
+                style={{minHeight: '350px', objectFit: 'cover'}}
               />
             </div>
             
