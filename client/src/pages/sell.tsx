@@ -81,7 +81,7 @@ export default function SellPage() {
     firstName: "Mackenzie",
     lastName: "Stone",
     email: "mackenzie@mattstoneteam.com",
-    phone: "(704) 755-5095",
+    phone: "(704) 610-0959",
     bio: "Your trusted Charlotte real estate expert",
     headshot: "/assets/mackenzie-headshot.jpg",
     welcomeVideo: null,
@@ -417,16 +417,16 @@ export default function SellPage() {
             <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer">
               <InteractiveButton 
                 variant="secondary" 
-                animation="glow" 
+                animation="subtle" 
                 size="lg"
-                className="bg-yellow-400 text-black hover:bg-yellow-500 px-8 py-4 group shimmer-effect w-full sm:w-auto"
+                className="bg-yellow-400 text-black hover:bg-yellow-500 px-8 py-4 group w-full sm:w-auto"
               >
-                <DollarSign className="w-5 h-5 mr-2 transition-transform group-hover:scale-125" />
+                <DollarSign className="w-5 h-5 mr-2 transition-transform group-hover:scale-105" />
                 Get Your Home Value
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </InteractiveButton>
             </a>
-            <a href="tel:(704) 755-5095">
+            <a href="tel:(704) 610-0959">
               <InteractiveButton 
                 variant="outline" 
                 animation="bounce" 
@@ -434,7 +434,7 @@ export default function SellPage() {
                 className="border-white text-white hover:bg-white hover:text-black px-8 py-4 group w-full sm:w-auto"
               >
                 <Phone className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
-                Call (704) 755-5095
+                Call (704) 610-0959
               </InteractiveButton>
             </a>
           </div>
