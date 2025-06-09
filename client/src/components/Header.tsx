@@ -83,8 +83,8 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               
               {isServicesDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  <a href="#search" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Search
+                  <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
+                    Search Listings
                   </a>
                   <Link href="/sell" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Sell
@@ -127,8 +127,8 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
         {isMobileMenuOpen && (
           <div className="lg:hidden">
             <div className="px-6 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
-              <a href="#search" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Search
+              <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
+                Search Listings
               </a>
               <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Sell
