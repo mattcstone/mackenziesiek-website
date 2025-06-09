@@ -2,7 +2,7 @@ import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
+
 import { AccessibilityProvider } from "./components/AccessibilityProvider";
 import { AccessibilityMenu } from "./components/AccessibilityMenu";
 import { SkipToContent } from "./components/SkipToContent";
@@ -47,14 +47,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AccessibilityProvider>
-          <SkipToContent />
-          <Toaster />
-          <Router />
-          <AccessibilityMenu />
-        </AccessibilityProvider>
-      </TooltipProvider>
+      <AccessibilityProvider>
+        <SkipToContent />
+        <Toaster />
+        <Router />
+        <AccessibilityMenu />
+      </AccessibilityProvider>
     </QueryClientProvider>
   );
 }
