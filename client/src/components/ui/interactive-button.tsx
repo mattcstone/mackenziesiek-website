@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "ghost";
-  animation?: "scale" | "slide" | "glow" | "bounce";
+  animation?: "scale" | "slide" | "glow" | "bounce" | "subtle";
   ripple?: boolean;
   size?: "sm" | "md" | "lg";
   asChild?: boolean;
@@ -27,10 +27,11 @@ const InteractiveButton = forwardRef<HTMLButtonElement, InteractiveButtonProps>(
     };
     
     const animationClasses = {
-      scale: "hover:scale-105 active:scale-95",
-      slide: "hover:translate-y-[-2px] active:translate-y-0",
-      glow: "hover:shadow-2xl hover:shadow-blue-500/25",
-      bounce: "hover:animate-bounce-gentle active:scale-95"
+      scale: "hover:scale-102 active:scale-98",
+      slide: "hover:translate-y-[-1px] active:translate-y-0",
+      glow: "hover:shadow-lg hover:shadow-blue-500/15",
+      bounce: "hover:scale-102 active:scale-98",
+      subtle: "hover:scale-101 active:scale-99"
     };
     
     const rippleClasses = ripple ? "before:absolute before:inset-0 before:bg-white/20 before:scale-0 before:rounded-full before:transition-transform before:duration-300 active:before:scale-100" : "";
