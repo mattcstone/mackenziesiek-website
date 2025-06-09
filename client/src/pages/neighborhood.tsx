@@ -1,5 +1,6 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -12,6 +13,11 @@ import type { Neighborhood } from "@shared/schema";
 
 export default function NeighborhoodPage() {
   const { slug } = useParams();
+
+  // Scroll to top when component mounts or slug changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   const { data: neighborhood, isLoading } = useQuery<Neighborhood>({
     queryKey: slug ? [`/api/neighborhoods/${slug}`] : [],
@@ -248,20 +254,14 @@ export default function NeighborhoodPage() {
         welcomeVideo: null,
         church: null,
         favoriteNeighborhood: null,
-        slug: "mackenzie-siek",
-        instagramHandle: null,
-        facebookProfile: null,
-        linkedinProfile: null,
-        personalWebsite: null,
-        rating: null,
         favoriteSpot: null,
         favoriteRestaurant: null,
         hobby: null,
         homesSold: null,
         avgDaysOnMarket: null,
+        rating: null,
         isActive: true,
         createdAt: null,
-        updatedAt: null,
       }} />
     </div>
   );

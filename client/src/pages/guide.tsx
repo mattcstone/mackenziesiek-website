@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, Link } from "wouter";
+import { useEffect } from "react";
 import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,11 @@ import type { Guide, Agent } from "@shared/schema";
 
 export default function GuidePage() {
   const { slug } = useParams();
+  
+  // Scroll to top when component mounts or slug changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
   
   const { data: guide } = useQuery<Guide>({
     queryKey: [`/api/guides/${slug}`],

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import Header from "@/components/Header";
@@ -14,6 +14,10 @@ import CharlotteMap from "@/components/CharlotteMap";
 import type { Neighborhood, Agent } from "@shared/schema";
 
 export default function NeighborhoodsPage() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("price");
   const [filterType, setFilterType] = useState("all");
