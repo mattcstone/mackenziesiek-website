@@ -8,7 +8,7 @@ interface NeighborhoodExpertiseProps {
 
 export default function NeighborhoodExpertise({ agentId }: NeighborhoodExpertiseProps) {
   const { data: neighborhoods, isLoading } = useQuery<Neighborhood[]>({
-    queryKey: [`/api/agents/${agentId}/neighborhoods`],
+    queryKey: [`/api/agents/${agentId}/neighborhoods/featured`],
   });
 
 
