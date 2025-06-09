@@ -27,43 +27,43 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
             </div>
             
             {/* Expertise Cards */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-4">
-                    <Home className="h-6 w-6 text-black mb-2 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-1 text-sm">In-Town Specialist</h3>
-                    <p className="text-gray-600 text-xs">Expert in Uptown, SouthEnd, Dilworth & Myers Park</p>
+                  <CardContent className="p-5">
+                    <Home className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">In-Town Specialist</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">Expert in Uptown, SouthEnd, Dilworth & Myers Park</p>
                   </CardContent>
                 </Card>
               </div>
               
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-4">
-                    <Users className="h-6 w-6 text-black mb-2 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-1 text-sm">Professional Focus</h3>
-                    <p className="text-gray-600 text-xs">Understanding discerning buyers' lifestyle needs</p>
+                  <CardContent className="p-5">
+                    <Users className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">Professional Focus</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">Understanding discerning buyers' lifestyle needs</p>
                   </CardContent>
                 </Card>
               </div>
               
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-4">
-                    <Mountain className="h-6 w-6 text-black mb-2 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-1 text-sm">City Lifestyle</h3>
-                    <p className="text-gray-600 text-xs">Best restaurants, bars, and entertainment venues</p>
+                  <CardContent className="p-5">
+                    <Mountain className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">City Lifestyle</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">Best restaurants, bars, and entertainment venues</p>
                   </CardContent>
                 </Card>
               </div>
               
               <div className="group cursor-pointer transform hover:scale-105 transition-all duration-300">
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-4">
-                    <Handshake className="h-6 w-6 text-black mb-2 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="font-semibold text-gray-900 mb-1 text-sm">Luxury Specialist</h3>
-                    <p className="text-gray-600 text-xs">Curating exceptional properties</p>
+                  <CardContent className="p-5">
+                    <Handshake className="h-7 w-7 text-black mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="font-semibold text-gray-900 mb-2 text-base">Luxury Specialist</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">Curating exceptional properties</p>
                   </CardContent>
                 </Card>
               </div>
@@ -80,56 +80,56 @@ export default function PersonalStorySection({ agent }: PersonalStorySectionProp
               />
             </div>
             
-            {/* Personal Details Section - Compact */}
-            <div className="bg-gradient-to-r from-gray-900 to-black rounded-xl p-4 text-white">
-              <h3 className="text-lg font-bold mb-4 text-center">Get to Know Mackenzie</h3>
-              <div className="grid grid-cols-2 gap-3">
+            {/* Personal Details Section - Improved Typography */}
+            <div className="bg-gradient-to-r from-gray-900 to-black rounded-xl p-6 text-white">
+              <h3 className="text-xl font-bold mb-6 text-center">Get to Know Mackenzie</h3>
+              <div className="grid grid-cols-2 gap-4">
                 <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mx-auto mb-2 group-hover:shadow-lg transition-shadow duration-300">
-                    <Utensils className="w-4 h-4 text-black" />
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Utensils className="w-5 h-5 text-black" />
                   </div>
-                  <h4 className="font-semibold mb-1 text-xs">Favorite Restaurant</h4>
-                  <p className="text-gray-300 text-xs">300 East</p>
+                  <h4 className="font-semibold mb-2 text-sm">Favorite Restaurant</h4>
+                  <p className="text-gray-300 text-sm">300 East</p>
                 </div>
                 
                 <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mx-auto mb-2 group-hover:shadow-lg transition-shadow duration-300">
-                    <Coffee className="w-4 h-4 text-black" />
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Coffee className="w-5 h-5 text-black" />
                   </div>
-                  <h4 className="font-semibold mb-1 text-xs">Weekend Vibes</h4>
-                  <p className="text-gray-300 text-xs">Farmers markets & rail trail</p>
+                  <h4 className="font-semibold mb-2 text-sm">Weekend Vibes</h4>
+                  <p className="text-gray-300 text-sm">Farmers markets & rail trail</p>
                 </div>
                 
                 <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mx-auto mb-2 group-hover:shadow-lg transition-shadow duration-300">
-                    <Mountain className="w-4 h-4 text-black" />
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Mountain className="w-5 h-5 text-black" />
                   </div>
-                  <h4 className="font-semibold mb-1 text-xs">Hobbies</h4>
-                  <p className="text-gray-300 text-xs">Interior design & travel</p>
+                  <h4 className="font-semibold mb-2 text-sm">Hobbies</h4>
+                  <p className="text-gray-300 text-sm">Interior design & travel</p>
                 </div>
                 
                 <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mx-auto mb-2 group-hover:shadow-lg transition-shadow duration-300">
-                    <Users className="w-4 h-4 text-black" />
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Users className="w-5 h-5 text-black" />
                   </div>
-                  <h4 className="font-semibold mb-1 text-xs">Fun Fact</h4>
-                  <p className="text-gray-300 text-xs">Competitive equestrian</p>
+                  <h4 className="font-semibold mb-2 text-sm">Fun Fact</h4>
+                  <p className="text-gray-300 text-sm">Competitive equestrian</p>
                 </div>
                 
                 <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mx-auto mb-2 group-hover:shadow-lg transition-shadow duration-300">
-                    <Home className="w-4 h-4 text-black" />
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Home className="w-5 h-5 text-black" />
                   </div>
-                  <h4 className="font-semibold mb-1 text-xs">Why Real Estate?</h4>
-                  <p className="text-gray-300 text-xs">Builder dad inspiration</p>
+                  <h4 className="font-semibold mb-2 text-sm">Why Real Estate?</h4>
+                  <p className="text-gray-300 text-sm">Builder dad inspiration</p>
                 </div>
                 
                 <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mx-auto mb-2 group-hover:shadow-lg transition-shadow duration-300">
-                    <Handshake className="w-4 h-4 text-black" />
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:shadow-lg transition-shadow duration-300">
+                    <Handshake className="w-5 h-5 text-black" />
                   </div>
-                  <h4 className="font-semibold mb-1 text-xs">Education</h4>
-                  <p className="text-gray-300 text-xs">UNC Charlotte Finance</p>
+                  <h4 className="font-semibold mb-2 text-sm">Education</h4>
+                  <p className="text-gray-300 text-sm">UNC Charlotte Finance</p>
                 </div>
               </div>
             </div>
