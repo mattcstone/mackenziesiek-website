@@ -70,11 +70,11 @@ export default function HeroSection({ agent }: HeroSectionProps) {
               <a href="https://mackenzie.mattstoneteam.com/SELLER" target="_blank" rel="noopener noreferrer">
                 <InteractiveButton 
                   variant="secondary" 
-                  animation="glow" 
+                  animation="scale" 
                   size="lg"
-                  className="w-full sm:w-auto group shimmer-effect"
+                  className="w-full sm:w-auto group"
                 >
-                  <Star className="w-5 h-5 mr-2 transition-transform group-hover:scale-125" />
+                  <Star className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
                   Your Home's Value
                   <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </InteractiveButton>
