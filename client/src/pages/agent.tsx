@@ -167,14 +167,15 @@ export default function AgentPage() {
         ]}
       />
       <Header agentName={`${displayAgent.firstName} ${displayAgent.lastName}`} />
-      <HeroSection agent={displayAgent} />
-      <PersonalStorySection agent={displayAgent} />
-
-      <WhyStoneRealtySection />
-      <NeighborhoodExpertise agentId={displayAgent.id} />
-      <TestimonialsSection agentId={displayAgent.id} />
-      <LocalGuidesSection agentId={displayAgent.id} />
-      <ContactSection agent={displayAgent} />
+      <main id="main-content" role="main" tabIndex={-1}>
+        <HeroSection agent={displayAgent} />
+        <PersonalStorySection agent={displayAgent} />
+        <WhyStoneRealtySection />
+        <NeighborhoodExpertise agentId={displayAgent.id} />
+        <TestimonialsSection agentId={displayAgent.id} />
+        <LocalGuidesSection agentId={displayAgent.id} />
+        <ContactSection agent={displayAgent} />
+      </main>
       <Footer agent={displayAgent} />
       <ChatBot agentName={displayAgent.firstName} agentId={displayAgent.id} />
       <BackToTop />

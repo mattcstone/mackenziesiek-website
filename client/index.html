@@ -84,7 +84,11 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" role="application" aria-label="Mackenzie Siek Real Estate Website"></div>
+    
+    <!-- Screen reader announcements -->
+    <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+    
     <script type="module" src="/src/main.tsx"></script>
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
