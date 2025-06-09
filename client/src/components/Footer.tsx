@@ -10,7 +10,7 @@ export default function Footer({ agent }: FooterProps) {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-16">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
           <div>
             <div className="text-2xl font-bold mb-6">{agent.firstName} {agent.lastName}</div>
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
@@ -28,16 +28,6 @@ export default function Footer({ agent }: FooterProps) {
                 <Linkedin className="h-8 w-8" />
               </a>
             </div>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-semibold mb-6">Charlotte Neighborhoods</h3>
-            <ul className="space-y-3 text-gray-300">
-              <li><Link href="/neighborhood/southend" className="hover:text-white transition-colors text-lg">SouthEnd Homes</Link></li>
-              <li><Link href="/neighborhood/noda" className="hover:text-white transition-colors text-lg">NoDa Real Estate</Link></li>
-              <li><Link href="/neighborhood/dilworth" className="hover:text-white transition-colors text-lg">Dilworth Properties</Link></li>
-              <li><Link href="/neighborhood/uptown" className="hover:text-white transition-colors text-lg">Uptown Charlotte</Link></li>
-            </ul>
           </div>
           
           <div>
