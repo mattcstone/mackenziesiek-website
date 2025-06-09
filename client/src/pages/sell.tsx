@@ -429,7 +429,7 @@ export default function SellPage() {
             <a href="tel:(704) 610-0959">
               <InteractiveButton 
                 variant="outline" 
-                animation="bounce" 
+                animation="subtle" 
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-black px-8 py-4 group w-full sm:w-auto"
               >

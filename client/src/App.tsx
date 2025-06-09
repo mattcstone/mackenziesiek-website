@@ -47,14 +47,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AccessibilityProvider>
-        <TooltipProvider>
+      <TooltipProvider>
+        <AccessibilityProvider>
           <SkipToContent />
           <Toaster />
           <Router />
           <AccessibilityMenu />
-        </TooltipProvider>
-      </AccessibilityProvider>
+        </AccessibilityProvider>
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
