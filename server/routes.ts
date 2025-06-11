@@ -7,6 +7,47 @@ import { googleOAuthReviewsService } from "./google-oauth-reviews";
 import { followUpBossService } from "./followup-boss";
 import { marketDataService } from "./market-data";
 
+// Helper function to analyze conversation context for better chat intelligence
+function analyzeConversationContext(messages: any[]) {
+  const userMessages = messages.filter(msg => msg.role === 'user').map(msg => msg.content.toLowerCase());
+  const allText = userMessages.join(' ');
+  
+  // Check if name was provided
+  const hasName = /my name is|i'm |call me |this is /i.test(allText);
+  
+  // Calculate lead score based on keywords and engagement
+  let leadScore = 0;
+  const highValueKeywords = ['selling', 'listing', 'buying', 'moving', 'relocating', 'looking to buy', 'want to sell'];
+  const mediumValueKeywords = ['interested', 'considering', 'thinking about', 'timeline', 'price range'];
+  const engagementKeywords = ['thank you', 'that helps', 'great', 'perfect', 'sounds good'];
+  
+  highValueKeywords.forEach(keyword => {
+    if (allText.includes(keyword)) leadScore += 3;
+  });
+  
+  mediumValueKeywords.forEach(keyword => {
+    if (allText.includes(keyword)) leadScore += 2;
+  });
+  
+  engagementKeywords.forEach(keyword => {
+    if (allText.includes(keyword)) leadScore += 1;
+  });
+  
+  // Determine conversation stage
+  let stage = 'greeting';
+  if (leadScore >= 6) stage = 'qualification';
+  else if (leadScore >= 3 || userMessages.length >= 3) stage = 'rapport';
+  
+  // Extract topics mentioned
+  const topics = [];
+  if (allText.includes('neighborhood') || allText.includes('area')) topics.push('neighborhoods');
+  if (allText.includes('price') || allText.includes('cost')) topics.push('pricing');
+  if (allText.includes('market') || allText.includes('trend')) topics.push('market');
+  if (allText.includes('timeline') || allText.includes('when')) topics.push('timeline');
+  
+  return { hasName, leadScore, stage, topics };
+}
+
 // Helper function to extract contact information from chat conversation
 function extractContactInfo(conversationText: string) {
   const text = conversationText.toLowerCase();
@@ -360,7 +401,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Chat routes
+  // Chat routes with enhanced conversation intelligence
   app.post("/api/chat", async (req, res) => {
     try {
       const { sessionId, agentId, message } = req.body;
@@ -372,12 +413,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const agentName = agent ? `${agent.firstName} ${agent.lastName}` : "the agent";
       
       let messages: any[];
+      let conversationContext = {
+        hasName: false,
+        leadScore: 0,
+        stage: 'greeting', // greeting, rapport, qualification, closing
+        topics: [] as string[]
+      };
       
       if (!session) {
         messages = [{ role: "user", content: message, timestamp: new Date() }];
       } else {
         messages = Array.isArray(session.messages) ? session.messages : [];
         messages.push({ role: "user", content: message, timestamp: new Date() });
+        
+        // Analyze conversation context
+        conversationContext = analyzeConversationContext(messages);
       }
       
       // Generate AI response using OpenAI with realistic delay
