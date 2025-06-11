@@ -16,7 +16,7 @@ export default function ChatBot({ agentName, agentId }: ChatBotProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: "Hi there! I'm Mackenzie with Stone Realty Group. How can I help you with Charlotte real estate today?",
+      content: "Hi there! I'm Mackenzie with Stone Realty Group. How can I help you today?",
       timestamp: new Date(),
     },
   ]);
