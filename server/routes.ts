@@ -95,10 +95,10 @@ function extractContactInfo(conversationText: string) {
   
   return {
     hasValidContact,
-    firstName: firstName || null,
-    lastName: lastName || null,
-    phone: phone || null,
-    email: email || null,
+    firstName: firstName || '',
+    lastName: lastName || '',
+    phone: phone || '',
+    email: email || '',
     interest
   };
 }
@@ -497,8 +497,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           await followUpBossService.createContactFormLead({
             firstName: contactInfo.firstName || 'Chat',
             lastName: contactInfo.lastName || 'Lead', 
-            email: contactInfo.email,
-            phone: contactInfo.phone,
+            email: contactInfo.email || '',
+            phone: contactInfo.phone || '',
             interest: contactInfo.interest || 'General Inquiry',
             neighborhoods: '',
             message: `Chat Lead - ${fullConversation.slice(-300)}`,
