@@ -92,7 +92,7 @@ app.use((req, res, next) => {
 
 // Early middleware to intercept admin routes before Vite
 app.use((req, res, next) => {
-  if (req.url === '/admin-portal' || req.url === '/admin-portal/') {
+  if (req.url === '/admin-portal' || req.url === '/admin-portal/' || req.url === '/blog-admin' || req.url === '/blog-admin/') {
     const loginHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
