@@ -59,6 +59,14 @@ process.on('unhandledRejection', (reason, promise) => {
 // Serve attached assets
 app.use('/attached_assets', express.static(path.resolve(process.cwd(), 'attached_assets')));
 
+// Serve static admin page to bypass React issues
+app.use('/public', express.static(path.resolve(process.cwd(), 'server/public')));
+
+// Redirect /admin to pure HTML version
+app.get('/admin', (req, res) => {
+  res.redirect('/public/admin.html');
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
