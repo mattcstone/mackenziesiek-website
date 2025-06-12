@@ -1,7 +1,7 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import NavigationHeader from "@/components/NavigationHeader";
+import MainNavigation from "@/components/MainNavigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import LocalSEO from "@/components/LocalSEO";

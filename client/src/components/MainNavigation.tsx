@@ -3,15 +3,13 @@ import { Link } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface NavigationHeaderProps {
+interface MainNavigationProps {
   agentName?: string;
 }
 
-export default function NavigationHeader({ agentName = "Mackenzie Siek" }: NavigationHeaderProps) {
-  // FORCE CACHE BREAK - NO BLOG LINK EXISTS IN THIS COMPONENT
-  const CACHE_BREAK_ID = "NO_BLOG_v4_" + Date.now();
+export default function MainNavigation({ agentName = "Mackenzie Siek" }: MainNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMenuDropdownOpen, setIsMenuDropdownOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -35,38 +33,37 @@ export default function NavigationHeader({ agentName = "Mackenzie Siek" }: Navig
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // REAL ESTATE SERVICES ONLY - NO BLOG - CACHE BUST v3.0.0
-  console.log("NavigationHeader loaded - NO BLOG - v3.0.0");
-  const navigationItems = [
+  // REAL ESTATE NAVIGATION - NO BLOG FUNCTIONALITY
+  const realEstateMenuItems = [
     {
-      label: "Search Listings",
-      url: "https://mackenzie.mattstoneteam.com/",
-      isExternal: true,
-      testId: "nav-search"
+      title: "Search Listings",
+      link: "https://mackenzie.mattstoneteam.com/",
+      external: true,
+      testId: "nav-search-listings"
     },
     {
-      label: "Sell",
-      url: "/sell",
-      isExternal: false,
-      testId: "nav-sell"
+      title: "Sell",
+      link: "/sell",
+      external: false,
+      testId: "nav-sell-home"
     },
     {
-      label: "About",
-      url: "#about",
-      isExternal: false,
-      testId: "nav-about"
+      title: "About",
+      link: "#about",
+      external: false,
+      testId: "nav-about-agent"
     },
     {
-      label: "Reviews",
-      url: "/reviews",
-      isExternal: false,
-      testId: "nav-reviews"
+      title: "Reviews",
+      link: "/reviews",
+      external: false,
+      testId: "nav-client-reviews"
     },
     {
-      label: "Market Insights",
-      url: "/market-insights",
-      isExternal: false,
-      testId: "nav-insights"
+      title: "Market Insights",
+      link: "/market-insights",
+      external: false,
+      testId: "nav-market-data"
     }
   ];
 
@@ -106,45 +103,45 @@ export default function NavigationHeader({ agentName = "Mackenzie Siek" }: Navig
           <nav className="hidden lg:flex items-center space-x-10">
             <div 
               className="relative"
-              onMouseEnter={() => setIsServicesDropdownOpen(true)}
-              onMouseLeave={() => setIsServicesDropdownOpen(false)}
+              onMouseEnter={() => setIsMenuDropdownOpen(true)}
+              onMouseLeave={() => setIsMenuDropdownOpen(false)}
             >
               <button className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase py-3 px-2 flex items-center">
                 Menu
                 <ChevronDown className="ml-1 h-3 w-3" />
               </button>
               
-              {isServicesDropdownOpen && (
+              {isMenuDropdownOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  {navigationItems.map((item) => (
-                    item.isExternal ? (
+                  {realEstateMenuItems.map((menuItem) => (
+                    menuItem.external ? (
                       <a 
-                        key={item.label}
-                        data-testid={item.testId}
-                        href={item.url} 
+                        key={menuItem.title}
+                        data-testid={menuItem.testId}
+                        href={menuItem.link} 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
                       >
-                        {item.label}
+                        {menuItem.title}
                       </a>
-                    ) : item.url.startsWith('#') ? (
+                    ) : menuItem.link.startsWith('#') ? (
                       <a 
-                        key={item.label}
-                        data-testid={item.testId}
-                        href={item.url} 
+                        key={menuItem.title}
+                        data-testid={menuItem.testId}
+                        href={menuItem.link} 
                         className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
                       >
-                        {item.label}
+                        {menuItem.title}
                       </a>
                     ) : (
                       <Link 
-                        key={item.label}
-                        data-testid={item.testId}
-                        href={item.url} 
+                        key={menuItem.title}
+                        data-testid={menuItem.testId}
+                        href={menuItem.link} 
                         className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
                       >
-                        {item.label}
+                        {menuItem.title}
                       </Link>
                     )
                   ))}
@@ -171,32 +168,32 @@ export default function NavigationHeader({ agentName = "Mackenzie Siek" }: Navig
         {isMobileMenuOpen && (
           <div className="lg:hidden">
             <div className="px-6 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
-              {navigationItems.map((item) => (
-                item.isExternal ? (
+              {realEstateMenuItems.map((menuItem) => (
+                menuItem.external ? (
                   <a 
-                    key={item.label}
-                    href={item.url} 
+                    key={menuItem.title}
+                    href={menuItem.link} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded"
                   >
-                    {item.label}
+                    {menuItem.title}
                   </a>
-                ) : item.url.startsWith('#') ? (
+                ) : menuItem.link.startsWith('#') ? (
                   <a 
-                    key={item.label}
-                    href={item.url} 
+                    key={menuItem.title}
+                    href={menuItem.link} 
                     className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded"
                   >
-                    {item.label}
+                    {menuItem.title}
                   </a>
                 ) : (
                   <Link 
-                    key={item.label}
-                    href={item.url} 
+                    key={menuItem.title}
+                    href={menuItem.link} 
                     className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded"
                   >
-                    {item.label}
+                    {menuItem.title}
                   </Link>
                 )
               ))}

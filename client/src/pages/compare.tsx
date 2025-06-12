@@ -1,4 +1,4 @@
-import NavigationHeader from "@/components/NavigationHeader";
+import MainNavigation from "@/components/MainNavigation";
 import Footer from "@/components/Footer";
 import PropertyComparisonDashboard from "@/components/PropertyComparisonDashboard";
 import BackToTop from "@/components/BackToTop";

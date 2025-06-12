@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award, DollarSign, Star, ArrowRight, Phone } from "lucide-react";
-import NavigationHeader from "@/components/NavigationHeader";
+import MainNavigation from "@/components/MainNavigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -139,7 +139,7 @@ export default function SellPage() {
         schema={sellPageSchema}
         ogImage="/assets/shutterstock_284834021.jpg"
       />
-      <NavigationHeader agentName="Mackenzie Siek" />
+      <MainNavigation agentName="Mackenzie Siek" />
       <Breadcrumbs items={[
         { label: "Sell Your Home" }
       ]} />

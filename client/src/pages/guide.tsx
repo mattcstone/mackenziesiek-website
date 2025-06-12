@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import NavigationHeader from "@/components/NavigationHeader";
+import MainNavigation from "@/components/MainNavigation";
 import Footer from "@/components/Footer";
 import type { Guide, Agent } from "@shared/schema";
 
