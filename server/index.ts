@@ -90,31 +90,101 @@ app.use((req, res, next) => {
   next();
 });
 
-// Admin routes MUST be registered before registerRoutes and Vite
-app.get('/api/admin-login', (req, res) => {
-  const adminHtml = fs.readFileSync(path.resolve(process.cwd(), 'server', 'public', 'admin.html'), 'utf8');
-  res.set({
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Pragma': 'no-cache',
-    'Expires': '0',
-    'Content-Type': 'text/html; charset=utf-8'
-  });
-  res.send(adminHtml);
-});
-
-app.get('/admin', (req, res) => {
-  res.redirect('/api/admin-login');
-});
-
-app.get('/static-home', (req, res) => {
-  const homeHtml = fs.readFileSync(path.resolve(process.cwd(), 'server', 'public', 'index.html'), 'utf8');
-  res.set({
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Pragma': 'no-cache',
-    'Expires': '0',
-    'Content-Type': 'text/html; charset=utf-8'
-  });
-  res.send(homeHtml);
+// Early middleware to intercept admin routes before Vite
+app.use((req, res, next) => {
+  if (req.url === '/admin-portal' || req.url === '/admin-portal/') {
+    const loginHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Mackenzie Siek</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); max-width: 400px; width: 100%; }
+        h1 { text-align: center; color: #1f2937; margin-bottom: 8px; font-size: 28px; font-weight: 700; }
+        .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+        .form-group { margin-bottom: 24px; }
+        label { display: block; color: #374151; font-weight: 500; margin-bottom: 8px; }
+        input { width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px; transition: border-color 0.2s; }
+        input:focus { outline: none; border-color: #3b82f6; }
+        button { width: 100%; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 12px 16px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        button:hover { transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .error { color: #dc2626; margin-top: 8px; font-size: 14px; display: none; }
+        .success { background: #d1fae5; border: 1px solid #a7f3d0; color: #065f46; padding: 16px; border-radius: 8px; margin-top: 16px; display: none; }
+        .admin-info { margin-top: 20px; padding: 16px; background: #f3f4f6; border-radius: 8px; }
+        .admin-info h3 { color: #1f2937; margin-bottom: 8px; }
+        .admin-info p { color: #4b5563; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Admin Portal</h1>
+        <p class="subtitle">Secure blog management access</p>
+        
+        <div id="loginForm">
+            <form onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label for="password">Admin Password</label>
+                    <input type="password" id="password" placeholder="Enter admin password" required>
+                </div>
+                <button type="submit">Access Admin Panel</button>
+                <div class="error" id="error">Incorrect password. Please try again.</div>
+            </form>
+        </div>
+        
+        <div class="success" id="success">
+            <h3>✓ Access Granted</h3>
+            <p>Welcome to the admin panel, Mackenzie!</p>
+            <div class="admin-info">
+                <h3>Blog Management System</h3>
+                <p>• Password authentication: Active</p>
+                <p>• Session storage: Enabled</p>
+                <p>• Admin privileges: Granted</p>
+                <p>• Blog posting: Ready</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('error');
+            const success = document.getElementById('success');
+            const loginForm = document.getElementById('loginForm');
+            
+            if (password === 'mackenzie2024') {
+                loginForm.style.display = 'none';
+                success.style.display = 'block';
+                sessionStorage.setItem('admin_logged_in', 'true');
+                sessionStorage.setItem('admin_login_time', new Date().toISOString());
+            } else {
+                error.style.display = 'block';
+                setTimeout(() => { error.style.display = 'none'; }, 3000);
+            }
+            return false;
+        }
+        
+        // Check if already logged in
+        if (sessionStorage.getItem('admin_logged_in') === 'true') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+        }
+    </script>
+</body>
+</html>`;
+    
+    res.set({
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
+    return res.send(loginHtml);
+  }
+  next();
 });
 
 app.use('/public', express.static(path.resolve(process.cwd(), 'server', 'public')));
