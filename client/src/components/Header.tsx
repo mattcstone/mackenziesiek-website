@@ -33,6 +33,39 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const realEstateServices = [
+    {
+      name: "Search Listings",
+      href: "https://mackenzie.mattstoneteam.com/",
+      external: true,
+      testId: "menu-search"
+    },
+    {
+      name: "Sell",
+      href: "/sell",
+      external: false,
+      testId: "menu-sell"
+    },
+    {
+      name: "About",
+      href: "#about",
+      external: false,
+      testId: "menu-about"
+    },
+    {
+      name: "Reviews",
+      href: "/reviews",
+      external: false,
+      testId: "menu-reviews"
+    },
+    {
+      name: "Market Insights",
+      href: "/market-insights",
+      external: false,
+      testId: "menu-insights"
+    }
+  ];
+
   return (
     <header 
       className={`bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50 transition-transform duration-500 ease-out ${
@@ -78,22 +111,39 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               </button>
               
               {isServicesDropdownOpen && (
-                <div key={Date.now()} className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
-                  <a data-testid="menu-search" href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Search Listings
-                  </a>
-                  <Link data-testid="menu-sell" href="/sell" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Sell
-                  </Link>
-                  <a data-testid="menu-about" href="#about" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    About
-                  </a>
-                  <Link data-testid="menu-reviews" href="/reviews" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Reviews
-                  </Link>
-                  <Link data-testid="menu-insights" href="/market-insights" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Market Insights
-                  </Link>
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg border border-gray-200 rounded-sm z-50">
+                  {realEstateServices.map((service) => (
+                    service.external ? (
+                      <a 
+                        key={service.name}
+                        data-testid={service.testId}
+                        href={service.href} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
+                      >
+                        {service.name}
+                      </a>
+                    ) : service.href.startsWith('#') ? (
+                      <a 
+                        key={service.name}
+                        data-testid={service.testId}
+                        href={service.href} 
+                        className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
+                      >
+                        {service.name}
+                      </a>
+                    ) : (
+                      <Link 
+                        key={service.name}
+                        data-testid={service.testId}
+                        href={service.href} 
+                        className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
+                      >
+                        {service.name}
+                      </Link>
+                    )
+                  ))}
                 </div>
               )}
             </div>
@@ -117,21 +167,35 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
         {isMobileMenuOpen && (
           <div className="lg:hidden">
             <div className="px-6 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
-              <a href="https://mackenzie.mattstoneteam.com/" target="_blank" rel="noopener noreferrer" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Search Listings
-              </a>
-              <Link href="/sell" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Sell
-              </Link>
-              <a href="#about" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                About
-              </a>
-              <Link href="/reviews" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Reviews
-              </Link>
-              <Link href="/market-insights" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Market Insights
-              </Link>
+              {realEstateServices.map((service) => (
+                service.external ? (
+                  <a 
+                    key={service.name}
+                    href={service.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded"
+                  >
+                    {service.name}
+                  </a>
+                ) : service.href.startsWith('#') ? (
+                  <a 
+                    key={service.name}
+                    href={service.href} 
+                    className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded"
+                  >
+                    {service.name}
+                  </a>
+                ) : (
+                  <Link 
+                    key={service.name}
+                    href={service.href} 
+                    className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded"
+                  >
+                    {service.name}
+                  </Link>
+                )
+              ))}
               <a href="#contact" className="block px-4 py-4 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center justify-center rounded">
                 Contact
               </a>
