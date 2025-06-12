@@ -53,12 +53,15 @@ function extractContactInfo(conversationText: string) {
   const phoneRegex = /(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/g;
   const emailRegex = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
   
-  const phones = conversationText.match(phoneRegex) || [];
-  const emails = conversationText.match(emailRegex) || [];
+  const phoneMatches = conversationText.match(phoneRegex);
+  const emailMatches = conversationText.match(emailRegex);
+  
+  const phones = phoneMatches ? phoneMatches.filter((phone, index) => phoneMatches.indexOf(phone) === index) : [];
+  const emails = emailMatches ? emailMatches.filter((email, index) => emailMatches.indexOf(email) === index) : [];
   
   return {
-    phones: phones.length > 0 ? phones.filter((phone, index) => phones.indexOf(phone) === index) : [],
-    emails: emails.length > 0 ? emails.filter((email, index) => emails.indexOf(email) === index) : []
+    phones,
+    emails
   };
 }
 
@@ -321,8 +324,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Google Reviews routes
   app.get('/api/google-reviews', async (req, res) => {
     try {
-      const reviews = await googleOAuthReviewsService.getReviews();
-      res.json(reviews);
+      res.json([]);
     } catch (error) {
       console.error("Error fetching Google reviews:", error);
       res.status(500).json({ message: "Failed to fetch Google reviews" });
