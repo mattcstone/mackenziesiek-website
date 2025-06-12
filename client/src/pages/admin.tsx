@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Plus, Edit, Trash2, Eye, Image, Save, ArrowLeft, Calendar, FileText, LogOut } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,10 +27,18 @@ interface BlogPostForm {
   publishedAt?: Date;
 }
 
+interface User {
+  id: number;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
 function AdminContent() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { user, logout } = useAuth();
+  const [, setLocation] = useLocation();
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [showMediaDialog, setShowMediaDialog] = useState(false);
@@ -47,6 +54,49 @@ function AdminContent() {
     tags: [],
     agentId: 1,
   });
+
+  // Check authentication
+  const { data: user, isLoading: authLoading, error: authError } = useQuery<User>({
+    queryKey: ["/api/auth/me"],
+    retry: false,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  const isAuthenticated = !!user && !authError;
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      setLocation("/login");
+    }
+  }, [authLoading, isAuthenticated, setLocation]);
+
+  // Show loading screen while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  const logout = async () => {
+    try {
+      await apiRequest("POST", "/api/auth/logout", {});
+      setLocation("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   // Fetch blog posts
   const { data: posts, isLoading: postsLoading } = useQuery<BlogPost[]>({
@@ -531,9 +581,5 @@ function AdminContent() {
 }
 
 export default function AdminPage() {
-  return (
-    <ProtectedRoute>
-      <AdminContent />
-    </ProtectedRoute>
-  );
+  return <AdminContent />;
 }
