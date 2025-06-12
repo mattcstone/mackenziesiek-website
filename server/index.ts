@@ -4,6 +4,7 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { validateEnvironment } from "./env-validation";
 import path from "path";
+import fs from "fs";
 
 const app = express();
 
@@ -91,7 +92,6 @@ app.use((req, res, next) => {
 
 // Admin routes MUST be registered before registerRoutes and Vite
 app.get('/api/admin-login', (req, res) => {
-  const fs = require('fs');
   const adminHtml = fs.readFileSync(path.resolve(process.cwd(), 'server', 'public', 'admin.html'), 'utf8');
   res.set({
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -107,7 +107,6 @@ app.get('/admin', (req, res) => {
 });
 
 app.get('/static-home', (req, res) => {
-  const fs = require('fs');
   const homeHtml = fs.readFileSync(path.resolve(process.cwd(), 'server', 'public', 'index.html'), 'utf8');
   res.set({
     'Cache-Control': 'no-cache, no-store, must-revalidate',
