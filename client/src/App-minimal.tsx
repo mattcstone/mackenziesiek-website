@@ -3,6 +3,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import StandaloneAdminPage from "@/pages/standalone-admin";
 
+// Create a minimal home page that doesn't use problematic hooks
 function MinimalHomePage() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f9fafb", padding: "20px" }}>
