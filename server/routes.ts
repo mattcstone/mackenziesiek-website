@@ -184,6 +184,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get('/api/agents/:agentId/testimonials', async (req, res) => {
+    try {
+      const testimonials = await storage.getTestimonialsByAgent(parseInt(req.params.agentId));
+      res.json(testimonials);
+    } catch (error) {
+      console.error("Error fetching agent testimonials:", error);
+      res.status(500).json({ message: "Failed to fetch testimonials" });
+    }
+  });
+
+  app.get('/api/agents/:agentId/neighborhoods/featured', async (req, res) => {
+    try {
+      const neighborhoods = await storage.getFeaturedNeighborhoods(parseInt(req.params.agentId));
+      res.json(neighborhoods);
+    } catch (error) {
+      console.error("Error fetching featured neighborhoods:", error);
+      res.status(500).json({ message: "Failed to fetch neighborhoods" });
+    }
+  });
+
   // Lead capture
   app.post('/api/leads', async (req, res) => {
     try {
