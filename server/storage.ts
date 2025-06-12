@@ -1,5 +1,5 @@
 import { 
-  agents, neighborhoods, guides, testimonials, leads, chatSessions, properties, propertyComparisons, blogPosts, mediaUploads,
+  agents, neighborhoods, guides, testimonials, leads, chatSessions, properties, propertyComparisons,
   type Agent, type InsertAgent,
   type Neighborhood, type InsertNeighborhood,
   type Guide, type InsertGuide,
@@ -8,8 +8,7 @@ import {
   type ChatSession, type InsertChatSession,
   type Property, type InsertProperty,
   type PropertyComparison, type InsertPropertyComparison,
-  type BlogPost, type InsertBlogPost,
-  type MediaUpload, type InsertMediaUpload
+
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and } from "drizzle-orm";

@@ -116,32 +116,7 @@ export const propertyComparisons = pgTable("property_comparisons", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const blogPosts = pgTable("blog_posts", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  slug: text("slug").notNull().unique(),
-  content: text("content").notNull(),
-  excerpt: text("excerpt").notNull(),
-  featuredImage: text("featured_image"),
-  status: text("status").notNull().default("draft"), // draft, published, archived
-  publishedAt: timestamp("published_at"),
-  agentId: integer("agent_id").references(() => agents.id),
-  tags: text("tags").array().default([]),
-  viewCount: integer("view_count").default(0),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
 
-export const mediaUploads = pgTable("media_uploads", {
-  id: serial("id").primaryKey(),
-  filename: text("filename").notNull(),
-  originalName: text("original_name").notNull(),
-  mimeType: text("mime_type").notNull(),
-  size: integer("size").notNull(),
-  url: text("url").notNull(),
-  agentId: integer("agent_id").references(() => agents.id),
-  uploadedAt: timestamp("uploaded_at").defaultNow(),
-});
 
 // Relations
 export const agentsRelations = relations(agents, ({ many }) => ({
@@ -152,8 +127,7 @@ export const agentsRelations = relations(agents, ({ many }) => ({
   chatSessions: many(chatSessions),
   properties: many(properties),
   propertyComparisons: many(propertyComparisons),
-  blogPosts: many(blogPosts),
-  mediaUploads: many(mediaUploads),
+
 }));
 
 export const neighborhoodsRelations = relations(neighborhoods, ({ one, many }) => ({
@@ -215,40 +189,9 @@ export const propertyComparisonsRelations = relations(propertyComparisons, ({ on
   }),
 }));
 
-export const blogPostsRelations = relations(blogPosts, ({ one }) => ({
-  agent: one(agents, {
-    fields: [blogPosts.agentId],
-    references: [agents.id],
-  }),
-}));
 
-export const mediaUploadsRelations = relations(mediaUploads, ({ one }) => ({
-  agent: one(agents, {
-    fields: [mediaUploads.agentId],
-    references: [agents.id],
-  }),
-}));
 
-// Admin users table for blog authentication
-export const adminUsers = pgTable("admin_users", {
-  id: serial("id").primaryKey(),
-  username: varchar("username", { length: 50 }).notNull().unique(),
-  password: text("password").notNull(), // Will store hashed password
-  email: text("email").notNull().unique(),
-  firstName: text("first_name").notNull(),
-  lastName: text("last_name").notNull(),
-  isActive: boolean("is_active").default(true),
-  lastLogin: timestamp("last_login"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
 
-// Sessions table for login persistence
-export const sessions = pgTable("sessions", {
-  sid: varchar("sid").primaryKey(),
-  sess: jsonb("sess").notNull(),
-  expire: timestamp("expire").notNull(),
-});
 
 // Insert schemas
 export const insertAgentSchema = createInsertSchema(agents).omit({
@@ -294,23 +237,7 @@ export const insertPropertyComparisonSchema = createInsertSchema(propertyCompari
   createdAt: true,
 });
 
-export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-});
 
-export const insertMediaUploadSchema = createInsertSchema(mediaUploads).omit({
-  id: true,
-  uploadedAt: true,
-});
-
-export const insertAdminUserSchema = createInsertSchema(adminUsers).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-  lastLogin: true,
-});
 
 // Types
 export type Agent = typeof agents.$inferSelect;
@@ -329,9 +256,4 @@ export type Property = typeof properties.$inferSelect;
 export type InsertProperty = z.infer<typeof insertPropertySchema>;
 export type PropertyComparison = typeof propertyComparisons.$inferSelect;
 export type InsertPropertyComparison = z.infer<typeof insertPropertyComparisonSchema>;
-export type BlogPost = typeof blogPosts.$inferSelect;
-export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
-export type MediaUpload = typeof mediaUploads.$inferSelect;
-export type InsertMediaUpload = z.infer<typeof insertMediaUploadSchema>;
-export type AdminUser = typeof adminUsers.$inferSelect;
-export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;
+
