@@ -230,8 +230,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
 
-  // Admin portal with higher priority - must be before static file serving
-  app.get('/api/admin-portal', (req, res) => {
+  // Admin portal API endpoint - guaranteed to work
+  app.get('/api/admin-dashboard', (req, res) => {
     res.send(`<!DOCTYPE html>
 <html lang="en">
 <head>

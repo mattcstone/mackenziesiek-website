@@ -102,7 +102,7 @@ function MinimalHomePage() {
           </button>
           <div style={{ marginTop: "16px" }}>
             <a 
-              href="/admin-portal"
+              href="/api/admin-dashboard"
               style={{
                 display: "inline-block",
                 backgroundColor: "#7c3aed",
@@ -115,7 +115,7 @@ function MinimalHomePage() {
                 border: "2px solid #7c3aed"
               }}
             >
-              Direct Admin Portal →
+              Blog Admin Dashboard →
             </a>
           </div>
         </div>

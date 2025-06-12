@@ -47,7 +47,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Admin portal route - must be before Vite middleware
-app.get('/admin-portal', (req, res) => {
+app.get('/blog-management-system', (req, res) => {
   res.send(`<!DOCTYPE html>
 <html lang="en">
 <head>
