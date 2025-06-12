@@ -26,80 +26,79 @@ function MinimalHomePage() {
           <p>Specializing in in-town Charlotte neighborhoods</p>
         </div>
         <div style={{ textAlign: "center" }}>
-          <a 
-            href="/admin-portal"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#2563eb",
-              color: "white",
-              padding: "12px 24px",
-              textDecoration: "none",
-              borderRadius: "6px",
-              fontWeight: "500",
-              marginRight: "10px"
-            }}
-          >
-            Blog Admin Portal
-          </a>
           <button 
             onClick={() => {
-              const password = prompt('Enter admin password:');
+              const password = prompt('🔐 Blog Admin Access\n\nEnter admin password:');
               if (password === 'mackenzie2024') {
-                // Create admin interface
-                document.body.innerHTML = `
-                  <div style="min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-                    <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); max-width: 450px; width: 100%; text-align: center;">
-                      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold;">MS</div>
-                      <h1 style="color: #1f2937; margin-bottom: 8px; font-size: 28px; font-weight: 700;">Welcome, Mackenzie!</h1>
-                      <p style="color: #6b7280; margin-bottom: 30px;">Blog administration portal is ready</p>
+                // Create fullscreen admin interface
+                const adminPortal = document.createElement('div');
+                adminPortal.id = 'adminPortal';
+                adminPortal.innerHTML = `
+                  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; z-index: 10000;">
+                    <div style="background: white; padding: 50px; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); max-width: 500px; width: 100%; text-align: center; position: relative;">
+                      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold;">MS</div>
                       
-                      <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 24px; border-radius: 12px; margin-bottom: 24px;">
-                        <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">Admin Features Available</h3>
-                        <p style="opacity: 0.9;">Full blog management system ready</p>
+                      <h1 style="color: #1f2937; margin-bottom: 12px; font-size: 32px; font-weight: 700;">Welcome Back, Mackenzie!</h1>
+                      <p style="color: #6b7280; margin-bottom: 36px; font-size: 16px;">Blog administration portal is now active</p>
+                      
+                      <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 28px; border-radius: 16px; margin-bottom: 32px;">
+                        <h3 style="font-size: 22px; font-weight: bold; margin-bottom: 8px;">✅ Admin Access Granted</h3>
+                        <p style="opacity: 0.95; font-size: 15px;">Full blog management capabilities enabled</p>
                       </div>
 
-                      <div style="text-align: left; margin-bottom: 24px;">
-                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 12px;">
-                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">Content Management</div>
-                          <div style="color: #6b7280; font-size: 14px;">Create, edit, and publish blog posts</div>
+                      <div style="text-align: left; margin-bottom: 32px;">
+                        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid #10b981; margin-bottom: 16px;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 6px; font-size: 16px;">📝 Content Management</div>
+                          <div style="color: #6b7280; font-size: 14px;">Create, edit, and publish blog posts with rich editor</div>
                         </div>
-                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 12px;">
-                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">Media Library</div>
-                          <div style="color: #6b7280; font-size: 14px;">Upload and manage images and files</div>
+                        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid #10b981; margin-bottom: 16px;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 6px; font-size: 16px;">🖼️ Media Library</div>
+                          <div style="color: #6b7280; font-size: 14px;">Upload and organize images, documents, and media files</div>
                         </div>
-                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 12px;">
-                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">SEO Tools</div>
-                          <div style="color: #6b7280; font-size: 14px;">Optimize content for search engines</div>
+                        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid #10b981; margin-bottom: 16px;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 6px; font-size: 16px;">🔍 SEO Optimization</div>
+                          <div style="color: #6b7280; font-size: 14px;">Optimize content for search engines and social media</div>
                         </div>
-                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
-                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">Analytics Dashboard</div>
-                          <div style="color: #6b7280; font-size: 14px;">Monitor blog performance metrics</div>
+                        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid #10b981;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 6px; font-size: 16px;">📊 Analytics Dashboard</div>
+                          <div style="color: #6b7280; font-size: 14px;">Monitor blog performance and visitor engagement</div>
                         </div>
                       </div>
 
-                      <div style="display: flex; gap: 12px;">
-                        <button onclick="window.location.reload()" style="flex: 1; background: #6b7280; color: white; padding: 12px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;">Logout</button>
-                        <button onclick="window.location.href='/'" style="flex: 1; background: #667eea; color: white; padding: 12px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;">View Website</button>
+                      <div style="display: flex; gap: 16px;">
+                        <button onclick="document.getElementById('adminPortal').remove(); sessionStorage.removeItem('admin_active');" style="flex: 1; background: #6b7280; color: white; padding: 14px 20px; border: none; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.2s;">Logout & Return</button>
+                        <button onclick="window.open('/', '_blank');" style="flex: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 20px; border: none; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.2s;">View Website</button>
+                      </div>
+                      
+                      <div style="position: absolute; top: 20px; right: 20px;">
+                        <button onclick="document.getElementById('adminPortal').remove();" style="background: rgba(255,255,255,0.2); color: #666; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 18px;">×</button>
                       </div>
                     </div>
                   </div>
                 `;
-                sessionStorage.setItem('admin_logged_in', 'true');
+                document.body.appendChild(adminPortal);
+                sessionStorage.setItem('admin_active', 'true');
+                sessionStorage.setItem('admin_timestamp', new Date().toISOString());
               } else if (password) {
-                alert('Incorrect password. Try again.');
+                alert('❌ Incorrect password. Please try again.');
               }
             }}
             style={{
               backgroundColor: "#059669",
               color: "white",
-              padding: "12px 24px",
+              padding: "16px 32px",
               border: "none",
-              borderRadius: "6px",
-              fontWeight: "500",
-              cursor: "pointer"
+              borderRadius: "8px",
+              fontWeight: "600",
+              cursor: "pointer",
+              fontSize: "16px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              transition: "all 0.2s"
             }}
+            onMouseOver={(e) => e.target.style.backgroundColor = "#047857"}
+            onMouseOut={(e) => e.target.style.backgroundColor = "#059669"}
           >
-            Blog Admin Access
+            🔐 Blog Admin Access
           </button>
         </div>
       </div>
