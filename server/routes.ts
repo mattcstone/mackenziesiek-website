@@ -230,29 +230,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
 
-  // Simple admin access endpoint
-  app.get('/api/admin', (req, res) => {
-    res.json({
-      message: "Admin access available",
-      loginUrl: "/admin-portal",
-      password: "mackenzie2024",
-      status: "active"
-    });
+  // Static admin portal route that bypasses all other routing
+  app.get('/admin-portal', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
   });
 
-  // Test endpoint to verify deployment
-  app.get('/api/test-admin', (req, res) => {
-    res.send(`
-      <html>
-        <head><title>Admin Test</title></head>
-        <body style="font-family: Arial; padding: 40px; text-align: center;">
-          <h1>Admin System Test</h1>
-          <p>Server is responding correctly</p>
-          <p>Password: mackenzie2024</p>
-          <a href="/admin-portal" style="background: #007cba; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px;">Go to Admin Portal</a>
-        </body>
-      </html>
-    `);
+  // Backup admin routes
+  app.get('/blog-admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
+  });
+
+  app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
   });
 
   // Authentication routes
