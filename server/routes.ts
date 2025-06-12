@@ -68,6 +68,9 @@ function extractContactInfo(conversationText: string) {
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve static files from public directory
   app.use(express.static(path.join(__dirname, 'public')));
+  
+  // Serve attached assets with proper MIME types
+  app.use('/attached_assets', express.static(path.join(__dirname, '..', 'attached_assets')));
 
   // Health check endpoint
   app.get('/api/health', (req, res) => {

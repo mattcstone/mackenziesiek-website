@@ -18,7 +18,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
           playsInline
           className="w-full h-full object-cover opacity-80 sm:opacity-70"
         >
-          <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/mp4" />
+          <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/quicktime" />
           {/* Fallback background image if video fails to load */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
