@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Home, TrendingUp, Users, Camera, Globe, Timer, Award, DollarSign, Star, ArrowRight, Phone } from "lucide-react";
-import Header from "@/components/Header";
+import NavigationHeader from "@/components/NavigationHeader";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import Breadcrumbs from "@/components/Breadcrumbs";

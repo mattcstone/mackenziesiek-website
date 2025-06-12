@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
 import { useEffect } from "react";
-import Header from "@/components/Header";
+import NavigationHeader from "@/components/NavigationHeader";
 import HeroSection from "@/components/HeroSection";
 import WhyStoneRealtySection from "@/components/WhyStoneRealtySection";
 import PersonalStorySection from "@/components/PersonalStorySection";
@@ -166,7 +166,7 @@ export default function AgentPage() {
           "University City Charlotte"
         ]}
       />
-      <Header agentName={`${displayAgent.firstName} ${displayAgent.lastName}`} />
+      <NavigationHeader agentName={`${displayAgent.firstName} ${displayAgent.lastName}`} />
       <main id="main-content" role="main" tabIndex={-1}>
         <HeroSection agent={displayAgent} />
         <PersonalStorySection agent={displayAgent} />
