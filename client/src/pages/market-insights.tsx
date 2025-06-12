@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import MarketInsightsInfographic from '@/components/MarketInsightsInfographic-clean';
-import Header from '@/components/Header';
+import NavigationHeader from '@/components/NavigationHeader';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 

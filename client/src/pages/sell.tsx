@@ -139,7 +139,7 @@ export default function SellPage() {
         schema={sellPageSchema}
         ogImage="/assets/shutterstock_284834021.jpg"
       />
-      <Header agentName="Mackenzie Siek" />
+      <NavigationHeader agentName="Mackenzie Siek" />
       <Breadcrumbs items={[
         { label: "Sell Your Home" }
       ]} />
