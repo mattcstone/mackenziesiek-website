@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import Header from "@/components/Header";
+import NavigationHeader from "@/components/NavigationHeader";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -222,7 +222,7 @@ export default function NeighborhoodsPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header agentName="Mackenzie Siek" />
+        <NavigationHeader agentName="Mackenzie Siek" />
         <div className="flex justify-center items-center h-96">
           <div className="text-xl">Loading neighborhoods...</div>
         </div>
@@ -238,7 +238,7 @@ export default function NeighborhoodsPage() {
         keywords="Charlotte neighborhoods, Charlotte real estate areas, Charlotte market data, neighborhood guide Charlotte, Charlotte home prices, Charlotte area guide"
       />
       
-      <Header agentName="Mackenzie Siek" />
+      <NavigationHeader agentName="Mackenzie Siek" />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-black text-white py-16">

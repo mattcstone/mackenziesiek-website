@@ -1,7 +1,7 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import Header from "@/components/Header";
+import NavigationHeader from "@/components/NavigationHeader";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import LocalSEO from "@/components/LocalSEO";
@@ -109,7 +109,7 @@ export default function NeighborhoodPage() {
         website="https://mackenzie.mattstoneteam.com"
         serviceAreas={[`${displayNeighborhood.name} Charlotte`]}
       />
-      <Header agentName="Mackenzie Siek" />
+      <NavigationHeader agentName="Mackenzie Siek" />
       <Breadcrumbs items={[
         { label: "Charlotte Neighborhoods", href: "#neighborhoods" },
         { label: `${displayNeighborhood.name}` }

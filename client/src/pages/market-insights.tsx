@@ -41,7 +41,7 @@ export default function MarketInsightsPage() {
         schema={marketInsightsSchema}
         ogImage="/assets/shutterstock_284834021.jpg"
       />
-      <Header agentName="Mackenzie Siek" />
+      <NavigationHeader agentName="Mackenzie Siek" />
       
       <div className="bg-gray-50 py-16">
         <div className="container mx-auto px-4">

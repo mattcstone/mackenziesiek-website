@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Star, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
+import NavigationHeader from "@/components/NavigationHeader";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import type { Testimonial } from "@shared/schema";
@@ -81,7 +81,7 @@ export default function ReviewsPage() {
         schema={reviewsPageSchema}
         ogImage="/assets/Mackenzie.jpg"
       />
-      <Header agentName="Mackenzie Siek" />
+      <NavigationHeader agentName="Mackenzie Siek" />
       
       <main className="pt-4">
         {/* Hero Section */}
