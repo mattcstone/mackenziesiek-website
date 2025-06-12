@@ -1,11 +1,14 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema, insertBlogPostSchema, insertMediaUploadSchema } from "@shared/schema";
+import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema, insertBlogPostSchema, insertMediaUploadSchema, adminUsers } from "@shared/schema";
 import { z } from "zod";
 import { googleOAuthReviewsService } from "./google-oauth-reviews";
 import { followUpBossService } from "./followup-boss";
 import { marketDataService } from "./market-data";
+import { setupSession, createDefaultAdmin, requireAdminAuth, verifyPassword } from "./auth";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 // Helper function to analyze conversation context for better chat intelligence
 function analyzeConversationContext(messages: any[]) {
