@@ -143,7 +143,6 @@ function Router() {
       <Route path="/" component={MinimalHomePage} />
       <Route path="/admin-portal" component={AdminPortal} />
       <Route path="/blog-admin" component={AdminPortal} />
-      <Route path="/admin" component={AdminPortal} />
       <Route component={NotFound} />
     </Switch>
   );
