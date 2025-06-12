@@ -94,9 +94,6 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
                   <Link data-testid="menu-insights" href="/market-insights" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
                     Market Insights
                   </Link>
-                  <Link data-testid="menu-blog" href="/blog" className="block px-4 py-3 text-base text-gray-700 hover:bg-gray-50 hover:text-black transition-colors">
-                    Blog
-                  </Link>
                 </div>
               )}
             </div>
@@ -134,9 +131,6 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
               </Link>
               <Link href="/market-insights" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
                 Market Insights
-              </Link>
-              <Link href="/blog" className="block px-4 py-4 text-gray-600 hover:text-black transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center rounded">
-                Blog
               </Link>
               <a href="#contact" className="block px-4 py-4 bg-black text-white text-center mx-3 hover:bg-gray-800 transition-colors text-base font-medium tracking-wide uppercase min-h-[44px] flex items-center justify-center rounded">
                 Contact
