@@ -115,13 +115,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create default admin user
   await createDefaultAdmin();
 
-  // Serve static admin page to bypass React issues
-  app.use('/public', express.static(path.join(process.cwd(), 'server', 'public')));
 
-  // Redirect /admin to pure HTML version (must be before other routes)
-  app.get('/admin', (req, res) => {
-    res.redirect('/public/admin.html');
-  });
 
   // Authentication routes
   app.post("/api/auth/login", async (req, res) => {

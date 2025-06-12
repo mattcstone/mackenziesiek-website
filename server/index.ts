@@ -89,6 +89,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// Add admin route before Vite to ensure it takes precedence
+app.get('/admin', (req, res) => {
+  res.sendFile(path.resolve(process.cwd(), 'server', 'public', 'admin.html'));
+});
+
+app.use('/public', express.static(path.resolve(process.cwd(), 'server', 'public')));
+
 (async () => {
   const server = await registerRoutes(app);
 

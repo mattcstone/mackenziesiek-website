@@ -26,7 +26,11 @@ function MinimalHomePage() {
         </div>
         <div style={{ textAlign: "center" }}>
           <a 
-            href="/admin" 
+            href="/admin"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = '/admin';
+            }}
             style={{
               display: "inline-block",
               backgroundColor: "#2563eb",
