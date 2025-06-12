@@ -9,28 +9,36 @@ interface HeroSectionProps {
 export default function HeroSection({ agent }: HeroSectionProps) {
   return (
     <section className="relative bg-gradient-to-br from-black to-gray-800 text-white overflow-hidden">
-      {/* Background Video */}
+      {/* Background Video with Fallback */}
       <div className="absolute inset-0">
+        {/* Fallback background image - always visible */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/attached_assets/shutterstock_284834021.jpg')"
+          }}
+        ></div>
+        
+        {/* Video overlay - only shows if video loads successfully */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           className="w-full h-full object-cover opacity-80 sm:opacity-70"
-          onError={() => console.log('Video failed to load')}
+          style={{ display: 'none' }}
+          onLoadedData={(e) => {
+            console.log('Video loaded successfully');
+            e.currentTarget.style.display = 'block';
+          }}
+          onError={() => {
+            console.log('Video failed to load, using fallback image');
+          }}
         >
           <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/mp4" />
           <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/quicktime" />
-          Your browser does not support the video tag.
         </video>
-        {/* Fallback background image if video fails to load */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
-          style={{
-            backgroundImage: "url('/attached_assets/shutterstock_284834021.jpg')"
-          }}
-        ></div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-gray-800/40 sm:from-black/50 sm:to-gray-800/50"></div>
       
@@ -91,7 +99,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
           <div className="relative">
             <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="/attached_assets/Untitled design.png" 
+                src="/attached_assets/Mackenzie.jpg" 
                 alt="Mackenzie Siek - Charlotte Real Estate Agent with luxury home"
                 className="w-full h-80 object-cover rounded-lg shadow-2xl"
                 loading="eager"
