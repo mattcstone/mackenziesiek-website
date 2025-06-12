@@ -89,19 +89,33 @@ app.use((req, res, next) => {
   next();
 });
 
-// Admin routes with API prefix to bypass Vite completely
+// Admin routes MUST be registered before registerRoutes and Vite
 app.get('/api/admin-login', (req, res) => {
+  const fs = require('fs');
+  const adminHtml = fs.readFileSync(path.resolve(process.cwd(), 'server', 'public', 'admin.html'), 'utf8');
   res.set({
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Pragma': 'no-cache',
     'Expires': '0',
-    'Content-Type': 'text/html'
+    'Content-Type': 'text/html; charset=utf-8'
   });
-  res.sendFile(path.resolve(process.cwd(), 'server', 'public', 'admin.html'));
+  res.send(adminHtml);
 });
 
 app.get('/admin', (req, res) => {
   res.redirect('/api/admin-login');
+});
+
+app.get('/static-home', (req, res) => {
+  const fs = require('fs');
+  const homeHtml = fs.readFileSync(path.resolve(process.cwd(), 'server', 'public', 'index.html'), 'utf8');
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+    'Content-Type': 'text/html; charset=utf-8'
+  });
+  res.send(homeHtml);
 });
 
 app.use('/public', express.static(path.resolve(process.cwd(), 'server', 'public')));
