@@ -19,8 +19,7 @@ import MarketTrendsPage from "@/pages/market-trends";
 import MarketInsightsPage from "@/pages/market-insights";
 import BlogPage from "@/pages/blog";
 import BlogPostPage from "@/pages/blog-post";
-import AdminPage from "@/pages/admin";
-import LoginPage from "@/pages/login";
+import SimpleAdminPage from "@/pages/simple-admin";
 
 function Router() {
   return (
@@ -33,8 +32,7 @@ function Router() {
       <Route path="/sell" component={SellPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/admin" component={AdminPage} />
+      <Route path="/admin" component={SimpleAdminPage} />
       <Route path="/data" component={DataPage} />
       <Route path="/market-analytics" component={MarketAnalyticsPage} />
       <Route path="/market-trends" component={MarketTrendsPage} />
