@@ -27,7 +27,7 @@ function MinimalHomePage() {
         </div>
         <div style={{ textAlign: "center" }}>
           <a 
-            href="/api/admin-login"
+            href="/admin-portal"
             style={{
               display: "inline-block",
               backgroundColor: "#2563eb",
@@ -35,11 +35,34 @@ function MinimalHomePage() {
               padding: "12px 24px",
               textDecoration: "none",
               borderRadius: "6px",
-              fontWeight: "500"
+              fontWeight: "500",
+              marginRight: "10px"
             }}
           >
-            Admin Login
+            Blog Admin Portal
           </a>
+          <button 
+            onClick={() => {
+              const password = prompt('Enter admin password:');
+              if (password === 'mackenzie2024') {
+                sessionStorage.setItem('admin_logged_in', 'true');
+                alert('Admin access granted! You can now manage the blog.');
+              } else if (password) {
+                alert('Incorrect password. Try again.');
+              }
+            }}
+            style={{
+              backgroundColor: "#059669",
+              color: "white",
+              padding: "12px 24px",
+              border: "none",
+              borderRadius: "6px",
+              fontWeight: "500",
+              cursor: "pointer"
+            }}
+          >
+            Quick Admin Access
+          </button>
         </div>
       </div>
     </div>
