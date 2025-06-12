@@ -222,7 +222,7 @@ export default function NeighborhoodsPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <NavigationHeader agentName="Mackenzie Siek" />
+        <MainNavigation agentName="Mackenzie Siek" />
         <div className="flex justify-center items-center h-96">
           <div className="text-xl">Loading neighborhoods...</div>
         </div>
@@ -238,7 +238,7 @@ export default function NeighborhoodsPage() {
         keywords="Charlotte neighborhoods, Charlotte real estate areas, Charlotte market data, neighborhood guide Charlotte, Charlotte home prices, Charlotte area guide"
       />
       
-      <NavigationHeader agentName="Mackenzie Siek" />
+      <MainNavigation agentName="Mackenzie Siek" />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-black text-white py-16">

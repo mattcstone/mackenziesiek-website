@@ -109,7 +109,7 @@ export default function NeighborhoodPage() {
         website="https://mackenzie.mattstoneteam.com"
         serviceAreas={[`${displayNeighborhood.name} Charlotte`]}
       />
-      <NavigationHeader agentName="Mackenzie Siek" />
+      <MainNavigation agentName="Mackenzie Siek" />
       <Breadcrumbs items={[
         { label: "Charlotte Neighborhoods", href: "#neighborhoods" },
         { label: `${displayNeighborhood.name}` }

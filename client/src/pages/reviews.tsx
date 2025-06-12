@@ -81,7 +81,7 @@ export default function ReviewsPage() {
         schema={reviewsPageSchema}
         ogImage="/assets/Mackenzie.jpg"
       />
-      <NavigationHeader agentName="Mackenzie Siek" />
+      <MainNavigation agentName="Mackenzie Siek" />
       
       <main className="pt-4">
         {/* Hero Section */}
