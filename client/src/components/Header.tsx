@@ -33,6 +33,7 @@ export default function Header({ agentName = "Mackenzie Siek" }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  // BLOG LINK REMOVED - NO BLOG FUNCTIONALITY v2.0.1
   const realEstateServices = [
     {
       name: "Search Listings",
