@@ -1,9 +1,6 @@
 import { Switch, Route } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
-import StandaloneAdminPage from "@/pages/standalone-admin";
-
-// Force cache clear
 
 function MinimalHomePage() {
   return (
@@ -83,7 +80,6 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={MinimalHomePage} />
-      <Route path="/admin" component={StandaloneAdminPage} />
       <Route component={NotFound} />
     </Switch>
   );
