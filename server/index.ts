@@ -90,127 +90,101 @@ app.use((req, res, next) => {
   next();
 });
 
-// Simple blog admin endpoint that works immediately
-app.get('/blog-access', (req, res) => {
-  const adminHtml = `<!DOCTYPE html>
-<html lang="en">
+// Admin portal route that works immediately
+app.get('/admin123', (req, res) => {
+  res.send(`<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Admin - Mackenzie Siek</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            font-family: Arial, sans-serif; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
             min-height: 100vh; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 20px; 
+            margin: 0;
+            padding: 20px;
         }
-        .card { 
+        .admin-card { 
             background: white; 
             padding: 40px; 
             border-radius: 12px; 
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
-            max-width: 500px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            max-width: 400px; 
             width: 100%; 
+            text-align: center;
         }
         h1 { 
-            text-align: center; 
-            color: #1f2937; 
-            margin-bottom: 8px; 
-            font-size: 32px; 
-            font-weight: 700; 
+            color: #333; 
+            margin-bottom: 10px; 
+            font-size: 28px; 
         }
         .subtitle { 
-            text-align: center; 
-            color: #6b7280; 
-            margin-bottom: 32px; 
-            font-size: 16px; 
-        }
-        .form-group { margin-bottom: 24px; }
-        label { 
-            display: block; 
-            color: #374151; 
-            font-weight: 600; 
-            margin-bottom: 8px; 
-            font-size: 14px; 
+            color: #666; 
+            margin-bottom: 30px; 
         }
         input { 
             width: 100%; 
-            padding: 14px 16px; 
-            border: 2px solid #e5e7eb; 
-            border-radius: 8px; 
+            padding: 12px; 
+            border: 2px solid #ddd; 
+            border-radius: 6px; 
             font-size: 16px; 
-            transition: all 0.2s; 
+            margin-bottom: 20px;
+            box-sizing: border-box;
         }
         input:focus { 
             outline: none; 
-            border-color: #3b82f6; 
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); 
+            border-color: #667eea; 
         }
         button { 
             width: 100%; 
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
             color: white; 
-            padding: 14px 16px; 
+            padding: 12px; 
             border: none; 
-            border-radius: 8px; 
+            border-radius: 6px; 
             font-size: 16px; 
-            font-weight: 600; 
             cursor: pointer; 
-            transition: all 0.2s; 
+            margin-bottom: 15px;
         }
         button:hover { 
-            transform: translateY(-1px); 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+            opacity: 0.9;
         }
         .error { 
             color: #dc2626; 
-            margin-top: 8px; 
-            font-size: 14px; 
-            display: none; 
-            padding: 8px; 
-            background: #fef2f2; 
+            background: #fee; 
+            padding: 10px; 
             border-radius: 4px; 
+            display: none; 
         }
         .success { 
-            background: #ecfdf5; 
-            border: 2px solid #10b981; 
-            color: #065f46; 
+            background: #efe; 
+            border: 2px solid #0a0; 
+            color: #060; 
             padding: 20px; 
             border-radius: 8px; 
-            margin-top: 20px; 
             display: none; 
         }
-        .admin-panel { 
-            margin-top: 24px; 
-            padding: 20px; 
-            background: #f8fafc; 
-            border-radius: 8px; 
-            border-left: 4px solid #10b981; 
+        .features { 
+            text-align: left; 
+            margin: 20px 0;
         }
         .feature { 
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 12px; 
-            color: #374151; 
+            margin: 8px 0; 
+            padding-left: 20px;
+            position: relative;
         }
-        .feature::before { 
+        .feature:before { 
             content: "✓"; 
-            color: #10b981; 
+            color: #0a0; 
             font-weight: bold; 
-            margin-right: 8px; 
+            position: absolute;
+            left: 0;
         }
-        .logout-btn { 
-            background: #6b7280; 
-            margin-top: 16px; 
-            padding: 8px 16px; 
-            font-size: 14px; 
-        }
-        .logout-btn:hover { background: #4b5563; }
         .back-link {
             position: absolute;
             top: 20px;
@@ -218,96 +192,68 @@ app.get('/blog-access', (req, res) => {
             color: white;
             text-decoration: none;
             background: rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 6px;
-            backdrop-filter: blur(10px);
+            padding: 8px 15px;
+            border-radius: 5px;
         }
-        .back-link:hover { background: rgba(255,255,255,0.3); }
     </style>
 </head>
 <body>
-    <a href="/" class="back-link">← Back to Homepage</a>
-    <div class="card">
-        <h1>Blog Admin</h1>
-        <p class="subtitle">Secure access to blog management</p>
-        
+    <a href="/" class="back-link">← Home</a>
+    <div class="admin-card">
         <div id="loginForm">
-            <form onsubmit="return handleLogin(event)">
-                <div class="form-group">
-                    <label for="password">Admin Password</label>
-                    <input type="password" id="password" placeholder="Enter your admin password" required>
-                </div>
-                <button type="submit">Access Blog Admin</button>
-                <div class="error" id="error">❌ Incorrect password. Please try again.</div>
-            </form>
+            <h1>Blog Admin</h1>
+            <p class="subtitle">Enter password to access blog management</p>
+            <input type="password" id="password" placeholder="Admin Password" />
+            <button onclick="login()">Access Admin Panel</button>
+            <div id="error" class="error">Incorrect password</div>
         </div>
         
-        <div class="success" id="success">
-            <h3 style="margin-bottom: 16px; color: #065f46;">🎉 Welcome, Mackenzie!</h3>
-            <p style="margin-bottom: 16px;">You have successfully accessed the blog admin panel.</p>
-            
-            <div class="admin-panel">
-                <h4 style="margin-bottom: 12px; color: #1f2937;">Blog Management Features</h4>
-                <div class="feature">Create and publish new blog posts</div>
-                <div class="feature">Edit existing blog content</div>
-                <div class="feature">Manage media uploads and images</div>
-                <div class="feature">Monitor blog performance</div>
+        <div id="success" class="success">
+            <h2>Welcome, Mackenzie!</h2>
+            <p>Blog admin access granted successfully.</p>
+            <div class="features">
+                <div class="feature">Create and edit blog posts</div>
+                <div class="feature">Manage media uploads</div>
                 <div class="feature">SEO optimization tools</div>
-                
-                <button class="logout-btn" onclick="logout()">Logout</button>
+                <div class="feature">Analytics dashboard</div>
             </div>
+            <button onclick="logout()">Logout</button>
         </div>
     </div>
     
     <script>
-        function handleLogin(event) {
-            event.preventDefault();
+        function login() {
             const password = document.getElementById('password').value;
             const error = document.getElementById('error');
-            const success = document.getElementById('success');
-            const loginForm = document.getElementById('loginForm');
             
             if (password === 'mackenzie2024') {
-                loginForm.style.display = 'none';
-                success.style.display = 'block';
-                sessionStorage.setItem('admin_logged_in', 'true');
-                sessionStorage.setItem('admin_login_time', new Date().toISOString());
-                sessionStorage.setItem('admin_user', 'mackenzie');
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+                sessionStorage.setItem('admin_auth', 'true');
             } else {
                 error.style.display = 'block';
-                setTimeout(() => { 
-                    error.style.display = 'none'; 
+                setTimeout(() => {
+                    error.style.display = 'none';
                     document.getElementById('password').value = '';
                 }, 3000);
             }
-            return false;
         }
         
         function logout() {
-            sessionStorage.removeItem('admin_logged_in');
-            sessionStorage.removeItem('admin_login_time');
-            sessionStorage.removeItem('admin_user');
+            sessionStorage.removeItem('admin_auth');
             document.getElementById('loginForm').style.display = 'block';
             document.getElementById('success').style.display = 'none';
             document.getElementById('password').value = '';
         }
         
         // Check if already logged in
-        if (sessionStorage.getItem('admin_logged_in') === 'true') {
+        if (sessionStorage.getItem('admin_auth') === 'true') {
             document.getElementById('loginForm').style.display = 'none';
             document.getElementById('success').style.display = 'block';
         }
     </script>
 </body>
-</html>`;
-  
-  res.set({
-    'Content-Type': 'text/html; charset=utf-8',
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Pragma': 'no-cache',
-    'Expires': '0'
-  });
-  res.send(adminHtml);
+</html>`);
 });
 
 // Intercept admin routes BEFORE any other middleware
