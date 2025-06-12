@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link } from "wouter";
-import { Plus, Edit, Trash2, Eye, Image, Save, ArrowLeft, Calendar, FileText } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { Plus, Edit, Trash2, Eye, Image, Save, ArrowLeft, Calendar, FileText, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,9 +30,18 @@ interface BlogPostForm {
 export default function AdminPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [, setLocation] = useLocation();
+  const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [showMediaDialog, setShowMediaDialog] = useState(false);
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      setLocation("/login");
+    }
+  }, [authLoading, isAuthenticated, setLocation]);
   
   const [formData, setFormData] = useState<BlogPostForm>({
     title: "",
@@ -210,8 +220,14 @@ export default function AdminPage() {
               </Link>
               <h1 className="text-xl font-semibold text-gray-900">Content Management</h1>
             </div>
-            <div className="text-sm text-gray-500">
-              Welcome, Mackenzie
+            <div className="flex items-center gap-4">
+              <div className="text-sm text-gray-600">
+                Welcome, {user?.firstName || 'Mackenzie'}
+              </div>
+              <Button variant="outline" size="sm" onClick={logout}>
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
+              </Button>
             </div>
           </div>
         </div>

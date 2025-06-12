@@ -107,6 +107,80 @@ function extractContactInfo(conversationText: string) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup session management
+  setupSession(app);
+  
+  // Create default admin user
+  await createDefaultAdmin();
+
+  // Authentication routes
+  app.post("/api/auth/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ message: "Username and password required" });
+      }
+
+      const [user] = await db.select().from(adminUsers).where(eq(adminUsers.username, username.toLowerCase()));
+      
+      if (!user || !user.isActive) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
+
+      const isValid = await verifyPassword(password, user.password);
+      
+      if (!isValid) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
+
+      // Update last login
+      await db.update(adminUsers)
+        .set({ lastLogin: new Date() })
+        .where(eq(adminUsers.id, user.id));
+
+      // Set session
+      req.session.user = {
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        isAdmin: true,
+      };
+
+      res.json({
+        user: {
+          id: user.id,
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        }
+      });
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ message: "Login failed" });
+    }
+  });
+
+  app.post("/api/auth/logout", (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Logout failed" });
+      }
+      res.json({ message: "Logged out successfully" });
+    });
+  });
+
+  app.get("/api/auth/me", (req, res) => {
+    if (req.session?.user) {
+      res.json({ user: req.session.user });
+    } else {
+      res.status(401).json({ message: "Not authenticated" });
+    }
+  });
+
   // Google OAuth routes for business reviews
   app.get("/auth/google", async (req, res) => {
     try {
@@ -711,7 +785,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/agents/:agentId/blog", async (req, res) => {
+  // Protected admin route for getting all blog posts including drafts
+  app.get("/api/agents/:agentId/blog", requireAdminAuth, async (req, res) => {
     try {
       const agentId = parseInt(req.params.agentId);
       const status = req.query.status as string;
@@ -722,7 +797,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog", async (req, res) => {
+  // Protected blog management routes
+  app.post("/api/blog", requireAdminAuth, async (req, res) => {
     try {
       const validatedPost = insertBlogPostSchema.parse(req.body);
       const post = await storage.createBlogPost(validatedPost);
@@ -732,7 +808,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/blog/:id", async (req, res) => {
+  app.put("/api/blog/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const validatedPost = insertBlogPostSchema.partial().parse(req.body);
@@ -746,7 +822,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/blog/:id", async (req, res) => {
+  app.delete("/api/blog/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const deleted = await storage.deleteBlogPost(id);
@@ -759,8 +835,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Media upload routes
-  app.get("/api/agents/:agentId/media", async (req, res) => {
+  // Protected media upload routes
+  app.get("/api/agents/:agentId/media", requireAdminAuth, async (req, res) => {
     try {
       const agentId = parseInt(req.params.agentId);
       const media = await storage.getMediaUploadsByAgent(agentId);
@@ -770,7 +846,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/media/upload", async (req, res) => {
+  app.post("/api/media/upload", requireAdminAuth, async (req, res) => {
     try {
       const validatedUpload = insertMediaUploadSchema.parse(req.body);
       const upload = await storage.createMediaUpload(validatedUpload);
@@ -780,7 +856,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/media/:id", async (req, res) => {
+  app.delete("/api/media/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const deleted = await storage.deleteMediaUpload(id);
