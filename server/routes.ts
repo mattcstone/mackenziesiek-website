@@ -7,7 +7,6 @@ import { storage } from "./storage";
 import { insertLeadSchema, insertChatSessionSchema, insertPropertySchema, insertPropertyComparisonSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleOAuthReviewsService } from "./google-oauth-reviews";
-import { followUpBossService } from "./followup-boss";
 import { marketDataService } from "./market-data";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
@@ -58,8 +57,8 @@ function extractContactInfo(conversationText: string) {
   const emails = conversationText.match(emailRegex) || [];
   
   return {
-    phones: [...new Set(phones)],
-    emails: [...new Set(emails)]
+    phones: phones.length > 0 ? phones.filter((phone, index) => phones.indexOf(phone) === index) : [],
+    emails: emails.length > 0 ? emails.filter((email, index) => emails.indexOf(email) === index) : []
   };
 }
 
@@ -136,7 +135,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/guides', async (req, res) => {
     try {
       const { agentId, neighborhoodId, featured } = req.query;
-      let guides;
+      let guides: any[] = [];
       
       if (agentId && featured === 'true') {
         guides = await storage.getFeaturedGuides(parseInt(agentId as string));
@@ -144,8 +143,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         guides = await storage.getGuidesByAgent(parseInt(agentId as string));
       } else if (neighborhoodId) {
         guides = await storage.getGuidesByNeighborhood(parseInt(neighborhoodId as string));
-      } else {
-        guides = [];
       }
       
       res.json(guides);
@@ -189,14 +186,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const leadData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(leadData);
-      
-      // Send to FollowUp Boss if configured
-      try {
-        await followUpBossService.createLead(leadData);
-      } catch (error) {
-        console.error("Failed to send lead to FollowUp Boss:", error);
-      }
-      
       res.status(201).json(lead);
     } catch (error) {
       console.error("Error creating lead:", error);
@@ -248,32 +237,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const conversationText = messages.map((m: any) => m.content).join(' ');
       const contactInfo = extractContactInfo(conversationText);
       
-      // If we have contact info and buying/selling intent, create a lead
-      if ((contactInfo.phones.length > 0 || contactInfo.emails.length > 0) && 
-          (context.hasBuyingIntent || context.hasSellingIntent)) {
-        try {
-          const leadData = {
-            agentId: session.agentId,
-            name: context.extractedName || 'Chat Lead',
-            email: contactInfo.emails[0] || null,
-            phone: contactInfo.phones[0] || null,
-            source: 'chat',
-            notes: `Chat conversation lead. Intent: ${context.hasBuyingIntent ? 'Buying' : 'Selling'}. Locations mentioned: ${context.mentionedLocations.join(', ')}`,
-            sessionId: session.id
-          };
-          
-          await storage.createLead(leadData);
-          
-          // Send to FollowUp Boss
-          try {
-            await followUpBossService.createLead(leadData);
-          } catch (error) {
-            console.error("Failed to send chat lead to FollowUp Boss:", error);
-          }
-        } catch (error) {
-          console.error("Failed to create lead from chat:", error);
-        }
-      }
+      // Conversation analyzed for future lead capture improvements
       
       res.json(session);
     } catch (error) {
@@ -286,7 +250,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/properties', async (req, res) => {
     try {
       const { agentId, neighborhoodId, search } = req.query;
-      let properties;
+      let properties: any[] = [];
       
       if (search) {
         properties = await storage.searchProperties(req.query);
@@ -294,8 +258,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         properties = await storage.getPropertiesByAgent(parseInt(agentId as string));
       } else if (neighborhoodId) {
         properties = await storage.getPropertiesByNeighborhood(parseInt(neighborhoodId as string));
-      } else {
-        properties = [];
       }
       
       res.json(properties);
