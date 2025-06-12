@@ -1,6 +1,7 @@
 import { Switch, Route } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
+import AdminPortal from "./pages/admin-portal";
 
 function MinimalHomePage() {
   return (
@@ -80,6 +81,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={MinimalHomePage} />
+      <Route path="/admin-portal" component={AdminPortal} />
+      <Route path="/blog-admin" component={AdminPortal} />
+      <Route path="/admin" component={AdminPortal} />
       <Route component={NotFound} />
     </Switch>
   );
