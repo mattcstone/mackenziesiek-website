@@ -46,6 +46,280 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Admin portal route - must be before Vite middleware
+app.get('/admin-portal', (req, res) => {
+  res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin - Mackenzie Siek</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .admin-card { 
+            background: white; 
+            padding: 50px; 
+            border-radius: 20px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2); 
+            max-width: 480px; 
+            width: 100%; 
+            text-align: center;
+            position: relative;
+        }
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        h1 { 
+            color: #1f2937; 
+            margin-bottom: 12px; 
+            font-size: 32px; 
+            font-weight: 700; 
+        }
+        .subtitle { 
+            color: #6b7280; 
+            margin-bottom: 36px; 
+            font-size: 16px; 
+        }
+        input { 
+            width: 100%; 
+            padding: 16px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            margin-bottom: 20px;
+            background: #f9fafb;
+            transition: all 0.2s;
+        }
+        input:focus { 
+            outline: none; 
+            border-color: #667eea; 
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); 
+        }
+        button { 
+            width: 100%; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+        button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
+        }
+        .error { 
+            color: #dc2626; 
+            background: #fef2f2; 
+            padding: 12px; 
+            border-radius: 8px; 
+            border: 1px solid #fecaca;
+            display: none; 
+            margin-top: 16px;
+        }
+        .success { 
+            display: none; 
+        }
+        .welcome-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+        }
+        .welcome-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .features {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        .feature {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 16px;
+        }
+        .feature-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+        .feature-desc {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .actions {
+            display: flex;
+            gap: 16px;
+        }
+        .btn-secondary {
+            flex: 1;
+            background: #6b7280;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        .home-link {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">← Back to Website</a>
+    
+    <div class="admin-card">
+        <div id="loginView">
+            <div class="logo">MS</div>
+            <h1>Blog Admin Portal</h1>
+            <p class="subtitle">Secure access to blog management system</p>
+            
+            <input type="password" id="adminPassword" placeholder="Enter admin password" />
+            <button onclick="handleLogin()">Access Admin Panel</button>
+            
+            <div id="errorMsg" class="error">
+                Invalid password. Please try again.
+            </div>
+        </div>
+
+        <div id="successView" class="success">
+            <div class="welcome-header">
+                <div class="welcome-title">Welcome Back, Mackenzie!</div>
+                <p>Blog administration portal is now active</p>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-title">Content Management</div>
+                    <div class="feature-desc">Create, edit, and publish blog posts with rich content editor</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-title">Media Library</div>
+                    <div class="feature-desc">Upload and manage images, documents, and media files</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-title">SEO Tools</div>
+                    <div class="feature-desc">Optimize content for search engines and social media</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-title">Analytics Dashboard</div>
+                    <div class="feature-desc">Monitor blog performance and reader engagement</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-secondary" onclick="adminLogout()">Logout</button>
+                <button class="btn-secondary" onclick="window.open('/', '_blank')">View Website</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = 'mackenzie2024';
+        
+        function handleLogin() {
+            const password = document.getElementById('adminPassword').value;
+            const errorEl = document.getElementById('errorMsg');
+            
+            if (password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('blog_admin_auth', 'true');
+                sessionStorage.setItem('admin_login_time', new Date().toISOString());
+                showAdminPanel();
+            } else if (password) {
+                showError();
+            }
+        }
+        
+        function showAdminPanel() {
+            document.getElementById('loginView').style.display = 'none';
+            document.getElementById('successView').style.display = 'block';
+        }
+        
+        function showError() {
+            const errorEl = document.getElementById('errorMsg');
+            errorEl.style.display = 'block';
+            setTimeout(() => {
+                errorEl.style.display = 'none';
+                document.getElementById('adminPassword').value = '';
+            }, 3000);
+        }
+        
+        function adminLogout() {
+            sessionStorage.removeItem('blog_admin_auth');
+            sessionStorage.removeItem('admin_login_time');
+            document.getElementById('loginView').style.display = 'block';
+            document.getElementById('successView').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+        }
+        
+        // Check if already authenticated
+        if (sessionStorage.getItem('blog_admin_auth') === 'true') {
+            const loginTime = sessionStorage.getItem('admin_login_time');
+            if (loginTime) {
+                const elapsed = Date.now() - new Date(loginTime).getTime();
+                if (elapsed < 4 * 60 * 60 * 1000) { // 4 hours
+                    showAdminPanel();
+                } else {
+                    adminLogout();
+                }
+            }
+        }
+        
+        // Allow Enter key to login
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
+    </script>
+</body>
+</html>`);
+});
+
 // Add global error handlers to prevent crashes
 process.on('uncaughtException', (error) => {
   console.error('Uncaught Exception:', error);

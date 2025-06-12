@@ -102,7 +102,7 @@ function MinimalHomePage() {
           </button>
           <div style={{ marginTop: "16px" }}>
             <a 
-              href="/admin-access"
+              href="/admin-portal"
               style={{
                 display: "inline-block",
                 backgroundColor: "#7c3aed",
