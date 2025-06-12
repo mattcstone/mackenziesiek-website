@@ -90,6 +90,226 @@ app.use((req, res, next) => {
   next();
 });
 
+// Intercept API admin route BEFORE Vite middleware
+app.get('/api/admin-portal', (req, res) => {
+  const adminHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin - Mackenzie Siek</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
+            max-width: 500px; 
+            width: 100%; 
+        }
+        h1 { 
+            text-align: center; 
+            color: #1f2937; 
+            margin-bottom: 8px; 
+            font-size: 32px; 
+            font-weight: 700; 
+        }
+        .subtitle { 
+            text-align: center; 
+            color: #6b7280; 
+            margin-bottom: 32px; 
+            font-size: 16px; 
+        }
+        .form-group { margin-bottom: 24px; }
+        label { 
+            display: block; 
+            color: #374151; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            font-size: 14px; 
+        }
+        input { 
+            width: 100%; 
+            padding: 14px 16px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            transition: all 0.2s; 
+        }
+        input:focus { 
+            outline: none; 
+            border-color: #3b82f6; 
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); 
+        }
+        button { 
+            width: 100%; 
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
+            color: white; 
+            padding: 14px 16px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+        }
+        button:hover { 
+            transform: translateY(-1px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+        }
+        .error { 
+            color: #dc2626; 
+            margin-top: 8px; 
+            font-size: 14px; 
+            display: none; 
+            padding: 8px; 
+            background: #fef2f2; 
+            border-radius: 4px; 
+        }
+        .success { 
+            background: #ecfdf5; 
+            border: 2px solid #10b981; 
+            color: #065f46; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-top: 20px; 
+            display: none; 
+        }
+        .admin-panel { 
+            margin-top: 24px; 
+            padding: 20px; 
+            background: #f8fafc; 
+            border-radius: 8px; 
+            border-left: 4px solid #10b981; 
+        }
+        .feature { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 12px; 
+            color: #374151; 
+        }
+        .feature::before { 
+            content: "✓"; 
+            color: #10b981; 
+            font-weight: bold; 
+            margin-right: 8px; 
+        }
+        .logout-btn { 
+            background: #6b7280; 
+            margin-top: 16px; 
+            padding: 8px 16px; 
+            font-size: 14px; 
+        }
+        .logout-btn:hover { background: #4b5563; }
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+        }
+        .back-link:hover { background: rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">← Back to Homepage</a>
+    <div class="card">
+        <h1>Blog Admin</h1>
+        <p class="subtitle">Secure access to blog management</p>
+        
+        <div id="loginForm">
+            <form onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label for="password">Admin Password</label>
+                    <input type="password" id="password" placeholder="Enter your admin password" required>
+                </div>
+                <button type="submit">Access Blog Admin</button>
+                <div class="error" id="error">❌ Incorrect password. Please try again.</div>
+            </form>
+        </div>
+        
+        <div class="success" id="success">
+            <h3 style="margin-bottom: 16px; color: #065f46;">🎉 Welcome, Mackenzie!</h3>
+            <p style="margin-bottom: 16px;">You have successfully accessed the blog admin panel.</p>
+            
+            <div class="admin-panel">
+                <h4 style="margin-bottom: 12px; color: #1f2937;">Blog Management Features</h4>
+                <div class="feature">Create and publish new blog posts</div>
+                <div class="feature">Edit existing blog content</div>
+                <div class="feature">Manage media uploads and images</div>
+                <div class="feature">Monitor blog performance</div>
+                <div class="feature">SEO optimization tools</div>
+                
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('error');
+            const success = document.getElementById('success');
+            const loginForm = document.getElementById('loginForm');
+            
+            if (password === 'mackenzie2024') {
+                loginForm.style.display = 'none';
+                success.style.display = 'block';
+                sessionStorage.setItem('admin_logged_in', 'true');
+                sessionStorage.setItem('admin_login_time', new Date().toISOString());
+                sessionStorage.setItem('admin_user', 'mackenzie');
+            } else {
+                error.style.display = 'block';
+                setTimeout(() => { 
+                    error.style.display = 'none'; 
+                    document.getElementById('password').value = '';
+                }, 3000);
+            }
+            return false;
+        }
+        
+        function logout() {
+            sessionStorage.removeItem('admin_logged_in');
+            sessionStorage.removeItem('admin_login_time');
+            sessionStorage.removeItem('admin_user');
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('password').value = '';
+        }
+        
+        // Check if already logged in
+        if (sessionStorage.getItem('admin_logged_in') === 'true') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+        }
+    </script>
+</body>
+</html>`;
+  
+  res.set({
+    'Content-Type': 'text/html; charset=utf-8',
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0'
+  });
+  res.send(adminHtml);
+});
+
 // Intercept admin routes BEFORE any other middleware
 app.use('/admin-portal', (req, res) => {
   const adminHtml = `<!DOCTYPE html>
