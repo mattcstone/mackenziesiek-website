@@ -16,17 +16,21 @@ export default function HeroSection({ agent }: HeroSectionProps) {
           muted
           loop
           playsInline
+          preload="auto"
           className="w-full h-full object-cover opacity-80 sm:opacity-70"
+          onError={() => console.log('Video failed to load')}
         >
+          <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/mp4" />
           <source src="/attached_assets/shutterstock_1072368770_1749376824938.mov" type="video/quicktime" />
-          {/* Fallback background image if video fails to load */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
-            style={{
-              backgroundImage: "url('/assets/shutterstock_284834021.jpg')"
-            }}
-          ></div>
+          Your browser does not support the video tag.
         </video>
+        {/* Fallback background image if video fails to load */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{
+            backgroundImage: "url('/attached_assets/shutterstock_284834021.jpg')"
+          }}
+        ></div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-gray-800/40 sm:from-black/50 sm:to-gray-800/50"></div>
       
