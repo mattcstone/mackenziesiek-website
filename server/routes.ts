@@ -230,8 +230,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
 
-  // Direct admin access endpoint that works in production
-  app.get('/admin', (req, res) => {
+  // Admin portal - bypasses client routing completely
+  app.get('/admin-access', (req, res) => {
     res.send(`<!DOCTYPE html>
 <html lang="en">
 <head>

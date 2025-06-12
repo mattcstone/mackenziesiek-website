@@ -100,6 +100,24 @@ function MinimalHomePage() {
           >
             🔐 Blog Admin Access
           </button>
+          <div style={{ marginTop: "16px" }}>
+            <a 
+              href="/admin-access"
+              style={{
+                display: "inline-block",
+                backgroundColor: "#7c3aed",
+                color: "white",
+                padding: "12px 24px",
+                textDecoration: "none",
+                borderRadius: "6px",
+                fontWeight: "500",
+                fontSize: "14px",
+                border: "2px solid #7c3aed"
+              }}
+            >
+              Direct Admin Portal →
+            </a>
+          </div>
         </div>
       </div>
     </div>
