@@ -89,9 +89,19 @@ app.use((req, res, next) => {
   next();
 });
 
-// Add admin route before Vite to ensure it takes precedence
-app.get('/admin', (req, res) => {
+// Admin routes with API prefix to bypass Vite completely
+app.get('/api/admin-login', (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+    'Content-Type': 'text/html'
+  });
   res.sendFile(path.resolve(process.cwd(), 'server', 'public', 'admin.html'));
+});
+
+app.get('/admin', (req, res) => {
+  res.redirect('/api/admin-login');
 });
 
 app.use('/public', express.static(path.resolve(process.cwd(), 'server', 'public')));
