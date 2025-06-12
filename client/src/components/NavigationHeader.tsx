@@ -8,6 +8,8 @@ interface NavigationHeaderProps {
 }
 
 export default function NavigationHeader({ agentName = "Mackenzie Siek" }: NavigationHeaderProps) {
+  // FORCE CACHE BREAK - NO BLOG LINK EXISTS IN THIS COMPONENT
+  const CACHE_BREAK_ID = "NO_BLOG_v4_" + Date.now();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -33,7 +35,8 @@ export default function NavigationHeader({ agentName = "Mackenzie Siek" }: Navig
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // REAL ESTATE SERVICES ONLY - NO BLOG
+  // REAL ESTATE SERVICES ONLY - NO BLOG - CACHE BUST v3.0.0
+  console.log("NavigationHeader loaded - NO BLOG - v3.0.0");
   const navigationItems = [
     {
       label: "Search Listings",
