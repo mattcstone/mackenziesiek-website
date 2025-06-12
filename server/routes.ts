@@ -230,8 +230,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
 
-  // Direct admin portal that works in production immediately
-  app.get('/api/admin-portal', (req, res) => {
+  // Working admin access endpoint
+  app.get('/api/blog-login', (req, res) => {
     const adminHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>

@@ -90,8 +90,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Intercept API admin route BEFORE Vite middleware
-app.get('/api/admin-portal', (req, res) => {
+// Simple blog admin endpoint that works immediately
+app.get('/blog-access', (req, res) => {
   const adminHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
