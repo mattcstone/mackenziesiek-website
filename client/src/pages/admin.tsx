@@ -35,13 +35,7 @@ export default function AdminPage() {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [showMediaDialog, setShowMediaDialog] = useState(false);
-
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!authLoading && !isAuthenticated) {
-      setLocation("/login");
-    }
-  }, [authLoading, isAuthenticated, setLocation]);
+  const [newTag, setNewTag] = useState("");
   
   const [formData, setFormData] = useState<BlogPostForm>({
     title: "",
@@ -54,7 +48,29 @@ export default function AdminPage() {
     agentId: 1,
   });
 
-  const [newTag, setNewTag] = useState("");
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      setLocation("/login");
+    }
+  }, [authLoading, isAuthenticated, setLocation]);
+
+  // Show loading screen while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   // Fetch blog posts
   const { data: posts, isLoading: postsLoading } = useQuery<BlogPost[]>({
