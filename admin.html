@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin - Mackenzie Siek</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .admin-container { 
+            background: white; 
+            padding: 50px; 
+            border-radius: 16px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+            max-width: 450px; 
+            width: 100%; 
+            text-align: center;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        h1 { 
+            color: #1f2937; 
+            margin-bottom: 8px; 
+            font-size: 28px; 
+            font-weight: 700; 
+        }
+        .subtitle { 
+            color: #6b7280; 
+            margin-bottom: 35px; 
+            font-size: 16px; 
+        }
+        .form-group { 
+            margin-bottom: 25px; 
+            text-align: left;
+        }
+        label { 
+            display: block; 
+            color: #374151; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            font-size: 14px; 
+        }
+        input { 
+            width: 100%; 
+            padding: 16px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            transition: all 0.2s; 
+            background: #f9fafb;
+        }
+        input:focus { 
+            outline: none; 
+            border-color: #667eea; 
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); 
+        }
+        .login-btn { 
+            width: 100%; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            margin-bottom: 16px;
+        }
+        .login-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
+        }
+        .error-msg { 
+            color: #dc2626; 
+            font-size: 14px; 
+            display: none; 
+            padding: 12px; 
+            background: #fef2f2; 
+            border-radius: 8px; 
+            border: 1px solid #fecaca;
+            margin-top: 16px;
+        }
+        .success-panel { 
+            display: none; 
+        }
+        .welcome-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        .welcome-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .welcome-subtitle {
+            opacity: 0.9;
+        }
+        .features-list {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .feature-item {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+            text-align: left;
+        }
+        .feature-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        .feature-desc {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .admin-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .btn-logout {
+            flex: 1;
+            background: #6b7280;
+            color: white;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            background: #4b5563;
+        }
+        .home-link {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .home-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">← Back to Homepage</a>
+    
+    <div class="admin-container">
+        <!-- Login Panel -->
+        <div id="loginPanel">
+            <div class="logo">MS</div>
+            <h1>Admin Portal</h1>
+            <p class="subtitle">Secure blog management access</p>
+            
+            <form onsubmit="return handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                </div>
+                <button type="submit" class="login-btn">Access Admin Panel</button>
+            </form>
+            
+            <div class="error-msg" id="errorDisplay">
+                Invalid password. Please try again.
+            </div>
+        </div>
+
+        <!-- Success Panel -->
+        <div id="successPanel" class="success-panel">
+            <div class="welcome-box">
+                <div class="welcome-title">Welcome Back, Mackenzie!</div>
+                <div class="welcome-subtitle">Blog administration portal is ready</div>
+            </div>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-title">Content Management</div>
+                    <div class="feature-desc">Create, edit, and publish blog posts</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title">Media Library</div>
+                    <div class="feature-desc">Upload and manage images and files</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title">SEO Tools</div>
+                    <div class="feature-desc">Optimize content for search engines</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title">Analytics</div>
+                    <div class="feature-desc">Monitor blog performance metrics</div>
+                </div>
+            </div>
+
+            <div class="admin-actions">
+                <button class="btn-logout" onclick="adminLogout()">Logout</button>
+                <button class="btn-logout" onclick="window.location.href='/'">View Website</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = 'mackenzie2024';
+        
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            const errorEl = document.getElementById('errorDisplay');
+            
+            if (password === ADMIN_PASSWORD) {
+                // Store admin session
+                sessionStorage.setItem('blog_admin_authenticated', 'true');
+                sessionStorage.setItem('admin_login_timestamp', new Date().toISOString());
+                
+                // Show admin panel
+                showAdminPanel();
+            } else {
+                showLoginError();
+            }
+        }
+        
+        function showAdminPanel() {
+            document.getElementById('loginPanel').style.display = 'none';
+            document.getElementById('successPanel').style.display = 'block';
+        }
+        
+        function showLoginError() {
+            const errorEl = document.getElementById('errorDisplay');
+            errorEl.style.display = 'block';
+            
+            setTimeout(() => {
+                errorEl.style.display = 'none';
+                document.getElementById('adminPassword').value = '';
+            }, 3000);
+        }
+        
+        function adminLogout() {
+            sessionStorage.removeItem('blog_admin_authenticated');
+            sessionStorage.removeItem('admin_login_timestamp');
+            document.getElementById('loginPanel').style.display = 'block';
+            document.getElementById('successPanel').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+        }
+        
+        // Check existing authentication
+        function checkAuthenticationStatus() {
+            const isAuthenticated = sessionStorage.getItem('blog_admin_authenticated');
+            const loginTime = sessionStorage.getItem('admin_login_timestamp');
+            
+            if (isAuthenticated === 'true' && loginTime) {
+                const elapsed = Date.now() - new Date(loginTime).getTime();
+                const sessionTimeout = 4 * 60 * 60 * 1000; // 4 hours
+                
+                if (elapsed < sessionTimeout) {
+                    showAdminPanel();
+                } else {
+                    adminLogout();
+                }
+            }
+        }
+        
+        // Initialize on page load
+        checkAuthenticationStatus();
+    </script>
+</body>
+</html>

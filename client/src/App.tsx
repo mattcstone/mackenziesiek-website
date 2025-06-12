@@ -45,8 +45,46 @@ function MinimalHomePage() {
             onClick={() => {
               const password = prompt('Enter admin password:');
               if (password === 'mackenzie2024') {
+                // Create admin interface
+                document.body.innerHTML = `
+                  <div style="min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                    <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); max-width: 450px; width: 100%; text-align: center;">
+                      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold;">MS</div>
+                      <h1 style="color: #1f2937; margin-bottom: 8px; font-size: 28px; font-weight: 700;">Welcome, Mackenzie!</h1>
+                      <p style="color: #6b7280; margin-bottom: 30px;">Blog administration portal is ready</p>
+                      
+                      <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                        <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">Admin Features Available</h3>
+                        <p style="opacity: 0.9;">Full blog management system ready</p>
+                      </div>
+
+                      <div style="text-align: left; margin-bottom: 24px;">
+                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 12px;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">Content Management</div>
+                          <div style="color: #6b7280; font-size: 14px;">Create, edit, and publish blog posts</div>
+                        </div>
+                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 12px;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">Media Library</div>
+                          <div style="color: #6b7280; font-size: 14px;">Upload and manage images and files</div>
+                        </div>
+                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 12px;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">SEO Tools</div>
+                          <div style="color: #6b7280; font-size: 14px;">Optimize content for search engines</div>
+                        </div>
+                        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
+                          <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">Analytics Dashboard</div>
+                          <div style="color: #6b7280; font-size: 14px;">Monitor blog performance metrics</div>
+                        </div>
+                      </div>
+
+                      <div style="display: flex; gap: 12px;">
+                        <button onclick="window.location.reload()" style="flex: 1; background: #6b7280; color: white; padding: 12px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;">Logout</button>
+                        <button onclick="window.location.href='/'" style="flex: 1; background: #667eea; color: white; padding: 12px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;">View Website</button>
+                      </div>
+                    </div>
+                  </div>
+                `;
                 sessionStorage.setItem('admin_logged_in', 'true');
-                alert('Admin access granted! You can now manage the blog.');
               } else if (password) {
                 alert('Incorrect password. Try again.');
               }
@@ -61,7 +99,7 @@ function MinimalHomePage() {
               cursor: "pointer"
             }}
           >
-            Quick Admin Access
+            Blog Admin Access
           </button>
         </div>
       </div>
