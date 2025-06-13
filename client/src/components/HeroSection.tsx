@@ -14,7 +14,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/attached_assets/shutterstock_284834021.jpg')"
+            backgroundImage: "url('/images/hero-background.jpg')"
           }}
         ></div>
       </div>
@@ -77,7 +77,7 @@ export default function HeroSection({ agent }: HeroSectionProps) {
           <div className="relative">
             <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="/attached_assets/Untitled design.png" 
+                src="/images/mackenzie-profile.png" 
                 alt="Mackenzie Siek - Charlotte Real Estate Agent with luxury home"
                 className="w-full h-80 object-cover rounded-lg shadow-2xl"
                 loading="eager"

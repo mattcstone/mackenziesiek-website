@@ -79,7 +79,7 @@ export default function MainNavigation({ agentName = "Mackenzie Siek" }: MainNav
             <div className="flex items-center">
               <Link href="/">
                 <img 
-                  src="/attached_assets/rectlogo.png" 
+                  src="/images/logo.png" 
                   alt="Stone Realty Group - Charlotte Real Estate Experts" 
                   className="h-10 w-auto cursor-pointer" 
                   title="Stone Realty Group Home"
