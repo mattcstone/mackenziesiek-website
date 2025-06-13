@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://mackenzie.mattstoneteam.com/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
+
+# Block admin or sensitive areas (if any exist)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
